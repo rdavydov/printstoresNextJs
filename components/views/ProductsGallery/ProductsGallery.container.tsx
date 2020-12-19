@@ -10,11 +10,16 @@ const ProductsGalleryContainer: React.FC<IProductsGaleryProps> = ({
   const [start, setStart] = useState(true);
   const [end, setEnd] = useState(false);
 
-  const changeStart = (start: boolean) => {
-    setStart(start);
+  const changeStart = () => {
+    setStart(true);
   };
-  const changeEnd = (endSlide: boolean) => {
-    setEnd(endSlide);
+  const changeEnd = () => {
+    setEnd(true);
+  };
+
+  const allChange = () => {
+    setStart(false);
+    setEnd(false);
   };
 
   const prevSlide = useCallback(() => {
@@ -44,6 +49,7 @@ const ProductsGalleryContainer: React.FC<IProductsGaleryProps> = ({
       prevSlide={prevSlide}
       changeStart={changeStart}
       changeEnd={changeEnd}
+      allChange={allChange}
     />
   );
 };

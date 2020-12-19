@@ -1,23 +1,32 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, A11y } from "swiper";
-import _ from "lodash";
+import random from "lodash/random";
+
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import { Box } from "@material-ui/core";
 import { IProducts } from "../../../../types/interfaces/products.gallery.interface";
 import GalleryItem from "./GalleryItem/GalleryItem";
 import { GaleryHeader, GalleryWrapper, Title } from "./styled";
-import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
-import { Box } from "@material-ui/core";
 
 interface IProps {
   prevSlide: () => void;
   nextSlide: () => void;
   initSwipe: (swipe) => void;
-  changeStart: (start: boolean) => void;
-  changeEnd: (end: boolean) => void;
+  changeStart: () => void;
+  changeEnd: () => void;
+  allChange: () => void;
   end: boolean;
   start: boolean;
 }
 SwiperCore.use([Autoplay, A11y]);
+
+const breakpointsConfig = {
+  320: { slidesPerView: 1, spaceBetween: 0 },
+  600: { slidesPerView: 2, spaceBetween: 10 },
+  960: { slidesPerView: 3, spaceBetween: 10 },
+  1200: { slidesPerView: 4, spaceBetween: 30 },
+};
 
 const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
   title,
@@ -27,6 +36,7 @@ const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
   prevSlide,
   changeStart,
   changeEnd,
+  allChange,
   start,
   end,
   ...rest
@@ -43,20 +53,12 @@ const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
-        autoplay={{ delay: _.random(2500, 4500), disableOnInteraction: true }}
+        autoplay={{ delay: random(2500, 4500), disableOnInteraction: true }}
         onInit={initSwipe}
-        breakpoints={{
-          320: { slidesPerView: 1, spaceBetween: 0 },
-          600: { slidesPerView: 2, spaceBetween: 10 },
-          960: { slidesPerView: 3, spaceBetween: 10 },
-          1200: { slidesPerView: 4, spaceBetween: 30 },
-        }}
-        onFromEdge={() => {
-          changeStart(false);
-          changeEnd(false);
-        }}
-        onReachBeginning={() => changeStart(true)}
-        onReachEnd={() => changeEnd(true)}
+        breakpoints={breakpointsConfig}
+        onFromEdge={allChange}
+        onReachBeginning={changeStart}
+        onReachEnd={changeEnd}
       >
         {productsList.map((el, index) => (
           <SwiperSlide key={index}>
