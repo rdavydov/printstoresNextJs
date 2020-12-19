@@ -1,0 +1,3 @@
+.cardDefault:global(.ant-card .ant-card-cover) {
+  filter: brightness(0.96);
+}
