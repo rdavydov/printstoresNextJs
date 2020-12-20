@@ -2,7 +2,7 @@ import React from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { BreadcrumbsWrapper } from "./styled";
 import { IRoutes } from "../types/interfaces/routes.interface";
-import { Link } from "@material-ui/core";
+import Link from "next/link";
 
 const BreadcrumbsLinks = ({ route }: IRoutes) => {
   const routes = route.map(({ path, name }, index, arr) => {
@@ -15,8 +15,8 @@ const BreadcrumbsLinks = ({ route }: IRoutes) => {
         {name}
       </span>
     ) : (
-      <Link href={path} key={index} color="inherit">
-        {name}
+      <Link href={{ pathname: path, query: { title: name } }} key={index}>
+        <a>{name}</a>
       </Link>
     );
   });

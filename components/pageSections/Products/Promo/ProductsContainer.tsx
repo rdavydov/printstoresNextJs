@@ -4,14 +4,22 @@ import { routesConfig } from "../../../../config/routes/routes";
 import ProductsPromo from "./ProductsPromo";
 
 const ProductsContainer = () => {
-  const { asPath, query } = useRouter();
-  const { title } = query;
+  const {
+    pathname,
+    query: { title, productTitle, categoryID, productID },
+  } = useRouter();
 
   const routes = routesConfig.getPaginationLinks(
     routesConfig.getCrumbsConfig(),
-    [{ path: asPath, name: title }]
+    [
+      {
+        path: routesConfig.getRouteCategory(categoryID),
+        name: title,
+      },
+      { path: pathname, name: productTitle },
+    ]
   );
-  return <ProductsPromo title={title} route={routes} />;
+  return <ProductsPromo title={productTitle} route={routes} />;
 };
 
 export default ProductsContainer;

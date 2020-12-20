@@ -6,16 +6,15 @@ import CategoryItemsPromo from "./Category.items.promo";
 const CategoryItemsContainer = () => {
   const {
     push,
-    asPath,
-    query: { categoryID },
+    pathname,
+    query: { categoryID, title },
   } = useRouter();
-
   const goLocation = (productID: string | number, productTitle: string) => {
-    const path = routesConfig.getProductRoute(asPath);
-    push(
-      { pathname: path, query: { productTitle, productID, categoryID } },
-      path
-    );
+    const path = routesConfig.getProductRoute(pathname);
+    push({
+      pathname: path,
+      query: { productTitle, productID, categoryID, title },
+    });
   };
 
   return <CategoryItemsPromo categoryData={cardData} goLocation={goLocation} />;

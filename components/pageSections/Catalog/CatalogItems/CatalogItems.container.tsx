@@ -7,6 +7,7 @@ const CatalogItemsContainer = () => {
   const { pathname, push } = useRouter();
   const goLocation = (categoryID: string | number, title: string) => {
     const path = routesConfig.getCategoryRoute(pathname);
+    console.log(pathname, categoryID);
     push({ pathname: path, query: { title, categoryID } }, path);
   };
   return <CatalogItemsPromo goLocation={goLocation} />;

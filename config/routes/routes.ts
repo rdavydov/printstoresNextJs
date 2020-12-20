@@ -34,6 +34,10 @@ export class RoutesConfig {
     return this.routes[route];
   }
 
+  getRouteCategory(id: string | number): string {
+    return `/catalog/${this.routes.category}/${id}`;
+  }
+
   getCrumbsConfig() {
     return [
       { path: `/${this.routes.home}`, name: this.routesTitle.home },
