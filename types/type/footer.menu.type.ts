@@ -1,6 +1,3 @@
-import { SvgIconTypeMap } from "@material-ui/core";
-import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-
 export type Menu = {
   title: string;
 };
@@ -11,6 +8,6 @@ export type itemsMenu = {
 };
 
 export type followType = {
-  src: any;
+  src: string;
   path: string;
 };

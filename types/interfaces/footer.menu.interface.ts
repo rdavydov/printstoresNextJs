@@ -1,8 +1,8 @@
 import { itemsMenu } from "../type/footer.menu.type";
 
-export interface IMenu<T> {
+export interface IMenu {
   title: string;
-  items: Array<{ [K in keyof itemsMenu]: T }>;
+  items: Array<{ [K in keyof itemsMenu]: itemsMenu[K] }>;
 }
 
 export interface IFollow {
