@@ -34,7 +34,7 @@ export class RoutesConfig {
     return this.routes[route];
   }
 
-  getRouteCategory(id: string | number): string {
+  getRouteCategory(id: string | number | string[]): string {
     return `/catalog/${this.routes.category}/${id}`;
   }
 

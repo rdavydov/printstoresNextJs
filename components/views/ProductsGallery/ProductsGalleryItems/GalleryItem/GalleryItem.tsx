@@ -1,4 +1,3 @@
-import { Box } from "@material-ui/core";
 import React, { useState } from "react";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Product } from "../../../../../types/type/products.type";

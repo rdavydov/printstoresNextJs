@@ -5,13 +5,13 @@ import CategoryItemsPromo from "./Category.items.promo";
 
 const CategoryItemsContainer = () => {
   const {
-    push,
+    replace,
     pathname,
     query: { categoryID, title },
   } = useRouter();
   const goLocation = (productID: string | number, productTitle: string) => {
     const path = routesConfig.getProductRoute(pathname);
-    push({
+    replace({
       pathname: path,
       query: { productTitle, productID, categoryID, title },
     });
