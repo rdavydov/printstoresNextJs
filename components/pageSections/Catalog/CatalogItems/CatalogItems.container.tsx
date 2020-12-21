@@ -4,11 +4,10 @@ import { routesConfig } from "../../../../config/routes/routes";
 import CatalogItemsPromo from "./CatalogItems.promo";
 
 const CatalogItemsContainer = () => {
-  const { pathname, push } = useRouter();
+  const { pathname, replace } = useRouter();
   const goLocation = (categoryID: string | number, title: string) => {
     const path = routesConfig.getCategoryRoute(pathname);
-    console.log(pathname, categoryID);
-    push({ pathname: path, query: { title, categoryID } }, path);
+    replace({ pathname: path, query: { title, categoryID } });
   };
   return <CatalogItemsPromo goLocation={goLocation} />;
 };

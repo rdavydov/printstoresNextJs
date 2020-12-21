@@ -6,7 +6,7 @@ export interface IProductsGaleryProps {
 }
 
 export interface IProducts {
-  title: string;
+  title?: string;
   productsList: Product[];
 }
 
