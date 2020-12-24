@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
 import CategoryCard from "../../../../reusable-components/CategoryCard/CategoryCard";
 
-import { cardData } from "../../card.data";
 import PaginationButton from "../../../../reusable-components/PaginationButton/PaginationButton";
 
-const CatalogItemsPromo = ({ goLocation }) => {
+const CatalogItemsPromo = ({ goLocation, category = [] }) => {
   return (
     <Fragment>
-      <CategoryCard cardData={cardData} goLocation={goLocation} />
+      <CategoryCard cardData={category} goLocation={goLocation} />
       <PaginationButton />
     </Fragment>
   );

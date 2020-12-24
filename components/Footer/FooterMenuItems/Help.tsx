@@ -4,8 +4,7 @@ import { MenuList } from "../../../reusable-components/styled";
 import { IMenu } from "../../../types/interfaces/footer.menu.interface";
 import { Title } from "./styled";
 
-
-const Help = <T,>({ title, items }: IMenu<T>) => {
+const Help = <T,>({ title, items }: IMenu) => {
   return (
     <MenuList>
       <Title>{title}</Title>

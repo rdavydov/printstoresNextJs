@@ -12,12 +12,16 @@ import {
 } from "./styled";
 import { Product } from "../../types/type/products.type";
 
-const CardItem: React.FC<Product> = ({
+interface IProps {
+  goLocation: () => void;
+}
+
+const CardItem: React.FC<Product & IProps> = ({
   name,
   price,
   oldPrice,
   src,
-
+  goLocation,
   ...rest
 }) => {
   const [hovered, setHovered] = useState(false);
@@ -30,7 +34,11 @@ const CardItem: React.FC<Product> = ({
     setHovered(false);
   };
   return (
-    <CardWrapper onMouseMove={onHovered} onMouseLeave={noHovered}>
+    <CardWrapper
+      onMouseMove={onHovered}
+      onMouseLeave={noHovered}
+      onClick={goLocation}
+    >
       <CardBody>
         <CardImage src={src} />
         {hovered && (

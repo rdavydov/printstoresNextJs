@@ -3,18 +3,27 @@ import { IProducts } from "../../types/interfaces/products.gallery.interface";
 import CardItem from "./CardItem";
 import { CardGrid } from "./styled";
 
-const Card: React.FC<IProducts> = ({ productsList }) => {
+interface IProps {
+  goLocation: (id: number, title: string) => void;
+}
+const Card: React.FC<IProducts & IProps> = ({ productsList, goLocation }) => {
   return (
     <CardGrid>
-      {productsList.map((el, index) => (
-        <CardItem
-          name={el.name + " " + index}
-          price={el.price}
-          oldPrice={el.oldPrice}
-          src={el.src}
-          key={index}
-        />
-      ))}
+      {productsList.map(({ name, price, oldPrice, src }, index) => {
+        const nextLocation = () => {
+          goLocation(index, name);
+        };
+        return (
+          <CardItem
+            name={name + " " + index}
+            price={price}
+            oldPrice={oldPrice}
+            src={src}
+            goLocation={nextLocation}
+            key={index}
+          />
+        );
+      })}
     </CardGrid>
   );
 };

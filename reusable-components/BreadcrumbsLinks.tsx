@@ -3,8 +3,10 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { BreadcrumbsWrapper } from "./styled";
 import { IRoutes } from "../types/interfaces/routes.interface";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const BreadcrumbsLinks = ({ route }: IRoutes) => {
+  const { query } = useRouter();
   const routes = route.map(({ path, name }, index, arr) => {
     let last = false;
     if (arr.length - 1 === index) {
@@ -15,7 +17,11 @@ const BreadcrumbsLinks = ({ route }: IRoutes) => {
         {name}
       </span>
     ) : (
-      <Link href={{ pathname: path, query: { title: name } }} key={index}>
+      <Link
+        href={{ pathname: path, query: { title: name, ...query } }}
+        as={path}
+        key={index}
+      >
         <a>{name}</a>
       </Link>
     );

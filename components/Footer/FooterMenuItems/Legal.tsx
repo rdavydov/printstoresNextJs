@@ -4,7 +4,7 @@ import { MenuList } from "../../../reusable-components/styled";
 import { IMenu } from "../../../types/interfaces/footer.menu.interface";
 import { Title } from "./styled";
 
-const Legal = <K,>({ title, items }: IMenu<K>) => {
+const Legal = <K,>({ title, items }: IMenu) => {
   return (
     <MenuList>
       <Title>{title}</Title>

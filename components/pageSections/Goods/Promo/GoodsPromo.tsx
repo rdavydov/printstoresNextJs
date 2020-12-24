@@ -1,19 +1,19 @@
 import React from "react";
 import BreadcrumbsLinks from "../../../../reusable-components/BreadcrumbsLinks";
 import { IRoutes } from "../../../../types/interfaces/routes.interface";
-import { HeaderTitle, ProductPromoSection } from "../styled/styled";
+import { HeaderTitle, GoodsPromoSection } from "../styled/styled";
 
 interface IProps {
   title: string | string[];
 }
 
-const ProductsPromo = ({ title, route }: IProps & IRoutes) => {
+const GoodsPromo = ({ title, route }: IProps & IRoutes) => {
   return (
-    <ProductPromoSection>
+    <GoodsPromoSection>
       <BreadcrumbsLinks route={route} />
       <HeaderTitle>{title}</HeaderTitle>
-    </ProductPromoSection>
+    </GoodsPromoSection>
   );
 };
 
-export default ProductsPromo;
+export default GoodsPromo;

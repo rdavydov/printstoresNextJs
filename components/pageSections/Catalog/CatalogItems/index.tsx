@@ -1,8 +1,8 @@
 import React from "react";
 import CatalogItemsContainer from "./CatalogItems.container";
 
-const CatalogItems = () => {
-  return <CatalogItemsContainer />;
+const CatalogItems = ({ category }) => {
+  return <CatalogItemsContainer category={category} />;
 };
 
 export default CatalogItems;

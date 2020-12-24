@@ -15,18 +15,18 @@ const CategoryCard = <T,>({
 }: IProps & IProductCategory<T>) => {
   return (
     <GridWrapper>
-      {cardData.map(({ src, title, id }, index) => {
-        const nextLocation = () => goLocation(id, title);
+      {cardData.map(({ image, name, _id }, index) => {
+        const nextLocation = () => goLocation(_id, name);
         return (
           <Card
             hoverable
             bordered={false}
-            cover={<img alt="example" src={src} />}
+            cover={<img alt="example" src={image} />}
             key={index}
             className={styles.cardDefault}
             onClick={nextLocation}
           >
-            <Meta title={title} style={{ textAlign: "center" }} />
+            <Meta title={name} style={{ textAlign: "center" }} />
           </Card>
         );
       })}

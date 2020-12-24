@@ -2,14 +2,15 @@ import { Routes } from "../../types/type/routes.type";
 
 export class RoutesConfig {
   private routes = {
-    product: "product",
+    goods: "goods",
     catalog: "catalog",
     category: "category",
+    product: "product",
     home: "",
   };
 
   private routesTitle = {
-    product: "",
+    goods: "",
     catalog: "Каталог",
     home: "Главная",
   };
@@ -22,7 +23,11 @@ export class RoutesConfig {
     return currentPath + `/${this.routes.category}/[categoryID]`;
   }
 
-  getProductRoute(currentPath: string): string {
+  getGoodsRoute(currentPath: string): string {
+    return currentPath + `/${this.routes.goods}/[goodsID]`;
+  }
+
+  getProductsRoute(currentPath: string): string {
     return currentPath + `/${this.routes.product}/[productID]`;
   }
 
@@ -36,6 +41,13 @@ export class RoutesConfig {
 
   getRouteCategory(id: string | number | string[]): string {
     return `/catalog/${this.routes.category}/${id}`;
+  }
+
+  getRouteProduct(
+    categoryID: string | number | string[],
+    goodsID: string | number | string[]
+  ): string {
+    return `/${this.routes.catalog}/${this.routes.category}/${categoryID}/${this.routes.goods}/${goodsID}`;
   }
 
   getCrumbsConfig() {
