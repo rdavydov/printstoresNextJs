@@ -6,7 +6,6 @@ import CategoryItems from "../../../../components/pageSections/Category/Category
 import Promo from "../../../../components/pageSections/Category/Promo";
 
 const CategoryPage = ({ category }) => {
-  console.log(category);
   return (
     <Layout>
       <Promo />
@@ -16,7 +15,6 @@ const CategoryPage = ({ category }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  console.log(params);
   const response = await axios.get("http://localhost:3010/api/category/all");
   const result = { category: response.data };
   return {

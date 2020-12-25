@@ -15,11 +15,9 @@ const Catalog = ({ category }) => {
 };
 
 export async function getServerSideProps(context) {
-  console.log(context);
-  const response = await axios.get("http://localhost:3010/api/category/all");
-  console.log(response);
+  const response = await axios.get("http://localhost:3010/api/catalog/all");
+
   const result = { category: response.data };
-  console.log(result);
   return {
     props: result,
   };

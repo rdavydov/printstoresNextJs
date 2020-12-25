@@ -11,16 +11,17 @@ import {
   Price,
 } from "./styled";
 import { Product } from "../../types/type/products.type";
+import { IProduct } from "../../types/interfaces/products.gallery.interface";
 
 interface IProps {
   goLocation: () => void;
 }
 
-const CardItem: React.FC<Product & IProps> = ({
+const CardItem: React.FC<IProduct & IProps> = ({
   name,
   price,
   oldPrice,
-  src,
+  image,
   goLocation,
   ...rest
 }) => {
@@ -40,7 +41,7 @@ const CardItem: React.FC<Product & IProps> = ({
       onClick={goLocation}
     >
       <CardBody>
-        <CardImage src={src} />
+        <CardImage src={image} />
         {hovered && (
           <CartIcon>
             <ShoppingCartIcon />

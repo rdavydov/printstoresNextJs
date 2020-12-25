@@ -5,7 +5,7 @@ import { IProductCategory } from "../../types/interfaces/products.gallery.interf
 import { GridWrapper } from "./styled";
 
 interface IProps {
-  goLocation: (id: number, title: string) => void;
+  goLocation: (key: string, title: string) => void;
 }
 
 const { Meta } = Card;
@@ -15,8 +15,8 @@ const CategoryCard = <T,>({
 }: IProps & IProductCategory<T>) => {
   return (
     <GridWrapper>
-      {cardData.map(({ image, name, _id }, index) => {
-        const nextLocation = () => goLocation(_id, name);
+      {cardData.map(({ image, name, _id, key }, index) => {
+        const nextLocation = () => goLocation(key, name);
         return (
           <Card
             hoverable

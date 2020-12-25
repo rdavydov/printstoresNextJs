@@ -9,18 +9,18 @@ interface IProps {
 const Card: React.FC<IProducts & IProps> = ({ productsList, goLocation }) => {
   return (
     <CardGrid>
-      {productsList.map(({ name, price, oldPrice, src }, index) => {
+      {productsList.map(({ name, price, oldPrice, key, image, _id }, index) => {
         const nextLocation = () => {
-          goLocation(index, name);
+          goLocation(_id, name);
         };
         return (
           <CardItem
             name={name + " " + index}
             price={price}
             oldPrice={oldPrice}
-            src={src}
+            image={image}
             goLocation={nextLocation}
-            key={index}
+            key={key}
           />
         );
       })}

@@ -27,8 +27,8 @@ export class RoutesConfig {
     return currentPath + `/${this.routes.goods}/[goodsID]`;
   }
 
-  getProductsRoute(currentPath: string): string {
-    return currentPath + `/${this.routes.product}/[productID]`;
+  getProductsRoute(): string {
+    return `/${this.routes.product}/[key]`;
   }
 
   getPaginationLinks(oldLinks: Routes[], lastLink: Routes[]): Routes[] {

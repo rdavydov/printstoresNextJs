@@ -20,7 +20,6 @@ export class ProductSorting {
   }
 
   sort(pathname, func) {
-    console.log(pathname);
     func();
   }
 

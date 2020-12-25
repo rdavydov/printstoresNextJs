@@ -13,3 +13,11 @@ export interface IProducts {
 export interface IProductCategory<T> {
   cardData: Array<productType>;
 }
+
+export interface IProduct {
+  name: string;
+  image: string;
+  price: number;
+  discount?: number;
+  oldPrice: number;
+}

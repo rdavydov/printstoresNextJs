@@ -11,9 +11,6 @@ const GoodsItemsContainer = () => {
     pathname,
     query: { categoryID, title, goodsTitle, goodsID },
   } = useRouter();
-  const setData = () => {
-    console.log("ComponentData");
-  };
   const sortConfig = new ProductSorting(setData).getProductSortConfig([
     "material",
     "name",

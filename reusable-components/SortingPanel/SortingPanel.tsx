@@ -18,8 +18,6 @@ interface IProps {
 
 const SortingPanel = ({ sortConfig, products: { length } }: IProps) => {
   const { pathname, asPath } = useRouter();
-
-  console.log(asPath.replace(/[?].*/, ""));
   return (
     <SortingWrapper>
       <SortingActions>
