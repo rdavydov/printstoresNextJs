@@ -7,12 +7,8 @@ import { useRouter } from "next/router";
 
 const BreadcrumbsLinks = ({ route }: IRoutes) => {
   const { query } = useRouter();
-  const routes = route.map(({ path, name }, index, arr) => {
-    let last = false;
-    if (arr.length - 1 === index) {
-      last = true;
-    }
-    return last ? (
+  const routes = route.map(({ path, name }, index, { length }) => {
+    length - 1 === index ? (
       <span key={index} style={{ color: "black" }}>
         {name}
       </span>

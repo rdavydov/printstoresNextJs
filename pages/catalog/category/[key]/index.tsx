@@ -1,24 +1,24 @@
 import axios from "axios";
-import { GetStaticProps } from "next";
 import React from "react";
 import Layout from "../../../../components/Layout/Layout";
 import CategoryItems from "../../../../components/pageSections/Category/CategoryItems";
 import Promo from "../../../../components/pageSections/Category/Promo";
 
-const CategoryPage = ({ category }) => {
+const CategoryPage = ({ categoryData }) => {
   return (
     <Layout>
       <Promo />
-      <CategoryItems categoryItems={category} />
+      <CategoryItems categoryItems={categoryData} />
     </Layout>
   );
 };
 
-export async function getServerSideProps({ params }) {
-  const response = await axios.get("http://localhost:3010/api/category/all");
-  const result = { category: response.data };
+export async function getServerSideProps({ params: { key } }) {
+  console.log(key);
+  const response = await axios.get(`http://localhost:3010/api/category/${key}`);
+  console.log(response.data);
   return {
-    props: result,
+    props: { categoryData: response.data },
   };
 }
 

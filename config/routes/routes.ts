@@ -20,11 +20,7 @@ export class RoutesConfig {
   }
 
   getCategoryRoute(currentPath: string): string {
-    return currentPath + `/${this.routes.category}/[categoryID]`;
-  }
-
-  getGoodsRoute(currentPath: string): string {
-    return currentPath + `/${this.routes.goods}/[goodsID]`;
+    return currentPath + `/${this.routes.category}/[key]`;
   }
 
   getProductsRoute(): string {

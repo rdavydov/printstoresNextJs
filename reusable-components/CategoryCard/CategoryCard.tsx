@@ -16,6 +16,7 @@ const CategoryCard = <T,>({
   return (
     <GridWrapper>
       {cardData.map(({ image, name, _id, key }, index) => {
+        console.log(key);
         const nextLocation = () => goLocation(key, name);
         return (
           <Card
