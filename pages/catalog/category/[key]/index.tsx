@@ -14,9 +14,7 @@ const CategoryPage = ({ categoryData }) => {
 };
 
 export async function getServerSideProps({ params: { key } }) {
-  console.log(key);
   const response = await axios.get(`http://localhost:3010/api/category/${key}`);
-  console.log(response.data);
   return {
     props: { categoryData: response.data },
   };

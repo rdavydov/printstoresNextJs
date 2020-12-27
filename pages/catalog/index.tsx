@@ -1,5 +1,6 @@
-import axios from "axios";
+import { categoryService } from "api/services/category.service";
 import React from "react";
+import { catalogService } from "../../api/services/catalog.service";
 import Layout from "../../components/Layout/Layout";
 import CatalogItems from "../../components/pageSections/Catalog/CatalogItems";
 
@@ -15,9 +16,8 @@ const Catalog = ({ category }) => {
 };
 
 export async function getServerSideProps(context) {
-  const response = await axios.get("http://localhost:3010/api/catalog/all");
-
-  const result = { category: response.data };
+  const { data } = await catalogService.getAllCategory();
+  const result = { category: data };
   return {
     props: result,
   };
