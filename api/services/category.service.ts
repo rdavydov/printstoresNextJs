@@ -1,13 +1,13 @@
-import { get } from "api/ApiClient";
-import { Action } from "utils/decorators/Action";
+import { AxiosResponse } from "axios";
+import { Get } from "utils/decorators/Get";
 import { Prefix } from "utils/decorators/Prefix";
 
 @Prefix("category")
 class CategoryService {
-  @Action()
-  getCategoryByKey(key: string) {
-    return get(arguments, [key]);
-  }
+    @Get()
+    async getCategoryByKey(key: string[], ...response: AxiosResponse<any>[]) {
+        return response[0];
+    }
 }
 
 export const categoryService = new CategoryService();

@@ -1,3 +1,7 @@
 export const generateURL = (...args): string => {
-  return args.join("/");
+    return args
+        .filter((el, index) => {
+            if (el) return el;
+        })
+        .join("/");
 };

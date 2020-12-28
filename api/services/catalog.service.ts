@@ -1,14 +1,14 @@
 import { Prefix } from "utils/decorators/Prefix";
-import { Action } from "utils/decorators/Action";
+import { Get } from "utils/decorators/Get";
 
-import ApiClient, { get } from "../ApiClient";
+import { AxiosResponse } from "axios";
 
 @Prefix("catalog")
-class CatalogService extends ApiClient {
-  @Action("all")
-  getAllCategory() {
-    return get(arguments);
-  }
+class CatalogService {
+    @Get("all")
+    async getAllCategory(...response: AxiosResponse<any>[]) {
+        return response[0];
+    }
 }
 
 export const catalogService = new CatalogService();
