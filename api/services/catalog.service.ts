@@ -7,7 +7,8 @@ import { AxiosResponse } from "axios";
 class CatalogService {
     @Get("all")
     async getAllCategory(...response: AxiosResponse<any>[]) {
-        return response[0];
+        const [res] = response;
+        return res;
     }
 }
 

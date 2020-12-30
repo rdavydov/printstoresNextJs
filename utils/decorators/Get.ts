@@ -11,16 +11,12 @@ export function Get(url?: string) {
         descriptor: TypedPropertyDescriptor<any>
     ): any {
         let originalFn = descriptor.value;
-        descriptor.value = async function WrapperGet(key?: string[], ...args) {
+        descriptor.value = async function WrapperGet(...args) {
             let prefix = Reflect.getMetadata(metadataKey, target);
-            let URL = generateURL(prefix, url, key);
+            let URL = generateURL(prefix, url, ...args);
             const response = await apiClient.get(URL);
-            if (key) {
-                return originalFn.call(this, key, response);
-            } else {
-                args.push(response);
-                return originalFn.apply(this, args);
-            }
+            args.push(response);
+            return originalFn.call(this, ...args);
         };
         return descriptor;
     };
