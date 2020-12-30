@@ -1,9 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { generateURL } from "utils/generateURL";
 
 class ApiClient {
     public instance = axios.create({
         baseURL: "http://localhost:3010/api",
+        headers: {
+            accept: "application/json",
+        },
     });
     get(url: string, config?: AxiosRequestConfig) {
         if (config) {
