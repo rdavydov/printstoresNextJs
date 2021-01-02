@@ -10,7 +10,7 @@ export function Get(url?: string, config?: AxiosRequestConfig) {
         target: Object,
         propertyKey: string,
         descriptor: TypedPropertyDescriptor<any>
-    ): any {
+    ) {
         let originalFn = descriptor.value;
         descriptor.value = async function WrapperGet(...args) {
             let prefix = Reflect.getMetadata(metadataKey, target);

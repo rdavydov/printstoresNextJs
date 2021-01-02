@@ -1,10 +1,10 @@
 import React from "react";
 import BreadcrumbsLinks from "../../../../reusable-components/BreadcrumbsLinks";
 
-const PromoProduct = ({ route }) => {
+const PromoProduct = (props) => {
   return (
     <>
-      <BreadcrumbsLinks route={route} />
+      {/* <BreadcrumbsLinks route={route} /> */}
     </>
   );
 };

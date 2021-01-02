@@ -1,15 +1,19 @@
-import axios from "axios";
+import { productService } from "api/services/product.service";
+import ProductItemPreview from "components/pageSections/ProductsItem";
 import React from "react";
 import Layout from "../../../../components/Layout/Layout";
 
 const OneProductPage = ({ product }) => {
-  return <Layout></Layout>;
+  console.log(product,'product');
+  return (
+      <Layout>
+        <ProductItemPreview product={product} />
+       </Layout>
+  )
 };
 
 export async function getServerSideProps({ params: { prefix, id } }) {
-  const response = await axios.get(
-    `http://localhost:3010/api/product/${prefix}/${id}`
-  );
+  const response = await productService.getProductById(prefix, id);
   return {
     props: { product: response.data },
   };

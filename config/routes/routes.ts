@@ -24,7 +24,11 @@ export class RoutesConfig {
   }
 
   getProductsRoute(): string {
-    return `/${this.routes.product}/[key]`;
+    return `/${this.routes.product}/[prefix]`;
+  }
+
+  getProductItemRoute():string {
+    return `/${this.routes.product}/[prefix]/[id]`;
   }
 
   getPaginationLinks(oldLinks: Routes[], lastLink: Routes[]): Routes[] {

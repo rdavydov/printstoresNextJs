@@ -1,12 +1,21 @@
-import ApiClient from "api/ApiClient";
-import { Action } from "utils/decorators/Action";
 import { Prefix } from "utils/decorators/Prefix";
+import { Get }  from 'utils/decorators/Get'
+import { AxiosResponse } from "axios";
 
 @Prefix("product")
-class ProductService extends ApiClient {
-    @Action()
-    getProductByKey(key: string) {}
+class ProductService  {
+    @Get()
+    getProductByKey(prefix: string,...response:AxiosResponse<any>[]) {
+        const [res] = response
+        return res;
+    }
 
-    @Action()
-    getProductById(id: number) {}
+    @Get()
+    getProductById(prefix:string, id: number, ...response:AxiosResponse<any>[]) {
+        const [res] = response;
+        return res
+    }
 }
+
+
+export const productService = new ProductService

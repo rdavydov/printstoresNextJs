@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "../../../../reusable-components/Card/Card";
 
-const ProductsPreviewItems = ({ products }) => {
+const ProductsPreviewItems = ({ products ,goLocation}) => {
   return (
     <>
-      <Card productsList={products} />
+      <Card productsList={products} goLocation={goLocation}/>
     </>
   );
 };

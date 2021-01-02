@@ -4,14 +4,14 @@ import CardItem from "./CardItem";
 import { CardGrid } from "./styled";
 
 interface IProps {
-  goLocation: (id: number, title: string) => void;
+  goLocation?: (params:object) => void;
 }
-const Card: React.FC<IProducts & IProps> = ({ productsList, goLocation }) => {
+const Card: React.FC<IProducts & IProps> = ({ productsList = [], goLocation }) => {
   return (
     <CardGrid>
-      {productsList.map(({ name, price, oldPrice, key, image, _id }, index) => {
+      {productsList.map(({ name, price, oldPrice, key, image, _id, prefix }, index) => {
         const nextLocation = () => {
-          goLocation(_id, name);
+          goLocation({_id, name , key, prefix });
         };
         return (
           <CardItem

@@ -5,9 +5,9 @@ import CatalogItemsPromo from "./CatalogItems.promo";
 
 const CatalogItemsContainer = ({ category }) => {
   const { replace, pathname } = useRouter();
-  const goLocation = (key: string, title: string) => {
+  const goLocation = ({key, name}) => {
     const path = routesConfig.getCategoryRoute(pathname);
-    replace({ pathname: path, query: { title, key } });
+    replace({ pathname: path, query: { title:name, key } });
   };
   return <CatalogItemsPromo goLocation={goLocation} category={category} />;
 };

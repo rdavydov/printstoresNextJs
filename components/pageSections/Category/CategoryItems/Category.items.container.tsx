@@ -1,19 +1,16 @@
 import { useRouter } from "next/router";
 import { routesConfig } from "../../../../config/routes/routes";
-import { cardData } from "../../card.data";
 import CategoryItemsPromo from "./Category.items.promo";
 
 const CategoryItemsContainer = ({ categoryItems }) => {
-  const {
-    replace,
-    pathname,
-    query: { categoryID, title },
-  } = useRouter();
-  const goLocation = (goodsID: string | number, goodsTitle: string) => {
-    const path = routesConfig.getGoodsRoute(pathname);
+  console.log(categoryItems);
+  const { replace } = useRouter();
+  const goLocation = ({ prefix }) => {
+    const path = routesConfig.getProductsRoute();
+    console.log(path,prefix);
     replace({
       pathname: path,
-      query: { goodsTitle, goodsID, categoryID, title },
+      query: { prefix },
     });
   };
 

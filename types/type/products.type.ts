@@ -3,6 +3,7 @@ export type Product = {
   image: string;
   price: number;
   oldPrice: number;
-  key: any;
+  prefix?:string
+  key?: any;
   _id: number;
 };
