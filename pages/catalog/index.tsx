@@ -6,20 +6,21 @@ import CatalogItems from "../../components/pageSections/Catalog/CatalogItems";
 
 import Promo from "../../components/pageSections/Catalog/Promo";
 
-const Catalog = ({ category }) => {
-  return (
-    <Layout>
-      <Promo />
-      <CatalogItems category={category} />
-    </Layout>
-  );
+const Catalog = ({ itemsList, crumbs }) => {
+    return (
+        <Layout>
+            <Promo crumbs={crumbs} />
+            <CatalogItems category={itemsList} />
+        </Layout>
+    );
 };
 
 export async function getServerSideProps(context) {
-  const { data } = await catalogService.getAllCategory();
-  const result = { category: data };
-  return {
-    props: result,
-  };
+    const {
+        data: { crumbs, itemsList },
+    } = await catalogService.getAllCategory();
+    return {
+        props: { crumbs, itemsList },
+    };
 }
 export default Catalog;

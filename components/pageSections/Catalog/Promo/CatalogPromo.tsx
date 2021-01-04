@@ -4,13 +4,13 @@ import { CatalogWrapper, HeaderTitle } from "../styled/styled";
 
 const TITLE = "Каталог";
 
-const CatalogPromo = ({ route }) => {
-  return (
-    <CatalogWrapper>
-      <BreadcrumbsLinks route={route} />
-      <HeaderTitle>{TITLE}</HeaderTitle>
-    </CatalogWrapper>
-  );
+const CatalogPromo = ({ crumbs }) => {
+    return (
+        <CatalogWrapper>
+            <BreadcrumbsLinks crumbs={crumbs} />
+            <HeaderTitle>{TITLE}</HeaderTitle>
+        </CatalogWrapper>
+    );
 };
 
 export default CatalogPromo;

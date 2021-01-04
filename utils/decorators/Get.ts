@@ -4,7 +4,6 @@ import { generateURL } from "../generateURL";
 import ApiClient from "../../api/ApiClient";
 import { AxiosRequestConfig } from "axios";
 
-const apiClient = new ApiClient();
 export function Get(url?: string, config?: AxiosRequestConfig) {
     return function (
         target: Object,
@@ -15,7 +14,7 @@ export function Get(url?: string, config?: AxiosRequestConfig) {
         descriptor.value = async function WrapperGet(...args) {
             let prefix = Reflect.getMetadata(metadataKey, target);
             let URL = generateURL(prefix, url, ...args);
-            const response = await apiClient.get(URL, config);
+            const response = await ApiClient.get(URL, config);
             args.push(response);
             return originalFn.call(this, ...args);
         };

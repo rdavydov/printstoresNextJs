@@ -1,15 +1,8 @@
-import React from 'react';
-import ProductItemViews from './ProductsItemViews';
+import React from "react";
+import ProductItemViews from "./ProductsItemViews";
 
+const ProductsItemContainer = ({ product }) => {
+    return <ProductItemViews product={product} />;
+};
 
-
-
-const ProductsItemContainer = ({product}) => {
-    return (
-        <ProductItemViews product={product}/>
-    )
-
-}
-
-
-export default ProductsItemContainer
+export default ProductsItemContainer;

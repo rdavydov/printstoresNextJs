@@ -5,19 +5,21 @@ import Layout from "../../../../components/Layout/Layout";
 import CategoryItems from "../../../../components/pageSections/Category/CategoryItems";
 import Promo from "../../../../components/pageSections/Category/Promo";
 
-const CategoryPage = ({ categoryData }) => {
+const CategoryPage = ({ itemsList, crumbs }) => {
     return (
         <Layout>
-            <Promo />
-            <CategoryItems categoryItems={categoryData} />
+            <Promo crumbs={crumbs} />
+            <CategoryItems categoryItems={itemsList} />
         </Layout>
     );
 };
 
 export async function getServerSideProps({ params: { key } }) {
-    const { data } = await categoryService.getCategoryByKey(key);
+    const {
+        data: { crumbs, itemsList },
+    } = await categoryService.getCategoryByKey(key);
     return {
-        props: { categoryData: data },
+        props: { itemsList, crumbs },
     };
 }
 
