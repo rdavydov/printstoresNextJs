@@ -4,27 +4,13 @@ import PreviewItem from "./PreviewItem/PreviewItem";
 
 interface IProps {
     product: Product[];
-    incrementQuantity: () => void;
-    decrementQuantity: () => void;
-    quantity: number;
 }
 
-const ProductItemViews: React.FC<IProps> = ({
-    product,
-    decrementQuantity,
-    incrementQuantity,
-    quantity,
-}) => {
+const ProductItemViews: React.FC<IProps> = ({ product }) => {
     return (
         <Fragment>
             {product.map(({ ...rest }, index) => (
-                <PreviewItem
-                    {...rest}
-                    key={index}
-                    decrementQuantity={decrementQuantity}
-                    incrementQuantity={incrementQuantity}
-                    quantity={quantity}
-                />
+                <PreviewItem {...rest} key={index} />
             ))}
         </Fragment>
     );

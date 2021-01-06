@@ -1,6 +1,7 @@
 import React from "react";
 import CustomButton from "reusable-components/Button/CustomButton";
 import CardButton from "reusable-components/CardButton/CardButton";
+import QuantityButton from "reusable-components/QuantityButton/QuantityButton";
 import CollapseItems from "./CollapseItems/CollapseItems";
 import { Product } from "types/type/products.type";
 import {
@@ -23,20 +24,11 @@ import styles from "./PreviewItem.module.css";
 
 const ORDER_NOW_TEXT = "Заказать сейчас";
 const COUNT_TEXT = "Количество:";
-const INCREMENT = "+";
-const DECREMENT = "-";
-
 const DESCRIPTION_TEXT = "Описание";
 const DETAILS = "Процесс изготовления";
 const DELIVERY_AND_PAY = "Доставка и оплата";
 
-interface IProps {
-    quantity?: number;
-    incrementQuantity: () => void;
-    decrementQuantity: () => void;
-}
-
-const PreviewItem: React.FC<Product & IProps> = ({
+const PreviewItem: React.FC<Product> = ({
     image,
     name,
     oldPrice = 500,
@@ -46,9 +38,6 @@ const PreviewItem: React.FC<Product & IProps> = ({
     seo,
     _id,
     prefix,
-    quantity = 1,
-    decrementQuantity,
-    incrementQuantity,
     ...rest
 }) => {
     const collapseContent = [
@@ -69,15 +58,7 @@ const PreviewItem: React.FC<Product & IProps> = ({
                     {oldPrice && <OldPrice>{oldPrice + "Р"}</OldPrice>}
                 </PriceContent>
                 <Text>{COUNT_TEXT}</Text>
-                <CountWrapper>
-                    <CounterButton onClick={decrementQuantity}>
-                        <SpanText>{DECREMENT}</SpanText>
-                    </CounterButton>
-                    <CountText>{quantity}</CountText>
-                    <CounterButton onClick={incrementQuantity}>
-                        <SpanText>{INCREMENT}</SpanText>
-                    </CounterButton>
-                </CountWrapper>
+                <QuantityButton />
                 <ActionsWrapper>
                     <CustomButton className={styles.button}>
                         {ORDER_NOW_TEXT}

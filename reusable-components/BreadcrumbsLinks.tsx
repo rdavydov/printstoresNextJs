@@ -4,11 +4,11 @@ import { BreadcrumbsWrapper, HeaderTitle } from "./styled";
 import Link from "next/link";
 
 interface IProps {
-    crumbs: Array<{ title: string; path: string }>;
+    crumbs: Array<{ title: string; path: string; titleVisible?: boolean }>;
 }
 
 const BreadcrumbsLinks = ({ crumbs }: IProps) => {
-    const { title } = crumbs[crumbs.length - 1];
+    const { title, titleVisible = true } = crumbs[crumbs.length - 1];
     const routes = crumbs.map(({ path, title }, index, { length }) => {
         return length - 1 === index ? (
             <span key={index} style={{ color: "black" }}>
@@ -26,7 +26,7 @@ const BreadcrumbsLinks = ({ crumbs }: IProps) => {
             <BreadcrumbsWrapper>
                 <Breadcrumbs separator="›">{routes}</Breadcrumbs>
             </BreadcrumbsWrapper>
-            <HeaderTitle>{title}</HeaderTitle>
+            {titleVisible && <HeaderTitle>{title}</HeaderTitle>}
         </Fragment>
     );
 };
