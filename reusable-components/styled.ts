@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const MenuList = styled.ul`
-  display: "flex";
+    display: "flex";
 `;
 
 export const MenuListItem = styled.li`
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 
-  &::last-child {
-    margin-bottom: unset;
-  }
+    &::last-child {
+        margin-bottom: unset;
+    }
 `;
 
+export const BreadcrumbsWrapper = styled.div``;
 
-export const BreadcrumbsWrapper = styled.div`
-`
+export const HeaderTitle = styled.h1``;

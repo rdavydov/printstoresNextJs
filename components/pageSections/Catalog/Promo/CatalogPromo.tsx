@@ -8,7 +8,6 @@ const CatalogPromo = ({ crumbs }) => {
     return (
         <CatalogWrapper>
             <BreadcrumbsLinks crumbs={crumbs} />
-            <HeaderTitle>{TITLE}</HeaderTitle>
         </CatalogWrapper>
     );
 };

@@ -4,16 +4,15 @@ import React from "react";
 import ProductsPreviewItems from "./ProductsPreviewItems";
 
 const ProductsPreviewContainer = ({ products }) => {
-  console.log(products);
+    console.log(products);
 
-  const {replace} = useRouter();
+    const { replace } = useRouter();
 
-
-  const goLocation = ({_id, key}) => {
-    const pathname  = routesConfig.getProductItemRoute();
-    replace({ pathname, query:{ id:_id, prefix:key }})
-  }
-  return <ProductsPreviewItems products={products} goLocation={goLocation} />;
+    const goLocation = ({ _id, prefix }) => {
+        const pathname = routesConfig.getProductItemRoute();
+        replace({ pathname, query: { id: _id, prefix } });
+    };
+    return <ProductsPreviewItems products={products} goLocation={goLocation} />;
 };
 
 export default ProductsPreviewContainer;

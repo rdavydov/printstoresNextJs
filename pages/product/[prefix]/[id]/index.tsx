@@ -1,6 +1,6 @@
 import { productService } from "api/services/product.service";
-import ProductItemPreview from "components/pageSections/ProductsItem";
-import Promo from "components/pageSections/ProductsItem/Promo/Promo";
+import ProductItemPreview from "components/pageSections/ProductsPreviewSection/ProductsPreview";
+import Promo from "components/pageSections/ProductsPreviewSection/Promo/Promo";
 import React from "react";
 import Layout from "../../../../components/Layout/Layout";
 

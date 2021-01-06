@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import { BreadcrumbsWrapper } from "./styled";
+import { BreadcrumbsWrapper, HeaderTitle } from "./styled";
 import Link from "next/link";
 
 interface IProps {
@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const BreadcrumbsLinks = ({ crumbs }: IProps) => {
-    console.log(crumbs);
+    const { title } = crumbs[crumbs.length - 1];
     const routes = crumbs.map(({ path, title }, index, { length }) => {
         return length - 1 === index ? (
             <span key={index} style={{ color: "black" }}>
@@ -22,9 +22,12 @@ const BreadcrumbsLinks = ({ crumbs }: IProps) => {
     });
 
     return (
-        <BreadcrumbsWrapper>
-            <Breadcrumbs separator="›">{routes}</Breadcrumbs>
-        </BreadcrumbsWrapper>
+        <Fragment>
+            <BreadcrumbsWrapper>
+                <Breadcrumbs separator="›">{routes}</Breadcrumbs>
+            </BreadcrumbsWrapper>
+            <HeaderTitle>{title}</HeaderTitle>
+        </Fragment>
     );
 };
 
