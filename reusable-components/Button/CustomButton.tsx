@@ -5,16 +5,25 @@ interface IProps {
     text?: string | ReactNode;
     onClick?: () => void;
     className?: string;
+    type?: "submit" | "button" | "reset";
+    hovered?: "white";
 }
 
 const CustomButton: React.FC<IProps> = ({
     children,
     className,
     onClick,
+    hovered,
+    type = "button",
     text,
 }) => {
     return (
-        <Button className={className} onClick={onClick}>
+        <Button
+            className={className}
+            onClick={onClick}
+            hovered={hovered}
+            type={type}
+        >
             {children}
         </Button>
     );

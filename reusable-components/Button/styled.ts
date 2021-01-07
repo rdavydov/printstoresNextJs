@@ -1,17 +1,25 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+interface IProps {
+    hovered?: "white";
+}
+
+export const Button = styled.button<IProps>`
     cursor: pointer;
     min-width: 160px;
     height: 50px;
-    border: none;
+    border: ${(props) =>
+        props.hovered === "white" ? "1px solid #020002" : "none"};
     outline: none;
-    background-color: #161616;
+    background-color: ${(props) =>
+        props.hovered === "white" ? "white" : "#161616"};
     transition: 0.2s;
-    color: #faf8f8;
+    color: ${(props) => (props.hovered === "white" ? "#020002" : "#faf8f8")};
     &:hover {
-        background-color: #faf8f8;
-        border: 1px solid #020002;
-        color: #020002;
+        background-color: ${(props) =>
+            props.hovered === "white" ? "#161616" : "#faf8f8"};
+        border: 1px solid
+            ${(props) => (props.hovered === "white" ? "black" : "#020002")};
+        color: ${(props) => (props.hovered === "white" ? "white" : "#020002")};
     }
 `;

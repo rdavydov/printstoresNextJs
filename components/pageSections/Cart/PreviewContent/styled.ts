@@ -20,3 +20,8 @@ export const Image = styled.img``;
 export const Text = styled.p``;
 
 export const SmallText = styled.span``;
+
+export const FormActions = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;

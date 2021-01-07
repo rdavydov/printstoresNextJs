@@ -1,0 +1,22 @@
+.form {
+    padding: 50px 0;
+    :global {
+        .ant-form-item-has-error
+            .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input)
+            .ant-select-selector {
+            background-color: transparent;
+        }
+        .ant-input {
+            box-shadow: none;
+            &:hover {
+                border: 1px solid rgba(0, 0, 0, 0.85);
+            }
+            &:focus {
+                border: 1px solid rgba(0, 0, 0, 0.85);
+            }
+            &:active {
+                border: 1px solid rgba(0, 0, 0, 0.85);
+            }
+        }
+    }
+}

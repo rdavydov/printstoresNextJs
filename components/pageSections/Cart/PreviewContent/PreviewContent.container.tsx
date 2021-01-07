@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CartPreview from "./CartInfo/CartPreview";
+import { FormValues } from "./Steps/interface/step.interfaces";
 import StepsContainer from "./Steps/StepsContainer";
 import { PreviewCartWrapper } from "./styled";
 
@@ -16,18 +17,34 @@ const PreviewContentContainer = () => {
         contacts: {
             phone: "",
             firstName: "",
-            lastName: "",
             email: "",
             social: "",
+            message: "",
         },
         payments: {
             method: "Картой онлайн",
         },
     });
 
+    const nextStep = ({ ...formValues }: FormValues) => {
+        setStep((prev) => (prev === 3 ? prev : prev + 1));
+        setState((prev) => ({ ...prev, ...formValues }));
+    };
+
+    const prevStep = () => {
+        setStep((prev) => (prev === 1 ? prev : prev - 1));
+    };
+
+    console.log(state);
+
     return (
         <PreviewCartWrapper>
-            <StepsContainer step={step} />
+            <StepsContainer
+                step={step}
+                stepState={state}
+                nextStep={nextStep}
+                prevStep={prevStep}
+            />
             <CartPreview />
         </PreviewCartWrapper>
     );

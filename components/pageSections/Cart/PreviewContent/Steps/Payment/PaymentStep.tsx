@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const PaymentStep = () => {
+const PaymentStep = (props) => {
     return <Fragment></Fragment>;
 };
 

@@ -14,10 +14,6 @@ import {
     OldPrice,
     Price,
     Text,
-    CountWrapper,
-    CounterButton,
-    SpanText,
-    CountText,
     ActionsWrapper,
 } from "./styled";
 import styles from "./PreviewItem.module.css";
@@ -25,7 +21,7 @@ import styles from "./PreviewItem.module.css";
 const ORDER_NOW_TEXT = "Заказать сейчас";
 const COUNT_TEXT = "Количество:";
 const DESCRIPTION_TEXT = "Описание";
-const DETAILS = "Процесс изготовления";
+const DETAILS = "Состав";
 const DELIVERY_AND_PAY = "Доставка и оплата";
 
 const PreviewItem: React.FC<Product> = ({

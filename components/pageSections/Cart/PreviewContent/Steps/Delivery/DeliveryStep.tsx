@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const DeliveryStep = () => {
+const DeliveryStep = (props) => {
     return <Fragment></Fragment>;
 };
 
