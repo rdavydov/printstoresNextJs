@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CountWrapper, CounterButton, SpanText, CountText } from "./styled";
 
 const INCREMENT = "+";
@@ -14,13 +14,17 @@ const QuantityButton: React.FC<IProps> = ({ getQuantity, quantity = 1 }) => {
 
     const incrementQuantity = () => {
         setQuantity((prev) => prev + 1);
-        getQuantity && getQuantity(quantityState);
     };
 
     const decrementQuantity = () => {
         setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
-        getQuantity && getQuantity(quantityState);
     };
+
+    useEffect(() => {
+        if (getQuantity) {
+            getQuantity(quantityState);
+        }
+    }, [quantityState]);
 
     return (
         <CountWrapper>

@@ -1,5 +1,5 @@
-import { ConfigProvider, Form } from "antd";
-import React, { Fragment, useEffect } from "react";
+import { Form } from "antd";
+import React from "react";
 import { FormActions, PreviewCartInfo } from "../styled";
 import ContactStep from "./Contacts/ContactStep";
 import DeliveryStep from "./Delivery/DeliveryStep";
@@ -8,10 +8,10 @@ import StepsNavigation from "./StepsNavigation/StepsNavigation";
 import CustomButton from "reusable-components/Button/CustomButton";
 import styles from "./StepsContainer.module.scss";
 import { getStepsFormConfig } from "./config/getStepsFormConfig";
-import { StepState } from "./interface/step.interfaces";
 
 interface IProps {
     step: number;
+    onDeliveryChange: (value: string) => void;
     nextStep: (formValue) => void;
     prevStep: () => void;
 }
@@ -21,7 +21,12 @@ const LABEL = {
     GO: "Далее",
 };
 
-const StepsContainer: React.FC<IProps> = ({ step, nextStep, prevStep }) => {
+const StepsContainer: React.FC<IProps> = ({
+    step,
+    nextStep,
+    prevStep,
+    onDeliveryChange,
+}) => {
     const [form] = Form.useForm();
     const config = getStepsFormConfig(step);
 
@@ -43,6 +48,7 @@ const StepsContainer: React.FC<IProps> = ({ step, nextStep, prevStep }) => {
                     <DeliveryStep
                         setFieldsValue={form.setFieldsValue}
                         getFieldValue={getFieldValue}
+                        onDeliveryChange={onDeliveryChange}
                     />
                 );
             }

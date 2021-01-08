@@ -15,14 +15,16 @@
         "jsx": "preserve",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "rootDir": "components",
         "baseUrl": ".",
-        "rootDirs": ["reusable-components", "utils"]
+        "rootDirs": ["reusable-components", "utils", "components"]
     },
     "include": [
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",
         "reusable-components",
+        "components",
         "utils"
     ],
     "exclude": ["node_modules"]

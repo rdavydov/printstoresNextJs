@@ -9,17 +9,55 @@ export const PreviewCartWrapper = styled.div`
 
 export const PreviewCartInfo = styled.div`
     width: 50%;
+    padding-right: 40px;
 `;
 
-export const PreviewCartItems = styled.div`
-    width: 50%;
+export const CartWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: 550px;
+    height: 400px;
+    border: 2px solid #f0f0f5;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 30px;
 `;
+
+export const CartHeader = styled.div`
+    margin-bottom: 45px;
+`;
+
+export const CartBody = styled.div`
+    margin-bottom: 30px;
+`;
+
+export const CartFooter = styled.div``;
+
+export const CartInfoOrder = styled.div`
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #f0f0f5;
+    padding: 15px 0;
+`;
+
+export const PreviewCartItems = styled.div``;
 
 export const Image = styled.img``;
 
-export const Text = styled.p`
-    font-size: 18px;
+interface IProps {
+    size?: "small" | "large" | "xsmall";
+}
+
+export const Text = styled.p<IProps>`
+    font-size: ${(props) =>
+        props.size === "small"
+            ? "16px"
+            : props.size === "xsmall"
+            ? "14px"
+            : "18px"};
     font-weight: 700;
+    margin: 0;
 `;
 
 export const SmallText = styled.p`

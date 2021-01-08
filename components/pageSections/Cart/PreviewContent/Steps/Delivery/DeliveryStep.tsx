@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Form, Input, Select, Radio, DatePicker, ConfigProvider } from "antd";
 import cn from "classnames";
 import replaceDate from "utils/replaceDate";
@@ -38,14 +38,18 @@ const selectTime = [
 interface IProps {
     setFieldsValue: (value: any) => void;
     getFieldValue: (value: string[]) => string;
+    onDeliveryChange: (value: string) => void;
 }
 
 const DeliveryStep: React.FC<IProps> = ({
     setFieldsValue,
     getFieldValue,
+    onDeliveryChange,
     ...rest
 }) => {
-    const [method, setMethod] = useState(getFieldValue(["delivery", "method"]));
+    const [method, setMethod] = useState(
+        getFieldValue(["delivery", "method"]) ?? "Самовывоз"
+    );
 
     const onDeliveryChangeValue = (e) => {
         setFieldsValue({ delivery: { method: e.target.value } });
@@ -56,6 +60,11 @@ const DeliveryStep: React.FC<IProps> = ({
         setFieldsValue({ delivery: { method: value } });
         setMethod(value);
     };
+    console.log(method);
+
+    useEffect(() => {
+        onDeliveryChange(method);
+    }, [method]);
 
     return (
         <Fragment>
@@ -89,11 +98,11 @@ const DeliveryStep: React.FC<IProps> = ({
                     <DeliveryRadioContent
                         className={cn(
                             styles.radioContent,
-                            method === "Курьер" && styles.active
+                            method === "Доставка курьером" && styles.active
                         )}
-                        onClick={() => onDeliveryClicked("Курьер")}
+                        onClick={() => onDeliveryClicked("Доставка курьером")}
                     >
-                        <Radio value="Курьер" />
+                        <Radio value="Доставка курьером" />
                         <FormRadioContent>
                             <FormRadioHeader>
                                 <SmallText>{COURIER_DELIVERY.title}</SmallText>
