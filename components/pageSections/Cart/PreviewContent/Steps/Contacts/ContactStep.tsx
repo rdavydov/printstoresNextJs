@@ -11,33 +11,17 @@ const LABEL = {
     MOBILE: "Мобильный телефон",
 };
 
-const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-        <Select style={{ width: 70 }}>
-            <Option value="7">+7</Option>
-        </Select>
-    </Form.Item>
-);
-
-interface IProps {
-    firstName: string;
-    email: string;
-    phone: string;
-    social: string;
-    message: string;
-}
-
-const ContactStep: React.FC<IProps> = ({
-    email,
-    firstName,
-    message,
-    phone,
-    social,
-}) => {
+const ContactStep: React.FC = () => {
+    const prefixSelector = (
+        <Form.Item name={["contacts", "prefix"]} initialValue="7" noStyle>
+            <Select style={{ width: 70 }}>
+                <Option value="7">+7</Option>
+            </Select>
+        </Form.Item>
+    );
     return (
         <>
             <Form.Item
-                initialValue={firstName}
                 name={["contacts", "firstName"]}
                 rules={[
                     { required: true, message: "Пожалуйста, укажите Ваше имя" },
@@ -45,15 +29,10 @@ const ContactStep: React.FC<IProps> = ({
             >
                 <Input placeholder={LABEL.NAME} />
             </Form.Item>
-            <Form.Item
-                initialValue={email}
-                name={["contacts", "email"]}
-                rules={[{ type: "email" }]}
-            >
+            <Form.Item name={["contacts", "email"]} rules={[{ type: "email" }]}>
                 <Input placeholder={LABEL.EMAIL} />
             </Form.Item>
             <Form.Item
-                initialValue={phone}
                 name={["contacts", "phone"]}
                 rules={[
                     {
@@ -68,10 +47,10 @@ const ContactStep: React.FC<IProps> = ({
                     placeholder={LABEL.MOBILE}
                 />
             </Form.Item>
-            <Form.Item initialValue={social} name={["contacts", "social"]}>
+            <Form.Item name={["contacts", "social"]}>
                 <Input placeholder={LABEL.SOCIAL} />
             </Form.Item>
-            <Form.Item initialValue={message} name={["contacts", "message"]}>
+            <Form.Item name={["contacts", "message"]}>
                 <Input.TextArea placeholder={LABEL.MESSAGE} />
             </Form.Item>
         </>

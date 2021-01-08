@@ -1,27 +1,40 @@
 type DeliveryData = {
-    delivery: {
-        method: string;
-        city: string;
-        address: string;
-        date: string;
-        time: string;
-    };
+    method: "Курьер" | "Самовывоз" | string;
+    city: string;
+    address: string;
+    date: string;
+    time: string;
 };
 
 type ContactsData = {
-    contacts: {
-        phone: string;
-        firstName: string;
-        email: string;
-        social: string;
-        message: string;
-    };
+    phone: string;
+    firstName: string;
+    email: string;
+    social: string;
+    message: string;
+    prefix: string;
 };
 
 type PaymentsData = {
-    payments: { method: string };
+    method: string;
 };
 
-export type FormValues = DeliveryData | ContactsData | PaymentsData;
+export interface IDeliveryData {
+    method: "Курьер" | "Самовывоз" | string;
+    city: string;
+    address: string;
+    date: string;
+    time: string;
+}
 
-export type StepState = DeliveryData & ContactsData & PaymentsData;
+export interface FormValues {
+    delivery?: DeliveryData;
+    contacts?: ContactsData;
+    payments?: PaymentsData;
+}
+
+export interface StepState {
+    delivery: DeliveryData;
+    contacts: ContactsData;
+    payments: PaymentsData;
+}

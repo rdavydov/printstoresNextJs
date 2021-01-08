@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import replaceDate from "utils/replaceDate";
 import CartPreview from "./CartInfo/CartPreview";
 import { FormValues } from "./Steps/interface/step.interfaces";
 import StepsContainer from "./Steps/StepsContainer";
 import { PreviewCartWrapper } from "./styled";
 
+const MAX_STEP = 3;
+const START_STEP = 1;
+
 const PreviewContentContainer = () => {
-    const [step, setStep] = useState(1);
     const [state, setState] = useState({
+        step: START_STEP,
         delivery: {
             method: "Курьер",
             city: "Ростов-На-Дону",
@@ -20,28 +24,36 @@ const PreviewContentContainer = () => {
             email: "",
             social: "",
             message: "",
+            prefix: "7",
         },
         payments: {
             method: "Картой онлайн",
         },
     });
 
-    const nextStep = ({ ...formValues }: FormValues) => {
-        setStep((prev) => (prev === 3 ? prev : prev + 1));
-        setState((prev) => ({ ...prev, ...formValues }));
+    const nextStep = (formValues: FormValues) => {
+        if (formValues?.delivery?.date) {
+            formValues.delivery.date = replaceDate(formValues.delivery.date);
+        }
+        setState((prev) => ({
+            ...prev,
+            ...formValues,
+            step: prev.step === MAX_STEP ? prev.step : prev.step + 1,
+        }));
     };
 
     const prevStep = () => {
-        setStep((prev) => (prev === 1 ? prev : prev - 1));
+        setState((prev) => ({
+            ...prev,
+            step: prev.step === START_STEP ? prev.step : prev.step - 1,
+        }));
     };
 
-    console.log(state);
-
+    console.log("render");
     return (
         <PreviewCartWrapper>
             <StepsContainer
-                step={step}
-                stepState={state}
+                step={state.step}
                 nextStep={nextStep}
                 prevStep={prevStep}
             />

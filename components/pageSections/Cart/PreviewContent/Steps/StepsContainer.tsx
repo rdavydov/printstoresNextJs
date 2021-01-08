@@ -1,5 +1,5 @@
-import { Form } from "antd";
-import React, { Fragment } from "react";
+import { ConfigProvider, Form } from "antd";
+import React, { Fragment, useEffect } from "react";
 import { FormActions, PreviewCartInfo } from "../styled";
 import ContactStep from "./Contacts/ContactStep";
 import DeliveryStep from "./Delivery/DeliveryStep";
@@ -12,7 +12,6 @@ import { StepState } from "./interface/step.interfaces";
 
 interface IProps {
     step: number;
-    stepState: StepState;
     nextStep: (formValue) => void;
     prevStep: () => void;
 }
@@ -22,30 +21,36 @@ const LABEL = {
     GO: "Далее",
 };
 
-const StepsContainer: React.FC<IProps> = ({
-    step,
-    stepState: { contacts, delivery, payments },
-    nextStep,
-    prevStep,
-}) => {
+const StepsContainer: React.FC<IProps> = ({ step, nextStep, prevStep }) => {
+    const [form] = Form.useForm();
     const config = getStepsFormConfig(step);
+
     const onFinish = (value) => {
         nextStep(value);
+    };
+
+    const getFieldValue = (value: string[]) => {
+        return form.getFieldValue(value);
     };
 
     const getNextStep = () => {
         switch (step) {
             case 1: {
-                return <ContactStep {...contacts} />;
+                return <ContactStep />;
             }
             case 2: {
-                return <DeliveryStep {...delivery} />;
+                return (
+                    <DeliveryStep
+                        setFieldsValue={form.setFieldsValue}
+                        getFieldValue={getFieldValue}
+                    />
+                );
             }
             case 3: {
-                return <PaymentStep {...payments} />;
+                return <PaymentStep />;
             }
             default: {
-                return <ContactStep {...contacts} />;
+                return <ContactStep />;
             }
         }
     };
@@ -58,6 +63,7 @@ const StepsContainer: React.FC<IProps> = ({
                 name="nest-messages"
                 onFinish={onFinish}
                 className={styles.form}
+                form={form}
             >
                 {getNextStep()}
                 <Form.Item>
