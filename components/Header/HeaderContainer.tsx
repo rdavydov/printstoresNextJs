@@ -5,55 +5,60 @@ import { RoomOutlined } from "@material-ui/icons";
 import useStyles from "./styles/styles";
 import BadgeCart from "../MUI/Badge";
 import SearchIcon from "@material-ui/icons/Search";
+import { useSelector } from "react-redux";
+import { RootState } from "store/rootReducer";
 
 const HeaderContainer = (props) => {
-  const clasess = useStyles();
-  return (
-    <Box component="header">
-      <Container>
-        <Box className={clasess.headerItems}>
-          <Box className={clasess.city}>
-            <RoomOutlined />
-            <Typography>Ростов-На-Дону</Typography>
-          </Box>
-          <Typography variant="h4">PRINTSTORES</Typography>
-          <Box className={clasess.actions}>
-            <SearchIcon className={clasess.find} />
-            <BadgeCart />
-          </Box>
+    const clasess = useStyles();
+    const {
+        cart: { length },
+    } = useSelector((state: RootState) => state);
+    return (
+        <Box component="header">
+            <Container>
+                <Box className={clasess.headerItems}>
+                    <Box className={clasess.city}>
+                        <RoomOutlined />
+                        <Typography>Ростов-На-Дону</Typography>
+                    </Box>
+                    <Typography variant="h4">PRINTSTORES</Typography>
+                    <Box className={clasess.actions}>
+                        <SearchIcon className={clasess.find} />
+                        <BadgeCart length={length} />
+                    </Box>
+                </Box>
+                <Box component="nav">
+                    <List className={clasess.menu}>
+                        <ListItem className={clasess.menuItem}>
+                            <Link href="/">
+                                <a>Главная</a>
+                            </Link>
+                        </ListItem>
+                        <ListItem className={clasess.menuItem}>
+                            <Link href="/catalog">
+                                <a>Каталог</a>
+                            </Link>
+                        </ListItem>
+                        <ListItem className={clasess.menuItem}>
+                            <Link href="/">
+                                <a>Новости</a>
+                            </Link>
+                        </ListItem>
+                        <ListItem className={clasess.menuItem}>
+                            <Link href="/">
+                                <a>Отзывы</a>
+                            </Link>
+                        </ListItem>
+                        <ListItem className={clasess.menuItem}>
+                            <Link href="/">
+                                <a>Контакты</a>
+                            </Link>
+                        </ListItem>
+                    </List>
+                </Box>
+            </Container>
         </Box>
-        <Box component="nav">
-          <List className={clasess.menu}>
-            <ListItem className={clasess.menuItem}>
-              <Link href="/">
-                <a>Главная</a>
-              </Link>
-            </ListItem>
-            <ListItem className={clasess.menuItem}>
-              <Link href="/catalog">
-                <a>Каталог</a>
-              </Link>
-            </ListItem>
-            <ListItem className={clasess.menuItem}>
-              <Link href="/">
-                <a>Новости</a>
-              </Link>
-            </ListItem>
-            <ListItem className={clasess.menuItem}>
-              <Link href="/">
-                <a>Отзывы</a>
-              </Link>
-            </ListItem>
-            <ListItem className={clasess.menuItem}>
-              <Link href="/">
-                <a>Контакты</a>
-              </Link>
-            </ListItem>
-          </List>
-        </Box>
-      </Container>
-    </Box>
-  );
+    );
 };
 
 export default HeaderContainer;

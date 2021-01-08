@@ -10,6 +10,7 @@ export const CountWrapper = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 35px;
+    box-sizing: border-box;
 `;
 
 export const CounterButton = styled.button`

@@ -1,8 +1,8 @@
 import React from "react";
 import CartInfoContainer from "./CartInfoContainer";
 
-const CartPreview = () => {
-    return <CartInfoContainer />;
+const CartPreview = ({ deliveryMethod }) => {
+    return <CartInfoContainer deliveryMethod={deliveryMethod} />;
 };
 
 export default CartPreview;

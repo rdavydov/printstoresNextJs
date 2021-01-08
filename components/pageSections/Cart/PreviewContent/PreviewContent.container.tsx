@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import replaceDate from "utils/replaceDate";
 import CartPreview from "./CartInfo/CartPreview";
 import { FormValues } from "./Steps/interface/step.interfaces";
@@ -12,7 +12,7 @@ const PreviewContentContainer = () => {
     const [state, setState] = useState({
         step: START_STEP,
         delivery: {
-            method: "Курьер",
+            method: "Самовывоз",
             city: "Ростов-На-Дону",
             address: "",
             date: "",
@@ -49,15 +49,22 @@ const PreviewContentContainer = () => {
         }));
     };
 
-    console.log("render");
+    const onDeliveryChange = (value: string) => {
+        setState((prev) => ({
+            ...prev,
+            delivery: { ...state.delivery, method: value },
+        }));
+    };
+
     return (
         <PreviewCartWrapper>
             <StepsContainer
                 step={state.step}
                 nextStep={nextStep}
                 prevStep={prevStep}
+                onDeliveryChange={onDeliveryChange}
             />
-            <CartPreview />
+            <CartPreview deliveryMethod={state.delivery.method} />
         </PreviewCartWrapper>
     );
 };
