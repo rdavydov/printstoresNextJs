@@ -1,14 +1,16 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Head from "next/head";
+import { Provider } from "react-redux";
+import ruRU from "antd/lib/locale-provider/ru_RU";
+import { ConfigProvider } from "antd";
+import store from "store/store";
 import "antd/dist/antd.css";
 import "../styles/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "swiper/swiper.scss";
 import "../styles/swiper.css";
-import { Provider } from "react-redux";
-import store from "store/store";
 
 function MyApp({ Component, pageProps }) {
     React.useEffect(() => {
@@ -26,8 +28,10 @@ function MyApp({ Component, pageProps }) {
                 />
             </Head>
             <Provider store={store}>
-                <CssBaseline />
-                <Component {...pageProps} />
+                <ConfigProvider locale={ruRU}>
+                    <CssBaseline />
+                    <Component {...pageProps} />
+                </ConfigProvider>
             </Provider>
         </React.Fragment>
     );
