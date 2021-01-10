@@ -6,10 +6,13 @@ const CategoryItemsContainer = ({ categoryItems }) => {
     const { replace } = useRouter();
     const goLocation = ({ prefix }) => {
         const path = routesConfig.getProductsRoute();
-        replace({
-            pathname: path,
-            query: { prefix },
-        });
+        replace(
+            {
+                pathname: path,
+                query: { prefix },
+            },
+            path
+        );
     };
 
     return (

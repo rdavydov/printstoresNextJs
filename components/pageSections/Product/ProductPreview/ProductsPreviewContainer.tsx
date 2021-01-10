@@ -4,13 +4,11 @@ import React from "react";
 import ProductsPreviewItems from "./ProductsPreviewItems";
 
 const ProductsPreviewContainer = ({ products }) => {
-    console.log(products);
-
     const { replace } = useRouter();
 
     const goLocation = ({ _id, prefix }) => {
         const pathname = routesConfig.getProductItemRoute();
-        replace({ pathname, query: { id: _id, prefix } });
+        replace({ pathname, query: { id: _id, prefix } }, pathname);
     };
     return <ProductsPreviewItems products={products} goLocation={goLocation} />;
 };
