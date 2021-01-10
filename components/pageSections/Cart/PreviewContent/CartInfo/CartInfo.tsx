@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import SwiperSlider from "reusable-components/SwiperSlider/SwiperSlider";
-import { ICardInitState } from "store/reducers/cardReducer/cardReducer";
+import { ICart } from "store/reducers/cardReducer/cardReducer";
 import { SwiperSlide } from "swiper/react";
 import {
     CartBody,
@@ -15,13 +15,15 @@ import {
 import CartItem from "./CartItem/CartItem";
 
 interface IProps {
-    cart: ICardInitState[];
+    cart: ICart[];
     deliveryMethod: string;
 }
 
 const ORDER_TOTAL = "Количество товаров";
 const SHIPPING = "Доставка";
 const ORDER_PRICE = "Сумма заказа";
+const EDIT = "Редактировать";
+const SAVE = "Сохранить";
 const COURIER_DELIVERY = {
     title: "Доставка курьером",
     time: "В течении 12 часов",
@@ -34,8 +36,8 @@ const PICKUP = {
 };
 
 const getSum = (arr) => {
-    const sum = arr.reduce((sum, { price }) => {
-        return sum + price;
+    const sum = arr.reduce((sum, { price, quantity }) => {
+        return sum + price * quantity;
     }, 0);
 
     return sum + "Руб.";
@@ -55,10 +57,23 @@ const getDeliveryPrice = (deliveryMethod) => {
     }
 };
 
-const CartInfo: React.FC<IProps> = ({ cart, deliveryMethod }) => {
+type CartType = React.FC<IProps>;
+
+const CartInfo: CartType = ({ cart, deliveryMethod }) => {
+    const [editMode, setEditMode] = useState(false);
+
+    const onEdit = () => {
+        setEditMode(!editMode);
+    };
+
     const cartData = cart.map(({ ...rest }, index) => (
         <SwiperSlide key={index}>
-            <CartItem {...rest} key={index} />
+            <CartItem
+                key={index}
+                {...rest}
+                fullWidth={cart.length === 1}
+                editMode={editMode}
+            />
         </SwiperSlide>
     ));
 
@@ -70,9 +85,18 @@ const CartInfo: React.FC<IProps> = ({ cart, deliveryMethod }) => {
             <CartWrapper>
                 <CartHeader>
                     <Text size="small">{`${ORDER_TOTAL}(${cart.length})`}</Text>
+                    <Text
+                        size="xsmall"
+                        onClick={onEdit}
+                        style={{ cursor: "pointer" }}
+                    >
+                        {editMode ? SAVE : EDIT}
+                    </Text>
                 </CartHeader>
                 <CartBody>
-                    <SwiperSlider>{cartData}</SwiperSlider>
+                    <SwiperSlider navigation={cart.length > 1}>
+                        {cartData}
+                    </SwiperSlider>
                 </CartBody>
                 <CartFooter>
                     <CartInfoOrder>

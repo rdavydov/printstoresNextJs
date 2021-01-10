@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomButton from "reusable-components/Button/CustomButton";
 import CardButton from "reusable-components/CardButton/CardButton";
 import QuantityButton from "reusable-components/QuantityButton/QuantityButton";
@@ -17,6 +17,8 @@ import {
     ActionsWrapper,
 } from "./styled";
 import styles from "./PreviewItem.module.css";
+import { useDispatch } from "react-redux";
+import { addCartProduct } from "store/reducers/cardReducer/actionCreators/cardActionCreators";
 
 const ORDER_NOW_TEXT = "Заказать сейчас";
 const COUNT_TEXT = "Количество:";
@@ -41,6 +43,17 @@ const PreviewItem: React.FC<Product> = ({
         { header: DETAILS, text: details },
         { header: DELIVERY_AND_PAY, text: "завтра" },
     ];
+    const [quantity, setQuantity] = useState(1);
+
+    const dispatch = useDispatch();
+
+    const addProduct = () => {
+        dispatch(addCartProduct({ id: _id, image, name, price, quantity }));
+    };
+
+    const getQuantity = (quantityValue) => {
+        setQuantity(quantityValue);
+    };
 
     return (
         <PreviewWrapper>
@@ -54,12 +67,12 @@ const PreviewItem: React.FC<Product> = ({
                     {oldPrice && <OldPrice>{oldPrice + "Р"}</OldPrice>}
                 </PriceContent>
                 <Text>{COUNT_TEXT}</Text>
-                <QuantityButton />
+                <QuantityButton quantity={quantity} getQuantity={getQuantity} />
                 <ActionsWrapper>
                     <CustomButton className={styles.button}>
                         {ORDER_NOW_TEXT}
                     </CustomButton>
-                    <CardButton />
+                    <CardButton onClick={addProduct} />
                 </ActionsWrapper>
                 <CollapseItems info={collapseContent} />
             </PreviewRightContent>

@@ -7,9 +7,13 @@ export const Image = styled.img`
 `;
 export const CardName = styled.p``;
 export const CardPrice = styled.p``;
-export const CardWrapper = styled.div`
+
+interface IProps {
+    fullWidth?: "true" | "false";
+}
+export const CardWrapper = styled.div<IProps>`
     display: flex;
-    width: 85%;
+    width: ${(props) => (props.fullWidth === "true" ? "100%" : "85%")};
     margin: 0 auto;
 `;
 export const CardContent = styled.div`
@@ -19,4 +23,14 @@ export const CardHeader = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+`;
+
+export const DeletedButton = styled.button`
+    cursor: pointer;
+    width: 95px;
+    padding: 5px;
+    color: white;
+    border: none;
+    background-color: #f50057;
+    outline: none;
 `;

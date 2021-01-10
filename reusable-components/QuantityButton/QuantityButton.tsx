@@ -5,18 +5,31 @@ const INCREMENT = "+";
 const DECREMENT = "-";
 
 interface IProps {
-    getQuantity?: (quantity) => void;
+    getQuantity?: (quantityInstance) => void;
+    onIncrement?: () => void;
+    onDecrement?: () => void;
     quantity?: number;
 }
 
-const QuantityButton: React.FC<IProps> = ({ getQuantity, quantity = 1 }) => {
+const QuantityButton: React.FC<IProps> = ({
+    getQuantity,
+    quantity = 1,
+    onIncrement,
+    onDecrement,
+}) => {
     const [quantityState, setQuantity] = useState(quantity);
 
     const incrementQuantity = () => {
+        if (onIncrement) {
+            onIncrement();
+        }
         setQuantity((prev) => prev + 1);
     };
 
     const decrementQuantity = () => {
+        if (onDecrement) {
+            onDecrement();
+        }
         setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
     };
 
@@ -25,6 +38,10 @@ const QuantityButton: React.FC<IProps> = ({ getQuantity, quantity = 1 }) => {
             getQuantity(quantityState);
         }
     }, [quantityState]);
+
+    useEffect(() => {
+        setQuantity(quantity);
+    }, [quantity]);
 
     return (
         <CountWrapper>

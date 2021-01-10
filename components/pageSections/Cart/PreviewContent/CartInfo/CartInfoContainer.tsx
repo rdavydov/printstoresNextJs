@@ -4,9 +4,9 @@ import { RootState } from "store/rootReducer";
 import CartInfo from "./CartInfo";
 
 const CartInfoContainer = ({ deliveryMethod }) => {
-    const cart = useSelector((state: RootState) => state.cart);
+    const { product } = useSelector((state: RootState) => state.cart);
 
-    return <CartInfo cart={cart} deliveryMethod={deliveryMethod} />;
+    return <CartInfo cart={product} deliveryMethod={deliveryMethod} />;
 };
 
 export default CartInfoContainer;

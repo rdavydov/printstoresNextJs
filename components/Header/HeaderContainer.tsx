@@ -10,9 +10,8 @@ import { RootState } from "store/rootReducer";
 
 const HeaderContainer = (props) => {
     const clasess = useStyles();
-    const {
-        cart: { length },
-    } = useSelector((state: RootState) => state);
+    const { product } = useSelector((state: RootState) => state.cart);
+
     return (
         <Box component="header">
             <Container>
@@ -24,7 +23,7 @@ const HeaderContainer = (props) => {
                     <Typography variant="h4">PRINTSTORES</Typography>
                     <Box className={clasess.actions}>
                         <SearchIcon className={clasess.find} />
-                        <BadgeCart length={length} />
+                        <BadgeCart length={product.length} />
                     </Box>
                 </Box>
                 <Box component="nav">

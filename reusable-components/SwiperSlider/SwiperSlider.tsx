@@ -1,23 +1,31 @@
 import React from "react";
-import { Swiper } from "swiper/react";
-import SwiperCore, { Autoplay, A11y, Navigation } from "swiper";
+import Swiper from "react-id-swiper";
+import SwiperCore, { Navigation } from "swiper";
+import { SwiperOptions } from "swiper";
 
-SwiperCore.use([Autoplay, A11y, Navigation]);
+SwiperCore.use([Navigation]);
 
-const breakpointsConfig = {
-    320: { slidesPerView: 1, spaceBetween: 0 },
-    600: { slidesPerView: 1, spaceBetween: 10 },
-    960: { slidesPerView: 1, spaceBetween: 10 },
-    1200: { slidesPerView: 1, spaceBetween: 30 },
+const options: SwiperOptions = {
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
 };
 
-const SwiperSlider: React.FC = ({ children }) => {
+interface IProps {
+    navigation?: boolean;
+    children: any[];
+}
+
+const SwiperSlider: React.FC<IProps> = ({
+    children = [],
+    navigation = true,
+}) => {
     return (
         <Swiper
             slidesPerView={1}
-            spaceBetween={30}
-            navigation
-            breakpoints={breakpointsConfig}
+            navigation={navigation ? options.navigation : false}
+            shouldSwiperUpdate
         >
             {children}
         </Swiper>

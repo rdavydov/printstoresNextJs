@@ -25,6 +25,8 @@ export const CartWrapper = styled.div`
 `;
 
 export const CartHeader = styled.div`
+    display: inline-flex;
+    justify-content: space-between;
     margin-bottom: 45px;
 `;
 

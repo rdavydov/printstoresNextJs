@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useDispatch } from "react-redux";
 import { Product } from "types/type/products.type";
 import PreviewItem from "./PreviewItem/PreviewItem";
 
