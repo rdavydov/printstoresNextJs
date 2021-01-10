@@ -1,40 +1,23 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Form, Input, Select, Radio, DatePicker, ConfigProvider } from "antd";
+import { Form, Input, Select, Radio, DatePicker } from "antd";
 import cn from "classnames";
 import replaceDate from "utils/replaceDate";
-import {
-    DeliveryRadioContent,
-    FormRadioContent,
-    FormRadioHeader,
-    Price,
-    SmallText,
-    SubSmallText,
-    Text,
-} from "../../styled";
+import { Text } from "../../styled";
 import styles from "./DeliveryStep.module.scss";
+import { getValidatingConfig } from "../config/getValidatingConfig";
+import DeliveryMethod from "./DeliveryRadioContent/DeliveryMethod";
+import {
+    DATE_TIME,
+    deliveryProps,
+    DELIVERY_ADDRESS,
+    DELIVERY_CITY,
+    DELIVERY_METHOD,
+    DELIVERY_TIME,
+    selectTime,
+} from "./deliveryConfig/deliveryConfig";
 
 const { Option } = Select;
 
-const DELIVERY_METHOD = "Способ доставки";
-const DELIVERY_ADDRESS = "Адрес доставки";
-const DATE_TIME = "Дата и время";
-const PICKUP = {
-    title: "Самовывоз",
-    time: "После 10.00 в любой день недели",
-    price: "Бесплатно",
-};
-const COURIER_DELIVERY = {
-    title: "Доставка курьером",
-    time: "В течении 12 часов",
-    price: 200,
-};
-
-const selectTime = [
-    { time: "10:00 - 13:00" },
-    { time: "13:00 - 16:00" },
-    { time: "16:00 - 19:00" },
-    { time: "19:00 - 22:00" },
-];
 interface IProps {
     setFieldsValue: (value: any) => void;
     getFieldValue: (value: string[]) => string;
@@ -60,7 +43,8 @@ const DeliveryStep: React.FC<IProps> = ({
         setFieldsValue({ delivery: { method: value } });
         setMethod(value);
     };
-    console.log(method);
+
+    const { validate } = getValidatingConfig();
 
     useEffect(() => {
         onDeliveryChange(method);
@@ -73,44 +57,31 @@ const DeliveryStep: React.FC<IProps> = ({
                 valuePropName="value"
                 initialValue="Самовывоз"
                 name={["delivery", "method"]}
+                rules={validate.method}
             >
                 <Radio.Group
                     onChange={onDeliveryChangeValue}
                     value={method}
                     style={{ width: "100%" }}
                 >
-                    <DeliveryRadioContent
+                    <DeliveryMethod
                         className={cn(
                             styles.radioContent,
-                            method === "Самовывоз" && styles.active
+                            method === deliveryProps.PICKUP.title &&
+                                styles.active
                         )}
-                        onClick={() => onDeliveryClicked("Самовывоз")}
-                    >
-                        <Radio value="Самовывоз" />
-                        <FormRadioContent>
-                            <FormRadioHeader>
-                                <SmallText>{PICKUP.title}</SmallText>
-                                <Price>{PICKUP.price}</Price>
-                            </FormRadioHeader>
-                            <SubSmallText>{PICKUP.time}</SubSmallText>
-                        </FormRadioContent>
-                    </DeliveryRadioContent>
-                    <DeliveryRadioContent
+                        onDeliveryClicked={onDeliveryClicked}
+                        {...deliveryProps.PICKUP}
+                    />
+                    <DeliveryMethod
                         className={cn(
                             styles.radioContent,
-                            method === "Доставка курьером" && styles.active
+                            method === deliveryProps.COURIER.title &&
+                                styles.active
                         )}
-                        onClick={() => onDeliveryClicked("Доставка курьером")}
-                    >
-                        <Radio value="Доставка курьером" />
-                        <FormRadioContent>
-                            <FormRadioHeader>
-                                <SmallText>{COURIER_DELIVERY.title}</SmallText>
-                                <Price>{COURIER_DELIVERY.price + "Руб."}</Price>
-                            </FormRadioHeader>
-                            <SubSmallText>{COURIER_DELIVERY.time}</SubSmallText>
-                        </FormRadioContent>
-                    </DeliveryRadioContent>
+                        onDeliveryClicked={onDeliveryClicked}
+                        {...deliveryProps.COURIER}
+                    />
                 </Radio.Group>
             </Form.Item>
             <Text>{DELIVERY_ADDRESS}</Text>
@@ -121,8 +92,9 @@ const DeliveryStep: React.FC<IProps> = ({
                         display: "inline-block",
                         width: "calc(50% - 8px)",
                     }}
+                    rules={validate.city}
                 >
-                    <Select>
+                    <Select placeholder={DELIVERY_CITY}>
                         <Option value="Ростов-На-Дону">Ростов-На-Дону</Option>
                     </Select>
                 </Form.Item>
@@ -133,6 +105,7 @@ const DeliveryStep: React.FC<IProps> = ({
                         width: "calc(50% - 8px)",
                         margin: "0 8px",
                     }}
+                    rules={validate.address}
                 >
                     <Input placeholder={DELIVERY_ADDRESS} />
                 </Form.Item>
@@ -145,6 +118,7 @@ const DeliveryStep: React.FC<IProps> = ({
                         display: "inline-block",
                         width: "calc(50% - 8px)",
                     }}
+                    rules={validate.date}
                 >
                     <DatePicker
                         format={replaceDate}
@@ -158,8 +132,9 @@ const DeliveryStep: React.FC<IProps> = ({
                         width: "calc(50% - 8px)",
                         margin: "0 8px",
                     }}
+                    rules={validate.time}
                 >
-                    <Select>
+                    <Select placeholder={DELIVERY_TIME}>
                         {selectTime.map(({ time }, index) => (
                             <Option value={time} key={index}>
                                 {time}

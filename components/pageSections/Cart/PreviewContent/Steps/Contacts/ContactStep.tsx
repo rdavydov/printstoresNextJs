@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Input, Select } from "antd";
+import { getValidatingConfig } from "../config/getValidatingConfig";
 
 const { Option } = Select;
 
@@ -19,28 +20,21 @@ const ContactStep: React.FC = () => {
             </Select>
         </Form.Item>
     );
+
+    const { validate } = getValidatingConfig();
+
     return (
         <>
             <Form.Item
                 name={["contacts", "firstName"]}
-                rules={[
-                    { required: true, message: "Пожалуйста, укажите Ваше имя" },
-                ]}
+                rules={validate.firstName}
             >
                 <Input placeholder={LABEL.NAME} />
             </Form.Item>
-            <Form.Item name={["contacts", "email"]} rules={[{ type: "email" }]}>
+            <Form.Item name={["contacts", "email"]} rules={validate.email}>
                 <Input placeholder={LABEL.EMAIL} />
             </Form.Item>
-            <Form.Item
-                name={["contacts", "phone"]}
-                rules={[
-                    {
-                        required: true,
-                        message: "Укажите Ваш номер телефона",
-                    },
-                ]}
-            >
+            <Form.Item name={["contacts", "phone"]} rules={validate.phone}>
                 <Input
                     addonBefore={prefixSelector}
                     style={{ width: "100%" }}

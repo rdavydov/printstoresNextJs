@@ -4,15 +4,14 @@ import { IRoutes } from "../../../../types/interfaces/routes.interface";
 import { CategoryPromoSection, HeaderTitle } from "../styled/styled";
 
 interface IProps {
-    title: string | string[];
     crumbs: any;
 }
 
-const CategoryPromo = ({ title, crumbs }: IProps & IRoutes) => {
+const CategoryPromo = ({ crumbs }: IProps) => {
     return (
         <CategoryPromoSection>
             <BreadcrumbsLinks crumbs={crumbs} />
-            <HeaderTitle>{title}</HeaderTitle>
+            <HeaderTitle></HeaderTitle>
         </CategoryPromoSection>
     );
 };
