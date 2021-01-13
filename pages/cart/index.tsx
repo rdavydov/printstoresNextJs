@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Layout from "components/Layout/Layout";
+import { Layout } from "components/Layout";
 import Promo from "components/pageSections/Cart/Promo/Promo";
 import PreviewContent from "components/pageSections/Cart/PreviewContent";
 

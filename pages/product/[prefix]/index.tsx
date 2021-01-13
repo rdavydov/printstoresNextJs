@@ -1,6 +1,6 @@
 import React from "react";
 import { productService } from "api/services/product.service";
-import Layout from "../../../components/Layout/Layout";
+import { Layout } from "components/Layout";
 import ProductPromo from "components/pageSections/Product/ProductPreview";
 import Promo from "components/pageSections/Product/Promo";
 

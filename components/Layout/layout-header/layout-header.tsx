@@ -2,13 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { Box, Container, Typography, List, ListItem } from "@material-ui/core";
 import { RoomOutlined } from "@material-ui/icons";
-import useStyles from "./styles/styles";
-import BadgeCart from "../MUI/Badge";
 import SearchIcon from "@material-ui/icons/Search";
 import { useSelector } from "react-redux";
 import { RootState } from "store/rootReducer";
+import BadgeCart from "components/MUI/Badge";
+import useStyles from "../styles/layout-header";
 
-const HeaderContainer = (props) => {
+const LayoutHeader = () => {
     const clasess = useStyles();
     const { product } = useSelector((state: RootState) => state.cart);
 
@@ -60,4 +60,4 @@ const HeaderContainer = (props) => {
     );
 };
 
-export default HeaderContainer;
+export default LayoutHeader;

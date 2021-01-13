@@ -2,7 +2,7 @@ import { productService } from "api/services/product.service";
 import ProductItemPreview from "components/pageSections/ProductsPreviewSection/ProductsPreview";
 import Promo from "components/pageSections/ProductsPreviewSection/Promo/Promo";
 import React from "react";
-import Layout from "../../../../components/Layout/Layout";
+import { Layout } from "components/Layout";
 
 const OneProductPage = ({ itemsList, crumbs }) => {
     console.log(crumbs, "product");

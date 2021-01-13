@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "store/rootReducer";
+import AdminLayout from "admin/AdminLayout/AdminLayout";
 
 const AdminGuard = () => {
     const { replace } = useRouter();
@@ -15,7 +16,7 @@ const AdminGuard = () => {
 
     return (
         <>
-            <p>ADmin</p>
+            <AdminLayout></AdminLayout>
         </>
     );
 };

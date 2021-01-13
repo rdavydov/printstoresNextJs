@@ -1,15 +1,16 @@
-import { Box, Container } from "@material-ui/core";
 import React from "react";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import { Box, Container } from "@material-ui/core";
+import { LayoutHeader } from "./layout-header";
+import { LayoutFooter } from "./layout-footer";
+
 const Layout = ({ children, ...rest }) => {
     return (
         <>
-            <Header />
+            <LayoutHeader />
             <Box component="main">
                 <Container>{children}</Container>
             </Box>
-            <Footer />
+            <LayoutFooter />
         </>
     );
 };
