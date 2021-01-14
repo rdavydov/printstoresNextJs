@@ -134,13 +134,7 @@ const DeliveryStep: React.FC<IProps> = ({
                     }}
                     rules={validate.time}
                 >
-                    <Select placeholder={DELIVERY_TIME}>
-                        {selectTime.map(({ time }, index) => (
-                            <Option value={time} key={index}>
-                                {time}
-                            </Option>
-                        ))}
-                    </Select>
+                    <Select placeholder={DELIVERY_TIME} options={selectTime} />
                 </Form.Item>
             </Form.Item>
         </Fragment>

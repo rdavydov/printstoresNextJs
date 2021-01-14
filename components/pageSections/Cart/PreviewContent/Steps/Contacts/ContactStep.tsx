@@ -2,8 +2,6 @@ import React from "react";
 import { Form, Input, Select } from "antd";
 import { getValidatingConfig } from "../config/getValidatingConfig";
 
-const { Option } = Select;
-
 const LABEL = {
     MESSAGE: "Сообщение",
     SOCIAL: "Социальная сеть",
@@ -15,9 +13,10 @@ const LABEL = {
 const ContactStep: React.FC = () => {
     const prefixSelector = (
         <Form.Item name={["contacts", "prefix"]} initialValue="7" noStyle>
-            <Select style={{ width: 70 }}>
-                <Option value="7">+7</Option>
-            </Select>
+            <Select
+                style={{ width: 70 }}
+                options={[{ label: "7", value: 7 }]}
+            />
         </Form.Item>
     );
 
@@ -28,23 +27,32 @@ const ContactStep: React.FC = () => {
             <Form.Item
                 name={["contacts", "firstName"]}
                 rules={validate.firstName}
+                hasFeedback
             >
                 <Input placeholder={LABEL.NAME} />
             </Form.Item>
-            <Form.Item name={["contacts", "email"]} rules={validate.email}>
+            <Form.Item
+                name={["contacts", "email"]}
+                rules={validate.email}
+                hasFeedback
+            >
                 <Input placeholder={LABEL.EMAIL} />
             </Form.Item>
-            <Form.Item name={["contacts", "phone"]} rules={validate.phone}>
+            <Form.Item
+                name={["contacts", "phone"]}
+                rules={validate.phone}
+                hasFeedback
+            >
                 <Input
                     addonBefore={prefixSelector}
                     style={{ width: "100%" }}
                     placeholder={LABEL.MOBILE}
                 />
             </Form.Item>
-            <Form.Item name={["contacts", "social"]}>
+            <Form.Item name={["contacts", "social"]} hasFeedback>
                 <Input placeholder={LABEL.SOCIAL} />
             </Form.Item>
-            <Form.Item name={["contacts", "message"]}>
+            <Form.Item name={["contacts", "message"]} hasFeedback>
                 <Input.TextArea placeholder={LABEL.MESSAGE} />
             </Form.Item>
         </>

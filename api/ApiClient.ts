@@ -3,26 +3,24 @@ import axios, { AxiosRequestConfig } from "axios";
 class ApiClient {
     public instance = axios.create({
         baseURL: "http://localhost:3010/api",
-        headers: {
-            accept: "application/json",
-        },
     });
-    get(url: string, config?: AxiosRequestConfig) {
+    async get(url: string, config?: AxiosRequestConfig) {
         if (config) {
             return this.instance.get(url, config);
         }
         return this.instance.get(url);
     }
-    post(url: string, data: any, config?: AxiosRequestConfig) {
+    async post(url: string, data: any, config?: AxiosRequestConfig) {
+        console.log(data);
         if (config) {
             return this.instance.post(url, data, config);
         }
         return this.instance.post(url, data);
     }
-    put(url) {
+    async put(url) {
         return this.instance.put;
     }
-    delete() {
+    async delete() {
         return this.instance.delete;
     }
 }

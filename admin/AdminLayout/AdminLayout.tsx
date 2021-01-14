@@ -13,11 +13,14 @@ import {
 import { useState } from "react";
 import React from "react";
 import SubMenu from "antd/lib/menu/SubMenu";
+import { useRouter } from "next/router";
 
 const { Header, Sider, Content, Footer } = Layout;
 
 const AdminLayout = ({ children }) => {
     const [state, setState] = useState({ collapsed: false });
+
+    const { replace } = useRouter();
 
     const toogle = () => {
         setState({ collapsed: !state.collapsed });
@@ -38,11 +41,15 @@ const AdminLayout = ({ children }) => {
                     <Menu.Item key="4" icon={<DesktopOutlined />}>
                         Статистика SEO
                     </Menu.Item>
-                    <Menu.Item key="5" icon={<DesktopOutlined />}>
-                        Продукты
+                    <Menu.Item
+                        key="5"
+                        icon={<DesktopOutlined />}
+                        onClick={() => replace("/admin/products")}
+                    >
+                        Товары
                     </Menu.Item>
                     <SubMenu key="sub1" icon={<UserOutlined />} title="SEO">
-                        <Menu.Item key="6">Продукты</Menu.Item>
+                        <Menu.Item key="6">Товары</Menu.Item>
                         <Menu.Item key="7">Страницы</Menu.Item>
                     </SubMenu>
                 </Menu>
@@ -57,7 +64,7 @@ const AdminLayout = ({ children }) => {
                         className="site-layout-background"
                         style={{ padding: 24, minHeight: 360 }}
                     >
-                        Content
+                        {children}
                     </div>
                 </Content>
                 <Footer style={{ textAlign: "center" }}>

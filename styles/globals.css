@@ -19,7 +19,7 @@ a {
 #__next {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 main {
     flex: 1 0 auto;
@@ -47,6 +47,9 @@ footer {
     margin: 16px;
 }
 
+.ant-layout-sider-children {
+    position: fixed;
+}
 .site-layout .site-layout-background {
     background: #fff;
 }

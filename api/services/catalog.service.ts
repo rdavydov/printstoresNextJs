@@ -1,6 +1,5 @@
 import { Prefix } from "utils/decorators/Prefix";
 import { Get } from "utils/decorators/Get";
-
 import { AxiosResponse } from "axios";
 
 @Prefix("catalog")
