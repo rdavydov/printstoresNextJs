@@ -1,8 +1,8 @@
 import { categoryService } from "api/services/category.service";
 import React from "react";
-import { Layout } from "components/Layout";
-import CategoryItems from "../../../../components/pageSections/Category/CategoryItems";
-import Promo from "../../../../components/pageSections/Category/Promo";
+import { Layout } from "containers/Layout";
+import CategoryItems from "../../../../containers/pageSections/Category/CategoryItems";
+import Promo from "../../../../containers/pageSections/Category/Promo";
 
 const CategoryPage = ({ itemsList, crumbs }) => {
     return (

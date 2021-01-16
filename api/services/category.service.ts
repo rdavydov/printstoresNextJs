@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
-import { Post } from "utils/decorators/Post";
-import { Get } from "utils/decorators/Get";
-import { Prefix } from "utils/decorators/Prefix";
+import { Post } from "api/decorators/Post";
+import { Get } from "api/decorators/Get";
+import { Prefix } from "api/decorators/Prefix";
 
 interface IPost {
     data: any;

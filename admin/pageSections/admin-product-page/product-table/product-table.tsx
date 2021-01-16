@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Table, Tag, Space, Image } from "antd";
-import CustomButton from "reusable-components/Button/CustomButton";
+import CustomButton from "components/Button/CustomButton";
 import CategoryForm from "../category/category-form";
 import { categoryService } from "api/services/category.service";
 

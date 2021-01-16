@@ -1,8 +1,8 @@
 import React from "react";
 import { productService } from "api/services/product.service";
-import { Layout } from "components/Layout";
-import ProductPromo from "components/pageSections/Product/ProductPreview";
-import Promo from "components/pageSections/Product/Promo";
+import { Layout } from "containers/Layout";
+import ProductPromo from "containers/pageSections/Product/ProductPreview";
+import Promo from "containers/pageSections/Product/Promo";
 
 const ProductPrefixPage = ({ itemsList, crumbs }) => {
     console.log(crumbs);

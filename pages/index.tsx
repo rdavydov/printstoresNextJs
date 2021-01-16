@@ -1,7 +1,7 @@
-import { Layout } from "components/Layout";
+import { Layout } from "containers/Layout";
 import React from "react";
-import Slider from "../components/Slider";
-import ProductsGallery from "../components/views/ProductsGallery/ProductsGallery";
+import Slider from "../containers/Slider";
+import ProductsGallery from "../containers/views/ProductsGallery/ProductsGallery";
 
 const Home = () => {
     return (

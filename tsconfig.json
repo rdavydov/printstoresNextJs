@@ -15,17 +15,8 @@
         "jsx": "preserve",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "rootDir": "components",
-        "baseUrl": ".",
-        "rootDirs": ["reusable-components", "utils", "components"]
+        "baseUrl": "./"
     },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "reusable-components",
-        "components",
-        "utils"
-    ],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "api/decorators"],
     "exclude": ["node_modules"]
 }

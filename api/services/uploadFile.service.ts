@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
-import { Prefix } from "utils/decorators/Prefix";
-import { UploadFile } from "utils/decorators/UploadFile";
+import { Prefix } from "api/decorators/Prefix";
+import { UploadFile } from "api/decorators/UploadFile";
 
 interface IUpload {
     file: any;
