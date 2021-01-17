@@ -14,7 +14,7 @@ export function Get(url?: string | string[], config?: RequestConfig) {
         let originalFn: OriginalFnType = descriptor.value;
         descriptor.value = async function WrapperGet({
             requestUrl = [],
-        }: IGet) {
+        }: IGet = {}) {
             let prefix = Reflect.getMetadata(metadataKey, target);
             let URL = generateURL(prefix, url, ...requestUrl);
             const response = await createGetRequest(URL);

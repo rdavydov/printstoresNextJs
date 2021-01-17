@@ -55,10 +55,11 @@ const AdminLayout = ({ children }) => {
                     <Header
                         className="site-layout-background"
                         style={{
-                            padding: "0 15px",
+                            padding: "5px 15px",
                             margin: "16px",
                             display: "flex",
                             alignItems: "center",
+                            height: "80px",
                         }}
                     >
                         {headerContent}

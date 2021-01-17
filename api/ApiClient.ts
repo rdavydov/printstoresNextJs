@@ -19,8 +19,16 @@ class ApiClient {
     async put(url) {
         return this.instance.put;
     }
-    async delete() {
-        return this.instance.delete;
+    async delete(url: string, data: any, config?: AxiosRequestConfig) {
+        if (config) {
+            return this.instance.delete(url, {
+                data,
+                ...config,
+            });
+        }
+        return this.instance.delete(url, {
+            data,
+        });
     }
 }
 

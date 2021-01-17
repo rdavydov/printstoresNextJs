@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface IProps {
-    hovered?: "white";
+    hovered?: "white" | "red";
 }
 
 export const Button = styled.button<IProps>`
@@ -12,17 +12,44 @@ export const Button = styled.button<IProps>`
     min-width: 160px;
     height: 50px;
     border: ${(props) =>
-        props.hovered === "white" ? "1px solid #020002" : "none"};
+        props.hovered === "white"
+            ? "1px solid #020002"
+            : props.hovered === "red"
+            ? "1px solid red"
+            : "none"};
     outline: none;
     background-color: ${(props) =>
-        props.hovered === "white" ? "white" : "#161616"};
+        props.hovered === "white"
+            ? "white"
+            : props.hovered === "red"
+            ? "white"
+            : "#161616"};
     transition: 0.2s;
-    color: ${(props) => (props.hovered === "white" ? "#020002" : "#faf8f8")};
+    color: ${(props) =>
+        props.hovered === "white"
+            ? "#020002"
+            : props.hovered === "red"
+            ? "#020002"
+            : "#faf8f8"};
     &:hover {
         background-color: ${(props) =>
-            props.hovered === "white" ? "#161616" : "#faf8f8"};
+            props.hovered === "white"
+                ? "#161616"
+                : props.hovered === "red"
+                ? "crimson"
+                : "#faf8f8"};
         border: 1px solid
-            ${(props) => (props.hovered === "white" ? "black" : "#020002")};
-        color: ${(props) => (props.hovered === "white" ? "white" : "#020002")};
+            ${(props) =>
+                props.hovered === "white"
+                    ? "black"
+                    : props.hovered === "red"
+                    ? "crimson"
+                    : "#020002"};
+        color: ${(props) =>
+            props.hovered === "white"
+                ? "white"
+                : props.hovered === "red"
+                ? "white"
+                : "#020002"};
     }
 `;

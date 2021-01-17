@@ -6,7 +6,7 @@ interface IProps {
     onClick?: () => void;
     className?: string;
     type?: "submit" | "button" | "reset";
-    hovered?: "white";
+    hovered?: "white" | "red";
 }
 
 const CustomButton: React.FC<IProps> = ({

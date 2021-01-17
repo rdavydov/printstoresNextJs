@@ -3,8 +3,8 @@ import { IGet } from "api/decorators/types/Get.types";
 
 @Prefix("catalog")
 class CatalogService {
-    @Get()
-    async getAllCategory({ requestUrl, callbackResponse }: IGet) {
+    @Get("all")
+    async getAllCategory({ requestUrl, callbackResponse }: IGet = {}) {
         return callbackResponse();
     }
 }

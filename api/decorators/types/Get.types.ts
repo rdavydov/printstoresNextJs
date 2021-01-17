@@ -7,8 +7,8 @@ export interface GetDecorator {
 }
 
 export interface IGet {
-    requestUrl?: string[] | undefined;
-    callbackResponse?: () => AxiosResponse<any>;
+    requestUrl?: string[] | null;
+    callbackResponse?: () => AxiosResponse<any> | null;
 }
 
 export type OriginalFnType = ({

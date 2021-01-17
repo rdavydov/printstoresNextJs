@@ -2,13 +2,8 @@ import { AxiosResponse } from "axios";
 import { Prefix } from "api/decorators/Prefix";
 import { Get, Post } from "api/decorators";
 import { IGet } from "api/decorators/types/Get.types";
-import { get } from "lodash";
-
-interface IPost {
-    data: any;
-    requestUrl?: string[];
-    callbackResponse?: () => AxiosResponse<any>;
-}
+import { Delete } from "api/decorators/Delete";
+import { IPost } from "api/decorators/types/Post.types";
 
 @Prefix("category")
 class CategoryService {
@@ -22,8 +17,13 @@ class CategoryService {
         return callbackResponse();
     }
 
-    @Get()
-    async getAllCategory({ requestUrl, callbackResponse }: IGet) {
+    @Delete("delete")
+    async categoryDelete({ data, requestUrl, callbackResponse }: IPost) {
+        return callbackResponse();
+    }
+
+    @Get("all")
+    async getAllCategory({ requestUrl, callbackResponse }: IGet = {}) {
         return callbackResponse();
     }
 }

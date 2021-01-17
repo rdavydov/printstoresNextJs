@@ -18,7 +18,7 @@ const Catalog = ({ itemsList, crumbs }) => {
 export async function getServerSideProps(context) {
     const {
         data: { crumbs, itemsList },
-    } = await catalogService.getAllCategory({ requestUrl: ["all"] });
+    } = await catalogService.getAllCategory();
     return {
         props: { crumbs, itemsList },
     };
