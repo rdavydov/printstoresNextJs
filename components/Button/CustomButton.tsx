@@ -24,6 +24,7 @@ const CustomButton: React.FC<IProps> = ({
             hovered={hovered}
             type={type}
         >
+            {text && text}
             {children}
         </Button>
     );

@@ -1,13 +1,11 @@
-import { Prefix } from "api/decorators/Prefix";
-import { Get } from "api/decorators/Get";
-import { AxiosResponse } from "axios";
+import { Get, Prefix } from "api/decorators";
+import { IGet } from "api/decorators/types/Get.types";
 
 @Prefix("catalog")
 class CatalogService {
-    @Get("all")
-    async getAllCategory(...response: AxiosResponse<any>[]) {
-        const [res] = response;
-        return res;
+    @Get()
+    async getAllCategory({ requestUrl, callbackResponse }: IGet) {
+        return callbackResponse();
     }
 }
 

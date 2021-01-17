@@ -4,9 +4,7 @@ import { follow, footerList } from "./data/footer.data";
 import { FooterWrapper } from "./styles/footer";
 import { FooterMenu } from "./styles/menu";
 import MenuFollow from "./menu/menu-follow";
-import MenuAboutUs from "./menu/menu-about-us";
-import MenuHelp from "./menu/menu-help";
-import MenuLegal from "./menu/menu-legal";
+import { Menu } from "components";
 
 const LayoutFooter: React.FC = () => {
     return (
@@ -20,15 +18,15 @@ const LayoutFooter: React.FC = () => {
                         twitterLink={follow.twitter.path}
                         whatsAppLink={follow.whatsApp.path}
                     />
-                    <MenuHelp
+                    <Menu
                         title={footerList.help.title}
                         items={footerList.help.items}
                     />
-                    <MenuAboutUs
+                    <Menu
                         title={footerList.aboutUs.title}
                         items={footerList.aboutUs.items}
                     />
-                    <MenuLegal
+                    <Menu
                         title={footerList.legal.title}
                         items={footerList.legal.items}
                     />

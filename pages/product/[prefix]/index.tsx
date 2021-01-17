@@ -17,7 +17,7 @@ const ProductPrefixPage = ({ itemsList, crumbs }) => {
 export async function getServerSideProps({ params: { prefix } }) {
     const {
         data: { crumbs, itemsList },
-    } = await productService.getProductByKey(prefix);
+    } = await productService.getProductByKey({ requestUrl: [prefix] });
     return {
         props: { itemsList, crumbs },
     };

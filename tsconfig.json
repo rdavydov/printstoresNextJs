@@ -17,6 +17,6 @@
         "emitDecoratorMetadata": true,
         "baseUrl": "./"
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "api/decorators"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "api/utils/decorators"],
     "exclude": ["node_modules"]
 }

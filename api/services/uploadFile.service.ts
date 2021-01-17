@@ -1,6 +1,5 @@
+import { Prefix, Upload } from "api/decorators";
 import { AxiosResponse } from "axios";
-import { Prefix } from "api/decorators/Prefix";
-import { UploadFile } from "api/decorators/UploadFile";
 
 interface IUpload {
     file: any;
@@ -10,7 +9,7 @@ interface IUpload {
 
 @Prefix("upload")
 class UploadFileService {
-    @UploadFile()
+    @Upload()
     async uploadFile({ file, requestUrl, callbackResponse }: IUpload) {
         return callbackResponse();
     }

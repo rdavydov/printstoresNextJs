@@ -10,7 +10,7 @@ interface IRequestProps {
     callbackResponse?: () => AxiosResponse<any>;
 }
 
-export function UploadFile(url?: string, convertToFormData?: boolean) {
+export function Upload(url?: string, convertToFormData?: boolean) {
     return (
         target: Object,
         propertyKey: string,
@@ -31,14 +31,10 @@ export function UploadFile(url?: string, convertToFormData?: boolean) {
     };
 }
 
-async function createPostRequest(data, url: string) {
+async function createPostRequest(file, url: string) {
     const formData = new FormData();
-    Object.values(data).map((value: Blob | File) => {
-        if (!value) throw new Error("incorrect File-data, createPostRequest");
-        return formData.append("image", value);
-    });
+    formData.append("file", file);
     const config = requestConfig.getformDataConfig();
-
-    const response = await ApiClient.post(url, data, config);
+    const response = await ApiClient.post(url, formData, config);
     return response;
 }

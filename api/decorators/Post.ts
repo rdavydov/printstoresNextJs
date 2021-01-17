@@ -2,36 +2,24 @@ import ApiClient from "api/ApiClient";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { generateURL } from "utils/generateURL";
 import { metadataKey } from "./Prefix";
+import { RequestConfig } from "./types/configure.types";
+import { IPost, OriginalFnPostType } from "./types/Post.types";
 
-interface IPost {
-    data: any;
-    requestUrl?: string[];
-    callbackResponse?: () => AxiosResponse<any>;
-}
-type OriginalFnType = ({
-    data,
-    requestUrl,
-    callbackResponse,
-}: IPost) => AxiosResponse<any>;
-
-export function Post(
-    url?: string,
-    config?: AxiosRequestConfig,
-    convertToFormData?: boolean
-) {
+export function Post(url?: string, config?: RequestConfig) {
     return function (
         target: Object,
         propertyKey: string,
         descriptor: TypedPropertyDescriptor<any>
     ) {
-        let originalFn: OriginalFnType = descriptor.value;
+        let originalFn: OriginalFnPostType = descriptor.value;
         descriptor.value = async function PostWrapper({
             data,
             requestUrl = [],
         }: IPost) {
+            let RequestConfig: AxiosRequestConfig = {};
             let prefix = Reflect.getMetadata(metadataKey, target);
             const URL = generateURL(prefix, url, ...requestUrl);
-            const response = await createPostRequest(data, URL, config);
+            const response = await createPostRequest(data, URL, RequestConfig);
             const callbackResponse = () => response;
             return originalFn.call(this, {
                 data,

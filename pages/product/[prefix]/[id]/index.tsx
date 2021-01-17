@@ -17,7 +17,7 @@ const OneProductPage = ({ itemsList, crumbs }) => {
 export async function getServerSideProps({ params: { prefix, id } }) {
     const {
         data: { crumbs, itemsList },
-    } = await productService.getProductById(prefix, id);
+    } = await productService.getProductById({ requestUrl: [prefix, id] });
     return {
         props: { crumbs, itemsList },
     };

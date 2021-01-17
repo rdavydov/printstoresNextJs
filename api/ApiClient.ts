@@ -11,7 +11,6 @@ class ApiClient {
         return this.instance.get(url);
     }
     async post(url: string, data: any, config?: AxiosRequestConfig) {
-        console.log(data);
         if (config) {
             return this.instance.post(url, data, config);
         }

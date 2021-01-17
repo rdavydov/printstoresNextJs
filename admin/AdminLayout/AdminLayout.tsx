@@ -1,24 +1,20 @@
 import { Breadcrumb, Layout, Menu } from "antd";
 import {
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
     UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
     DesktopOutlined,
-    FileOutlined,
     PieChartOutlined,
-    TeamOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import React from "react";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { useRouter } from "next/router";
+import { AdminLayoutContext } from "context/AdminLayoutContext";
 
 const { Header, Sider, Content, Footer } = Layout;
 
 const AdminLayout = ({ children }) => {
     const [state, setState] = useState({ collapsed: false });
+    const { headerContent, headerView = true } = useContext(AdminLayoutContext);
 
     const { replace } = useRouter();
 
@@ -55,10 +51,19 @@ const AdminLayout = ({ children }) => {
                 </Menu>
             </Sider>
             <Layout className="site-layout">
-                <Header
-                    className="site-layout-background"
-                    style={{ padding: 0, margin: "16px" }}
-                />
+                {headerView && (
+                    <Header
+                        className="site-layout-background"
+                        style={{
+                            padding: "0 15px",
+                            margin: "16px",
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                    >
+                        {headerContent}
+                    </Header>
+                )}
                 <Content style={{ margin: "0 16px" }}>
                     <div
                         className="site-layout-background"

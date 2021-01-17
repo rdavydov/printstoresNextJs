@@ -1,23 +1,31 @@
 import "reflect-metadata";
 import { metadataKey } from "./Prefix";
-import ApiClient from "../ApiClient";
-import { AxiosRequestConfig } from "axios";
 import { generateURL } from "utils/generateURL";
+import ApiClient from "api/ApiClient";
+import { RequestConfig } from "./types/configure.types";
+import { IGet, OriginalFnType } from "./types/Get.types";
 
-export function Get(url?: string, config?: AxiosRequestConfig) {
+export function Get(url?: string | string[], config?: RequestConfig) {
     return function (
         target: Object,
         propertyKey: string,
         descriptor: TypedPropertyDescriptor<any>
     ) {
-        let originalFn = descriptor.value;
-        descriptor.value = async function WrapperGet(...args) {
+        let originalFn: OriginalFnType = descriptor.value;
+        descriptor.value = async function WrapperGet({
+            requestUrl = [],
+        }: IGet) {
             let prefix = Reflect.getMetadata(metadataKey, target);
-            let URL = generateURL(prefix, url, ...args);
-            const response = await ApiClient.get(URL, config);
-            args.push(response);
-            return originalFn.call(this, ...args);
+            let URL = generateURL(prefix, url, ...requestUrl);
+            const response = await createGetRequest(URL);
+            const callbackResponse = () => response;
+            return originalFn.call(this, { requestUrl, callbackResponse });
         };
         return descriptor;
     };
+}
+
+async function createGetRequest(url: string) {
+    const response = await ApiClient.get(url);
+    return response;
 }

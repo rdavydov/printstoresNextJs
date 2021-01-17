@@ -9,6 +9,7 @@ import SwiperSlider from "./SwiperSlider/SwiperSlider";
 import UploadFile from "./UploadFile/UploadFile";
 import BreadcrumbsLinks from "./BreadcrumbsLinks";
 import Card from "./Card/Card";
+import Menu from "./Menu/Menu";
 
 export {
     BreadcrumbsLinks,
@@ -22,4 +23,5 @@ export {
     QuantityButton,
     PaginationButton,
     CategoryCard,
+    Menu,
 };

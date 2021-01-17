@@ -1,7 +1,8 @@
 import { AxiosResponse } from "axios";
-import { Post } from "api/decorators/Post";
-import { Get } from "api/decorators/Get";
 import { Prefix } from "api/decorators/Prefix";
+import { Get, Post } from "api/decorators";
+import { IGet } from "api/decorators/types/Get.types";
+import { get } from "lodash";
 
 interface IPost {
     data: any;
@@ -12,13 +13,17 @@ interface IPost {
 @Prefix("category")
 class CategoryService {
     @Get()
-    async getCategoryByKey(key: string, ...response: AxiosResponse<any>[]) {
-        const [res] = response;
-        return res;
+    async getCategoryByKey({ requestUrl, callbackResponse }: IGet) {
+        return callbackResponse();
     }
 
     @Post("create")
     async categoryCreate({ data, requestUrl, callbackResponse }: IPost) {
+        return callbackResponse();
+    }
+
+    @Get()
+    async getAllCategory({ requestUrl, callbackResponse }: IGet) {
         return callbackResponse();
     }
 }

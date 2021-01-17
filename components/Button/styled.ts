@@ -5,6 +5,9 @@ interface IProps {
 }
 
 export const Button = styled.button<IProps>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     min-width: 160px;
     height: 50px;

@@ -16,7 +16,7 @@ const CategoryPage = ({ itemsList, crumbs }) => {
 export async function getServerSideProps({ params: { key } }) {
     const {
         data: { crumbs, itemsList },
-    } = await categoryService.getCategoryByKey(key);
+    } = await categoryService.getCategoryByKey({ requestUrl: [key] });
     return {
         props: { itemsList, crumbs },
     };
