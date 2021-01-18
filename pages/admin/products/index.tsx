@@ -1,22 +1,16 @@
-import AdminProductPage from "admin/pageSections/admin-product-page/admin-product-page";
-import { catalogService } from "api/services/catalog.service";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setCategoryItems } from "store/reducers/categoryReducer/actionCreators/categoryActionCreators";
+import { AdminProductPage } from "admin/pageSections/admin-product-page";
+import { productService } from "api";
 
-const ProductPage = ({ itemsList }) => {
-    const dispatch = useDispatch();
-    dispatch(setCategoryItems(itemsList));
-
-    return <AdminProductPage />;
+const ProductPage = ({ itemsList, ...rest }) => {
+    return <AdminProductPage data={itemsList} />;
 };
-
 export async function getServerSideProps() {
     const {
-        data: { crumbs, itemsList },
-    } = await catalogService.getAllCategory();
+        data: { itemsList },
+    } = await productService.getAllProducts();
     return {
-        props: { crumbs, itemsList },
+        props: { itemsList },
     };
 }
 

@@ -5,7 +5,6 @@ import ProductPromo from "containers/pageSections/Product/ProductPreview";
 import Promo from "containers/pageSections/Product/Promo";
 
 const ProductPrefixPage = ({ itemsList, crumbs }) => {
-    console.log(crumbs);
     return (
         <Layout>
             <Promo crumbs={crumbs} />
@@ -17,7 +16,9 @@ const ProductPrefixPage = ({ itemsList, crumbs }) => {
 export async function getServerSideProps({ params: { prefix } }) {
     const {
         data: { crumbs, itemsList },
-    } = await productService.getProductByKey({ requestUrl: [prefix] });
+    } = await productService.getProductByKey({
+        query: { prefix },
+    });
     return {
         props: { itemsList, crumbs },
     };

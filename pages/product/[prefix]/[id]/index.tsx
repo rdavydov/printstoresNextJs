@@ -5,7 +5,6 @@ import React from "react";
 import { Layout } from "containers/Layout";
 
 const OneProductPage = ({ itemsList, crumbs }) => {
-    console.log(crumbs, "product");
     return (
         <Layout>
             <Promo crumbs={crumbs} />

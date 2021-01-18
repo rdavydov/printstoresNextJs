@@ -6,11 +6,12 @@ import {
 } from "@ant-design/icons";
 import { useContext, useState } from "react";
 import React from "react";
-import SubMenu from "antd/lib/menu/SubMenu";
 import { useRouter } from "next/router";
 import { AdminLayoutContext } from "context/AdminLayoutContext";
 
 const { Header, Sider, Content, Footer } = Layout;
+
+const { SubMenu } = Menu;
 
 const AdminLayout = ({ children }) => {
     const [state, setState] = useState({ collapsed: false });
@@ -24,7 +25,7 @@ const AdminLayout = ({ children }) => {
     return (
         <Layout style={{ minHeight: "100vh" }}>
             <Sider collapsible collapsed={state.collapsed} onCollapse={toogle}>
-                <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+                <Menu theme="dark" defaultSelectedKeys={["1"]} mode="vertical">
                     <Menu.Item key="1" icon={<PieChartOutlined />}>
                         Пользователи
                     </Menu.Item>
@@ -37,16 +38,28 @@ const AdminLayout = ({ children }) => {
                     <Menu.Item key="4" icon={<DesktopOutlined />}>
                         Статистика SEO
                     </Menu.Item>
-                    <Menu.Item
-                        key="5"
-                        icon={<DesktopOutlined />}
-                        onClick={() => replace("/admin/products")}
+                    <SubMenu key="5" icon={<DesktopOutlined />} title="Товары">
+                        <Menu.Item
+                            key="5"
+                            onClick={() => replace("/admin/category")}
+                        >
+                            Категории
+                        </Menu.Item>
+                        <Menu.Item
+                            key="6"
+                            onClick={() => replace("/admin/products")}
+                        >
+                            Продукты
+                        </Menu.Item>
+                    </SubMenu>
+                    <SubMenu
+                        key="sub1"
+                        icon={<UserOutlined />}
+                        title="SEO"
+                        popupClassName="inline"
                     >
-                        Товары
-                    </Menu.Item>
-                    <SubMenu key="sub1" icon={<UserOutlined />} title="SEO">
-                        <Menu.Item key="6">Товары</Menu.Item>
-                        <Menu.Item key="7">Страницы</Menu.Item>
+                        <Menu.Item key="7">Товары</Menu.Item>
+                        <Menu.Item key="8">Страницы</Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>

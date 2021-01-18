@@ -8,8 +8,8 @@ import { getBase64 } from "utils/images/utils-images";
 
 interface IProps {
     fieldKey: string | string[];
-    form: FormInstance;
-    fileList: any[];
+    form?: FormInstance;
+    fileList?: any[];
 }
 
 function beforeUpload(file) {
@@ -32,7 +32,7 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, fileList }) => {
     });
 
     const handleChange = (info) => {
-        console.log(info);
+        console.log(info, "info");
         if (info.file.status === "uploading") {
             setState((prev) => ({ ...prev, loading: true }));
             return;
@@ -51,7 +51,7 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, fileList }) => {
     const uploadButton = (
         <div>
             {state.loading ? <LoadingOutlined /> : <PlusOutlined />}
-            <div style={{ marginTop: 8 }}>Upload</div>
+            <div style={{ marginTop: 8 }}>Загрузить изображение</div>
         </div>
     );
 
@@ -74,11 +74,12 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, fileList }) => {
     return (
         <>
             <Form.Item name={fieldKey} normalize={normalizeFile}>
-                <Upload
+                <Upload.Dragger
                     listType="picture"
                     showUploadList={false}
                     onChange={handleChange}
                     beforeUpload={beforeUpload}
+                    multiple={false}
                 >
                     {state.imageUrl ? (
                         <img
@@ -89,7 +90,7 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, fileList }) => {
                     ) : (
                         uploadButton
                     )}
-                </Upload>
+                </Upload.Dragger>
             </Form.Item>
         </>
     );

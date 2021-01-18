@@ -1,4 +1,4 @@
-import AdminGuard from "admin/pageSections/AdminPage";
+import AdminGuard from "admin/pageSections/admin-index-page";
 import React from "react";
 
 const AdminPage = () => {

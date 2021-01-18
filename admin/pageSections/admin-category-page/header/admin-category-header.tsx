@@ -1,10 +1,7 @@
-import { categoryService } from "api";
 import { CustomButton } from "components";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { setCategoryItems } from "store/reducers/categoryReducer/actionCreators/categoryActionCreators";
 import { fetchDeleteCategory } from "store/reducers/categoryReducer/extraReducers/extraReducers";
-import { showMessage } from "utils/Notify/showMessage";
 import { HeaderWrapper, WrapperButton } from "./styled";
 
 interface IProps {
@@ -13,7 +10,7 @@ interface IProps {
     clearSelectedItems: () => void;
 }
 
-const AdminProductHeader: React.FC<IProps> = ({
+const AdminCategoryHeader: React.FC<IProps> = ({
     selectedItems,
     handleViewModal,
     clearSelectedItems,
@@ -45,4 +42,4 @@ const AdminProductHeader: React.FC<IProps> = ({
     );
 };
 
-export default AdminProductHeader;
+export default AdminCategoryHeader;

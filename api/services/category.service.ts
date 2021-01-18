@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { Prefix } from "api/decorators/Prefix";
 import { Get, Post } from "api/decorators";
 import { IGet } from "api/decorators/types/Get.types";
