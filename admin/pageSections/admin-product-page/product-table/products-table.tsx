@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Image, Table } from "antd";
 import { productService } from "api";
-import ProductForm from "../product-form/product-form";
 import ProductStepFormContainer from "../product-form/product-step-form-container";
 
 const { Column } = Table;
@@ -14,18 +13,14 @@ const defaultConfig = {
 
 interface IProps {
     data: any[];
-    visible?: boolean;
     loading?: boolean;
-    onCancel?: () => void;
     onCreate?: (value) => void;
     rowSelection?: { selectedRowKeys: any[]; onChange: (selectedKeys) => void };
 }
 
 const ProductsTable: React.FC<IProps> = ({
     data,
-    visible,
     loading,
-    onCancel,
     onCreate,
     rowSelection,
 }) => {
@@ -91,11 +86,7 @@ const ProductsTable: React.FC<IProps> = ({
                 <Column key="key" dataIndex="key" title="Категория товара" />
                 <Column dataIndex="prefix" title="Артикул товара" />
             </Table>
-            <ProductStepFormContainer
-                onCancel={onCancel}
-                onCreate={onCreate}
-                visible={visible}
-            />
+            <ProductStepFormContainer onCreate={onCreate} />
         </>
     );
 };

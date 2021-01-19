@@ -4,6 +4,7 @@ import { AdminLayoutContext } from "context/AdminLayoutContext";
 import AdminProductHeader from "./product-header/product-header";
 import ProductsTable from "./product-table/products-table";
 import { useState } from "react";
+import { ModalContext } from "context/ModalContext";
 
 const AdminProductPage = ({ data }) => {
     const [state, setState] = useState({
@@ -28,7 +29,7 @@ const AdminProductPage = ({ data }) => {
     const onCreate = (value) => {
         setState((prev) => ({ ...prev, visible: false }));
     };
-    const onCancel = () => {
+    const handleCloseModal = () => {
         setState((prev) => ({ ...prev, visible: false }));
     };
 
@@ -44,15 +45,17 @@ const AdminProductPage = ({ data }) => {
                 ),
             }}
         >
-            <AdminLayout>
-                <ProductsTable
-                    data={data}
-                    rowSelection={rowSelection}
-                    visible={state.visible}
-                    onCancel={onCancel}
-                    onCreate={onCreate}
-                />
-            </AdminLayout>
+            <ModalContext.Provider
+                value={{ visible: state.visible, handleCloseModal }}
+            >
+                <AdminLayout>
+                    <ProductsTable
+                        data={data}
+                        rowSelection={rowSelection}
+                        onCreate={onCreate}
+                    />
+                </AdminLayout>
+            </ModalContext.Provider>
         </AdminLayoutContext.Provider>
     );
 };

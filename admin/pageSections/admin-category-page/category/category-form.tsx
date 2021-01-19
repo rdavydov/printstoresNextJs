@@ -10,11 +10,13 @@ interface IProps {
 
 const CategoryForm: React.FC<IProps> = ({ onCancel, onCreate, visible }) => {
     const [form] = Form.useForm();
-    const [fileList, setFileList] = useState([]);
 
-    const onSumbit = (value) => {
-        onCreate(value);
-        setFileList([]);
+    const onSumbit = async () => {
+        try {
+            const value = await form.validateFields();
+            onCreate(value);
+            form.resetFields();
+        } catch {}
     };
     return (
         <Modal
@@ -23,16 +25,8 @@ const CategoryForm: React.FC<IProps> = ({ onCancel, onCreate, visible }) => {
             okText="Create"
             cancelText="Cancel"
             onCancel={onCancel}
-            onOk={() => {
-                form.validateFields()
-                    .then((values) => {
-                        form.resetFields();
-                        onSumbit(values);
-                    })
-                    .catch((info) => {
-                        console.log("Validate Failed:", info);
-                    });
-            }}
+            onOk={onSumbit}
+            destroyOnClose
             centered
         >
             <Form form={form} layout="vertical">
@@ -64,7 +58,7 @@ const CategoryForm: React.FC<IProps> = ({ onCancel, onCreate, visible }) => {
                 >
                     <Input type="textarea" />
                 </Form.Item>
-                <UploadFile fieldKey="image" form={form} fileList={fileList} />
+                <UploadFile fieldKey="image" form={form} />
             </Form>
         </Modal>
     );

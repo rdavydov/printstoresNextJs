@@ -1,6 +1,6 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload, Form } from "antd";
-import { FormInstance } from "antd/lib/form";
+import { FormInstance, Rule } from "antd/lib/form";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { normalizeFile } from "utils/form/utils-form";
@@ -9,7 +9,7 @@ import { getBase64 } from "utils/images/utils-images";
 interface IProps {
     fieldKey: string | string[];
     form?: FormInstance;
-    fileList?: any[];
+    rules?: Rule[];
 }
 
 function beforeUpload(file) {
@@ -24,15 +24,13 @@ function beforeUpload(file) {
     return isJpgOrPng && isLt2M;
 }
 
-const UploadFile: React.FC<IProps> = ({ fieldKey, form, fileList }) => {
+const UploadFile: React.FC<IProps> = ({ fieldKey, form, rules }) => {
     const [state, setState] = useState({
-        fileList,
         loading: false,
         imageUrl: "",
     });
 
     const handleChange = (info) => {
-        console.log(info, "info");
         if (info.file.status === "uploading") {
             setState((prev) => ({ ...prev, loading: true }));
             return;
@@ -42,7 +40,6 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, fileList }) => {
                 setState((prev) => ({
                     ...prev,
                     imageUrl,
-                    fileList: info.fileList,
                     loading: false,
                 }))
             );
@@ -55,31 +52,35 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, fileList }) => {
         </div>
     );
 
-    useEffect(() => {
-        if (fileList.length) {
-            const { originFileObj } = fileList[0];
-            getBase64(originFileObj, (imageUrl) => {
-                setState((prev) => ({
-                    ...prev,
-                    imageUrl,
-                    fileList,
-                    loading: false,
-                }));
+    const getFile = () => {
+        const file: any[] = form.getFieldValue(fieldKey);
+        if (file?.length) {
+            getBase64(file, (imageUrl) => {
+                setState((prev) => ({ ...prev, imageUrl }));
             });
-        } else {
-            setState((prev) => ({ ...prev, fileList: [], imageUrl: "" }));
         }
-    }, [fileList]);
+    };
+
+    useEffect(() => {
+        typeof form === "object" && getFile();
+        return () => {
+            setState((prev) => ({ ...prev, imageUrl: "" }));
+        };
+    }, []);
 
     return (
         <>
-            <Form.Item name={fieldKey} normalize={normalizeFile}>
+            <Form.Item
+                name={fieldKey}
+                normalize={normalizeFile}
+                rules={rules}
+                valuePropName="file"
+            >
                 <Upload.Dragger
                     listType="picture"
                     showUploadList={false}
                     onChange={handleChange}
                     beforeUpload={beforeUpload}
-                    multiple={false}
                 >
                     {state.imageUrl ? (
                         <img

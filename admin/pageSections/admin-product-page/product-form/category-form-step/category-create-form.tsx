@@ -1,13 +1,17 @@
-import React, { useState } from "react";
-import { Col, Row, Form, Input } from "antd";
+import { Col, Form, Input, Row } from "antd";
+import { FormInstance } from "antd/lib/form";
 import { UploadFile } from "components";
+import React, { useState } from "react";
 
-const CategoryFormByCreateMode = () => {
-    const [category, setCategory] = useState({
-        createMode: false,
-        fields: ["mug", "undershirt"],
-        name: "",
-    });
+interface IProps {
+    form: FormInstance;
+}
+
+const CategoryCreateForm: React.FC<IProps> = ({ form }) => {
+    const handleChangeCategory = ({ target: { value } }) => {
+        form.setFieldsValue({ product: { key: value } });
+    };
+
     return (
         <Row gutter={[20, 8]}>
             <Col span={24}>
@@ -19,6 +23,7 @@ const CategoryFormByCreateMode = () => {
                             message: "Название категории обязателено",
                         },
                     ]}
+                    hasFeedback
                 >
                     <Input placeholder="Название категории" />
                 </Form.Item>
@@ -32,25 +37,25 @@ const CategoryFormByCreateMode = () => {
                             message: "Ключ категории обязателен",
                         },
                     ]}
+                    hasFeedback
                 >
-                    <Input placeholder="Ключ категории" />
+                    <Input
+                        placeholder="Ключ категории"
+                        onChange={handleChangeCategory}
+                    />
                 </Form.Item>
             </Col>
             <Col span={24}>
-                <Form.Item
-                    name={["category", "image"]}
+                <UploadFile
+                    fieldKey={["category", "image"]}
+                    form={form}
                     rules={[
                         { required: true, message: "Изображение обязательно" },
                     ]}
-                >
-                    <UploadFile
-                        fileList={[]}
-                        fieldKey={["category", "image"]}
-                    />
-                </Form.Item>
+                />
             </Col>
         </Row>
     );
 };
 
-export default CategoryFormByCreateMode;
+export default CategoryCreateForm;
