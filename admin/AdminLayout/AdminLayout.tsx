@@ -4,7 +4,7 @@ import {
     DesktopOutlined,
     PieChartOutlined,
 } from "@ant-design/icons";
-import { useContext, useState } from "react";
+import { memo, useContext, useState } from "react";
 import React from "react";
 import { useRouter } from "next/router";
 import { AdminLayoutContext } from "context/AdminLayoutContext";
@@ -15,7 +15,9 @@ const { SubMenu } = Menu;
 
 const AdminLayout = ({ children }) => {
     const [state, setState] = useState({ collapsed: false });
-    const { headerContent, headerView = true } = useContext(AdminLayoutContext);
+    const { headerContent = [], headerView = true } = useContext(
+        AdminLayoutContext
+    );
 
     const { replace } = useRouter();
 
@@ -94,4 +96,4 @@ const AdminLayout = ({ children }) => {
     );
 };
 
-export default AdminLayout;
+export default memo(AdminLayout);

@@ -5,22 +5,24 @@ import { Layout } from "containers/Layout";
 import CatalogItems from "../../containers/pageSections/Catalog/CatalogItems";
 
 import Promo from "../../containers/pageSections/Catalog/Promo";
+import { crumbsService } from "api";
 
-const Catalog = ({ itemsList, crumbs }) => {
+const Catalog = ({ category, crumbs }) => {
     return (
         <Layout>
             <Promo crumbs={crumbs} />
-            <CatalogItems category={itemsList} />
+            <CatalogItems category={category} />
         </Layout>
     );
 };
 
 export async function getServerSideProps(context) {
     const {
-        data: { crumbs, itemsList },
+        data: { category },
     } = await catalogService.getAllCategory();
+    const { data } = await crumbsService.getCrumbsConfig();
     return {
-        props: { crumbs, itemsList },
+        props: { crumbs: data, category },
     };
 }
 export default Catalog;

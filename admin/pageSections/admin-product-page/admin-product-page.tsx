@@ -26,9 +26,6 @@ const AdminProductPage = ({ data }) => {
         selectedRowKeys: state.selectedRowKeys,
         onChange: onSelectChange,
     };
-    const onCreate = (value) => {
-        setState((prev) => ({ ...prev, visible: false }));
-    };
     const handleCloseModal = () => {
         setState((prev) => ({ ...prev, visible: false }));
     };
@@ -49,11 +46,7 @@ const AdminProductPage = ({ data }) => {
                 value={{ visible: state.visible, handleCloseModal }}
             >
                 <AdminLayout>
-                    <ProductsTable
-                        data={data}
-                        rowSelection={rowSelection}
-                        onCreate={onCreate}
-                    />
+                    <ProductsTable data={data} rowSelection={rowSelection} />
                 </AdminLayout>
             </ModalContext.Provider>
         </AdminLayoutContext.Provider>

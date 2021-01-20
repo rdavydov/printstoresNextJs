@@ -1,5 +1,5 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { message, Upload, Form } from "antd";
+import { message, Upload, Form, Image } from "antd";
 import { FormInstance, Rule } from "antd/lib/form";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -83,7 +83,7 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, rules }) => {
                     beforeUpload={beforeUpload}
                 >
                     {state.imageUrl ? (
-                        <img
+                        <Image
                             src={state.imageUrl}
                             alt="avatar"
                             style={{ width: "100%" }}

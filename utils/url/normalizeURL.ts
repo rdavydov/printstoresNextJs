@@ -14,8 +14,10 @@ export const normalizeURL = ({
     query,
 }: INormalizeUrl) => {
     if (query) {
-        const requestURL = `${url}?` + new URLSearchParams(query);
-        return generateURL(prefix, requestURL);
+        const params = "?" + new URLSearchParams(query);
+        if (prefix && url) return generateURL(prefix, url + params);
+        if (!prefix) return generateURL(url + params);
+        return generateURL(prefix + params);
     } else {
         return generateURL(prefix, url, requestUrl);
     }

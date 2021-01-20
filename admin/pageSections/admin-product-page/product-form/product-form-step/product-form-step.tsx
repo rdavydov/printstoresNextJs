@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Form, Row, Input } from "antd";
+import { Col, Form, Row, Input, InputNumber } from "antd";
 import { FormInstance } from "antd/lib/form";
 
 import { UploadFile } from "components";
@@ -40,14 +40,38 @@ const ProductForm: React.FC<IProps> = ({ form, category }) => {
                 <Col span={12}>
                     <Form.Item
                         name={["product", "price"]}
-                        rules={[{ required: true, message: "Укажите цену" }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Укажите цену",
+                            },
+                        ]}
+                        normalize={(value) => {
+                            if (
+                                typeof parseInt(value) === "number" &&
+                                !isNaN(value)
+                            )
+                                return +value;
+                            return 0;
+                        }}
                         hasFeedback
                     >
                         <Input placeholder="Цена товара" />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Form.Item name={["product", "discount"]} hasFeedback>
+                    <Form.Item
+                        name={["product", "discount"]}
+                        hasFeedback
+                        normalize={(value) => {
+                            if (
+                                typeof parseInt(value) === "number" &&
+                                !isNaN(value)
+                            )
+                                return +value;
+                            return 0;
+                        }}
+                    >
                         <Input placeholder="Скидка на товар" />
                     </Form.Item>
                 </Col>

@@ -12,36 +12,3 @@ export const fetchAllCategory = createAsyncThunk(
         return response.data;
     }
 );
-
-export const fetchCreateCategory = createAsyncThunk(
-    "category/fetchCreateCategoryStatus",
-    async (
-        { image, name, key }: fetchCreateCategoryType,
-        { rejectWithValue }
-    ) => {
-        try {
-            const {
-                data: { path },
-            } = await uploadFileService.uploadFile({ file: image });
-            const staticPath = `http://localhost:3010/api/upload/${path}`;
-            const data = { name, key, image: staticPath };
-            await categoryService.categoryCreate({ data });
-            const {
-                data: { itemsList },
-            } = await categoryService.getAllCategory();
-            return itemsList;
-        } catch (e) {
-            return rejectWithValue(e.response.data);
-        }
-    }
-);
-
-export const fetchDeleteCategory = createAsyncThunk(
-    "category/fetchDeleteCategoryStatus",
-    async (category: string[]) => {
-        const {
-            data: { itemsList, quantity },
-        } = await categoryService.categoryDelete({ data: category });
-        return { itemsList, quantity };
-    }
-);

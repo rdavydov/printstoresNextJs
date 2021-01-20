@@ -2,21 +2,21 @@ import AdminProductPage from "admin/pageSections/admin-category-page/admin-categ
 import { catalogService } from "api/services/catalog.service";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setCategoryItems } from "store/reducers/categoryReducer/actionCreators/categoryActionCreators";
+import { setCategoryAdmin } from "store/admin/admin-category-reducer/actionCreaters/admin-category-actions";
 
-const ProductPage = ({ itemsList }) => {
+const ProductPage = ({ category }) => {
     const dispatch = useDispatch();
-    dispatch(setCategoryItems(itemsList));
+    dispatch(setCategoryAdmin(category));
 
     return <AdminProductPage />;
 };
 
 export async function getServerSideProps() {
     const {
-        data: { crumbs, itemsList },
+        data: { category },
     } = await catalogService.getAllCategory();
     return {
-        props: { crumbs, itemsList },
+        props: { category },
     };
 }
 

@@ -3,22 +3,25 @@ import React from "react";
 import { Layout } from "containers/Layout";
 import CategoryItems from "../../../../containers/pageSections/Category/CategoryItems";
 import Promo from "../../../../containers/pageSections/Category/Promo";
+import { crumbsService } from "api";
 
-const CategoryPage = ({ itemsList, crumbs }) => {
+const CategoryPage = ({ category, crumbs }) => {
     return (
         <Layout>
             <Promo crumbs={crumbs} />
-            <CategoryItems categoryItems={itemsList} />
+            <CategoryItems categoryItems={category} />
         </Layout>
     );
 };
 
 export async function getServerSideProps({ params: { key } }) {
     const {
-        data: { crumbs, itemsList },
+        data: { category },
     } = await categoryService.getCategoryByKey({ requestUrl: [key] });
+
+    const crumbs = await crumbsService.getCrumbsConfig({ query: { key } });
     return {
-        props: { itemsList, crumbs },
+        props: { category, crumbs: crumbs.data },
     };
 }
 

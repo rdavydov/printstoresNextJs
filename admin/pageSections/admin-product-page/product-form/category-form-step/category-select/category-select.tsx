@@ -1,24 +1,38 @@
 import { Col, Form, Row, Select } from "antd";
 import { FormInstance } from "antd/lib/form";
-import React from "react";
+import { categoryService } from "api";
+import React, { useEffect, useState } from "react";
 import ProductFormDropdown from "./dropdown";
 
 const { Option } = Select;
 
 interface IProps {
     form: FormInstance;
-    category: string[];
+    category?: string[];
     handleCreateCategory: () => void;
 }
 
-const CategorySelect = ({
-    category = ["mug", "mug2", "mug3"],
-    handleCreateCategory,
-    form,
-}) => {
+const CategorySelect = ({ handleCreateCategory, form }) => {
+    const [categoryKeys, setCategoryKeys] = useState([]);
+
     const handleChangeCategory = (key) => {
         form.setFieldsValue({ product: { key } });
     };
+
+    const getCategory = async () => {
+        const {
+            data: { category },
+        } = await categoryService.getAllCategory();
+        const keys = category.reduce(
+            (categoryKeys, { key }) => [...categoryKeys, key],
+            []
+        );
+        setCategoryKeys(keys);
+    };
+
+    useEffect(() => {
+        getCategory();
+    }, []);
 
     return (
         <Row>
@@ -43,7 +57,7 @@ const CategorySelect = ({
                         )}
                         onChange={handleChangeCategory}
                     >
-                        {category.map((item, index) => (
+                        {categoryKeys.map((item, index) => (
                             <Option key={index} value={item}>
                                 {item}
                             </Option>

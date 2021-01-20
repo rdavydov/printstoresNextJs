@@ -1,17 +1,17 @@
 import { Form, Modal } from "antd";
 import { ModalContext } from "context/ModalContext";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState, memo } from "react";
+import { useDispatch } from "react-redux";
+import { fetchCreateCategory } from "store/admin/admin-category-reducer/extraReducers/extraReducers";
+import { fetchCreateProduct } from "store/admin/admin-product-reducer.ts/extraReducers/extraReducers";
 import CategoryFormStep from "./category-form-step/category-form";
 import ProductForm from "./product-form-step/product-form-step";
 
 const START_STEP = 1;
 const MAX_STEP = 2;
 
-interface IProps {
-    onCreate: (values) => void;
-}
-
-const ProductStepFormContainer: React.FC<IProps> = ({ onCreate }) => {
+const ProductStepFormContainer = () => {
+    const dispatch = useDispatch();
     const [form] = Form.useForm();
     const [state, setState] = useState({
         step: START_STEP,
@@ -21,13 +21,24 @@ const ProductStepFormContainer: React.FC<IProps> = ({ onCreate }) => {
     const { visible, handleCloseModal } = useContext(ModalContext);
 
     const handleCreate = async () => {
-        setTimeout(() => {
+        const { category, product } = form.getFieldsValue([
+            "category",
+            "product",
+        ]);
+        try {
+            dispatch(fetchCreateCategory(category));
+            dispatch(fetchCreateProduct(product));
             refreshFieldsAndCloseModal();
             Modal.success({
                 title: "Успешно создали товар",
                 centered: true,
             });
-        }, 5000);
+        } catch (e) {
+            Modal.success({
+                title: e.response.data,
+                centered: true,
+            });
+        }
     };
 
     const handleCreateCategory = () => {
@@ -93,10 +104,16 @@ const ProductStepFormContainer: React.FC<IProps> = ({ onCreate }) => {
     const createModalProps = (step) => {
         const title =
             step === START_STEP ? "Выбор категории товара" : "Создание товара";
-        const okText = step === 2 ? "Создать" : "Далее";
+        const okText =
+            step === 2 && !state.final
+                ? "Создать"
+                : state.final
+                ? "Создаю..."
+                : "Далее";
         const cancelText = step === START_STEP ? "Отмена" : "Назад";
         const cancelButtonProps = {
             onClick: step === START_STEP ? handleClose : handleBack,
+            disabled: state.final,
         };
         const bodyStyle = { minHeight: 150 };
         const maskClosable = false;
@@ -116,7 +133,6 @@ const ProductStepFormContainer: React.FC<IProps> = ({ onCreate }) => {
         state.step,
         state.final,
     ]);
-    console.log(modalProps, "props-modal");
 
     return (
         <Modal
@@ -132,4 +148,4 @@ const ProductStepFormContainer: React.FC<IProps> = ({ onCreate }) => {
     );
 };
 
-export default ProductStepFormContainer;
+export default memo(ProductStepFormContainer);

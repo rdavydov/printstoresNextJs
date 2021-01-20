@@ -3,24 +3,27 @@ import { productService } from "api/services/product.service";
 import { Layout } from "containers/Layout";
 import ProductPromo from "containers/pageSections/Product/ProductPreview";
 import Promo from "containers/pageSections/Product/Promo";
+import { crumbsService } from "api";
 
-const ProductPrefixPage = ({ itemsList, crumbs }) => {
+const ProductPrefixPage = ({ products, crumbs }) => {
     return (
         <Layout>
             <Promo crumbs={crumbs} />
-            <ProductPromo products={itemsList} />
+            <ProductPromo products={products} />
         </Layout>
     );
 };
 
 export async function getServerSideProps({ params: { prefix } }) {
     const {
-        data: { crumbs, itemsList },
+        data: { products },
     } = await productService.getProductByKey({
         query: { prefix },
     });
+
+    const crumbs = await crumbsService.getCrumbsConfig({ query: { prefix } });
     return {
-        props: { itemsList, crumbs },
+        props: { products, crumbs: crumbs.data },
     };
 }
 

@@ -1,7 +1,7 @@
 import { CustomButton } from "components";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchDeleteCategory } from "store/reducers/categoryReducer/extraReducers/extraReducers";
+import { fetchDeleteCategory } from "store/admin/admin-category-reducer/extraReducers/extraReducers";
 import { HeaderWrapper, WrapperButton } from "./styled";
 
 interface IProps {

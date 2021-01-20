@@ -2,14 +2,14 @@ import { AxiosResponse } from "axios";
 
 export interface PostDecorator {}
 
-export interface IPost {
+export interface IPost<Response = any> {
     data: any;
     requestUrl?: string[];
-    callbackResponse?: () => AxiosResponse<any>;
+    callbackResponse?: () => AxiosResponse<Response>;
 }
 
 export type OriginalFnPostType = ({
     data,
     requestUrl,
     callbackResponse,
-}: IPost) => AxiosResponse<any>;
+}: IPost) => AxiosResponse<Response>;

@@ -7,12 +7,12 @@ import AdminLayout from "admin/AdminLayout/AdminLayout";
 const AdminGuard = () => {
     const { replace } = useRouter();
 
-    const admin = useSelector((state: RootState) => state.admin);
+    // const admin = useSelector((state: RootState) => state.admin);
 
-    if (typeof window !== "undefined" && !admin.auth) {
-        replace("/admin/login");
-        return null;
-    }
+    // if (typeof window !== "undefined" && !admin.auth) {
+    //     replace("/admin/login");
+    //     return null;
+    // }
 
     return (
         <>

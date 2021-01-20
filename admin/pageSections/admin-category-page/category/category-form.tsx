@@ -58,7 +58,16 @@ const CategoryForm: React.FC<IProps> = ({ onCancel, onCreate, visible }) => {
                 >
                     <Input type="textarea" />
                 </Form.Item>
-                <UploadFile fieldKey="image" form={form} />
+                <UploadFile
+                    fieldKey="image"
+                    form={form}
+                    rules={[
+                        {
+                            required: true,
+                            message: "Загрузите изображение товара",
+                        },
+                    ]}
+                />
             </Form>
         </Modal>
     );

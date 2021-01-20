@@ -14,18 +14,12 @@ const defaultConfig = {
 interface IProps {
     data: any[];
     loading?: boolean;
-    onCreate?: (value) => void;
     rowSelection?: { selectedRowKeys: any[]; onChange: (selectedKeys) => void };
 }
 
-const ProductsTable: React.FC<IProps> = ({
-    data,
-    loading,
-    onCreate,
-    rowSelection,
-}) => {
+const ProductsTable: React.FC<IProps> = ({ data, loading, rowSelection }) => {
     const [state, setState] = useState({
-        itemsList: [],
+        products: [],
         loading: false,
         ...defaultConfig,
     });
@@ -33,13 +27,13 @@ const ProductsTable: React.FC<IProps> = ({
     const onChange = async (currentPage, pageSize) => {
         setState((prev) => ({ ...prev, loading: true }));
         const {
-            data: { itemsList, total },
+            data: { products, total },
         } = await productService.filterProducts({
             query: { currentPage, pageSize },
         });
         setState((prev) => ({
             ...prev,
-            itemsList,
+            products,
             loading: false,
             total,
         }));
@@ -49,7 +43,7 @@ const ProductsTable: React.FC<IProps> = ({
         (async () => {
             setState((prev) => ({ ...prev, loading: true }));
             const {
-                data: { itemsList, total },
+                data: { products, total },
             } = await productService.filterProducts({
                 query: {
                     currentPage: String(1),
@@ -58,7 +52,7 @@ const ProductsTable: React.FC<IProps> = ({
             });
             setState((prev) => ({
                 ...prev,
-                itemsList,
+                products,
                 loading: false,
                 total,
             }));
@@ -67,7 +61,7 @@ const ProductsTable: React.FC<IProps> = ({
     return (
         <>
             <Table
-                dataSource={state.itemsList}
+                dataSource={state.products}
                 pagination={{ pageSize: 3, onChange, total: state.total }}
                 loading={state.loading}
                 rowKey="_id"
@@ -86,7 +80,7 @@ const ProductsTable: React.FC<IProps> = ({
                 <Column key="key" dataIndex="key" title="Категория товара" />
                 <Column dataIndex="prefix" title="Артикул товара" />
             </Table>
-            <ProductStepFormContainer onCreate={onCreate} />
+            <ProductStepFormContainer />
         </>
     );
 };

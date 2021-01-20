@@ -1,19 +1,20 @@
 import AdminLayout from "admin/AdminLayout/AdminLayout";
 import { AdminLayoutContext } from "context/AdminLayoutContext";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCreateCategory } from "store/reducers/categoryReducer/extraReducers/extraReducers";
+import React, { memo, useState } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "store/rootReducer";
 import AdminProductHeader from "./header/admin-category-header";
 import ProductTable from "./category-table/category-table";
+import { fetchCreateCategory } from "store/admin/admin-category-reducer/extraReducers/extraReducers";
 
-const AdminProductPage = () => {
+const AdminCategoryPage = () => {
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [state, setState] = useState({
         visible: false,
-        selectedRowKeys: [],
     });
     const { category, loading } = useSelector(
-        (state: RootState) => state.category
+        (state: RootState) => state.admin.categoryList,
+        shallowEqual
     );
 
     const dispatch = useDispatch();
@@ -27,21 +28,21 @@ const AdminProductPage = () => {
     };
 
     const onSelectChange = (selectedRowKeys) => {
-        setState((prev) => ({ ...prev, selectedRowKeys }));
+        setSelectedRowKeys(selectedRowKeys);
     };
     const rowSelection = {
-        selectedRowKeys: state.selectedRowKeys,
+        selectedRowKeys,
         onChange: onSelectChange,
     };
 
-    const onCreate = ({ name, key, image }) => {
-        setState((prev) => ({ ...prev, visible: false }));
-        dispatch(fetchCreateCategory({ name, key, image }));
+    const onCreate = async ({ name, key, image }) => {
+        dispatch(fetchCreateCategory({ name, key, image, callback: onCancel }));
     };
 
     const clearSelectedItems = () => {
-        setState((prev) => ({ ...prev, selectedRowKeys: [] }));
+        setSelectedRowKeys([]);
     };
+    console.log(category, "category-state");
 
     return (
         <AdminLayoutContext.Provider
@@ -49,7 +50,7 @@ const AdminProductPage = () => {
                 headerContent: (
                     <AdminProductHeader
                         handleViewModal={handleViewModal}
-                        selectedItems={state.selectedRowKeys}
+                        selectedItems={selectedRowKeys}
                         clearSelectedItems={clearSelectedItems}
                     />
                 ),
@@ -69,4 +70,4 @@ const AdminProductPage = () => {
     );
 };
 
-export default AdminProductPage;
+export default memo(AdminCategoryPage);

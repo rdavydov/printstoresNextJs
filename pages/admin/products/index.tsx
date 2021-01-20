@@ -2,15 +2,15 @@ import React from "react";
 import { AdminProductPage } from "admin/pageSections/admin-product-page";
 import { productService } from "api";
 
-const ProductPage = ({ itemsList, ...rest }) => {
-    return <AdminProductPage data={itemsList} />;
+const ProductPage = ({ products, ...rest }) => {
+    return <AdminProductPage data={products} />;
 };
 export async function getServerSideProps() {
     const {
-        data: { itemsList },
+        data: { products },
     } = await productService.getAllProducts();
     return {
-        props: { itemsList },
+        props: { products },
     };
 }
 

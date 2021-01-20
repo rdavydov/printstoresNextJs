@@ -6,9 +6,9 @@ export interface GetDecorator {
     config?: RequestConfig;
 }
 
-export interface IGet {
+export interface IGet<ResponseData = any> {
     requestUrl?: string[] | string;
-    callbackResponse?: () => AxiosResponse<any>;
+    callbackResponse?: () => AxiosResponse<ResponseData>;
     query?: { [key: string]: string };
 }
 
