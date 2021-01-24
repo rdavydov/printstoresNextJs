@@ -15,14 +15,13 @@ const OneProductPage = ({ products, crumbs }) => {
 };
 
 export async function getServerSideProps({ params: { prefix, id } }) {
-    const {
-        data: { products },
-    } = await productService.getProductById({ requestUrl: [prefix, id] });
-    const crumbs = await crumbsService.getCrumbsConfig({
-        query: { prefix, id },
-    });
+    const { products } = await productService.getProductById(prefix, id);
+    const crumbs = await crumbsService.getProductCrumbsByKeyAndPrefix(
+        prefix,
+        id
+    );
     return {
-        props: { crumbs: crumbs.data, products },
+        props: { crumbs, products },
     };
 }
 

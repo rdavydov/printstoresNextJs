@@ -12,9 +12,7 @@ const ProductPage = ({ category }) => {
 };
 
 export async function getServerSideProps() {
-    const {
-        data: { category },
-    } = await catalogService.getAllCategory();
+    const { category } = await catalogService.getAllCategory();
     return {
         props: { category },
     };

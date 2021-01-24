@@ -1,50 +1,45 @@
-import { Get, Post } from "api/decorators";
+import { Controller, Get, Post } from "api/decorators";
 import { Prefix } from "api/decorators/Prefix";
-import { IGet } from "api/decorators/types/Get.types";
-import { IPost } from "api/decorators/types/Post.types";
 import { Product } from "types/type/products.type";
+import "reflect-metadata";
+import { useQuery } from "api/decorators/params/useQuery";
+import { useParams } from "api/decorators/params/useParams";
 
-@Prefix("product")
+@Controller("product")
 class ProductService {
     @Get("prefix")
-    async getProductByKey({
-        requestUrl,
-        query,
-        callbackResponse,
-    }: IGet<{ products: Product[] }>) {
-        return callbackResponse();
+    async getProductByPrefix(
+        @useQuery("prefix") prefix: string
+    ): Promise<{ products: Product[] }> {
+        return;
     }
 
-    @Get()
-    async getProductById({
-        requestUrl,
-        query,
-        callbackResponse,
-    }: IGet<{ products: Product[] }>) {
-        return callbackResponse();
+    @Get("{prefix}/{id}")
+    async getProductById(
+        @useParams("prefix") prefix: string,
+        @useParams("id") id: string
+    ): Promise<{ products: Product[] }> {
+        return;
     }
     @Get("all")
-    async getAllProducts({
-        requestUrl,
-        callbackResponse,
-    }: IGet<{ products: Product[] }> = {}) {
-        return callbackResponse();
+    async getAllProducts(): Promise<{ products: Product[] }> {
+        return;
     }
     @Get("filter")
-    async filterProducts({
-        requestUrl,
-        callbackResponse,
-        query,
-    }: IGet<{ products: Product[]; total: number }> = {}) {
+    async filterProducts(
+        {
+            requestUrl,
+            callbackResponse,
+            query,
+        }: any /* IGet<{ products: Product[]; total: number }> = {} */
+    ) {
         return callbackResponse();
     }
 
     @Post("create")
-    async createProduct({
-        data,
-        requestUrl,
-        callbackResponse,
-    }: IPost<Product>) {
+    async createProduct(
+        { data, requestUrl, callbackResponse }: any /*  IPost<Product> */
+    ) {
         return callbackResponse();
     }
 }

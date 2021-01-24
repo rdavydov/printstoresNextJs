@@ -20,7 +20,6 @@ const AdminProductReducer = createSlice({
         });
         builder.addCase(fetchCreateProduct.rejected, (state, action) => {
             state.loading = false;
-            console.log(action.payload, "payload-error");
         });
     },
 });

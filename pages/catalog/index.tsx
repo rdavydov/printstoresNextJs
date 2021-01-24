@@ -17,12 +17,10 @@ const Catalog = ({ category, crumbs }) => {
 };
 
 export async function getServerSideProps(context) {
-    const {
-        data: { category },
-    } = await catalogService.getAllCategory();
-    const { data } = await crumbsService.getCrumbsConfig();
+    const { category } = await catalogService.getAllCategory();
+    const crumbs = await crumbsService.getCatalogCrumbs();
     return {
-        props: { crumbs: data, category },
+        props: { crumbs, category },
     };
 }
 export default Catalog;

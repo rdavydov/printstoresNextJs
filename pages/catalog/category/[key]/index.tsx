@@ -15,13 +15,11 @@ const CategoryPage = ({ category, crumbs }) => {
 };
 
 export async function getServerSideProps({ params: { key } }) {
-    const {
-        data: { category },
-    } = await categoryService.getCategoryByKey({ requestUrl: [key] });
+    const { category } = await categoryService.getCategoryByKey(key);
 
-    const crumbs = await crumbsService.getCrumbsConfig({ query: { key } });
+    const crumbs = await crumbsService.getCategoryCrumbsByKey(key);
     return {
-        props: { category, crumbs: crumbs.data },
+        props: { category, crumbs },
     };
 }
 

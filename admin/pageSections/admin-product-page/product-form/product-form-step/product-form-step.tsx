@@ -134,6 +134,7 @@ const ProductForm: React.FC<IProps> = ({ form, category }) => {
                                 message: "Добавьте изображение товара",
                             },
                         ]}
+                        form={form}
                     />
                 </Col>
             </Row>

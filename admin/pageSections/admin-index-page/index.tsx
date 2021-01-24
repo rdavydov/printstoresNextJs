@@ -16,7 +16,9 @@ const AdminGuard = () => {
 
     return (
         <>
-            <AdminLayout></AdminLayout>
+            <AdminLayout>
+                <></>
+            </AdminLayout>
         </>
     );
 };

@@ -23,7 +23,6 @@ const categorySlice = createSlice({
         });
         builder.addCase(fetchAllCategory.rejected, (state, action: any) => {
             if (action.payload) {
-                console.log(action.payload, "payload");
             }
         });
     },

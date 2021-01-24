@@ -1,41 +1,29 @@
-import { Prefix } from "api/decorators/Prefix";
-import { Get, Post } from "api/decorators";
-import { IGet } from "api/decorators/types/Get.types";
-import { Delete } from "api/decorators/Delete";
-import { IPost } from "api/decorators/types/Post.types";
+import { Controller, Get, Post } from "api/decorators";
 import { Category } from "types/type/category.type";
+import { useParams } from "api/decorators/params/useParams";
+import { RequestBody } from "api/decorators/params/RequestBody";
+import { Delete } from "api/decorators/http/Delete";
 
-@Prefix("category")
+@Controller("category")
 class CategoryService {
-    @Get()
-    async getCategoryByKey({ requestUrl, callbackResponse }: IGet<Category>) {
-        return callbackResponse();
+    @Get("{key}")
+    async getCategoryByKey(@useParams("key") key: string): Promise<Category> {
+        return;
     }
 
     @Post("create")
-    async categoryCreate({
-        data,
-        requestUrl,
-        callbackResponse,
-    }: IPost<Category>) {
-        return callbackResponse();
+    async categoryCreate(@RequestBody() data: any): Promise<Category> {
+        return;
     }
 
     @Delete("delete")
-    async categoryDelete({
-        data,
-        requestUrl,
-        callbackResponse,
-    }: IPost<Category>) {
-        return callbackResponse();
+    async categoryDelete(): Promise<Category> {
+        return;
     }
 
     @Get("all")
-    async getAllCategory({
-        requestUrl,
-        callbackResponse,
-    }: IGet<Category> = {}) {
-        return callbackResponse();
+    async getAllCategory(): Promise<Category> {
+        return;
     }
 }
 

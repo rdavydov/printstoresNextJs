@@ -1,6 +1,8 @@
 import React from "react";
 import { HeaderWrapper, WrapperButton } from "admin/components";
 import { CustomButton } from "components";
+import { useDispatch } from "react-redux";
+import { handleOpenModal } from "store/admin/admin-modal-reducer.ts/actionCreaters/moda-action-creaters";
 
 interface IProps {
     selectedItems: any[];
@@ -10,9 +12,14 @@ interface IProps {
 
 const AdminProductHeader: React.FC<IProps> = ({
     selectedItems,
-    handleViewModal,
     clearSelectedItems,
 }) => {
+    const dispatch = useDispatch();
+
+    const handleViewModal = () => {
+        dispatch(handleOpenModal());
+    };
+
     const handleDelete = () => {};
 
     return (

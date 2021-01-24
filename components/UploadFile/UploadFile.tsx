@@ -1,7 +1,7 @@
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload, Form, Image } from "antd";
 import { FormInstance, Rule } from "antd/lib/form";
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useState } from "react";
 import { normalizeFile } from "utils/form/utils-form";
 import { getBase64 } from "utils/images/utils-images";
@@ -54,7 +54,7 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, rules }) => {
 
     const getFile = () => {
         const file: any[] = form.getFieldValue(fieldKey);
-        if (file?.length) {
+        if (file) {
             getBase64(file, (imageUrl) => {
                 setState((prev) => ({ ...prev, imageUrl }));
             });
@@ -86,7 +86,8 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, rules }) => {
                         <Image
                             src={state.imageUrl}
                             alt="avatar"
-                            style={{ width: "100%" }}
+                            preview={false}
+                            style={{ width: "100%", maxHeight: "320px" }}
                         />
                     ) : (
                         uploadButton
@@ -97,4 +98,4 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, rules }) => {
     );
 };
 
-export default UploadFile;
+export default memo(UploadFile);

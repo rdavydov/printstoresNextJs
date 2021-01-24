@@ -42,7 +42,6 @@ const AdminCategoryPage = () => {
     const clearSelectedItems = () => {
         setSelectedRowKeys([]);
     };
-    console.log(category, "category-state");
 
     return (
         <AdminLayoutContext.Provider

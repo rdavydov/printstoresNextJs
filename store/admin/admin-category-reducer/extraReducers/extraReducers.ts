@@ -7,26 +7,19 @@ import { fetchCreateCategoryType } from "store/reducers/categoryReducer/extraRed
 export const fetchCreateCategory = createAsyncThunk(
     "admin-category/fetchCreateCategoryStatus",
     async (
-        { image, name, key, callback }: fetchCreateCategoryType,
-        { rejectWithValue }
+        { image, name, key }: fetchCreateCategoryType,
+        { rejectWithValue, dispatch }
     ) => {
         try {
             if (!image)
                 throw new BadRequestException(
                     "Ошибка, загрузите файл перед созданием категории"
                 );
-            const {
-                data: { path },
-            } = await uploadFileService.uploadFile({ file: image });
+            const { path } = await uploadFileService.uploadFile(image);
             const staticPath = `http://localhost:3010/api/upload/${path}`;
             const data = { name, key, image: staticPath };
-            await categoryService.categoryCreate({ data });
-            const {
-                data: { category },
-            } = await categoryService.getAllCategory();
-            if (callback) {
-                callback();
-            }
+            await categoryService.categoryCreate(data);
+            const { category } = await categoryService.getAllCategory();
             return category;
         } catch (e) {
             return rejectWithValue(e.response.data);

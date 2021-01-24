@@ -15,15 +15,11 @@ const ProductPrefixPage = ({ products, crumbs }) => {
 };
 
 export async function getServerSideProps({ params: { prefix } }) {
-    const {
-        data: { products },
-    } = await productService.getProductByKey({
-        query: { prefix },
-    });
+    const { products } = await productService.getProductByPrefix(prefix);
 
-    const crumbs = await crumbsService.getCrumbsConfig({ query: { prefix } });
+    const crumbs = await crumbsService.getProductCrumbsByPrefix(prefix);
     return {
-        props: { products, crumbs: crumbs.data },
+        props: { products, crumbs },
     };
 }
 

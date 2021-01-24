@@ -1,24 +1,26 @@
 import { Form, Modal } from "antd";
-import { ModalContext } from "context/ModalContext";
-import React, { useContext, useMemo, useState, memo } from "react";
-import { useDispatch } from "react-redux";
-import { fetchCreateCategory } from "store/admin/admin-category-reducer/extraReducers/extraReducers";
-import { fetchCreateProduct } from "store/admin/admin-product-reducer.ts/extraReducers/extraReducers";
+import React, { useMemo, useState, memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleCloseModal } from "store/admin/admin-modal-reducer.ts/actionCreaters/moda-action-creaters";
+import { RootState } from "store/rootReducer";
+import { createCategory } from "../utils/category-create.utils";
+import { createProduct } from "../utils/product-create.utils";
 import CategoryFormStep from "./category-form-step/category-form";
 import ProductForm from "./product-form-step/product-form-step";
+import { createModalProps } from "./utils/createModalProps";
 
 const START_STEP = 1;
 const MAX_STEP = 2;
 
 const ProductStepFormContainer = () => {
+    const { visible } = useSelector((state: RootState) => state.modal);
     const dispatch = useDispatch();
     const [form] = Form.useForm();
     const [state, setState] = useState({
         step: START_STEP,
-        createMode: false,
+        createCategoryMode: false,
         final: false,
     });
-    const { visible, handleCloseModal } = useContext(ModalContext);
 
     const handleCreate = async () => {
         const { category, product } = form.getFieldsValue([
@@ -26,23 +28,27 @@ const ProductStepFormContainer = () => {
             "product",
         ]);
         try {
-            dispatch(fetchCreateCategory(category));
-            dispatch(fetchCreateProduct(product));
+            if (state.createCategoryMode) {
+                await createCategory(category);
+            }
+            await createProduct(product);
             refreshFieldsAndCloseModal();
             Modal.success({
                 title: "Успешно создали товар",
                 centered: true,
             });
         } catch (e) {
-            Modal.success({
-                title: e.response.data,
+            const { message } = e.response.data;
+            setState((prev) => ({ ...prev, final: false, step: 1 }));
+            Modal.error({
+                title: message,
                 centered: true,
             });
         }
     };
 
     const handleCreateCategory = () => {
-        setState((prev) => ({ ...prev, createMode: true }));
+        setState((prev) => ({ ...prev, createCategoryMode: true }));
     };
 
     const handleBack = () => {
@@ -66,9 +72,9 @@ const ProductStepFormContainer = () => {
     };
 
     const refreshFieldsAndCloseModal = () => {
-        setState({ step: START_STEP, createMode: false, final: false });
+        setState({ step: START_STEP, createCategoryMode: false, final: false });
         form.resetFields();
-        handleCloseModal();
+        dispatch(handleCloseModal());
     };
 
     const handleClose = () => {
@@ -86,7 +92,7 @@ const ProductStepFormContainer = () => {
                     <CategoryFormStep
                         form={form}
                         handleCreateCategory={handleCreateCategory}
-                        createMode={state.createMode}
+                        createMode={state.createCategoryMode}
                     />
                 );
             }
@@ -101,39 +107,10 @@ const ProductStepFormContainer = () => {
         }
     };
 
-    const createModalProps = (step) => {
-        const title =
-            step === START_STEP ? "Выбор категории товара" : "Создание товара";
-        const okText =
-            step === 2 && !state.final
-                ? "Создать"
-                : state.final
-                ? "Создаю..."
-                : "Далее";
-        const cancelText = step === START_STEP ? "Отмена" : "Назад";
-        const cancelButtonProps = {
-            onClick: step === START_STEP ? handleClose : handleBack,
-            disabled: state.final,
-        };
-        const bodyStyle = { minHeight: 150 };
-        const maskClosable = false;
-        const confirmLoading = state.final;
-        return {
-            title,
-            okText,
-            cancelText,
-            cancelButtonProps,
-            bodyStyle,
-            maskClosable,
-            confirmLoading,
-        };
-    };
-
-    const modalProps = useMemo(() => createModalProps(state.step), [
-        state.step,
-        state.final,
-    ]);
-
+    const modalProps = useMemo(
+        () => createModalProps({ state, handleBack, handleClose }),
+        [state.step, state.final, state.createCategoryMode]
+    );
     return (
         <Modal
             {...modalProps}

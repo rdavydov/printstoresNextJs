@@ -1,5 +1,5 @@
 export interface fetchCreateCategoryType {
-    image: string | File | Blob;
+    image: File | Blob;
     key: string;
     name: string;
     callback?: () => void;

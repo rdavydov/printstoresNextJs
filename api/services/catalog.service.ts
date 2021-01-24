@@ -1,15 +1,13 @@
-import { Get, Prefix } from "api/decorators";
-import { IGet } from "api/decorators/types/Get.types";
+import { Get } from "api/decorators/http/Get";
 import { Category } from "types/type/category.type";
+import "reflect-metadata";
+import { Controller } from "api/decorators";
 
-@Prefix("catalog")
+@Controller("catalog")
 class CatalogService {
     @Get("all")
-    async getAllCategory({
-        requestUrl,
-        callbackResponse,
-    }: IGet<Category> = {}) {
-        return callbackResponse();
+    async getAllCategory(): Promise<Category> {
+        return;
     }
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Image, Table } from "antd";
 import { productService } from "api";
 import ProductStepFormContainer from "../product-form/product-step-form-container";
+import { configService } from "api/services/config.service";
 
 const { Column } = Table;
 
@@ -72,7 +73,11 @@ const ProductsTable: React.FC<IProps> = ({ data, loading, rowSelection }) => {
                     dataIndex="image"
                     title="Изображение товара"
                     render={(image) => (
-                        <Image src={image} width={200} height={200} />
+                        <Image
+                            src={configService.getStaticFileUrl(image)}
+                            width={200}
+                            height={200}
+                        />
                     )}
                 />
                 <Column key="price" dataIndex="price" title="Цена" />

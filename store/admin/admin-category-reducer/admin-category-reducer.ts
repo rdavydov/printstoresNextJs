@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { showMessage } from "utils/Notify/showMessage";
-import AdminAuthSlice from "../adminAuthReducer/admin-auth-reducer";
 import {
     fetchCreateCategory,
     fetchDeleteCategory,
@@ -9,6 +8,7 @@ import {
 const initialState = {
     category: [],
     loading: false,
+    createMode: false,
 };
 
 const AdminCategorySlice = createSlice({
@@ -18,6 +18,9 @@ const AdminCategorySlice = createSlice({
         setAdminCategory: (state, action) => {
             state.category = action.payload;
         },
+        setCreateModeCategory: (state, action) => {
+            state.createMode = true;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCreateCategory.pending, (state, action) => {
@@ -25,6 +28,7 @@ const AdminCategorySlice = createSlice({
         });
         builder.addCase(fetchCreateCategory.fulfilled, (state, action) => {
             state.category = action.payload;
+            state.createMode = false;
             state.loading = false;
             showMessage({ type: "success", text: "Категория успешно создана" });
         });
@@ -48,6 +52,9 @@ const AdminCategorySlice = createSlice({
     },
 });
 
-export const { setAdminCategory } = AdminCategorySlice.actions;
+export const {
+    setAdminCategory,
+    setCreateModeCategory,
+} = AdminCategorySlice.actions;
 
 export default AdminCategorySlice;

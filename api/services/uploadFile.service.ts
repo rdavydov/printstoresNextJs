@@ -1,17 +1,18 @@
-import { Prefix, Upload } from "api/decorators";
+import { Controller, Upload } from "api/decorators";
+import { RequestFormData } from "api/decorators/params/RequestFormData";
 import { AxiosResponse } from "axios";
 
-interface IUpload {
-    file: any;
-    requestUrl?: string[];
-    callbackResponse?: () => AxiosResponse<any>;
+interface Response {
+    path: string;
 }
 
-@Prefix("upload")
+@Controller("upload")
 class UploadFileService {
     @Upload()
-    async uploadFile({ file, requestUrl, callbackResponse }: IUpload) {
-        return callbackResponse();
+    async uploadFile(
+        @RequestFormData("file") file: Blob | File
+    ): Promise<Response> {
+        return;
     }
 }
 
