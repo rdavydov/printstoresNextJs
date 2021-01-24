@@ -1,12 +1,10 @@
-import React from "react";
-import { Card } from "components";
+import React from 'react';
+import { Card } from 'components';
 
-const ProductsPreviewItems = ({ products, goLocation }) => {
-    return (
-        <>
-            <Card productsList={products} goLocation={goLocation} />
-        </>
-    );
-};
+const ProductsPreviewItems = ({ products, goLocation }) => (
+  <>
+    <Card productsList={products} goLocation={goLocation} />
+  </>
+);
 
 export default ProductsPreviewItems;

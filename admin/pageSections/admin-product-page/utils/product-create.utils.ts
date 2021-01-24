@@ -6,9 +6,7 @@ import { IProduct } from "types/interfaces/products.gallery.interface";
 export async function createProduct({ image, ...rest }: IProduct) {
     if (!image)
         throw BadRequestException("Ошибка создания товара, не загружен файл");
-    const {
-        data: { path },
-    } = await uploadFileService.uploadFile({ file: image });
+    const { path } = await uploadFileService.uploadFile(image);
     const data = { image: path, ...rest };
-    return productService.createProduct({ data });
+    return productService.createProduct(data);
 }

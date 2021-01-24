@@ -1,46 +1,43 @@
-import { Controller, Get, Post } from "api/decorators";
-import { Prefix } from "api/decorators/Prefix";
-import { Product } from "types/type/products.type";
-import "reflect-metadata";
-import { useQuery } from "api/decorators/params/useQuery";
-import { useParams } from "api/decorators/params/useParams";
+import 'reflect-metadata';
+import { Controller, Get, Post } from 'api/decorators';
+import { Product } from 'types/type/products.type';
+import { Query } from 'api/decorators/params/Query';
+import { Param } from 'api/decorators/params/Param';
+import { Body } from 'api/decorators/params/Body';
 
-@Controller("product")
+@Controller('product')
 class ProductService {
-    @Get("prefix")
-    async getProductByPrefix(
-        @useQuery("prefix") prefix: string
-    ): Promise<{ products: Product[] }> {
-        return;
-    }
+    @Get('prefix')
+  async getProductByPrefix(
+        @Query('prefix') _prefix: string,
+  ): Promise<{ products: Product[] }> {
+return;
+  }
 
-    @Get("{prefix}/{id}")
+    @Get('{prefix}/{id}')
     async getProductById(
-        @useParams("prefix") prefix: string,
-        @useParams("id") id: string
+        @Param('prefix') prefix: string,
+        @Param('id') id: string,
     ): Promise<{ products: Product[] }> {
-        return;
-    }
-    @Get("all")
-    async getAllProducts(): Promise<{ products: Product[] }> {
-        return;
-    }
-    @Get("filter")
-    async filterProducts(
-        {
-            requestUrl,
-            callbackResponse,
-            query,
-        }: any /* IGet<{ products: Product[]; total: number }> = {} */
-    ) {
-        return callbackResponse();
+return;
     }
 
-    @Post("create")
-    async createProduct(
-        { data, requestUrl, callbackResponse }: any /*  IPost<Product> */
-    ) {
-        return callbackResponse();
+    @Get('all')
+    async getAllProducts(): Promise<{ products: Product[] }> {
+return;
+    }
+
+    @Get('filter')
+    async filterProducts(
+        @Query('pageSize') pageSize: string,
+        @Query('currentPage') currentPage: string,
+    ): Promise<{ products: Product[]; total: number }> {
+return;
+    }
+
+    @Post('create')
+    async createProduct(@Body() _data: any): Promise<Product> {
+return;
     }
 }
 

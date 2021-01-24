@@ -1,6 +1,5 @@
 import { Controller, Upload } from "api/decorators";
-import { RequestFormData } from "api/decorators/params/RequestFormData";
-import { AxiosResponse } from "axios";
+import { FormData } from "api/decorators/params/FormData";
 
 interface Response {
     path: string;
@@ -10,7 +9,7 @@ interface Response {
 class UploadFileService {
     @Upload()
     async uploadFile(
-        @RequestFormData("file") file: Blob | File
+        @FormData("file") file: Blob | File | string
     ): Promise<Response> {
         return;
     }

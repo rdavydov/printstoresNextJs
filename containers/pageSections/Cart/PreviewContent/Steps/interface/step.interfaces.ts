@@ -1,5 +1,5 @@
 type DeliveryData = {
-    method: "Курьер" | "Самовывоз" | string;
+    method: 'Курьер' | 'Самовывоз' | string;
     city: string;
     address: string;
     date: string;
@@ -20,7 +20,7 @@ type PaymentsData = {
 };
 
 export interface IDeliveryData {
-    method: "Курьер" | "Самовывоз" | string;
+    method: 'Курьер' | 'Самовывоз' | string;
     city: string;
     address: string;
     date: string;

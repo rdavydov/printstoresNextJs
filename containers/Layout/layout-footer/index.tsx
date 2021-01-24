@@ -1,3 +1,3 @@
-import LayoutFooter from "./layout-footer";
+import LayoutFooter from './layout-footer';
 
 export { LayoutFooter };

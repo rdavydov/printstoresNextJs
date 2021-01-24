@@ -1,51 +1,51 @@
-import React, { useState } from "react";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { Product } from "../../../../../types/type/products.type";
+import React, { useState } from 'react';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Product } from '../../../../../types/type/products.type';
 import {
-    CartIcon,
-    OldPrice,
-    Price,
-    ProductBody,
-    ProductFooter,
-    ProductImage,
-    ProductTitle,
-    ProductWrapper,
-} from "./styled";
+  CartIcon,
+  OldPrice,
+  Price,
+  ProductBody,
+  ProductFooter,
+  ProductImage,
+  ProductTitle,
+  ProductWrapper,
+} from './styled';
 
 const GalleryItem: React.FC<Product> = ({
-    name,
-    price,
-    oldPrice,
-    image,
-    ...rest
+  name,
+  price,
+  oldPrice,
+  image,
+  ...rest
 }) => {
-    const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
-    const onHovered = () => {
-        setHovered(true);
-    };
+  const onHovered = () => {
+    setHovered(true);
+  };
 
-    const noHovered = () => {
-        setHovered(false);
-    };
+  const noHovered = () => {
+    setHovered(false);
+  };
 
-    return (
-        <ProductWrapper onMouseMove={onHovered} onMouseLeave={noHovered}>
-            <ProductBody>
-                <ProductImage src={image} />
-                {hovered && (
-                    <CartIcon>
-                        <ShoppingCartIcon />
-                    </CartIcon>
-                )}
-            </ProductBody>
-            <ProductFooter>
-                <ProductTitle>{name}</ProductTitle>
-                <Price>{price}</Price>
-                <OldPrice>{oldPrice}</OldPrice>
-            </ProductFooter>
-        </ProductWrapper>
-    );
+  return (
+    <ProductWrapper onMouseMove={onHovered} onMouseLeave={noHovered}>
+      <ProductBody>
+        <ProductImage src={image} />
+        {hovered && (
+        <CartIcon>
+          <ShoppingCartIcon />
+        </CartIcon>
+        )}
+      </ProductBody>
+      <ProductFooter>
+        <ProductTitle>{name}</ProductTitle>
+        <Price>{price}</Price>
+        <OldPrice>{oldPrice}</OldPrice>
+      </ProductFooter>
+    </ProductWrapper>
+  );
 };
 
 export default GalleryItem;

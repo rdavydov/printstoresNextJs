@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Image = styled.img`
     width: 150px;
@@ -9,11 +9,12 @@ export const CardName = styled.p``;
 export const CardPrice = styled.p``;
 
 interface IProps {
-    fullWidth?: "true" | "false";
+    fullWidth?: 'true' | 'false';
 }
 export const CardWrapper = styled.div<IProps>`
     display: flex;
-    width: ${(props) => (props.fullWidth === "true" ? "100%" : "85%")};
+    width: ${(props) => (props.fullWidth === 'true' ? '100%' : '85%')};
+    padding: 10px 0px;
     margin: 0 auto;
 `;
 export const CardContent = styled.div`

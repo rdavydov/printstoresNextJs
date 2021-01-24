@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Title = styled.h2``;
 
 export const PreviewCartWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    padding-bottom: 80px;
 `;
 
 export const PreviewCartInfo = styled.div`
@@ -17,7 +18,7 @@ export const CartWrapper = styled.div`
     flex-direction: column;
     justify-items: center;
     width: 550px;
-    height: 400px;
+    max-height: 550px;
     border: 2px solid #f0f0f5;
     border-radius: 15px;
     overflow: hidden;
@@ -32,6 +33,8 @@ export const CartHeader = styled.div`
 
 export const CartBody = styled.div`
     margin-bottom: 30px;
+    overflow-y: auto;
+    max-height: 400px;
 `;
 
 export const CartFooter = styled.div``;
@@ -48,16 +51,15 @@ export const PreviewCartItems = styled.div``;
 export const Image = styled.img``;
 
 interface IProps {
-    size?: "small" | "large" | "xsmall";
+    size?: 'small' | 'large' | 'xsmall';
 }
 
 export const Text = styled.p<IProps>`
-    font-size: ${(props) =>
-        props.size === "small"
-            ? "16px"
-            : props.size === "xsmall"
-            ? "14px"
-            : "18px"};
+    font-size: ${(props) => (props.size === 'small'
+    ? '16px'
+    : props.size === 'xsmall'
+      ? '14px'
+      : '18px')};
     font-weight: 700;
     margin: 0;
 `;

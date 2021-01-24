@@ -1,8 +1,6 @@
-import React from "react";
-import CategoryContainer from "./CategoryContainer";
+import React from 'react';
+import CategoryContainer from './CategoryContainer';
 
-const Promo = ({ crumbs }) => {
-    return <CategoryContainer crumbs={crumbs} />;
-};
+const Promo = ({ crumbs }) => <CategoryContainer crumbs={crumbs} />;
 
 export default Promo;

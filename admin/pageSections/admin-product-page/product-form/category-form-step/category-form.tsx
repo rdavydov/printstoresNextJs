@@ -1,7 +1,7 @@
-import { FormInstance } from "antd/lib/form";
-import React from "react";
-import CategoryCreateForm from "./category-create-form";
-import CategorySelect from "./category-select/category-select";
+import { FormInstance } from 'antd/lib/form';
+import React from 'react';
+import CategoryCreateForm from './category-create-form';
+import CategorySelect from './category-select/category-select';
 
 interface IProps {
     handleCreateCategory: () => void;
@@ -10,22 +10,20 @@ interface IProps {
 }
 
 const CategoryFormStep: React.FC<IProps> = ({
-    handleCreateCategory,
-    createMode,
-    form,
-}) => {
-    return (
-        <>
-            {createMode ? (
-                <CategoryCreateForm form={form} />
-            ) : (
-                <CategorySelect
-                    handleCreateCategory={handleCreateCategory}
-                    form={form}
-                />
-            )}
-        </>
-    );
-};
+  handleCreateCategory,
+  createMode,
+  form,
+}) => (
+  <>
+    {createMode ? (
+      <CategoryCreateForm form={form} />
+    ) : (
+      <CategorySelect
+        handleCreateCategory={handleCreateCategory}
+        form={form}
+      />
+    )}
+  </>
+);
 
 export default CategoryFormStep;

@@ -1,8 +1,6 @@
-import React from "react";
-import CartInfoContainer from "./CartInfoContainer";
+import React from 'react';
+import CartInfoContainer from './CartInfoContainer';
 
-const CartPreview = ({ deliveryMethod }) => {
-    return <CartInfoContainer deliveryMethod={deliveryMethod} />;
-};
+const CartPreview = ({ deliveryMethod }) => <CartInfoContainer deliveryMethod={deliveryMethod} />;
 
 export default CartPreview;

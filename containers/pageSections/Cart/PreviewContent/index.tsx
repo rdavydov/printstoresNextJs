@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import PreviewContentContainer from "./PreviewContent.container";
+import PreviewContentContainer from './PreviewContent.container';
 
-const PreviewContent = () => {
-    return <PreviewContentContainer />;
-};
+const PreviewContent = () => <PreviewContentContainer />;
 
 export default PreviewContent;

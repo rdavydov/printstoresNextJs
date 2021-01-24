@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import ProductItemViews from "./ProductsItemViews";
+import React, { useState } from 'react';
+import ProductItemViews from './ProductsItemViews';
 
-const ProductsItemContainer = ({ product }) => {
-    return <ProductItemViews product={product} />;
-};
+const ProductsItemContainer = ({ product }) => <ProductItemViews product={product} />;
 
 export default ProductsItemContainer;

@@ -1,7 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-const PaymentStep = (props) => {
-    return <Fragment></Fragment>;
-};
+const PaymentStep = (props) => <></>;
 
 export default PaymentStep;

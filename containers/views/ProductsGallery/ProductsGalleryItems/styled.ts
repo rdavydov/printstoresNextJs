@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const GalleryGrid = styled.div`
     display: grid;
@@ -29,10 +29,10 @@ export const GaleryHeader = styled.div<IProps>`
         cursor: pointer;
     }
     & svg:nth-child(1) {
-        fill: ${(props) => (props.start ? "gray" : "inherit")};
+        fill: ${(props) => (props.start ? 'gray' : 'inherit')};
         transform: rotate(180deg);
     }
     & svg:nth-child(2) {
-        fill: ${(props) => (props.end ? "gray" : "inherit")};
+        fill: ${(props) => (props.end ? 'gray' : 'inherit')};
     }
 `;

@@ -1,11 +1,6 @@
 import "reflect-metadata";
 import { ConfigureOptions, MetadataKey } from "../types/configure.service";
 
-export interface IConfigClass {
-    prototype: ConfigureOptions;
-    new (...args: any[]);
-}
-
 export function Controller(prefix: string, options: ConfigureOptions = {}) {
     return function ConfigureDecorator(constructor: Function) {
         const { requestConfig, responseConfig } = options;

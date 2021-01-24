@@ -26,7 +26,7 @@ export function _createApiParams(
     let formData;
     let requestBody = {};
     const { controllerPrefix, ...rest } = getMetadata(instance);
-    let urlToUse = generateURL([controllerPrefix, apiUrl]);
+    let urlToUse = generateURL(controllerPrefix, apiUrl);
     const queryParams = _getQuery(instance, methodName, props);
     const pathParams = _getPathParams(instance, methodName, props);
     urlToUse = _replaceParamsUrl(urlToUse, pathParams);

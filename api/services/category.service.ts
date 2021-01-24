@@ -1,18 +1,18 @@
 import { Controller, Get, Post } from "api/decorators";
 import { Category } from "types/type/category.type";
-import { useParams } from "api/decorators/params/useParams";
-import { RequestBody } from "api/decorators/params/RequestBody";
+import { Param } from "api/decorators/params/Param";
+import { Body } from "api/decorators/params/Body";
 import { Delete } from "api/decorators/http/Delete";
 
 @Controller("category")
 class CategoryService {
     @Get("{key}")
-    async getCategoryByKey(@useParams("key") key: string): Promise<Category> {
+    async getCategoryByKey(@Param("key") key: string): Promise<Category> {
         return;
     }
 
     @Post("create")
-    async categoryCreate(@RequestBody() data: any): Promise<Category> {
+    async categoryCreate(@Body() data: any): Promise<Category> {
         return;
     }
 

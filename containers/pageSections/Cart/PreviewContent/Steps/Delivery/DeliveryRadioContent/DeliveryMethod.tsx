@@ -1,13 +1,13 @@
-import { Radio } from "antd";
-import React from "react";
+import { Radio } from 'antd';
+import React from 'react';
 import {
-    FormRadioContent,
-    FormRadioHeader,
-    SmallText,
-    Price,
-    SubSmallText,
-    DeliveryRadioContent,
-} from "../../../styled";
+  FormRadioContent,
+  FormRadioHeader,
+  SmallText,
+  Price,
+  SubSmallText,
+  DeliveryRadioContent,
+} from '../../../styled';
 
 interface IProps {
     className: string;
@@ -19,30 +19,30 @@ interface IProps {
 }
 
 const DeliveryMethod: React.FC<IProps> = ({
-    className,
-    defaultValue,
-    onDeliveryClicked,
-    price,
-    title,
-    time,
-    children,
+  className,
+  defaultValue,
+  onDeliveryClicked,
+  price,
+  title,
+  time,
+  children,
 }) => {
-    const handleClick = () => {
-        onDeliveryClicked(defaultValue);
-    };
+  const handleClick = () => {
+    onDeliveryClicked(defaultValue);
+  };
 
-    return (
-        <DeliveryRadioContent className={className} onClick={handleClick}>
-            <Radio value={defaultValue} />
-            <FormRadioContent>
-                <FormRadioHeader>
-                    <SmallText>{title}</SmallText>
-                    <Price>{price}</Price>
-                </FormRadioHeader>
-                <SubSmallText>{time}</SubSmallText>
-            </FormRadioContent>
-        </DeliveryRadioContent>
-    );
+  return (
+    <DeliveryRadioContent className={className} onClick={handleClick}>
+      <Radio value={defaultValue} />
+      <FormRadioContent>
+        <FormRadioHeader>
+          <SmallText>{title}</SmallText>
+          <Price>{price}</Price>
+        </FormRadioHeader>
+        <SubSmallText>{time}</SubSmallText>
+      </FormRadioContent>
+    </DeliveryRadioContent>
+  );
 };
 
 export default DeliveryMethod;

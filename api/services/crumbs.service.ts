@@ -1,5 +1,5 @@
 import { Controller, Get } from "api/decorators";
-import { useQuery } from "api/decorators/params/useQuery";
+import { Query } from "api/decorators/params/Query";
 
 @Controller("crumbs")
 class CrumbsService {
@@ -14,21 +14,21 @@ class CrumbsService {
 
     @Get()
     async getCategoryCrumbsByKey(
-        @useQuery("key") key: string
+        @Query("key") key: string
     ): Promise<{ path: string; title: string }> {
         return;
     }
     @Get()
     async getProductCrumbsByKeyAndPrefix(
-        @useQuery("prefix") prefix: string,
-        @useQuery("id") id: string
+        @Query("prefix") prefix: string,
+        @Query("id") id: string
     ): Promise<{ path: string; title: string }> {
         return;
     }
 
     @Get()
     async getProductCrumbsByPrefix(
-        @useQuery("prefix") prefix: string
+        @Query("prefix") prefix: string
     ): Promise<{ path: string; title: string }> {
         return;
     }

@@ -1,3 +1,3 @@
-import MenuFollow from "./menu-follow";
+import MenuFollow from './menu-follow';
 
 export { MenuFollow };

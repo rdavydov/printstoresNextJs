@@ -8,9 +8,7 @@ export async function createCategory({ image, key, name }: ICategory) {
         throw BadRequestException(
             "Ошибка создания категории, не загружен файл"
         );
-    const {
-        data: { path },
-    } = await uploadFileService.uploadFile({ file: image });
+    const { path } = await uploadFileService.uploadFile(image);
     const data = { image: path, key, name };
-    return categoryService.categoryCreate({ data });
+    return categoryService.categoryCreate(data);
 }

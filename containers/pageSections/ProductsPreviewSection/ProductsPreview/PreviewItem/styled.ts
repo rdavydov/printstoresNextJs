@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PreviewWrapper = styled.div`
     display: flex;
