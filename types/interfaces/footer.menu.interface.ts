@@ -1,4 +1,4 @@
-import { itemsMenu } from "../type/footer.menu.type";
+import { itemsMenu } from '../type/footer.menu.type';
 
 export interface IMenu {
   title: string;

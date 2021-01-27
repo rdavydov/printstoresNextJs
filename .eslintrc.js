@@ -27,6 +27,7 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'no-underscore-dangle': 'off',
     'no-template-curly-in-string': 'off',
+    'no-shadow': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
   },

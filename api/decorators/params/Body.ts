@@ -13,7 +13,6 @@ export function Body() {
                 Decorators.REQUEST_BODY_STATIC_FIELD,
             ],
             paramIdx
-        ),
-            "request";
+        )
     };
 }

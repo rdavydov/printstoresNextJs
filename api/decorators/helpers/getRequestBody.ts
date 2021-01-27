@@ -3,7 +3,7 @@ import { Decorators } from "../types/common";
 import { RequestBodyEnum } from "../types/RequestBodyEnum";
 
 export function _getRequestBody(instance: Object, methodName, props: any[]) {
-    let requestBody;
+    let requestBody = {data:{}};
     const bodyPropKeys =
         get(instance, [
             Decorators.STATIC_KEY,
@@ -15,5 +15,5 @@ export function _getRequestBody(instance: Object, methodName, props: any[]) {
         requestBody = props[bodyPropKeys[bodyKey]];
     });
 
-    return requestBody;
+    return requestBody[Decorators.REQUEST_BODY_STATIC_FIELD];
 }

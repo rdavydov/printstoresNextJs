@@ -16,6 +16,5 @@ export function _getQuery(instance: Object, methodName, props: any[]) {
             queryParams[queryParamKey] =
                 props[singleQueryParamKeys[queryParamKey]];
         });
-
     return queryParams;
 }

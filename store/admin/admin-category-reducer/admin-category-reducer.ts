@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { showMessage } from "utils/Notify/showMessage";
+import { showMessage } from "utils/notifications/showMessage";
 import {
     fetchCreateCategory,
     fetchDeleteCategory,

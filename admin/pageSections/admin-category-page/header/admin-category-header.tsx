@@ -1,8 +1,8 @@
-import { CustomButton } from "components";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { fetchDeleteCategory } from "store/admin/admin-category-reducer/extraReducers/extraReducers";
-import { HeaderWrapper, WrapperButton } from "./styled";
+import { CustomButton } from 'components';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchDeleteCategory } from 'store/admin/admin-category-reducer/extraReducers/extraReducers';
+import { HeaderWrapper, WrapperButton } from './styled';
 
 interface IProps {
     selectedItems: any[];
@@ -11,35 +11,35 @@ interface IProps {
 }
 
 const AdminCategoryHeader: React.FC<IProps> = ({
-    selectedItems,
-    handleViewModal,
-    clearSelectedItems,
+  selectedItems,
+  handleViewModal,
+  clearSelectedItems,
 }) => {
-    const dispatch = useDispatch();
-    const handleDelete = () => {
-        dispatch(fetchDeleteCategory(selectedItems));
-        clearSelectedItems();
-    };
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    dispatch(fetchDeleteCategory(selectedItems));
+    clearSelectedItems();
+  };
 
-    return (
-        <HeaderWrapper>
-            <WrapperButton>
-                <CustomButton
-                    text="Добавить категорию"
-                    onClick={handleViewModal}
-                />
-            </WrapperButton>
-            {!!selectedItems.length && (
-                <WrapperButton>
-                    <CustomButton
-                        text="Удалить"
-                        onClick={handleDelete}
-                        hovered="red"
-                    />
-                </WrapperButton>
-            )}
-        </HeaderWrapper>
-    );
+  return (
+    <HeaderWrapper>
+      <WrapperButton>
+        <CustomButton
+          text="Добавить категорию"
+          onClick={handleViewModal}
+        />
+      </WrapperButton>
+      {!!selectedItems.length && (
+        <WrapperButton>
+          <CustomButton
+            text="Удалить"
+            onClick={handleDelete}
+            hovered="red"
+          />
+        </WrapperButton>
+      )}
+    </HeaderWrapper>
+  );
 };
 
 export default AdminCategoryHeader;

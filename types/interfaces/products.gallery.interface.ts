@@ -1,5 +1,5 @@
-import { productType } from "../type/card.type";
-import { Product } from "../type/products.type";
+import { productType } from '../type/card.type';
+import { Product } from '../type/products.type';
 
 export interface IProductsGaleryProps {
   title: string;

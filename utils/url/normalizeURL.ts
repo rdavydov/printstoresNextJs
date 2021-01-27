@@ -1,4 +1,4 @@
-import { generateURL } from "utils/generateURL";
+import { generateURL } from 'utils/generateURL';
 
 interface INormalizeUrl {
     prefix: string;
@@ -9,17 +9,16 @@ interface INormalizeUrl {
 }
 
 export const normalizeURL = ({
-    prefix,
-    apiUrl,
-    requestUrl,
-    query,
+  prefix,
+  apiUrl,
+  requestUrl,
+  query,
 }: INormalizeUrl) => {
-    if (query) {
-        const params = "?" + new URLSearchParams(query).toString();
-        if (prefix && apiUrl) return generateURL(prefix, apiUrl + params);
-        if (!prefix) return generateURL(apiUrl + params);
-        return generateURL(prefix + params);
-    } else {
-        return generateURL(prefix, apiUrl, requestUrl);
-    }
+  if (query) {
+    const params = `?${new URLSearchParams(query).toString()}`;
+    if (prefix && apiUrl) return generateURL(prefix, apiUrl + params);
+    if (!prefix) return generateURL(apiUrl + params);
+    return generateURL(prefix + params);
+  }
+  return generateURL(prefix, apiUrl, requestUrl);
 };

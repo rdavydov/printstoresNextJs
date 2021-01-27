@@ -1,44 +1,44 @@
-import ApiClient from "api/ApiClient";
-import { AxiosRequestConfig } from "axios";
-import { generateURL } from "utils/generateURL";
-import { metadataKey } from "../Prefix";
-import { RequestConfig } from "../types/configure.types";
+import ApiClient from 'api/ApiClient'
+import { _createApiParams } from '../helpers/createApiParams'
+import { _getFormData } from '../helpers/getFormData'
+import { _getRequestBody } from '../helpers/getRequestBody'
+import { RequestConfig } from '../types/configure.types'
 
-export function Delete(apiUrl?: string, config?: RequestConfig) {
-    return function (
-        target: Object,
-        propertyKey: string,
-        descriptor: TypedPropertyDescriptor<any>
-    ) {
-        let originalFn: any /* OriginalFnDeleteType */ = descriptor.value;
-        descriptor.value = async function PostWrapper(
-            { data, requestUrl = [] }: any /* IDelete */
-        ) {
-            let RequestConfig: AxiosRequestConfig = {};
-            let prefix = Reflect.getMetadata(metadataKey, target);
-            const URL = generateURL(prefix, apiUrl, ...requestUrl);
-            const response = await createDeleteRequest(
-                data,
-                URL,
-                RequestConfig
-            );
-            const callbackResponse = () => response;
-            return originalFn.call(this, {
-                data,
-                requestUrl,
-                callbackResponse,
-            });
-        };
-        return descriptor;
-    };
+const defaultConfig = {
+    createFormData: false,
+    createBody: true,
 }
 
-async function createDeleteRequest(
-    data,
-    url: string,
-    config?: AxiosRequestConfig,
-    convertToFormData?: boolean
+export function Delete(
+    apiUrl?: string,
+    { createBody, createFormData }: RequestConfig = defaultConfig
 ) {
-    const response = await ApiClient.delete(url, data, config);
-    return response;
+    return function (
+        target: Object,
+        methodName: string,
+        descriptor: TypedPropertyDescriptor<any>
+    ) {
+        const apiClient = async (instance: Object, ...props: any[]) => {
+            let body
+            if (createFormData) {
+                body = _getFormData(instance, methodName, props)
+            } else {
+                body = _getRequestBody(instance, methodName, props)
+            }
+            const { urlToUse } = _createApiParams(
+                instance,
+                methodName,
+                props,
+                apiUrl
+            )
+            const { data } = await ApiClient.delete(urlToUse, body)
+            return data
+        }
+        descriptor.value = async function (...props) {
+            const instance = this
+            const response: Response = await apiClient(instance, ...props)
+            return response
+        }
+        return descriptor
+    }
 }

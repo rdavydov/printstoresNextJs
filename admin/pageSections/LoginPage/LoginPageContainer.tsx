@@ -1,8 +1,6 @@
-import React from "react";
-import LoginPageViews from "./LoginPageViews";
+import React from 'react';
+import LoginPageViews from './LoginPageViews';
 
-const LoginPageContainer = () => {
-    return <LoginPageViews />;
-};
+const LoginPageContainer = () => <LoginPageViews />;
 
 export default LoginPageContainer;
