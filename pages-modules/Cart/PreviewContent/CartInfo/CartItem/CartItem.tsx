@@ -1,4 +1,4 @@
-import { QuantityButton } from 'components';
+import { QuantityButton } from 'components/common';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import {

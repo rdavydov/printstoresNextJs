@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'components';
+import { Card } from 'components/common';
 
 const ProductsPreviewItems = ({ products, goLocation }) => (
   <>

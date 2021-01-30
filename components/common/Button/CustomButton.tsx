@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { Button } from './styled';
 
 interface IProps {
@@ -6,26 +6,71 @@ interface IProps {
     onClick?: () => void;
     className?: string;
     type?: 'submit' | 'button' | 'reset';
-    hovered?: 'white' | 'red';
+    backgroundColor?:'crimson' | 'white' | 'black' | string;
+    backgroundHover?: 'crimson' | 'white' | 'black' | string;
+    colorHover?:string | 'white' | '#161616'
+    color?:string | 'white' | 'black'
+    borderColor?:string;
+    variant?:'primary' | 'danger' | 'warning' | 'info' | 'default';
 }
 
 const CustomButton: React.FC<IProps> = ({
   children,
   className,
   onClick,
-  hovered,
   type = 'button',
+  variant,
   text,
-}) => (
-  <Button
-    className={className}
-    onClick={onClick}
-    hovered={hovered}
-    type={type}
-  >
-    {text && text}
-    {children}
-  </Button>
-);
+  ...rest
+}) => {
+  const {
+    backgroundColor, backgroundHover, color, colorHover, borderColor, borderColorHover,
+  } = useMemo(() => {
+    switch (variant) {
+      case 'primary': {
+        return;
+      }
+      case 'danger': {
+        return {
+          backgroundColor: 'white', backgroundHover: 'crimson', color: 'black', colorHover: 'white', borderColor: 'black',
+        };
+      }
+      case 'warning': {
+        return;
+      }
+      case 'info': {
+        return;
+      }
+      case 'default': {
+        return {
+          backgroundColor: 'black', backgroundHover: 'white', color: 'white', colorHover: 'black', borderColor: 'white',
+        };
+      }
+      default: {
+        return {
+          backgroundColor: 'black', backgroundHover: 'white', color: 'white', colorHover: 'black', borderColor: 'black', borderColorHover: 'black',
+        };
+      }
+    }
+  }, [variant]);
+
+  return (
+    <Button
+      className={className}
+      onClick={onClick}
+      backgroundColor={backgroundColor}
+      backgroundHover={backgroundHover}
+      borderColorHover={borderColorHover}
+      color={color}
+      borderColor={borderColor}
+      colorHover={colorHover}
+      type={type}
+      {...rest}
+    >
+      {text && text}
+      {children}
+    </Button>
+  );
+};
 
 export default CustomButton;

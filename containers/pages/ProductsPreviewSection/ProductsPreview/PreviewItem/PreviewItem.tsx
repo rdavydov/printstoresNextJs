@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import CustomButton from 'components/common/Button/CustomButton';
 import CardButton from 'components/common/CardButton/CardButton';
 import QuantityButton from 'components/common/QuantityButton/QuantityButton';
 import { Product } from 'types/type/products.type';
 import { useDispatch } from 'react-redux';
 import { addCartProduct } from 'store/reducers/cardReducer/actionCreators/cardActionCreators';
+import { useRouter } from 'next/router';
 import CollapseItems from './CollapseItems/CollapseItems';
 import {
   Image,
@@ -20,11 +21,11 @@ import {
 } from './styled';
 import styles from './PreviewItem.module.css';
 
-const ORDER_NOW_TEXT = 'Заказать сейчас';
-const COUNT_TEXT = 'Количество:';
+const ORDER_NOW_TEXT = 'Добавить в корзину';
 const DESCRIPTION_TEXT = 'Описание';
 const DETAILS = 'Состав';
 const DELIVERY_AND_PAY = 'Доставка и оплата';
+const GO_TO_CARD = 'Перейти в корзину';
 
 const PreviewItem: React.FC<Product> = ({
   image,
@@ -38,24 +39,39 @@ const PreviewItem: React.FC<Product> = ({
   prefix,
   ...rest
 }) => {
+  const { push } = useRouter();
   const collapseContent = [
     { header: DESCRIPTION_TEXT, text: description },
     { header: DETAILS, text: details },
     { header: DELIVERY_AND_PAY, text: 'завтра' },
   ];
-  const [quantity, setQuantity] = useState(1);
+
+  const [state, setState] = useState({
+    productAdded: false,
+  });
 
   const dispatch = useDispatch();
 
   const addProduct = () => {
     dispatch(addCartProduct({
-      id: _id, image, name, price, quantity,
+      id: _id, image, name, price, quantity: 1,
     }));
+    setState({ productAdded: true });
   };
 
-  const getQuantity = (quantityValue) => {
-    setQuantity(quantityValue);
+  const goCard = () => {
+    push('/cart');
   };
+
+  const {
+    onClick, text, variant,
+  } = useMemo(() => ({
+    onClick: state.productAdded ? goCard : addProduct,
+    text: state.productAdded ? GO_TO_CARD : ORDER_NOW_TEXT,
+    variant: !state.productAdded && 'danger',
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), [state.productAdded]);
 
   return (
     <PreviewWrapper>
@@ -68,13 +84,14 @@ const PreviewItem: React.FC<Product> = ({
           <Price>{`${price}Р`}</Price>
           {oldPrice && <OldPrice>{`${oldPrice}Р`}</OldPrice>}
         </PriceContent>
-        <Text>{COUNT_TEXT}</Text>
-        <QuantityButton quantity={quantity} getQuantity={getQuantity} />
         <ActionsWrapper>
-          <CustomButton className={styles.button}>
-            {ORDER_NOW_TEXT}
+          <CustomButton
+            className={styles.button}
+            variant={variant}
+            onClick={onClick}
+          >
+            {text}
           </CustomButton>
-          <CardButton onClick={addProduct} />
         </ActionsWrapper>
         <CollapseItems info={collapseContent} />
       </PreviewRightContent>

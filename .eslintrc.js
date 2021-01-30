@@ -29,6 +29,7 @@ module.exports = {
     'no-template-curly-in-string': 'off',
     'no-shadow': 'off',
     'linebreak-style': 'off',
+    'consistent-return': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
   },
