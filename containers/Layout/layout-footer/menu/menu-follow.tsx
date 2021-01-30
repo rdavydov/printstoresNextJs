@@ -1,9 +1,9 @@
 import React from 'react';
-import { MenuList } from 'components/styled';
 import { IFollow } from 'types/interfaces/footer.menu.interface';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import { MenuList } from 'components/common/styled';
 import { IconBox, TextPhone, Title } from '../styles/menu';
 
 const MenuFollow = ({

@@ -1,5 +1,5 @@
 import React from 'react';
-import PageErorr403 from 'containers/pageSections/403';
+import PageErorr403 from 'components/modules/403';
 
 const Page403 = () => (
   <PageErorr403 />

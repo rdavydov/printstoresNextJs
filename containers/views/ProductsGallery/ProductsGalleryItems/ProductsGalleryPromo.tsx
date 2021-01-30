@@ -5,7 +5,7 @@ import random from 'lodash/random';
 
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Box } from '@material-ui/core';
-import { Title } from 'components';
+import { Title } from 'components/common';
 import { IProducts } from '../../../../types/interfaces/products.gallery.interface';
 import GalleryItem from './GalleryItem/GalleryItem';
 import { GaleryHeader, GalleryWrapper } from './styled';

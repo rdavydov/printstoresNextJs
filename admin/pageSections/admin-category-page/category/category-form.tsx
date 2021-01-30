@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Modal } from 'antd';
-import UploadFile from 'components/UploadFile/UploadFile';
+import UploadFile from 'components/blocks/UploadFile/UploadFile';
 
 interface IProps {
     visible: boolean;

@@ -1,7 +1,7 @@
-import CardItem from 'components/common/Card/CardItem';
-import { CardGrid } from 'components/common/Card/styled';
 import React, { Fragment, useState } from 'react';
-import { IProducts } from '../../types/interfaces/products.gallery.interface';
+import { IProducts } from '../../../types/interfaces/products.gallery.interface';
+import CardItem from './CardItem';
+import { CardGrid } from './styled';
 
 interface IProps {
     goLocation?: (params: object) => void;

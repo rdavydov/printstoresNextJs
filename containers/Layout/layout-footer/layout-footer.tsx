@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import { Menu } from 'components';
+import { Menu } from 'components/common';
 import { follow, footerList } from './data/footer.data';
 import { FooterWrapper } from './styles/footer';
 import { FooterMenu } from './styles/menu';
