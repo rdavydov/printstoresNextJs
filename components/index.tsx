@@ -13,6 +13,8 @@ import Menu from './Menu/Menu';
 import ProductsCard from './ProductCards/ProductsCards';
 import { Container } from './Container/styles';
 import InfoBlock from './InfoBlock/InfoBlock';
+import Title from './TItle/Title';
+import Slider from './Slider/Slider';
 
 export {
   BreadcrumbsLinks,
@@ -30,4 +32,6 @@ export {
   Menu,
   InfoBlock,
   Container,
+  Title,
+  Slider,
 };

@@ -5,7 +5,6 @@ import ProductsGallery from '../containers/views/ProductsGallery/ProductsGallery
 
 const Home = () => (
   <Layout>
-    <Slider />
     <ProductsGallery title="Недавно добавленные" key="news" />
     <ProductsGallery title="Популярные" key="Популярные" />
   </Layout>

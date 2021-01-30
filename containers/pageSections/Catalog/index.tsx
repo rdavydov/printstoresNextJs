@@ -1,12 +1,9 @@
-import React from 'react';
-import CatalogList from './List/List';
-import CatalogMenu from './Menu/Menu';
+import Catalog from './Catalog';
+import CatalogViewType from './View/Type/Type';
+import CatalogView from './View/View';
 
-const Catalog = ({ products, crumbs }) => (
-  <>
-    <CatalogMenu crumbs={crumbs} />
-    <CatalogList products={products} />
-  </>
-);
-
-export default Catalog;
+export {
+  Catalog,
+  CatalogView,
+  CatalogViewType,
+};

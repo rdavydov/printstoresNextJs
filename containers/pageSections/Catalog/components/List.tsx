@@ -1,8 +1,8 @@
 import React from 'react';
-import { PaginationButton, ProductsCard } from 'components';
+import { ProductsCard } from 'components';
 import { routesConfig } from 'config/routes/routes';
 import { useRouter } from 'next/router';
-import { CatalogListWrapper } from './styles/styles';
+import { CatalogListWrapper } from './styles';
 
 const CatalogList = ({ products }) => {
   const { push } = useRouter();

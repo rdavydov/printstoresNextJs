@@ -1,6 +1,6 @@
-import { BreadcrumbsLinks } from 'components';
 import React from 'react';
-import { CatalogMenuWrapper } from './styles/styled';
+import { BreadcrumbsLinks } from 'components';
+import { CatalogMenuWrapper } from './styles';
 
 const CatalogMenu = ({ crumbs }) => (
   <CatalogMenuWrapper>

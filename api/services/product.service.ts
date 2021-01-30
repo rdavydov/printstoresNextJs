@@ -9,7 +9,7 @@ import { Body } from 'api/decorators/params/Body'
 class ProductService {
     @Get('prefix')
     async getProductByPrefix(
-        @Query('prefix') _prefix: string
+        @Query('prefix') prefix: string
     ): Promise<{ products: Product[] }> {
         return
     }

@@ -5,9 +5,10 @@ import random from 'lodash/random';
 
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Box } from '@material-ui/core';
+import { Title } from 'components';
 import { IProducts } from '../../../../types/interfaces/products.gallery.interface';
 import GalleryItem from './GalleryItem/GalleryItem';
-import { GaleryHeader, GalleryWrapper, Title } from './styled';
+import { GaleryHeader, GalleryWrapper } from './styled';
 
 interface IProps {
     prevSlide: () => void;
@@ -43,7 +44,7 @@ const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
 }) => (
   <GalleryWrapper>
     <GaleryHeader end={end ? 1 : 0} start={start ? 1 : 0}>
-      <Title>{title}</Title>
+      <Title level="h1" fontSize={16}>{title}</Title>
       <Box>
         <ArrowRightAltIcon onClick={prevSlide} fontSize="large" />
         <ArrowRightAltIcon onClick={nextSlide} fontSize="large" />
