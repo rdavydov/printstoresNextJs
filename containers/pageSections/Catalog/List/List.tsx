@@ -6,9 +6,7 @@ import { CatalogListWrapper } from './styles/styles';
 
 const CatalogList = ({ products }) => {
   const { push } = useRouter();
-  const goLocation = ({
-    name, prefix, _id,
-  }) => {
+  const goLocation = ({ name, prefix, _id }) => {
     const path = routesConfig.getProductItemRoute();
     push({ pathname: path, query: { title: name, prefix, id: _id } }, path);
   };
@@ -16,7 +14,6 @@ const CatalogList = ({ products }) => {
   return (
     <CatalogListWrapper>
       <ProductsCard dataSource={products} goLocation={goLocation} />
-      <PaginationButton />
     </CatalogListWrapper>
   );
 };

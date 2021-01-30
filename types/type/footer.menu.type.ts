@@ -1,13 +1,13 @@
 export type Menu = {
-  title: string;
-};
+  title: string
+}
 
 export type itemsMenu = {
-  text: string;
-  path: string;
-};
+  text: string
+  path: string
+}
 
 export type followType = {
-  src: string;
-  path: string;
-};
+  src: string
+  path: string
+}

@@ -8,12 +8,12 @@ export const fetchCreateCategory = createAsyncThunk(
   'admin-category/fetchCreateCategoryStatus',
   async (
     { image, name, key }: fetchCreateCategoryType,
-    { rejectWithValue, dispatch },
+    { rejectWithValue, dispatch }
   ) => {
     try {
       if (!image) {
         throw new BadRequestException(
-          'Ошибка, загрузите файл перед созданием категории',
+          'Ошибка, загрузите файл перед созданием категории'
         );
       }
       const { path } = await uploadFileService.uploadFile(image);
@@ -25,13 +25,15 @@ export const fetchCreateCategory = createAsyncThunk(
     } catch (e) {
       return rejectWithValue(e.response.data);
     }
-  },
+  }
 );
 
 export const fetchDeleteCategory = createAsyncThunk(
   'admin-category/fetchDeleteCategoryStatus',
   async (categoryList: string[]) => {
-    const { category, quantity } = await categoryService.categoryDelete({ data: categoryList });
+    const { category, quantity } = await categoryService.categoryDelete(
+      categoryList
+    );
     return { category, quantity };
-  },
+  }
 );

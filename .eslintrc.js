@@ -28,6 +28,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-template-curly-in-string': 'off',
     'no-shadow': 'off',
+    'linebreak-style': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
   },

@@ -1,6 +1,6 @@
 import React from 'react';
-import CatalogList from './List/CatalogList';
-import CatalogMenu from './Menu/CatalogMenu';
+import CatalogList from './List/List';
+import CatalogMenu from './Menu/Menu';
 
 const Catalog = ({ products, crumbs }) => (
   <>

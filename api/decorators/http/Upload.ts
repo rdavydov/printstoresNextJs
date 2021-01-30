@@ -1,21 +1,21 @@
-import ApiClient from 'api/ApiClient'
-import { requestConfig } from 'api/services/RequestConfig.service'
-import { AxiosResponse } from 'axios'
-import { generateURL } from 'utils/generateURL'
-import { _createApiParams } from '../helpers/createApiParams'
-import { _getFormData } from '../helpers/getFormData'
-import { metadataKey } from '../Prefix'
-import { RequestConfig } from '../types/configure.types'
+import ApiClient from 'api/ApiClient';
+import { requestConfig } from 'api/services/RequestConfig.service';
+import { AxiosResponse } from 'axios';
+import { generateURL } from 'utils/generateURL';
+import { _createApiParams } from '../helpers/createApiParams';
+import { _getFormData } from '../helpers/getFormData';
+import { metadataKey } from '../Prefix';
+import { RequestConfig } from '../types/configure.types';
 
 const defaultConfig = {
   createFormData: true,
   createBody: false,
-}
+};
 
 interface IRequestProps {
-  file: any
-  requestUrl?: string[]
-  callbackResponse?: () => AxiosResponse<any>
+  file: any;
+  requestUrl?: string[];
+  callbackResponse?: () => AxiosResponse<any>;
 }
 
 export function Upload(
@@ -28,22 +28,22 @@ export function Upload(
     descriptor: TypedPropertyDescriptor<any>
   ) => {
     const apiClient = async (instance: Object, ...props: any[]) => {
-        const body = _getFormData(instance,methodName,props);
+      const body = _getFormData(instance, methodName, props);
       const { urlToUse } = _createApiParams(
         instance,
         methodName,
         props,
         apiUrl
-      )
-      const config = requestConfig.getformDataConfig()
-      const { data } = await ApiClient.post(urlToUse, body, config)
-      return data
-    }
+      );
+      const config = requestConfig.getformDataConfig();
+      const { data } = await ApiClient.post(urlToUse, body, config);
+      return data;
+    };
     descriptor.value = async function (...props) {
-      const instance = this
-      const response: Response = await apiClient(instance, ...props)
-      return response
-    }
-    return descriptor
-  }
+      const instance = this;
+      const response: Response = await apiClient(instance, ...props);
+      return response;
+    };
+    return descriptor;
+  };
 }

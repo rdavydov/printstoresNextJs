@@ -1,4 +1,4 @@
 export type Routes = {
-    path: string;
-    title: string | string[];
-};
+  path: string
+  title: string | string[]
+}

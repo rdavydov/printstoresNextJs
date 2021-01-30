@@ -11,6 +11,8 @@ import BreadcrumbsLinks from './BreadcrumbsLinks';
 import Card from './Card/Card';
 import Menu from './Menu/Menu';
 import ProductsCard from './ProductCards/ProductsCards';
+import { Container } from './Container/styles';
+import InfoBlock from './InfoBlock/InfoBlock';
 
 export {
   BreadcrumbsLinks,
@@ -26,4 +28,6 @@ export {
   CategoryCard,
   ProductsCard,
   Menu,
+  InfoBlock,
+  Container,
 };
