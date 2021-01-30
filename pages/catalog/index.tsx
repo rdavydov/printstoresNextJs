@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'containers/Layout';
 import { crumbsService, productService } from 'api';
-import { Catalog } from 'components/modules/Catalog';
+import { Catalog } from 'components/page-modules/Catalog';
 
 const CatalogPage = ({ crumbs, products }) => (
   <Layout>

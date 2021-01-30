@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'containers/Layout';
 import { productService } from 'api';
-import { CatalogView } from 'components/modules/Catalog';
+import { CatalogView } from 'components/page-modules/Catalog';
 
 const CatalogViewPage = ({ products }) => (
   <Layout>

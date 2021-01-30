@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { Product } from '../../types/type/products.type';
 import { IProduct } from '../../types/interfaces/products.gallery.interface';
 import { CardWrapper, CardBody, CardImage, CardFooter, CardTitle } from 'components/common/Card/styled';
 import { CartIcon, Price, OldPrice } from 'containers/views/ProductsGallery/ProductsGalleryItems/GalleryItem/styled';

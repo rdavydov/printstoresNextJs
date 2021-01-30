@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Layout } from 'containers/Layout';
-import Promo from 'components/modules/Cart/Promo/Promo';
-import PreviewContent from 'components/modules/Cart/PreviewContent';
+import Promo from 'components/page-modules/Cart/Promo/Promo';
+import PreviewContent from 'components/page-modules/Cart/PreviewContent';
 
 const crumbs = [
   { title: 'Главная', path: '/' },
