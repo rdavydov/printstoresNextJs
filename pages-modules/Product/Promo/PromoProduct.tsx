@@ -1,5 +1,5 @@
 import React from 'react';
-import { BreadcrumbsLinks } from 'components';
+import { BreadcrumbsLinks } from 'components/common';
 
 const PromoProduct = ({ crumbs }) => (
   <>

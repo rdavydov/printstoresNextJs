@@ -5,12 +5,12 @@ import styles from './Button.module.scss';
 import { CustomButton } from './styled';
 
 interface IProps {
-    text?: string | ReactNode;
-    onClick?: () => void;
-    className?: string;
-    type?: 'submit' | 'button' | 'reset';
-    color?:string | 'white' | 'black'
-    variant?:'primary' | 'danger' | 'warning' | 'info' | 'default';
+  text?: string | ReactNode;
+  onClick?: () => void;
+  className?: string;
+  type?: 'submit' | 'button' | 'reset';
+  color?: string | 'white' | 'black'
+  variant?: 'primary' | 'danger' | 'warning' | 'info' | 'default';
 }
 
 const Button: React.FC<IProps> = ({
@@ -49,6 +49,7 @@ const Button: React.FC<IProps> = ({
     <CustomButton
       className={cn(className, buttonVariant)}
       onClick={onClick}
+      type={type}
       {...rest}
     >
       {text && text}

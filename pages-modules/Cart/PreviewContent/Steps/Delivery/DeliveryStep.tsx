@@ -21,9 +21,9 @@ import {
 const { Option } = Select;
 
 interface IProps {
-    setFieldsValue: (value: any) => void;
-    getFieldValue: (value: string[]) => string;
-    onDeliveryChange: (value: string) => void;
+  setFieldsValue: (value: any) => void;
+  getFieldValue: (value: string[]) => string;
+  onDeliveryChange: (value: string) => void;
 }
 
 const DeliveryStep: React.FC<IProps> = ({
@@ -36,6 +36,7 @@ const DeliveryStep: React.FC<IProps> = ({
     getFieldValue(['delivery', 'method']) ?? 'Самовывоз',
   );
 
+
   const onDeliveryChangeValue = (e) => {
     setFieldsValue({ delivery: { method: e.target.value } });
     setMethod(e.target.value);
@@ -44,13 +45,11 @@ const DeliveryStep: React.FC<IProps> = ({
   const onDeliveryClicked = (value) => {
     setFieldsValue({ delivery: { method: value } });
     setMethod(value);
+    onDeliveryChange(value);
   };
 
-  const { validate } = getValidatingConfig();
 
-  useEffect(() => {
-    onDeliveryChange(method);
-  }, [method, onDeliveryChange]);
+  const { validate } = getValidatingConfig();
 
   return (
     <>
@@ -70,7 +69,7 @@ const DeliveryStep: React.FC<IProps> = ({
             className={cn(
               styles.radioContent,
               method === deliveryProps.PICKUP.title
-                                && styles.active,
+              && styles.active,
             )}
             onDeliveryClicked={onDeliveryClicked}
             {...deliveryProps.PICKUP}
@@ -79,7 +78,7 @@ const DeliveryStep: React.FC<IProps> = ({
             className={cn(
               styles.radioContent,
               method === deliveryProps.COURIER.title
-                                && styles.active,
+              && styles.active,
             )}
             onDeliveryClicked={onDeliveryClicked}
             {...deliveryProps.COURIER}

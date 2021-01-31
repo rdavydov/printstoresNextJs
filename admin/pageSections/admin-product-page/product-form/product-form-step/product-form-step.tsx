@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Form, Row, Input, InputNumber } from "antd";
 import { FormInstance } from "antd/lib/form";
 
-import { UploadFile } from "components";
+import { UploadFile } from "components/common";
 
 const { TextArea } = Input;
 

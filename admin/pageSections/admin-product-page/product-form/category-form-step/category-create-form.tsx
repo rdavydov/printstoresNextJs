@@ -1,6 +1,6 @@
 import { Col, Form, Input, Row } from "antd";
 import { FormInstance } from "antd/lib/form";
-import { UploadFile } from "components";
+import { UploadFile } from "components/common";
 import React, { useState } from "react";
 
 interface IProps {

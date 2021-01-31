@@ -4,7 +4,7 @@ import { Product } from 'types/type/products.type';
 import { useDispatch } from 'react-redux';
 import { addCartProduct } from 'store/reducers/cardReducer/actionCreators/cardActionCreators';
 import { useRouter } from 'next/router';
-import Button from 'components/common/Button/CustomButton';
+import { Button } from 'components/common';
 import CollapseItems from './CollapseItems/CollapseItems';
 import {
   Image,
@@ -70,7 +70,7 @@ const PreviewItem: React.FC<Product> = ({
   } = useMemo(() => ({
     onClick: state.productAdded ? goCard : addProduct,
     text: state.productAdded ? GO_TO_CARD : ORDER_NOW_TEXT,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [state.productAdded]);
 
   return (

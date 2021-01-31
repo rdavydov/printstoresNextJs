@@ -31,6 +31,7 @@ const PreviewContentContainer = () => {
     },
   });
 
+
   const nextStep = (formValues: FormValues) => {
     if (formValues?.delivery?.date) {
       formValues.delivery.date = replaceDate(formValues.delivery.date);
@@ -43,6 +44,8 @@ const PreviewContentContainer = () => {
   };
 
   const prevStep = () => {
+    console.log('click')
+    console.log(state.step)
     setState((prev) => ({
       ...prev,
       step: prev.step === START_STEP ? prev.step : prev.step - 1,

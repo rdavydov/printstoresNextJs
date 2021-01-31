@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { CategoryCard, PaginationButton } from 'components';
+import { CategoryCard, PaginationButton } from 'components/common';
 
 const CategoryItemsPromo = ({ categoryData = [], goLocation }) => (
   <>

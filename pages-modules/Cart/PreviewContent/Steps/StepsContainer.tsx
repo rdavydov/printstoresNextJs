@@ -1,6 +1,6 @@
 import { Form } from 'antd';
 import React from 'react';
-import CustomButton from 'components/common/Button/CustomButton';
+import { Button } from 'components/common';
 import { FormActions, PreviewCartInfo } from '../styled';
 import ContactStep from './Contacts/ContactStep';
 import DeliveryStep from './Delivery/DeliveryStep';
@@ -10,10 +10,10 @@ import styles from './StepsContainer.module.scss';
 import { getStepsFormConfig } from './config/getStepsFormConfig';
 
 interface IProps {
-    step: number;
-    onDeliveryChange: (value: string) => void;
-    nextStep: (formValue) => void;
-    prevStep: () => void;
+  step: number;
+  onDeliveryChange: (value: string) => void;
+  nextStep: (formValue) => void;
+  prevStep: () => void;
 }
 
 const LABEL = {
@@ -31,6 +31,7 @@ const StepsContainer: React.FC<IProps> = ({
   const config = getStepsFormConfig(step);
 
   const onFinish = (value) => {
+    console.log('sumbit')
     nextStep(value);
   };
 
@@ -59,6 +60,8 @@ const StepsContainer: React.FC<IProps> = ({
     }
   };
 
+  console.log(step, 'step');
+
   return (
     <PreviewCartInfo>
       <StepsNavigation step={step} />
@@ -72,10 +75,10 @@ const StepsContainer: React.FC<IProps> = ({
         {getNextStep()}
         <Form.Item>
           <FormActions>
-            <CustomButton hovered="white" onClick={prevStep}>
+            <Button onClick={prevStep}>
               {LABEL.BACK}
-            </CustomButton>
-            <CustomButton type="submit">{LABEL.GO}</CustomButton>
+            </Button>
+            <Button type="submit">{LABEL.GO}</Button>
           </FormActions>
         </Form.Item>
       </Form>

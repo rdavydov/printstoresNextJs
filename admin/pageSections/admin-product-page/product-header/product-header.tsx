@@ -1,13 +1,13 @@
 import React from 'react';
 import { HeaderWrapper, WrapperButton } from 'admin/components';
-import { CustomButton } from 'components';
+import { Button } from 'components/common';
 import { useDispatch } from 'react-redux';
 import { handleOpenModal } from 'store/admin/admin-modal-reducer.ts/actionCreaters/moda-action-creaters';
 
 interface IProps {
-    selectedItems: any[];
-    handleViewModal: () => void;
-    clearSelectedItems: () => void;
+  selectedItems: any[];
+  handleViewModal: () => void;
+  clearSelectedItems: () => void;
 }
 
 const AdminProductHeader: React.FC<IProps> = ({
@@ -20,19 +20,18 @@ const AdminProductHeader: React.FC<IProps> = ({
     dispatch(handleOpenModal());
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => { };
 
   return (
     <HeaderWrapper>
       <WrapperButton>
-        <CustomButton text="Добавить товар" onClick={handleViewModal} />
+        <Button text="Добавить товар" onClick={handleViewModal} />
       </WrapperButton>
       {!!selectedItems.length && (
         <WrapperButton>
-          <CustomButton
+          <Button
             text="Удалить"
             onClick={handleDelete}
-            hovered="red"
           />
         </WrapperButton>
       )}

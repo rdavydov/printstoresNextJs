@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Input, Modal } from 'antd';
-import UploadFile from 'components/blocks/UploadFile/UploadFile';
+import { UploadFile } from "components/common";
 
 interface IProps {
-    visible: boolean;
-    onCreate: (values) => void;
-    onCancel: () => void;
+  visible: boolean;
+  onCreate: (values) => void;
+  onCancel: () => void;
 }
 
 const CategoryForm: React.FC<IProps> = ({ onCancel, onCreate, visible }) => {
