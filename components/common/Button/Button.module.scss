@@ -1,0 +1,67 @@
+// variant?:'primary' | 'danger' | 'warning' | 'info' | 'default';
+
+
+// backgroundColor: 'white', backgroundHover: 'crimson', color: 'black', colorHover: 'white', borderColor: 'black',
+
+.primary{
+
+    background-color: white;
+    color: black;
+    border:1px solid black;
+    &:hover {
+        background-color: crimson;
+        color: white;
+        border:none;
+    }
+
+}
+
+.danger {
+    background-color: white;
+    color: black;
+    border:1px solid black;
+    &:hover {
+        background-color: crimson;
+        color: white;
+        border:none;
+    }
+
+}
+
+
+.warning{
+
+    background-color: white;
+    color: black;
+    border:1px solid black;
+    &:hover {
+        background-color: crimson;
+        color: white;
+        border:none;
+    }
+
+}
+
+
+.info {
+    background-color: white;
+    color: black;
+    border:1px solid black;
+    &:hover {
+        background-color: crimson;
+        color: white;
+        border:none;
+    }
+
+}
+
+.default {
+    background-color: black;
+    color: white;
+    &:hover {
+        background-color: white;
+        color: black;
+        border:1px solid black;
+    }
+
+}

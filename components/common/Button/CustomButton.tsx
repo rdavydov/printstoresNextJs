@@ -1,20 +1,19 @@
 import React, { ReactNode, useMemo } from 'react';
-import { Button } from './styled';
+
+import cn from 'classnames';
+import styles from './Button.module.scss';
+import { CustomButton } from './styled';
 
 interface IProps {
     text?: string | ReactNode;
     onClick?: () => void;
     className?: string;
     type?: 'submit' | 'button' | 'reset';
-    backgroundColor?:'crimson' | 'white' | 'black' | string;
-    backgroundHover?: 'crimson' | 'white' | 'black' | string;
-    colorHover?:string | 'white' | '#161616'
     color?:string | 'white' | 'black'
-    borderColor?:string;
     variant?:'primary' | 'danger' | 'warning' | 'info' | 'default';
 }
 
-const CustomButton: React.FC<IProps> = ({
+const Button: React.FC<IProps> = ({
   children,
   className,
   onClick,
@@ -23,54 +22,39 @@ const CustomButton: React.FC<IProps> = ({
   text,
   ...rest
 }) => {
-  const {
-    backgroundColor, backgroundHover, color, colorHover, borderColor, borderColorHover,
-  } = useMemo(() => {
+  const buttonVariant = useMemo(() => {
     switch (variant) {
       case 'primary': {
-        return;
+        return cn(styles.primary);
       }
       case 'danger': {
-        return {
-          backgroundColor: 'white', backgroundHover: 'crimson', color: 'black', colorHover: 'white', borderColor: 'black',
-        };
+        return cn(styles.danger);
       }
       case 'warning': {
-        return;
+        return cn(styles.warning);
       }
       case 'info': {
-        return;
+        return cn(styles.info);
       }
       case 'default': {
-        return {
-          backgroundColor: 'black', backgroundHover: 'white', color: 'white', colorHover: 'black', borderColor: 'white',
-        };
+        return cn(styles.default);
       }
       default: {
-        return {
-          backgroundColor: 'black', backgroundHover: 'white', color: 'white', colorHover: 'black', borderColor: 'black', borderColorHover: 'black',
-        };
+        return cn(styles.default);
       }
     }
   }, [variant]);
 
   return (
-    <Button
-      className={className}
+    <CustomButton
+      className={cn(className, buttonVariant)}
       onClick={onClick}
-      backgroundColor={backgroundColor}
-      backgroundHover={backgroundHover}
-      borderColorHover={borderColorHover}
-      color={color}
-      borderColor={borderColor}
-      colorHover={colorHover}
-      type={type}
       {...rest}
     >
       {text && text}
       {children}
-    </Button>
+    </CustomButton>
   );
 };
 
-export default CustomButton;
+export default Button;

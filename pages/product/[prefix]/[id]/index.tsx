@@ -2,7 +2,7 @@ import { productService } from 'api/services/product.service';
 import ProductItemPreview from 'containers/pages/ProductsPreviewSection/ProductsPreview';
 import Promo from 'containers/pages/ProductsPreviewSection/Promo/Promo';
 import React from 'react';
-import { Layout } from 'containers/Layout';
+import Layout from 'templates/Layout/Layout';
 import { crumbsService } from 'api';
 
 const OneProductPage = ({ products, crumbs }) => (

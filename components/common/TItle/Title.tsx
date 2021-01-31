@@ -2,13 +2,13 @@ import React from 'react';
 import { CustomTitle } from './styles';
 
 interface IProps {
-    level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-    color?:string;
-    fontSize?:number;
-    className?:string;
+  level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  color?: string;
+  fontSize?: number;
+  className?: string;
 }
 
-const Title:React.FC<IProps> = ({
+const Title: React.FC<IProps> = ({
   level, color, fontSize, className, children,
 }) => {
   let titleSize;
@@ -44,7 +44,7 @@ const Title:React.FC<IProps> = ({
   }
 
   return (
-    <CustomTitle as={level || 'h1'} color={color} fontSize={fontSize ?? titleSize} className={className}>{children}</CustomTitle>
+    <CustomTitle className={className} as={level || 'h1'} color={color} fontSize={fontSize ?? titleSize} >{children}</CustomTitle>
   );
 };
 

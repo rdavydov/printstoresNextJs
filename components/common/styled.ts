@@ -4,7 +4,7 @@ export const MenuList = styled.ul`
     display: "flex";
 `;
 
-export const MenuListItem = styled.li`
+export const MenuListItemWrapper = styled.li`
     margin-bottom: 10px;
 
     &::last-child {

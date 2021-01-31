@@ -50,15 +50,10 @@ import styled from 'styled-components';
 // `;
 
 interface IButtonProps {
-  backgroundColor?:string | 'crimson' | 'white' | 'black';
-  backgroundHover?:string | 'crimson' | 'white' | 'black';
-  colorHover?:string | 'white' | '#161616'
-  color?:string | 'white' | 'black'
-  borderColor?:string;
-  borderColorHover?:string;
+  color?:string
 }
 
-export const Button = styled.button<IButtonProps>`
+export const CustomButton = styled.button<IButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,13 +61,8 @@ export const Button = styled.button<IButtonProps>`
     min-width: 160px;
     height: 50px;
     transition:.4s;
-    border:${(props) => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
+    border:none;
     outline:none;
-    color:${(props) => props.color || 'white'};
-    background-color: ${(props) => props.backgroundColor || 'black'};
-    &:hover {
-      color:${(props) => props.colorHover || 'black'};
-      background-color:${(props) => props.backgroundHover || '#161616'};
-      border:${(props) => (props.borderColorHover ? `1px solid ${props.borderColorHover}` : 'none')};
-    }
+    color:white;
+    background-color:black;
 `;

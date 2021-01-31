@@ -1,6 +1,6 @@
 import React from 'react';
 import { productService } from 'api/services/product.service';
-import { Layout } from 'containers/Layout';
+import Layout from 'templates/Layout/Layout';
 import ProductPromo from 'pages-modules/Product/ProductPreview';
 import Promo from 'pages-modules/Product/Promo';
 import { crumbsService } from 'api';

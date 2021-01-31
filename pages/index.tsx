@@ -1,12 +1,14 @@
-import { Layout } from 'containers/Layout';
+import { Container } from 'components/common';
 import React from 'react';
-import Slider from '../containers/Slider';
+import Layout from 'templates/Layout/Layout';
 import ProductsGallery from '../containers/views/ProductsGallery/ProductsGallery';
 
 const Home = () => (
   <Layout>
-    <ProductsGallery title="Недавно добавленные" key="news" />
-    <ProductsGallery title="Популярные" key="Популярные" />
+    <Container>
+      <ProductsGallery title="Недавно добавленные" key="news" />
+      <ProductsGallery title="Популярные" key="Популярные" />
+    </Container>
   </Layout>
 );
 

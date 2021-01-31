@@ -1,15 +1,16 @@
+import ProductsList from 'components/blocks/Products/List/List';
 import UploadFile from 'components/blocks/UploadFile/UploadFile';
 import BreadcrumbsLinks from './BreadcrumbsLinks';
-import CustomButton from './Button/CustomButton';
+import Button from './Button/CustomButton';
 import Card from './Card/Card';
 import CardButton from './CardButton/CardButton';
 import CategoryCard from './CategoryCard/CategoryCard';
-import { Container } from './Container/styles';
+import Container from './Container/Container';
+import DropdownHeaderMenu from './DropdownHeaderMenu/DropdownMenu';
+import IconMenu from './IconMenu/IconMenu';
 import InfoBlock from './InfoBlock/InfoBlock';
-import ListItem from './Menu/ListItem';
-import Menu from './Menu/Menu';
+import MenuList from './MenuList/MenuList';
 import PaginationButton from './PaginationButton/PaginationButton';
-import ProductsList from './products/List/List';
 import QuantityButton from './QuantityButton/QuantityButton';
 import Slider from './Slider/Slider';
 import SortingPanel from './SortingPanel/SortingPanel';
@@ -18,20 +19,21 @@ import Title from './TItle/Title';
 
 export {
   BreadcrumbsLinks,
-  ListItem,
   SortingPanel,
   UploadFile,
   SwiperSlider,
   CardButton,
   Card,
-  CustomButton,
+  Button,
   QuantityButton,
   PaginationButton,
   CategoryCard,
-  Menu,
+  MenuList,
   InfoBlock,
   Container,
   Title,
   Slider,
+  IconMenu,
   ProductsList,
+  DropdownHeaderMenu
 };

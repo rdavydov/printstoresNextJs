@@ -1,11 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import CustomButton from 'components/common/Button/CustomButton';
-import CardButton from 'components/common/CardButton/CardButton';
-import QuantityButton from 'components/common/QuantityButton/QuantityButton';
+import { notification } from 'antd';
 import { Product } from 'types/type/products.type';
 import { useDispatch } from 'react-redux';
 import { addCartProduct } from 'store/reducers/cardReducer/actionCreators/cardActionCreators';
 import { useRouter } from 'next/router';
+import Button from 'components/common/Button/CustomButton';
 import CollapseItems from './CollapseItems/CollapseItems';
 import {
   Image,
@@ -16,7 +15,6 @@ import {
   Title,
   OldPrice,
   Price,
-  Text,
   ActionsWrapper,
 } from './styled';
 import styles from './PreviewItem.module.css';
@@ -57,6 +55,10 @@ const PreviewItem: React.FC<Product> = ({
       id: _id, image, name, price, quantity: 1,
     }));
     setState({ productAdded: true });
+    notification.success({
+      message: 'Товар добавлен в корзину',
+      placement: 'bottomRight',
+    });
   };
 
   const goCard = () => {
@@ -64,12 +66,10 @@ const PreviewItem: React.FC<Product> = ({
   };
 
   const {
-    onClick, text, variant,
+    onClick, text,
   } = useMemo(() => ({
     onClick: state.productAdded ? goCard : addProduct,
     text: state.productAdded ? GO_TO_CARD : ORDER_NOW_TEXT,
-    variant: !state.productAdded && 'danger',
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [state.productAdded]);
 
@@ -85,13 +85,13 @@ const PreviewItem: React.FC<Product> = ({
           {oldPrice && <OldPrice>{`${oldPrice}Р`}</OldPrice>}
         </PriceContent>
         <ActionsWrapper>
-          <CustomButton
+          <Button
             className={styles.button}
-            variant={variant}
+            variant={state.productAdded ? 'default' : 'danger'}
             onClick={onClick}
           >
             {text}
-          </CustomButton>
+          </Button>
         </ActionsWrapper>
         <CollapseItems info={collapseContent} />
       </PreviewRightContent>

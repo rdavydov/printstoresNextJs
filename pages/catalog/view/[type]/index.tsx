@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'containers/Layout';
+import Layout from 'templates/Layout/Layout';
 import { productService } from 'api';
 import { ProductsList } from 'components/common';
 import { routesConfig } from 'config/routes/routes';

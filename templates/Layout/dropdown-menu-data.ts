@@ -322,23 +322,3 @@ export const menuData: TypeMenuData = [
     ],
   },
 ];
-
-export const menuList = [
-  {
-    title: 'Мужчинам',
-    path: '/catalog',
-    children: [
-      {
-        title: 'Футболки',
-        path: '/catalog',
-        menu: [
-          {
-            title: 'Майка 3 д',
-            path: '',
-            children: [{ title: 'Майка красивая', path: '' }],
-          },
-        ],
-      },
-    ],
-  },
-];

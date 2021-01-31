@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'containers/Layout';
+import Layout from 'templates/Layout/Layout';
 import { crumbsService, productService } from 'api';
 import { BreadcrumbsLinks, ProductsList } from 'components/common';
 import { useRouter } from 'next/router';

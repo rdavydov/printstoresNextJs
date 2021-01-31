@@ -1,0 +1,18 @@
+.iconBox {
+  & svg {
+    margin-right: 15px;
+  }
+}
+
+.subTitle {
+  margin-bottom: 15px;
+  color: rgb(158, 158, 158) !important;
+}
+
+.iconBoxFlex {
+  display: flex;
+}
+
+.title {
+  color: rgb(158, 158, 158) !important;
+}
