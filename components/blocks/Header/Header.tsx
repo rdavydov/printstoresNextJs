@@ -7,7 +7,6 @@ import { RoomOutlined } from '@material-ui/icons';
 import SearchIcon from '@material-ui/icons/Search';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
-import BadgeCart from 'containers/MUI/Badge';
 import useStyles from './styles/layout-header';
 
 const Header = () => {
@@ -25,7 +24,6 @@ const Header = () => {
                     <Typography variant="h4">PRINTSTORES</Typography>
                     <Box className={clasess.actions}>
                         <SearchIcon className={clasess.find} />
-                        <BadgeCart length={product.length} />
                     </Box>
                 </Box>
                 <Box component="nav">

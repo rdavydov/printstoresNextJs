@@ -6,19 +6,19 @@ import random from 'lodash/random';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Box } from '@material-ui/core';
 import { Title } from 'components/common';
-import { IProducts } from '../../../../types/interfaces/products.gallery.interface';
+import { IProducts } from '../../../../../types/interfaces/products.gallery.interface';
 import GalleryItem from './GalleryItem/GalleryItem';
 import { GaleryHeader, GalleryWrapper } from './styled';
 
 interface IProps {
-    prevSlide: () => void;
-    nextSlide: () => void;
-    initSwipe: (swipe) => void;
-    changeStart: () => void;
-    changeEnd: () => void;
-    allChange: () => void;
-    end: boolean;
-    start: boolean;
+  prevSlide: () => void;
+  nextSlide: () => void;
+  initSwipe: (swipe) => void;
+  changeStart: () => void;
+  changeEnd: () => void;
+  allChange: () => void;
+  end: boolean;
+  start: boolean;
 }
 SwiperCore.use([Autoplay, A11y]);
 

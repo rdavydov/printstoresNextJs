@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { IProductsGaleryProps } from '../../../types/interfaces/products.gallery.interface';
+import { IProductsGaleryProps } from '../../../../types/interfaces/products.gallery.interface';
 import { productsList } from '../productsData';
 import ProductsGalleryPromo from './ProductsGalleryItems/ProductsGalleryPromo';
 

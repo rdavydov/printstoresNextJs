@@ -1,7 +1,7 @@
 import { Container } from 'components/common';
 import React from 'react';
 import Layout from 'templates/Layout/Layout';
-import ProductsGallery from '../containers/views/ProductsGallery/ProductsGallery';
+import ProductsGallery from '../containers/Home/views/ProductsGallery/ProductsGallery';
 
 const Home = () => (
   <Layout>

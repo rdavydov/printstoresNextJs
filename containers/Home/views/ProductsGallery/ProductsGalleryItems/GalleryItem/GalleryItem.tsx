@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { Product } from '../../../../../types/type/products.type';
+import { Product } from '../../../../../../types/type/products.type';
 import {
   CartIcon,
   OldPrice,
@@ -34,9 +34,9 @@ const GalleryItem: React.FC<Product> = ({
       <ProductBody>
         <ProductImage src={image} />
         {hovered && (
-        <CartIcon>
-          <ShoppingCartIcon />
-        </CartIcon>
+          <CartIcon>
+            <ShoppingCartIcon />
+          </CartIcon>
         )}
       </ProductBody>
       <ProductFooter>
