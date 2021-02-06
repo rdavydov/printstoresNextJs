@@ -13,7 +13,7 @@ const ProductsList = ({ dataSource, goLocation }: IProductsCard) => (
       column: 4,
     }}
     className={styles.root}
-    pagination={{ pageSize: 8 }}
+    pagination={{ pageSize: 8, position: 'bottom' }}
     renderItem={(item) => (
       <List.Item onClick={() => goLocation(item)}>
         <Card hoverable cover={<img src={item.image} height={300} alt="" />}>

@@ -1,30 +1,16 @@
-import { Controller, Get, Post } from 'api/decorators'
-import { Category } from 'types/type/category.type'
-import { Param } from 'api/decorators/params/Param'
-import { Body } from 'api/decorators/params/Body'
-import { Delete } from 'api/decorators/http/Delete'
+import { Controller } from 'api/http/Controller';
+import { Category } from 'types/type/category.type';
 
-@Controller('category')
 class CategoryService {
-  @Get(`{key}`)
-  async getCategoryByKey(@Param('key') key: string): Promise<Category> {
-    return
+  private controller = new Controller('category');
+
+  getCategoryByKey(key: string): Promise<Category> {
+    return this.controller.Get(':key', { params: { key } });
   }
 
-  @Post('create')
-  async categoryCreate(@Body() data: any): Promise<Category> {
-    return
-  }
-
-  @Delete('delete')
-  async categoryDelete(@Body() data: any): Promise<Category> {
-    return
-  }
-
-  @Get('all')
-  async getAllCategory(): Promise<Category> {
-    return
+  getAllCategory(): Promise<Category> {
+    return this.controller.Get('all');
   }
 }
 
-export const categoryService = new CategoryService()
+export const categoryService = new CategoryService();

@@ -10,16 +10,15 @@ const day = {
   Sunday: 'Воскресенье',
 };
 
-const replaceDate = (value) => (
-  `${day[
-    moment(value)
-      .format('LLLL')
-      .replace(moment(value).format('LLL'), '')
-      .replace(',', '')
-      .trim()
-  ]
-  }, ${
-    moment(value).format('L')}`
-);
+const replaceDate = (value) =>
+  `${
+    day[
+      moment(value)
+        .format('LLLL')
+        .replace(moment(value).format('LLL'), '')
+        .replace(',', '')
+        .trim()
+    ]
+  }, ${moment(value).format('L')}`;
 
 export default replaceDate;

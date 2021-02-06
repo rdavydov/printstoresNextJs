@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { routesConfig } from '../../../../config/routes/routes';
+import { routesConfig } from '../../../config/routes/routes';
 import CategoryItemsPromo from './Category.items.promo';
 
 const CategoryItemsContainer = ({ categoryItems }) => {

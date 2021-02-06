@@ -1,44 +1,24 @@
-import 'reflect-metadata'
-import { Controller, Get, Post } from 'api/decorators'
-import { Product } from 'types/type/products.type'
-import { Query } from 'api/decorators/params/Query'
-import { Param } from 'api/decorators/params/Param'
-import { Body } from 'api/decorators/params/Body'
+import 'reflect-metadata';
+import { Product } from 'types/type/products.type';
+import { Controller } from 'api/http/Controller';
 
-@Controller('product')
 class ProductService {
-    @Get('prefix')
-    async getProductByPrefix(
-        @Query('prefix') prefix: string
-    ): Promise<{ products: Product[] }> {
-        return
-    }
+  private controller = new Controller('product');
 
-    @Get('{prefix}/{id}')
-    async getProductById(
-        @Param('prefix') prefix: string,
-        @Param('id') id: string
-    ): Promise<{ products: Product[] }> {
-        return
-    }
+  getProductByPrefix(prefix: string): Promise<{ products: Product[] }> {
+    return this.controller.Get('prefix', { query: { prefix } });
+  }
+  getProductById(prefix: string, id: string): Promise<{ products: Product[] }> {
+    return this.controller.Get(':prefix/:id', { params: { prefix, id } });
+  }
 
-    @Get('all')
-    async getAllProducts(): Promise<{ products: Product[] }> {
-        return
-    }
+  getAllProducts(): Promise<{ products: Product[] }> {
+    return this.controller.Get('all');
+  }
 
-    @Get('filter')
-    async filterProducts(
-        @Query('pageSize') pageSize: string,
-        @Query('currentPage') currentPage: string
-    ): Promise<{ products: Product[]; total: number }> {
-        return
-    }
-
-    @Post('create')
-    async createProduct(@Body() data: any): Promise<Product> {
-        return
-    }
+  filterProducts(pageSize: string, currentPage: string): Promise<{ products: Product[]; total: number }> {
+    return this.controller.Get('filter', { query: { pageSize, currentPage } });
+  }
 }
 
-export const productService = new ProductService()
+export const productService = new ProductService();

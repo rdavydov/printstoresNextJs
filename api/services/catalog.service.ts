@@ -1,14 +1,12 @@
-import { Get } from "api/decorators/http/Get";
-import { Category } from "types/type/category.type";
-import "reflect-metadata";
-import { Controller } from "api/decorators";
+import { Controller } from 'api/http/Controller';
+import { Category } from 'types/type/category.type';
 
-@Controller("catalog")
 class CatalogService {
-    @Get("all")
-    async getAllCategory(): Promise<Category> {
-        return;
-    }
+  private controller = new Controller('catalog');
+
+  getAllCategory(): Promise<Category> {
+    return this.controller.Get('all');
+  }
 }
 
 export const catalogService = new CatalogService();

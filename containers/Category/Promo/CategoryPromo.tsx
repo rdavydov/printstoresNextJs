@@ -1,6 +1,6 @@
 import React from 'react';
 import { BreadcrumbsLinks } from 'components/common';
-import { IRoutes } from '../../../../types/interfaces/routes.interface';
+import { IRoutes } from '../../../types/interfaces/routes.interface';
 import { CategoryPromoSection, HeaderTitle } from '../styled/styled';
 
 interface IProps {

@@ -1,17 +1,15 @@
-import { Controller, Upload } from 'api/decorators';
-import { FormData } from 'api/decorators/params/FormData';
+import { Controller } from 'api/http/Controller';
 
 interface Response {
   path: string;
 }
 
-@Controller('upload')
 class UploadFileService {
-  @Upload()
-  async uploadFile(
-    @FormData('file') file: Blob | File | string | any
-  ): Promise<Response> {
-    return;
+  private controller = new Controller('storage');
+  async uploadFile(file: Blob | File | string | any): Promise<Response> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.controller.Post('upload', formData);
   }
 }
 

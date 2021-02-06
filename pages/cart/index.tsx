@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Layout from 'templates/Layout/Layout';
-import Promo from 'pages-modules/Cart/Promo/Promo';
-import PreviewContent from 'pages-modules/Cart/PreviewContent';
+import Promo from 'containers/BasketPage/Promo/Promo';
+import PreviewContent from 'containers/BasketPage/PreviewContent';
 import { Container } from 'components/common';
 
 const crumbs = [

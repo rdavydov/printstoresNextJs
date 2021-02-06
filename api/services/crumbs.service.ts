@@ -1,37 +1,22 @@
-import { Controller, Get } from "api/decorators";
-import { Query } from "api/decorators/params/Query";
+import { Controller } from 'api/http/Controller';
 
-@Controller("crumbs")
 class CrumbsService {
-    @Get()
-    async getCrumbsConfig({ query, callbackResponse }: any) {
-        return callbackResponse();
-    }
-    @Get()
-    async getCatalogCrumbs(): Promise<{ path: string; title: string }> {
-        return;
-    }
+  private controller = new Controller('crumbs');
 
-    @Get()
-    async getCategoryCrumbsByKey(
-        @Query("key") key: string
-    ): Promise<{ path: string; title: string }> {
-        return;
-    }
-    @Get()
-    async getProductCrumbsByKeyAndPrefix(
-        @Query("prefix") prefix: string,
-        @Query("id") id: string
-    ): Promise<{ path: string; title: string }> {
-        return;
-    }
+  getCatalogCrumbs(): Promise<{ path: string; title: string }> {
+    return this.controller.Get('');
+  }
 
-    @Get()
-    async getProductCrumbsByPrefix(
-        @Query("prefix") prefix: string
-    ): Promise<{ path: string; title: string }> {
-        return;
-    }
+  getCategoryCrumbsByKey(key: string): Promise<{ path: string; title: string }> {
+    return this.controller.Get('', { query: { key } });
+  }
+  getProductCrumbsByKeyAndPrefix(prefix: string, id: string): Promise<{ path: string; title: string }> {
+    return this.controller.Get('', { query: { prefix, id } });
+  }
+
+  getProductCrumbsByPrefix(prefix: string): Promise<{ path: string; title: string }> {
+    return this.controller.Get('', { query: { prefix } });
+  }
 }
 
 export const crumbsService = new CrumbsService();
