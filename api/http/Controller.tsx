@@ -7,23 +7,23 @@ export class Controller {
         this.prefix = prefix;
     }
 
-    async Get(url, options?: IGet) {
+    async GET(url, options?: IGet) {
         const { urlToUse } = _createApiParams({ ...options, controllerPrefix: this.prefix, url });
         const { data } = await ApiClient.get(urlToUse);
         return data;
     }
 
-    async Post(url, body: any, options?: IPost) {
+    async POST(url, body: any, options?: IPost) {
         const { urlToUse } = _createApiParams({ controllerPrefix: this.prefix, url, ...options });
         const { data } = await ApiClient.post(urlToUse, body)
         return data;
     }
 
-    async Put(url, options?: IPut) {
+    async PUT(url, options?: IPut) {
         const { urlToUse } = _createApiParams({ controllerPrefix: this.prefix, url, ...options });
     }
 
-    async Delete(url, body: any, options?: IDelete) {
+    async DELETE(url, body: any, options?: IDelete) {
         const { urlToUse } = _createApiParams({ controllerPrefix: this.prefix, url, ...options });
         const { data } = await ApiClient.delete(urlToUse, body);
         return data

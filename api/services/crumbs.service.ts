@@ -4,18 +4,18 @@ class CrumbsService {
   private controller = new Controller('crumbs');
 
   getCatalogCrumbs(): Promise<{ path: string; title: string }> {
-    return this.controller.Get('');
+    return this.controller.GET('');
   }
 
   getCategoryCrumbsByKey(key: string): Promise<{ path: string; title: string }> {
-    return this.controller.Get('', { query: { key } });
+    return this.controller.GET('', { query: { key } });
   }
   getProductCrumbsByKeyAndPrefix(prefix: string, id: string): Promise<{ path: string; title: string }> {
-    return this.controller.Get('', { query: { prefix, id } });
+    return this.controller.GET('', { query: { prefix, id } });
   }
 
   getProductCrumbsByPrefix(prefix: string): Promise<{ path: string; title: string }> {
-    return this.controller.Get('', { query: { prefix } });
+    return this.controller.GET('', { query: { prefix } });
   }
 }
 

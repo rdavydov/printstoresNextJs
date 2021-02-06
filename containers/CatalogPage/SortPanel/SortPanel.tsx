@@ -7,7 +7,9 @@ import { DownOutlined } from '@ant-design/icons';
 import { getSortParams } from './sort.helpers';
 
 interface IProps {
-    sortBy: { menu: Array<{ label: string, value: string }>, onClick: (params) => void }
+    sortBy: { menu: Array<{ label: string, value: string }>, onClick: (params) => void, defaultSortLabel: string; };
+    total?: number;
+    searchBy: { onChange: (params) => void }
 }
 
 const defaultSortValue = 'Сортировать';
@@ -16,25 +18,28 @@ const defaultSortParams = {
     sortBy: '', filterText: '', direction: 'ASC'
 }
 
-const SortPanel = ({ sortBy: { menu, onClick } }: IProps) => {
-    const [sortValue, setSortValue] = useState(defaultSortValue);
+const SortPanel = ({ sortBy: { menu, onClick, defaultSortLabel }, total, searchBy }: IProps) => {
     const searchParams = useRef(defaultSortParams);
 
+    const dropdownLabel = useMemo(() => {
+
+        return menu.find(({ value }) => value === defaultSortLabel)?.label ?? defaultSortValue
+
+    }, [defaultSortLabel])
+
     const handleSortClick = useCallback((value, label,) => {
-        setSortValue(label);
         const { sortBy, direction } = getSortParams(value);
         searchParams.current = { ...searchParams.current, sortBy, direction }
         onClick(searchParams.current);
-    }, [onClick, sortValue]);
+    }, [onClick]);
 
     const refreshSort = () => {
-        setSortValue(defaultSortValue);
         searchParams.current = { ...defaultSortParams }
         onClick(searchParams.current);
     }
     const onSearch = (e) => {
         searchParams.current = { ...searchParams.current, filterText: e.target.value };
-        onClick(searchParams.current);
+        searchBy.onChange(searchParams.current);
     };
 
     const dropDownMenu = useMemo(() => (
@@ -44,29 +49,24 @@ const SortPanel = ({ sortBy: { menu, onClick } }: IProps) => {
         </Menu>
     ), [menu]);
 
-
-    useEffect(() => {
-
-    }, []);
-
-    useLayoutEffect(() => {
-
-    });
-
     return (
         <Row className={styles.sortWrapper} >
             <Col span={4}>
                 <Dropdown overlay={dropDownMenu} trigger={['click']}>
                     <Button>
-                        {sortValue} <DownOutlined />
+                        {dropdownLabel} <DownOutlined />
                     </Button>
                 </Dropdown>
             </Col>
-            <Col span={14}>
-                <Input onChange={onSearch} placeholder='Поиск по каталогу' />
-            </Col>
-            <Col>
-                1000 товаров
+            <Col span={20}>
+                <Row className={styles.rightBar}>
+                    <Col span={10} className={styles.searchBar}>
+                        <Input onChange={onSearch} placeholder='Поиск по каталогу' />
+                    </Col>
+                    <Col>
+                        {total} Товаров
+                    </Col>
+                </Row>
             </Col>
         </Row>
     );

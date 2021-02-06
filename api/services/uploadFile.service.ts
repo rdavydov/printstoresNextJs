@@ -9,7 +9,7 @@ class UploadFileService {
   async uploadFile(file: Blob | File | string | any): Promise<Response> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.controller.Post('upload', formData);
+    return this.controller.POST('upload', formData);
   }
 }
 

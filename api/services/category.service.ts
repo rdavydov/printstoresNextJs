@@ -5,11 +5,11 @@ class CategoryService {
   private controller = new Controller('category');
 
   getCategoryByKey(key: string): Promise<Category> {
-    return this.controller.Get(':key', { params: { key } });
+    return this.controller.GET(':key', { params: { key } });
   }
 
   getAllCategory(): Promise<Category> {
-    return this.controller.Get('all');
+    return this.controller.GET('all');
   }
 }
 

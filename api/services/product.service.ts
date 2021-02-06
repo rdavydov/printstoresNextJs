@@ -6,18 +6,19 @@ class ProductService {
   private controller = new Controller('product');
 
   getProductByPrefix(prefix: string): Promise<{ products: Product[] }> {
-    return this.controller.Get('prefix', { query: { prefix } });
+    return this.controller.GET('prefix', { query: { prefix } });
   }
   getProductById(prefix: string, id: string): Promise<{ products: Product[] }> {
-    return this.controller.Get(':prefix/:id', { params: { prefix, id } });
+    return this.controller.GET(':prefix/:id', { params: { prefix, id } });
   }
 
-  getAllProducts(): Promise<{ products: Product[] }> {
-    return this.controller.Get('all');
+  getAllProducts(page: number | string): Promise<{ products: Product[] }> {
+    console.log(page, 'page');
+    return this.controller.GET('all', { query: { page } });
   }
 
   filterProducts(pageSize: string, currentPage: string): Promise<{ products: Product[]; total: number }> {
-    return this.controller.Get('filter', { query: { pageSize, currentPage } });
+    return this.controller.GET('filter', { query: { pageSize, currentPage } });
   }
 }
 

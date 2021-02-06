@@ -3,8 +3,15 @@ import { List, Card, Typography } from 'antd';
 import { IProductsCard } from 'types/products-cards';
 import styles from './ProductsCards.module.scss';
 import { ProductCardFooter } from '../styles';
+import pagination, { PaginationConfig } from 'antd/lib/pagination';
 
-const ProductsList = ({ dataSource, goLocation }: IProductsCard) => (
+interface IProps {
+  pagination: PaginationConfig;
+  loading: boolean;
+}
+
+
+const ProductsList = ({ dataSource, goLocation, pagination, loading }: IProductsCard & IProps) => (
   <List
     dataSource={dataSource}
     rowKey="_id"
@@ -12,8 +19,9 @@ const ProductsList = ({ dataSource, goLocation }: IProductsCard) => (
       gutter: 20,
       column: 4,
     }}
+    loading={loading}
     className={styles.root}
-    pagination={{ pageSize: 8, position: 'bottom' }}
+    pagination={pagination ?? false}
     renderItem={(item) => (
       <List.Item onClick={() => goLocation(item)}>
         <Card hoverable cover={<img src={item.image} height={300} alt="" />}>
