@@ -9,10 +9,10 @@ const CatalogIndexPage = (props) => {
 };
 
 export async function getServerSideProps({ query }) {
-  const { products, total } = await catalogService.catalogFilter(query);
+  const { products, total, searchParams } = await catalogService.catalogFilter(query);
   const crumbs = await crumbsService.getCatalogCrumbs();
   return {
-    props: { crumbs, products, total, query },
+    props: { crumbs, products, total, searchParams },
   };
 }
 export default CatalogIndexPage;

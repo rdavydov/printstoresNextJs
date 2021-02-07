@@ -1,3 +1,5 @@
+import { HeaderMenu } from 'src/components/common/DropdownHeaderMenu/DropdownMenu';
+
 export type TypeMenuData = Array<{
   menu: {
     title: string;
@@ -18,13 +20,12 @@ export type MenuList = Array<{
 
 export type MenuItems = Array<{ title: string; path: string }>;
 
-export const menuData: TypeMenuData = [
+export const menuData: HeaderMenu = [
   {
-    menu: { title: 'Мужчинам', route: '/catalog/mans' },
-    menuList: [
+    menuLabel: 'Мужчинам',
+    menuItems: [
       {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -34,24 +35,14 @@ export const menuData: TypeMenuData = [
       },
       {
         title: 'Футболки 4д',
-        path: '',
         items: [
           { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
-          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
-          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
-          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
-          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
-          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
-          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
         ],
       },
       {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -62,11 +53,10 @@ export const menuData: TypeMenuData = [
     ],
   },
   {
-    menu: { title: 'Женщинам', route: '/catalog/woman' },
-    menuList: [
+    menuLabel: 'Женщинам',
+    menuItems: [
       {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -75,8 +65,17 @@ export const menuData: TypeMenuData = [
         ],
       },
       {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+        ],
+      },
+      {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -85,8 +84,60 @@ export const menuData: TypeMenuData = [
         ],
       },
       {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+    ],
+  },
+  {
+    menuLabel: 'Детям',
+    menuItems: [
+      {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -95,8 +146,17 @@ export const menuData: TypeMenuData = [
         ],
       },
       {
+        title: 'Футболки 4д',
+        items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
+        ],
+      },
+      {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -107,11 +167,10 @@ export const menuData: TypeMenuData = [
     ],
   },
   {
-    menu: { title: 'Детям', route: '/catalog/child' },
-    menuList: [
+    menuLabel: 'Чехлы',
+    menuItems: [
       {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -120,10 +179,9 @@ export const menuData: TypeMenuData = [
         ],
       },
       {
-        title: 'Футболки',
-        path: '',
+        title: 'Футболки 4д',
         items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -131,17 +189,6 @@ export const menuData: TypeMenuData = [
       },
       {
         title: 'Футболки',
-        path: '',
-        items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-        ],
-      },
-      {
-        title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -152,11 +199,10 @@ export const menuData: TypeMenuData = [
     ],
   },
   {
-    menu: { title: 'Чехлы', route: '/catalog/cases' },
-    menuList: [
+    menuLabel: 'Для дома',
+    menuItems: [
       {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -165,63 +211,17 @@ export const menuData: TypeMenuData = [
         ],
       },
       {
-        title: 'Футболки',
-        path: '',
+        title: 'Футболки 4д',
         items: [
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
         ],
       },
       {
         title: 'Футболки',
-        path: '',
-        items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-        ],
-      },
-    ],
-  },
-  {
-    menu: { title: 'Для дома', route: '/catalog/home' },
-    menuList: [
-      {
-        title: 'Футболки',
-        path: '',
-        items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-        ],
-      },
-      {
-        title: 'Футболки',
-        path: '',
-        items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-        ],
-      },
-      {
-        title: 'Футболки',
-        path: '',
-        items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-        ],
-      },
-      {
-        title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -232,11 +232,10 @@ export const menuData: TypeMenuData = [
     ],
   },
   {
-    menu: { title: 'Подарки', route: '/catalog/prikolnye_podarki' },
-    menuList: [
+    menuLabel: 'Подарки',
+    menuItems: [
       {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -245,10 +244,9 @@ export const menuData: TypeMenuData = [
         ],
       },
       {
-        title: 'Футболки',
-        path: '',
+        title: 'Футболки 4д',
         items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -256,17 +254,6 @@ export const menuData: TypeMenuData = [
       },
       {
         title: 'Футболки',
-        path: '',
-        items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-        ],
-      },
-      {
-        title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -277,11 +264,10 @@ export const menuData: TypeMenuData = [
     ],
   },
   {
-    menu: { title: 'Спорт', route: '/catalog/sport' },
-    menuList: [
+    menuLabel: 'Спорт',
+    menuItems: [
       {
         title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -290,10 +276,9 @@ export const menuData: TypeMenuData = [
         ],
       },
       {
-        title: 'Футболки',
-        path: '',
+        title: 'Футболки 4д',
         items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
+          { title: 'Футблолка 4д четкая', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
@@ -301,17 +286,6 @@ export const menuData: TypeMenuData = [
       },
       {
         title: 'Футболки',
-        path: '',
-        items: [
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-          { title: 'Футблолка 3Д', path: '/catalog/mans' },
-        ],
-      },
-      {
-        title: 'Футболки',
-        path: '',
         items: [
           { title: 'Футблолка 3Д', path: '/catalog/mans' },
           { title: 'Футблолка 3Д', path: '/catalog/mans' },

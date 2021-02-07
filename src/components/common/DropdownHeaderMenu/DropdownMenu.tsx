@@ -1,53 +1,49 @@
 import React from 'react';
-import { Menu } from 'antd';
+import { Col, Dropdown, Menu, Row } from 'antd';
 import { nanoid } from 'nanoid';
 import { LayoutMenuWrapper, MenuWrapper } from './styles';
-
-
-
-export type TypeMenuData = Array<{
-    menu: {
-        title: string;
-        route: string;
-    };
-    menuList: Array<{
-        title: string;
-        path: string;
-        items: Array<{ title: string; path: string }>;
-    }>;
-}>;
-
-export type MenuList = Array<{
-    title: string;
-    path: string;
-    items: Array<{ title: string; path: string }>;
-}>;
+import styles from './DropdownHeaderMenu.module.scss';
 
 export type MenuItems = Array<{ title: string; path: string }>;
 
+interface IProps {
+    menuData: HeaderMenu;
+}
 
-const { SubMenu } = Menu;
+export type HeaderMenu = Array<{ menuLabel: string; menuItems: Array<{ title: string; items: MenuItems }> }>;
 
-const getItem = (items: MenuItems) => items.map(({ title }, index) => (
-    <Menu.Item key={nanoid()}>{title}</Menu.Item>
-));
+const getMenu = (menuList: Array<{ title: string; items: MenuItems }>) => (
+    <>
+        <Row className={styles.row} key={nanoid()}>
+            {menuList.map(({ title, items }) => (
+                <Col span={6}>
+                    <Menu className={styles.menu} selectable={false}>
+                        <Menu.ItemGroup title={title}>
+                            {items.map(({ title, path }) => (
+                                <Menu.Item key={nanoid()}>{title}</Menu.Item>
+                            ))}
+                        </Menu.ItemGroup>
+                    </Menu>
+                </Col>
+            ))}
+        </Row>
+    </>
+);
 
-const getMenuItem = (menuList: MenuList) => menuList.map(({ title, items }) => (
-    <SubMenu key={nanoid()} title={title}>
-        {getItem(items)}
-    </SubMenu>
-));
-
-const DropdownHeaderMenu = ({ menuData }) => (
+const DropdownHeaderMenu = ({ menuData }: IProps) => (
     <LayoutMenuWrapper>
         <MenuWrapper>
-            <Menu mode="horizontal">
-                {menuData.map(({ menu, menuList }, index) => (
-                    <SubMenu title={menu.title} key={nanoid()}>
-                        {getMenuItem(menuList)}
-                    </SubMenu>
-                ))}
-            </Menu>
+            {menuData.map(({ menuLabel, menuItems }) => (
+                <Dropdown
+                    overlay={getMenu(menuItems)}
+                    key={nanoid()}
+                    trigger={['click']}
+                    className={styles.dropdown}
+                    overlayClassName={styles.wrapper}
+                >
+                    <div>{menuLabel}</div>
+                </Dropdown>
+            ))}
         </MenuWrapper>
     </LayoutMenuWrapper>
 );

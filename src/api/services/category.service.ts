@@ -1,9 +1,7 @@
-import { Controller } from 'src/api/http/Controller';
 import { Category } from 'src/types/type/category.type';
-import { BaseService } from './base.service';
+import { BaseService } from './base/base.service';
 
 class CategoryService extends BaseService {
-  /* private controller = new Controller('catalog'); */
   constructor() {
     super();
     this.prefix = 'category';

@@ -1,6 +1,6 @@
-import ApiClient from '../ApiClient';
-import { _createApiParams } from '../http/helpers/_getRequestConfig';
-import { IGet, IPost, IPut, IDelete } from '../http/types/Controller.types';
+import ApiClient from '../../ApiClient';
+import { _createApiParams } from '../../http/helpers/_getRequestConfig';
+import { IGet, IPost, IPut, IDelete } from '../../http/types/Controller.types';
 
 export abstract class BaseService {
   protected prefix: string;
@@ -26,4 +26,5 @@ export abstract class BaseService {
     const { data } = await ApiClient.delete(urlToUse, body);
     return data;
   }
+  async delete() {}
 }

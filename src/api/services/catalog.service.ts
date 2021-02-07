@@ -1,10 +1,8 @@
-import { Controller } from 'src/api/http/Controller';
 import { Category } from 'src/types/type/category.type';
 import { Product } from 'src/types/type/products.type';
-import { BaseService } from './base.service';
+import { BaseService } from './base/base.service';
 
 class CatalogService extends BaseService {
-  /* private controller = new Controller('catalog'); */
   constructor() {
     super();
     this.prefix = 'catalog';
@@ -13,7 +11,13 @@ class CatalogService extends BaseService {
     return this.GET('all');
   }
 
-  catalogFilter(params): Promise<{ products: Product[]; total: number }> {
+  catalogFilter(
+    params
+  ): Promise<{
+    products: Product[];
+    total: number;
+    searchParams: { sortBy: string; filterText: string; pageSize: number; currentPage: number; direction: string };
+  }> {
     return this.GET('filter', { query: { ...params } });
   }
 }

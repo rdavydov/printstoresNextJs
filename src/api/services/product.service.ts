@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import { Product } from 'src/types/type/products.type';
-import { Controller } from 'src/api/http/Controller';
-import { BaseService } from './base.service';
+import { BaseService } from './base/base.service';
 
 class ProductService extends BaseService {
   constructor() {

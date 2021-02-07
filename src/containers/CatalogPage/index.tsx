@@ -5,26 +5,23 @@ import React, { useState } from 'react';
 import Layout from 'src/templates/Layout/Layout';
 import CatalogPageList from './List/List';
 import SortPanel from './SortPanel/SortPanel';
-import { Router, useRouter } from 'next/router';
-import { getInitialQuery } from 'src/utils/validateQuery';
+import { useRouter } from 'next/router';
+
 
 const menu = [
     { label: 'По названию', value: 'name' },
     { label: 'По цене', value: 'price' },
     { label: 'По популярности', value: 'popular' },
 ];
-const defaultParams = { pageSize: 8, direction: 'ASC', currentPage: 1, filterText: '', sortBy: '' };
 
 const queryParams = (params) => new URLSearchParams(params).toString();
 
-const CatalogPage = ({ crumbs, total, products, query }) => {
+const CatalogPage = ({ crumbs, total, products, searchParams }) => {
     const { pathname, replace } = useRouter();
-    const searchParams = React.useMemo(() => {
-        return getInitialQuery<typeof defaultParams>(query, defaultParams);
-    }, [query]);
 
     const loadProducts = async (params) => {
-        replace({ pathname, query: queryParams(params) }, `${pathname}?${queryParams(query.currentPage)}`);
+        const { currentPage } = params;
+        replace({ pathname, query: queryParams(params) }, `${pathname}?${queryParams({ currentPage })}`);
     };
 
     const loadProductsWithDebounce = debounce(loadProducts, 500);
@@ -36,21 +33,21 @@ const CatalogPage = ({ crumbs, total, products, query }) => {
 
     const onSearch = (params) => {
         const nextSearch = { ...searchParams, ...params, currentPage: 1 };
-        if (params.filterText.length > 3) {
-            loadProductsWithDebounce(nextSearch);
-        }
+
+        loadProductsWithDebounce(nextSearch);
+
     };
 
-    const onPageChange = (currentPage: number, pageSize: number) => {
-        const nextSearch = { ...searchParams, currentPage, pageSize };
+    const onPageChange = (currentPage: number) => {
+        const nextSearch = { ...searchParams, currentPage };
         loadProducts(nextSearch);
     };
 
     const pagination: PaginationConfig = {
         onChange: onPageChange,
         total,
-        current: +searchParams.currentPage,
         pageSize: searchParams.pageSize,
+        current: +searchParams.currentPage,
         hideOnSinglePage: true,
     };
 
