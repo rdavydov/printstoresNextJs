@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from 'templates/Layout/Layout';
-import { productService } from 'api';
-import { ProductsList } from 'components/common';
-import { routesConfig } from 'config/routes/routes';
+import Layout from 'src/templates/Layout/Layout';
+import { productService } from 'src/api';
+import { ProductsList } from 'src/components/common';
+import { routesConfig } from 'src/config/routes/routes';
 import { useRouter } from 'next/router';
-import CatalogPage from 'containers/CatalogPage';
+import CatalogPage from 'src/containers/CatalogPage';
 
 const CatalogViewTypePage = ({ products, crumbs }) => {
   return (

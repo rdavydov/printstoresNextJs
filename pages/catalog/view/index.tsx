@@ -1,6 +1,6 @@
 import React from 'react';
-import { productService } from 'api';
-import CatalogPage from 'containers/CatalogPage';
+import { productService } from 'src/api';
+import CatalogPage from 'src/containers/CatalogPage';
 
 const CatalogViewPage = ({ products }) => {
   return (

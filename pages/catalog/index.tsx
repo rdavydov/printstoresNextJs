@@ -1,27 +1,16 @@
-import React from 'react';
-import { catalogService, crumbsService, productService } from 'api';
-import CatalogPage from 'containers/CatalogPage';
-import { useMemo } from 'react';
+import React, { useEffect } from 'react';
+import { catalogService, crumbsService } from 'src/api';
+import CatalogPage from 'src/containers/CatalogPage';
 
-const defaultParams = { pageSize: 8, direction: 'ASC', currentPage: 1, filterText: '', sortBy: '' };
-
-const CatalogIndexPage = ({ crumbs, products, total, query }) => {
-
-  const searchParams = useMemo(() => {
-    const searchQuery = Object.keys(query || {});
-    if (!searchQuery.length) return defaultParams;
-    return searchQuery.every((key) => Object.keys(defaultParams).includes(key)) ? query : defaultParams;
-  }, []);
-
+const CatalogIndexPage = (props) => {
   return (
-    <CatalogPage crumbs={crumbs} products={products} total={total} query={searchParams} />
-  )
+    <CatalogPage {...props} />
+  );
 };
 
 export async function getServerSideProps({ query }) {
-  const { products, total } = await catalogService.catalogFilter(Object.keys(query).length ? query : defaultParams);
+  const { products, total } = await catalogService.catalogFilter(query);
   const crumbs = await crumbsService.getCatalogCrumbs();
-
   return {
     props: { crumbs, products, total, query },
   };

@@ -1,9 +1,9 @@
-import { productService } from 'api/services/product.service';
-import ProductItemPreview from 'containers/ProductsPreviewSection/ProductsPreview';
-import Promo from 'containers/ProductsPreviewSection/Promo/Promo';
+import { productService } from 'src/api/services/product.service';
+import ProductItemPreview from 'src/containers/ProductsPreviewSection/ProductsPreview';
+import Promo from 'src/containers/ProductsPreviewSection/Promo/Promo';
 import React from 'react';
-import Layout from 'templates/Layout/Layout';
-import { crumbsService } from 'api';
+import Layout from 'src/templates/Layout/Layout';
+import { crumbsService } from 'src/api';
 
 const OneProductPage = ({ products, crumbs }) => (
   <Layout>
