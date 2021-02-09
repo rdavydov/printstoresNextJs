@@ -1,18 +1,16 @@
-import { BaseService } from './base/base.service';
+import { Request } from '../http/Request';
 
 interface Response {
   path: string;
 }
 
-class UploadFileService extends BaseService {
-  constructor() {
-    super();
-    this.prefix = 'storage';
-  }
+class UploadFileService {
+  private request = new Request('storage');
+
   async uploadFile(file: Blob | File | string | any): Promise<Response> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.POST('upload', formData);
+    return this.request.POST('upload', formData);
   }
 }
 

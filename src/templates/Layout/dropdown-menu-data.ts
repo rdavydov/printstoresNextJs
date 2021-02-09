@@ -296,3 +296,223 @@ export const menuData: HeaderMenu = [
     ],
   },
 ];
+
+type HeaderMenuDropdown = {
+  [key: string]: {
+    path: string;
+    submenu: Array<{ label: string; path: string; items: Array<{ label: string; path: string }> }>;
+  };
+};
+
+export const headerMenuDropdown: HeaderMenuDropdown = {
+  Мужчинам: {
+    path: '',
+    submenu: [
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+    ],
+  },
+  Женщинам: {
+    path: '',
+    submenu: [
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+    ],
+  },
+  Детям: {
+    path: '',
+    submenu: [
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+    ],
+  },
+  Чехлы: {
+    path: '',
+    submenu: [
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+    ],
+  },
+  Подарки: {
+    path: '',
+    submenu: [
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+    ],
+  },
+  Спорт: {
+    path: '',
+    submenu: [
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+      {
+        label: 'Футболки',
+        path: '',
+        items: [
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+          { label: 'Футблолка 3Д', path: '/catalog/mans' },
+        ],
+      },
+    ],
+  },
+};

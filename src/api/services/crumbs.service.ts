@@ -1,24 +1,20 @@
-import { BaseService } from './base/base.service';
+import { Request } from '../http/Request';
 
-class CrumbsService extends BaseService {
-  constructor() {
-    super();
-    this.prefix = 'crumbs';
-  }
-
+class CrumbsService {
+  private request = new Request('crumbs');
   getCatalogCrumbs(): Promise<{ path: string; title: string }> {
-    return this.GET('');
+    return this.request.GET('');
   }
 
   getCategoryCrumbsByKey(key: string): Promise<{ path: string; title: string }> {
-    return this.GET('', { query: { key } });
+    return this.request.GET('', { query: { key } });
   }
   getProductCrumbsByKeyAndPrefix(prefix: string, id: string): Promise<{ path: string; title: string }> {
-    return this.GET('', { query: { prefix, id } });
+    return this.request.GET('', { query: { prefix, id } });
   }
 
   getProductCrumbsByPrefix(prefix: string): Promise<{ path: string; title: string }> {
-    return this.GET('', { query: { prefix } });
+    return this.request.GET('', { query: { prefix } });
   }
 }
 

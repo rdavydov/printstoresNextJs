@@ -1,17 +1,15 @@
 import { Category } from 'src/types/type/category.type';
-import { BaseService } from './base/base.service';
+import { Request } from '../http/Request';
 
-class CategoryService extends BaseService {
-  constructor() {
-    super();
-    this.prefix = 'category';
-  }
+class CategoryService {
+  private request = new Request('category');
+
   getCategoryByKey(key: string): Promise<Category> {
-    return this.GET(':key', { params: { key } });
+    return this.request.GET(':key', { params: { key } });
   }
 
   getAllCategory(): Promise<Category> {
-    return this.GET('all');
+    return this.request.GET('all');
   }
 }
 

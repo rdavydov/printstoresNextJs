@@ -19,7 +19,7 @@ const queryParams = (params) => new URLSearchParams(params).toString();
 const CatalogPage = ({ crumbs, total, products, searchParams }) => {
     const { pathname, replace } = useRouter();
 
-    const loadProducts = async (params) => {
+    const loadProducts = (params) => {
         const { currentPage } = params;
         replace({ pathname, query: queryParams(params) }, `${pathname}?${queryParams({ currentPage })}`);
     };
@@ -33,7 +33,6 @@ const CatalogPage = ({ crumbs, total, products, searchParams }) => {
 
     const onSearch = (params) => {
         const nextSearch = { ...searchParams, ...params, currentPage: 1 };
-
         loadProductsWithDebounce(nextSearch);
 
     };

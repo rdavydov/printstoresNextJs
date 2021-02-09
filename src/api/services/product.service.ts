@@ -1,26 +1,22 @@
-import 'reflect-metadata';
 import { Product } from 'src/types/type/products.type';
-import { BaseService } from './base/base.service';
+import { Request } from '../http/Request';
 
-class ProductService extends BaseService {
-  constructor() {
-    super();
-    this.prefix = 'products';
-  }
+class ProductService {
+  private request = new Request('product');
+
   getProductByPrefix(prefix: string): Promise<{ products: Product[] }> {
-    return this.GET('prefix', { query: { prefix } });
+    return this.request.GET('prefix', { query: { prefix } });
   }
   getProductById(prefix: string, id: string): Promise<{ products: Product[] }> {
-    return this.GET(':prefix/:id', { params: { prefix, id } });
+    return this.request.GET(':prefix/:id', { params: { prefix, id } });
   }
 
   getAllProducts(page: number | string): Promise<{ products: Product[] }> {
-    console.log(page, 'page');
-    return this.GET('all', { query: { page } });
+    return this.request.GET('all', { query: { page } });
   }
 
   filterProducts(pageSize: string, currentPage: string): Promise<{ products: Product[]; total: number }> {
-    return this.GET('filter', { query: { pageSize, currentPage } });
+    return this.request.GET('filter', { query: { pageSize, currentPage } });
   }
 }
 
