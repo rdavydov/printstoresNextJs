@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  flex-basis: 30%;
+}
+
+.menuSticky {
+  position: sticky;
+  top: 30px;
+}
+
+.content {
+  flex-basis: 70%;
+}

@@ -1,32 +1,31 @@
-import React, { Fragment } from 'react';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from 'next/link';
+import React from 'react';
+import { Breadcrumb } from 'antd';
 import { BreadcrumbsWrapper, HeaderTitle } from './styled';
 
 interface IProps {
   crumbs: Array<{ title: string; path: string; titleVisible?: boolean }>;
 }
 
-const BreadcrumbsLinks = ({ crumbs }: IProps) => {
+const Breadcrumbs = ({ crumbs }: IProps) => {
   const { title = 'Каталог', titleVisible = true } = crumbs[crumbs.length - 1];
   const routes = crumbs.map(({ path, title }, index, { length }) => (length - 1 === index ? (
-    <span key={index.toString()} style={{ color: 'black' }}>
+    <Breadcrumb.Item key={index.toString()}>
       {title}
-    </span>
+    </Breadcrumb.Item>
   ) : (
-      <Link href={path} as={path} key={index.toString()}>
-        <a>{title}</a>
-      </Link>
+      <Breadcrumb.Item href={path} key={index.toString()}>
+        {title}
+      </Breadcrumb.Item>
     )));
 
   return (
     <>
       <BreadcrumbsWrapper>
-        <Breadcrumbs separator="›">{routes}</Breadcrumbs>
+        <Breadcrumb separator="›">{routes}</Breadcrumb>
       </BreadcrumbsWrapper>
       {titleVisible && <HeaderTitle>{title}</HeaderTitle>}
     </>
   );
 };
 
-export default BreadcrumbsLinks;
+export default Breadcrumbs

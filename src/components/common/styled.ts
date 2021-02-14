@@ -1,19 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MenuList = styled.ul`
-    display: "flex";
+  display: "flex";
 `;
 
 export const MenuListItemWrapper = styled.li`
-    margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 10px;
 
-    &::last-child {
-        margin-bottom: unset;
-    }
-`;
-
-export const BreadcrumbsWrapper = styled.div`
-    padding:40px 0;
+  &:last-child {
+    margin-bottom: unset;
+  }
 `;
 
 export const HeaderTitle = styled.h1``;

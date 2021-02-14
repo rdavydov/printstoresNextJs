@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import { Category } from 'src/types/type/category.type';
 import { Product } from 'src/types/type/products.type';
 import { Request } from '../http/Request';
@@ -8,13 +9,18 @@ class CatalogService {
   getAllCategory(): Promise<Category> {
     return this.request.GET('all');
   }
-
   catalogFilter(
     params
   ): Promise<{
     products: Product[];
     total: number;
-    searchParams: { sortBy: string; filterText: string; pageSize: number; currentPage: number; direction: string };
+    searchParams: {
+      sortBy: string;
+      filterText: string;
+      pageSize: number;
+      currentPage: number;
+      direction: string;
+    };
   }> {
     return this.request.GET('filter', { query: { ...params } });
   }

@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
 interface IProps {
-    background:string;
+  background: string;
 }
 
 export const SlideWrapper = styled.div<IProps>`
-    position:relative;
-    height: 280px;
-    color: #fff;
-    text-align: center;
-    background-image: url(${(props) => props.background});
-    background-size:100% 100%;
-    background-repeat:no-repeat;
-    background-position:center;
+  height: 260px;
+  max-height: 260px;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  background-image: url(${(props) => props.background});
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
-export const SlideContent = styled.div`
-`;
+export const SlideContent = styled.div``;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BreadcrumbsLinks } from 'src/components/common';
+import { Breadcrumbs } from 'src/components/common';
 import { IRoutes } from '../../../types/interfaces/routes.interface';
 import { CategoryPromoSection, HeaderTitle } from '../styled/styled';
 
@@ -9,7 +9,7 @@ interface IProps {
 
 const CategoryPromo = ({ crumbs }: IProps) => (
   <CategoryPromoSection>
-    <BreadcrumbsLinks crumbs={crumbs} />
+    <Breadcrumbs crumbs={crumbs} />
     <HeaderTitle />
   </CategoryPromoSection>
 );

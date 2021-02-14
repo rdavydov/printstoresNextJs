@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const Title: React.FC<IProps> = ({
-  level, color, fontSize, className, children,
+  level = 'h1', color, fontSize, className, children,
 }) => {
   let titleSize;
 

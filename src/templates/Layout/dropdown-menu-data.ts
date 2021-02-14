@@ -297,15 +297,18 @@ export const menuData: HeaderMenu = [
   },
 ];
 
-type HeaderMenuDropdown = {
-  [key: string]: {
-    path: string;
-    submenu: Array<{ label: string; path: string; items: Array<{ label: string; path: string }> }>;
-  };
-};
+type HeaderMenuDropdown = Array<{
+  label: string;
+  path: string;
+  submenu: Array<{ label: string; path: string; items: Array<{ label: string; path: string }> }>;
+}>;
 
-export const headerMenuDropdown: HeaderMenuDropdown = {
-  Мужчинам: {
+export type Submenu = Array<{ label: string; path: string; items: Array<{ label: string; path: string }> }>;
+export type SubmenuItems = Array<{ label: string; path: string }>;
+
+export const headerMenuDropdown: HeaderMenuDropdown = [
+  {
+    label: 'Мужчинам',
     path: '',
     submenu: [
       {
@@ -340,7 +343,8 @@ export const headerMenuDropdown: HeaderMenuDropdown = {
       },
     ],
   },
-  Женщинам: {
+  {
+    label: 'Женщинам',
     path: '',
     submenu: [
       {
@@ -375,7 +379,8 @@ export const headerMenuDropdown: HeaderMenuDropdown = {
       },
     ],
   },
-  Детям: {
+  {
+    label: 'Детям',
     path: '',
     submenu: [
       {
@@ -410,7 +415,8 @@ export const headerMenuDropdown: HeaderMenuDropdown = {
       },
     ],
   },
-  Чехлы: {
+  {
+    label: 'Чехлы',
     path: '',
     submenu: [
       {
@@ -445,7 +451,8 @@ export const headerMenuDropdown: HeaderMenuDropdown = {
       },
     ],
   },
-  Подарки: {
+  {
+    label: 'Подарки',
     path: '',
     submenu: [
       {
@@ -480,8 +487,9 @@ export const headerMenuDropdown: HeaderMenuDropdown = {
       },
     ],
   },
-  Спорт: {
+  {
     path: '',
+    label: 'Спорт',
     submenu: [
       {
         label: 'Футболки',
@@ -515,4 +523,4 @@ export const headerMenuDropdown: HeaderMenuDropdown = {
       },
     ],
   },
-};
+];

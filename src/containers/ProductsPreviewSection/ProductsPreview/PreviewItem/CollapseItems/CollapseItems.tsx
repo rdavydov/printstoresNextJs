@@ -1,20 +1,23 @@
 import React from 'react';
-import { Collapse } from 'antd';
+import { Collapse, Tabs } from 'antd';
+
+const { TabPane } = Tabs
 
 const { Panel } = Collapse;
 
 interface IProps {
-    info: Array<{ header: string; text: string }>;
+  info: Array<{ header: string; text: string }>;
 }
 
 const CollapseItems: React.FC<IProps> = ({ info }) => (
-  <Collapse>
+
+  <Tabs tabPosition='left'>
     {info.map(({ header, text }, index) => (
-      <Panel header={header} key={index.toString()}>
+      <TabPane tab={header} key={index.toString()}>
         <p>{text}</p>
-      </Panel>
+      </TabPane>
     ))}
-  </Collapse>
+  </Tabs>
 );
 
 export default CollapseItems;

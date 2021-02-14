@@ -1,6 +1,6 @@
-import { BreadcrumbsLinks } from 'src/components/common';
+import { Breadcrumbs } from 'src/components/common';
 import React from 'react';
 
-const Promo = ({ crumbs }) => <BreadcrumbsLinks crumbs={crumbs} />;
+const Promo = ({ crumbs }) => <Breadcrumbs crumbs={crumbs} />;
 
 export default Promo;

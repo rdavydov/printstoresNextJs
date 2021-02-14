@@ -1,7 +1,7 @@
 import { PaginationConfig } from 'antd/lib/pagination';
 import debounce from 'lodash/debounce';
-import { BreadcrumbsLinks } from 'src/components/common';
-import React, { useState } from 'react';
+import { Breadcrumbs } from 'src/components/common';
+import React from 'react';
 import Layout from 'src/templates/Layout/Layout';
 import CatalogPageList from './List/List';
 import SortPanel from './SortPanel/SortPanel';
@@ -62,7 +62,7 @@ const CatalogPage = ({ crumbs, total, products, searchParams }) => {
 
     return (
         <Layout>
-            <BreadcrumbsLinks crumbs={crumbs} />
+            <Breadcrumbs crumbs={crumbs} />
             <SortPanel sortBy={sortBy} total={total} searchBy={searchBy} />
             <CatalogPageList products={products} pagination={pagination} />
         </Layout>

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface ICart {
   name: string;
@@ -16,7 +16,7 @@ const initialState: ICardInitState = {
 };
 
 const cardSlice = createSlice({
-  name: 'card',
+  name: "card",
   initialState,
   reducers: {
     addProduct: (state, action) => {

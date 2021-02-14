@@ -1,0 +1,21 @@
+.listStyles li {
+  list-style: inside;
+  margin-left: 10px;
+}
+
+.requisitesBlock {
+  padding: 25px 0px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.phoneBlock {
+  margin-bottom: 40px;
+}
+
+.phoneLink {
+  color: var(--lightBlue);
+  &:hover {
+    border-bottom: 1px solid var(--lightBlue);
+  }
+}

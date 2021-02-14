@@ -1,0 +1,9 @@
+.active {
+  color: var(--lightBlue);
+  &:before {
+    position: absolute;
+    content: ">";
+    width: 100%;
+    left: -14px;
+  }
+}

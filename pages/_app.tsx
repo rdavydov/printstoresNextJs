@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import ruRU from 'antd/lib/locale-provider/ru_RU';
 import { ConfigProvider } from 'antd';
 import store from 'src/store/store';
+import "../styles/variables.css"
 import 'antd/dist/antd.css';
 import '../styles/globals.css';
 import 'slick-carousel/slick/slick.css';

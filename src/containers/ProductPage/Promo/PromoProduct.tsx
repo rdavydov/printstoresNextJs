@@ -1,9 +1,9 @@
 import React from 'react';
-import { BreadcrumbsLinks } from 'src/components/common';
+import { Breadcrumbs } from 'src/components/common';
 
 const PromoProduct = ({ crumbs }) => (
   <>
-    <BreadcrumbsLinks crumbs={crumbs} />
+    <Breadcrumbs crumbs={crumbs} />
   </>
 );
 
