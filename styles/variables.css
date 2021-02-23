@@ -1,6 +1,7 @@
 :root {
-  --text: 'black';
+  --text: "black";
   --default-text: rgb(33, 33, 33);
   --border: #f0f0f5;
   --lightBlue: #1890ff;
+  --muted: #777;
 }

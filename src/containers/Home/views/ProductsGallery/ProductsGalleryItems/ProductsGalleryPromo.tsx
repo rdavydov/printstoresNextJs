@@ -1,14 +1,14 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, A11y } from 'swiper';
-import random from 'lodash/random';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, A11y } from "swiper";
+import random from "lodash/random";
 
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-import { Box } from '@material-ui/core';
-import { Title } from 'src/components/common';
-import { IProducts } from '../../../../../types/interfaces/products.gallery.interface';
-import GalleryItem from './GalleryItem/GalleryItem';
-import { GaleryHeader, GalleryWrapper } from './styled';
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import { Box } from "@material-ui/core";
+import { Title } from "src/components/common";
+import { IProducts } from "../../../../../types/product/products.gallery.interface";
+import GalleryItem from "./GalleryItem/GalleryItem";
+import { GaleryHeader, GalleryWrapper } from "./styled";
 
 interface IProps {
   prevSlide: () => void;
@@ -44,7 +44,9 @@ const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
 }) => (
   <GalleryWrapper>
     <GaleryHeader end={end ? 1 : 0} start={start ? 1 : 0}>
-      <Title level="h1" fontSize={16}>{title}</Title>
+      <Title level="h1" fontSize={16}>
+        {title}
+      </Title>
       <Box>
         <ArrowRightAltIcon onClick={prevSlide} fontSize="large" />
         <ArrowRightAltIcon onClick={nextSlide} fontSize="large" />
@@ -65,12 +67,7 @@ const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
     >
       {productsList.map((el, index) => (
         <SwiperSlide key={index.toString()}>
-          <GalleryItem
-            name={`${el.name} ${index}`}
-            price={el.price}
-            oldPrice={el.oldPrice}
-            image={el.image}
-          />
+          <GalleryItem name={`${el.name} ${index}`} price={el.price} oldPrice={el.oldPrice} image={el.image} />
         </SwiperSlide>
       ))}
     </Swiper>

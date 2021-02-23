@@ -1,7 +1,7 @@
-import React from 'react';
-import { Breadcrumbs } from 'src/components/common';
-import { IRoutes } from '../../../types/interfaces/routes.interface';
-import { CategoryPromoSection, HeaderTitle } from '../styled/styled';
+import React from "react";
+import { Breadcrumbs } from "src/components/common";
+import { IRoutes } from "../../../types/routes/routes.interface";
+import { CategoryPromoSection, HeaderTitle } from "../styled/styled";
 
 interface IProps {
   crumbs: any;

@@ -6,113 +6,25 @@ import { Comment, Rate } from "antd";
 import { Title } from "src/components/common";
 
 import styles from "./Comments.module.scss";
+import { IReviews } from "src/api/services/reviews/reviews.service";
 
-const ReviewsPageComments = () => {
+interface IProps {
+  reviews: IReviews[];
+}
+
+const ReviewsPageComments = ({ reviews }: IProps) => {
   return (
     <div className={styles.commentBlock}>
       <Title>Отзывы о сайте PRINTSTORES.RU</Title>
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
-      <Comment
-        author="Евгений Фролов"
-        content="Класс"
-        datetime={moment().format("YYYY-MM-DD HH:mm:ss")}
-        actions={[<Rate defaultValue={5} />]}
-      />
+      {reviews.map(({ _id, created_at, clientName, message, rating }) => (
+        <Comment
+          key={_id}
+          content={message}
+          datetime={moment(created_at).format("YYYY-MM-DD HH:mm:ss")}
+          author={clientName}
+          actions={[<Rate value={rating} disabled />]}
+        />
+      ))}
     </div>
   );
 };

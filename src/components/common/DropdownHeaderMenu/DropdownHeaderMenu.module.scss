@@ -1,14 +1,35 @@
 .wrapper {
-  width: 100%;
-  min-height: 500px;
-  box-shadow: 0 5px 9px -2px gainsboro;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  position: relative;
   background-color: #fafafa;
+  border: none;
 }
 
 .menuRoot {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.menuItem {
+  width: 100%;
+  z-index: 1000;
+  position: absolute;
+  top: 50px;
+  min-height: 500px;
+  box-shadow: 0 5px 9px -2px gainsboro;
+  background-color: #fafafa;
+}
+.menuItemWrapper {
+  position: absolute;
+  width: 100%;
+}
+
+.menuLi {
+  width: 100%;
+  text-align: center;
 }
 
 .row {

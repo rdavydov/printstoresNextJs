@@ -1,30 +1,13 @@
-import React, { useState } from 'react';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {
-  CardBody,
-  CardFooter,
-  CardImage,
-  CardTitle,
-  CardWrapper,
-  CartIcon,
-  OldPrice,
-  Price,
-} from './styled';
-import { Product } from '../../../types/type/products.type';
-import { IProduct } from '../../../types/interfaces/products.gallery.interface';
+import React, { useState } from "react";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { CardBody, CardFooter, CardImage, CardTitle, CardWrapper, CartIcon, OldPrice, Price } from "./styled";
+import { IProduct } from "../../../types/product/products.gallery.interface";
 
 interface IProps {
   goLocation: () => void;
 }
 
-const CardItem: React.FC<IProduct & IProps> = ({
-  name,
-  price,
-  oldPrice,
-  image,
-  goLocation,
-  ...rest
-}) => {
+const CardItem: React.FC<IProduct & IProps> = ({ name, price, oldPrice, image, goLocation, ...rest }) => {
   const [hovered, setHovered] = useState(false);
 
   const onHovered = () => {
@@ -35,11 +18,7 @@ const CardItem: React.FC<IProduct & IProps> = ({
     setHovered(false);
   };
   return (
-    <CardWrapper
-      onMouseMove={onHovered}
-      onMouseLeave={noHovered}
-      onClick={goLocation}
-    >
+    <CardWrapper onMouseMove={onHovered} onMouseLeave={noHovered} onClick={goLocation}>
       <CardBody>
         <CardImage src={image} />
         {hovered && (

@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  padding: 10px 0;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.yoomoneyBlock {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.yoomoneyContacts {
+  font-size: 20px;
+}
+
+.orderInfo {
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.paymentBlock {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  padding: 15px;
+}
+
+.paymentInfo {
+  font-size: 16px;
+  & div {
+    margin-bottom: 15px;
+  }
+}
+
+.redirectText {
+  width: 85%;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.paymentForm {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

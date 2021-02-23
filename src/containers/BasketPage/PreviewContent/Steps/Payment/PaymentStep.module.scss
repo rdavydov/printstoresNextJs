@@ -1,0 +1,30 @@
+.antRadio {
+  width: 300px;
+  min-height: 150px;
+  padding: 15px;
+}
+
+.antRadioGroup {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.payment img:not(:last-child) {
+  margin-right: 8px;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 20px;
+}
+
+.mb {
+  margin-bottom: 25px;
+}
+
+.textInfo {
+  max-width: 60%;
+}

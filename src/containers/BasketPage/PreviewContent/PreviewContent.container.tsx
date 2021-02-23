@@ -1,74 +1,52 @@
-import React, { useState } from 'react';
-import replaceDate from 'src/utils/replaceDate';
-import CartPreview from './CartInfo/CartPreview';
-import { FormValues } from './Steps/interface/step.interfaces';
-import StepsContainer from './Steps/StepsContainer';
-import { PreviewCartWrapper } from './styled';
+import React, { useState } from "react";
+import CartPreview from "./CartInfo/CartPreview";
+import StepsContainer from "./Steps/StepsContainer";
 
-const MAX_STEP = 3;
-const START_STEP = 1;
+import { Form } from "antd";
+import { PreviewCartWrapper } from "./styled";
+import { getSendValue } from "./utils/cart.send.utils";
+import { orderService } from "src/api/services/order/order.service";
+import { sendData } from "next/dist/next-server/server/api-utils";
+import { paymentService } from "src/api/services/payment.service";
+import { useRouter } from "next/router";
 
 const PreviewContentContainer = () => {
+  const [form] = Form.useForm();
+
+  const { push } = useRouter();
+
   const [state, setState] = useState({
-    step: START_STEP,
-    delivery: {
-      method: 'Самовывоз',
-      city: 'Ростов-На-Дону',
-      address: '',
-      date: '',
-      time: '',
-    },
-    contacts: {
-      phone: '',
-      firstName: '',
-      email: '',
-      social: '',
-      message: '',
-      prefix: '7',
-    },
-    payments: {
-      method: 'Картой онлайн',
-    },
+    delivery_method: "Самовывоз",
+    delivery_city: "Ростов-На-Дону",
+    delivery_address: "",
+    delivery_date: "",
+    delivery_time: "",
+    phone: "",
+    clientName: "",
+    email: "",
+    social: "",
+    message: "",
+    prefix: "7",
+    payment_method: "online",
   });
 
-
-  const nextStep = (formValues: FormValues) => {
-    if (formValues?.delivery?.date) {
-      formValues.delivery.date = replaceDate(formValues.delivery.date);
-    }
-    setState((prev) => ({
-      ...prev,
-      ...formValues,
-      step: prev.step === MAX_STEP ? prev.step : prev.step + 1,
-    }));
+  const updateState = (val) => {
+    setState((prev) => ({ ...prev, ...val }));
   };
 
-  const prevStep = () => {
-    console.log('click')
-    console.log(state.step)
-    setState((prev) => ({
-      ...prev,
-      step: prev.step === START_STEP ? prev.step : prev.step - 1,
-    }));
-  };
-
-  const onDeliveryChange = (value: string) => {
-    setState((prev) => ({
-      ...prev,
-      delivery: { ...state.delivery, method: value },
-    }));
+  const createOrder = async () => {
+    const sendData = getSendValue(form.getFieldsValue(true));
+    const { orderID } = await orderService.createOrder(sendData);
+    push({ pathname: "/payment", query: { orderID } });
   };
 
   return (
-    <PreviewCartWrapper>
-      <StepsContainer
-        step={state.step}
-        nextStep={nextStep}
-        prevStep={prevStep}
-        onDeliveryChange={onDeliveryChange}
-      />
-      <CartPreview deliveryMethod={state.delivery.method} />
-    </PreviewCartWrapper>
+    <Form form={form}>
+      <PreviewCartWrapper>
+        <StepsContainer updateState={updateState} createOrder={createOrder} form={form} />
+        <CartPreview deliveryMethod={state.delivery_method} form={form} />
+      </PreviewCartWrapper>
+    </Form>
   );
 };
 

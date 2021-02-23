@@ -1,13 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import {
-  Form, Input, Select, Radio, DatePicker,
-} from 'antd';
-import cn from 'classnames';
-import replaceDate from 'src/utils/replaceDate';
-import { Text } from '../../styled';
-import styles from './DeliveryStep.module.scss';
-import { getValidatingConfig } from '../config/getValidatingConfig';
-import DeliveryMethod from './DeliveryRadioContent/DeliveryMethod';
+import React, { Fragment, useEffect, useState } from "react";
+import { Form, Input, Select, Radio, DatePicker } from "antd";
+import cn from "classnames";
+import replaceDate from "src/utils/replaceDate";
+import { Text } from "../../styled";
+import styles from "./DeliveryStep.module.scss";
+import { getValidatingConfig } from "../config/getValidatingConfig";
+import DeliveryMethod from "./DeliveryRadioContent/DeliveryMethod";
 import {
   DATE_TIME,
   deliveryProps,
@@ -16,7 +14,7 @@ import {
   DELIVERY_METHOD,
   DELIVERY_TIME,
   selectTime,
-} from './deliveryConfig/deliveryConfig';
+} from "./deliveryConfig/deliveryConfig";
 
 const { Option } = Select;
 
@@ -26,16 +24,8 @@ interface IProps {
   onDeliveryChange: (value: string) => void;
 }
 
-const DeliveryStep: React.FC<IProps> = ({
-  setFieldsValue,
-  getFieldValue,
-  onDeliveryChange,
-  ...rest
-}) => {
-  const [method, setMethod] = useState(
-    getFieldValue(['delivery', 'method']) ?? 'Самовывоз',
-  );
-
+const DeliveryStep: React.FC<IProps> = ({ setFieldsValue, getFieldValue, onDeliveryChange, ...rest }) => {
+  const [method, setMethod] = useState(getFieldValue(["delivery", "method"]) ?? "Самовывоз");
 
   const onDeliveryChangeValue = (e) => {
     setFieldsValue({ delivery: { method: e.target.value } });
@@ -48,50 +38,32 @@ const DeliveryStep: React.FC<IProps> = ({
     onDeliveryChange(value);
   };
 
-
   const { validate } = getValidatingConfig();
 
   return (
     <>
       <Text>{DELIVERY_METHOD}</Text>
-      <Form.Item
-        valuePropName="value"
-        initialValue="Самовывоз"
-        name={['delivery', 'method']}
-        rules={validate.method}
-      >
-        <Radio.Group
-          onChange={onDeliveryChangeValue}
-          value={method}
-          style={{ width: '100%' }}
-        >
+      <Form.Item valuePropName="value" initialValue="Самовывоз" name={["delivery_method"]} rules={validate.method}>
+        <Radio.Group onChange={onDeliveryChangeValue} value={method} style={{ width: "100%" }}>
           <DeliveryMethod
-            className={cn(
-              styles.radioContent,
-              method === deliveryProps.PICKUP.title
-              && styles.active,
-            )}
+            className={cn(styles.radioContent, method === deliveryProps.PICKUP.title && styles.active)}
             onDeliveryClicked={onDeliveryClicked}
             {...deliveryProps.PICKUP}
           />
           <DeliveryMethod
-            className={cn(
-              styles.radioContent,
-              method === deliveryProps.COURIER.title
-              && styles.active,
-            )}
+            className={cn(styles.radioContent, method === deliveryProps.COURIER.title && styles.active)}
             onDeliveryClicked={onDeliveryClicked}
             {...deliveryProps.COURIER}
           />
         </Radio.Group>
       </Form.Item>
       <Text>{DELIVERY_ADDRESS}</Text>
-      <Form.Item style={{ display: 'flex' }} className={cn(styles.input)}>
+      <Form.Item style={{ display: "flex" }} className={cn(styles.input)}>
         <Form.Item
-          name={['delivery', 'city']}
+          name={["delivery_city"]}
           style={{
-            display: 'inline-block',
-            width: 'calc(50% - 8px)',
+            display: "inline-block",
+            width: "calc(50% - 8px)",
           }}
           rules={validate.city}
         >
@@ -100,11 +72,11 @@ const DeliveryStep: React.FC<IProps> = ({
           </Select>
         </Form.Item>
         <Form.Item
-          name={['delivery', 'address']}
+          name={["delivery_address"]}
           style={{
-            display: 'inline-block',
-            width: 'calc(50% - 8px)',
-            margin: '0 8px',
+            display: "inline-block",
+            width: "calc(50% - 8px)",
+            margin: "0 8px",
           }}
           rules={validate.address}
         >
@@ -112,26 +84,23 @@ const DeliveryStep: React.FC<IProps> = ({
         </Form.Item>
       </Form.Item>
       <Text>{DATE_TIME}</Text>
-      <Form.Item style={{ display: 'flex' }} className={cn(styles.input)}>
+      <Form.Item style={{ display: "flex" }} className={cn(styles.input)}>
         <Form.Item
-          name={['delivery', 'date']}
+          name={["delivery_date"]}
           style={{
-            display: 'inline-block',
-            width: 'calc(50% - 8px)',
+            display: "inline-block",
+            width: "calc(50% - 8px)",
           }}
           rules={validate.date}
         >
-          <DatePicker
-            format={replaceDate}
-            dropdownClassName={cn(styles.picker)}
-          />
+          <DatePicker style={{ width: "100%" }} format={"dddd , L"} dropdownClassName={cn(styles.picker)} />
         </Form.Item>
         <Form.Item
-          name={['delivery', 'time']}
+          name={["delivery_time"]}
           style={{
-            display: 'inline-block',
-            width: 'calc(50% - 8px)',
-            margin: '0 8px',
+            display: "inline-block",
+            width: "calc(50% - 8px)",
+            margin: "0 8px",
           }}
           rules={validate.time}
         >

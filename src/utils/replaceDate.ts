@@ -1,24 +1,20 @@
-import moment from 'moment';
+import moment from "moment";
+
+moment.locale("ru");
 
 const day = {
-  Monday: 'Понедельник',
-  Tuesday: 'Вторник',
-  Wednesday: 'Среда',
-  Thursday: 'Четверг',
-  Friday: 'Пятница',
-  Saturday: 'Суббота',
-  Sunday: 'Воскресенье',
+  Monday: "Понедельник",
+  Tuesday: "Вторник",
+  Wednesday: "Среда",
+  Thursday: "Четверг",
+  Friday: "Пятница",
+  Saturday: "Суббота",
+  Sunday: "Воскресенье",
 };
 
 const replaceDate = (value) =>
-  `${
-    day[
-      moment(value)
-        .format('LLLL')
-        .replace(moment(value).format('LLL'), '')
-        .replace(',', '')
-        .trim()
-    ]
-  }, ${moment(value).format('L')}`;
+  `${day[moment(value).format("LLLL").replace(moment(value).format("LLL"), "").replace(",", "").trim()]}, ${moment(
+    value
+  ).format("L")}`;
 
 export default replaceDate;
