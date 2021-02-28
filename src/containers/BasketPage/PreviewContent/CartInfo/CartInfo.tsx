@@ -67,11 +67,6 @@ const CartInfo: CartType = ({ cart, deliveryMethod, form }: IProps) => {
   }, [cart]);
   const DELIVERY_PRICE = getDeliveryPrice(deliveryMethod);
 
-  useEffect(() => {
-    if (ORDER_SUM > 15000) {
-      form.validateFields(["order_summary"]);
-    }
-  }, [ORDER_SUM]);
 
   return (
     <PreviewCartItems>
@@ -92,18 +87,12 @@ const CartInfo: CartType = ({ cart, deliveryMethod, form }: IProps) => {
           </CartInfoOrder>
           <Form.Item
             name="order_summary"
-            rules={[
-              {
-                required: true,
-                message: "Сумма заказа не может превышать 15000руб.",
-                validator: validateOrderSum,
-              },
-            ]}
           >
             <CartInfoOrder>
               <Text size="xsmall">{ORDER_PRICE}</Text>
               <Text size="xsmall">{ORDER_SUM + "Руб."}</Text>
             </CartInfoOrder>
+            { ORDER_SUM > 15000 && <div>Заказ выше 15000р оплачивается только за наличные.</div>}
           </Form.Item>
         </CartFooter>
       </CartWrapper>
@@ -111,8 +100,5 @@ const CartInfo: CartType = ({ cart, deliveryMethod, form }: IProps) => {
   );
 };
 
-const validateOrderSum = (_, value) => {
-  return value <= 15000 ? Promise.resolve() : Promise.reject();
-};
 
 export default CartInfo;

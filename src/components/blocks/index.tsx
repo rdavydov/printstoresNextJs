@@ -4,7 +4,6 @@ import ProductsList from "./Products/List/List";
 import UploadFile from "./UploadFile/UploadFile";
 
 export {
-
     Footer,
     Header,
     ProductsList,

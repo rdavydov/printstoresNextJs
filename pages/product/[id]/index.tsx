@@ -7,16 +7,15 @@ import { crumbsService } from "src/api";
 
 const OneProductPage = ({ products, crumbs }) => (
   <Layout>
-    <Promo crumbs={crumbs} />
     <ProductItemPreview product={products} />
   </Layout>
 );
 
-export async function getServerSideProps({ params: { prefix, id } }) {
-  const { products } = await productService.getProductById(prefix, id);
-  const crumbs = await crumbsService.getProductCrumbsByKeyAndPrefix(prefix, id);
+export async function getServerSideProps({ params: { id } }) {
+  const { products } = await productService.getProductById(id);
+
   return {
-    props: { crumbs, products },
+    props: { products },
   };
 }
 

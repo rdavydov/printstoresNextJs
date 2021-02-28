@@ -1,12 +1,11 @@
 export type Product = {
-  name: string;
-  image: string;
+  title: string;
+  category?: { id: string; title: string };
+  related_category: Array<{ categoryID: string }>;
   price: number;
-  oldPrice: number;
+  old_price: number;
+  product_id: string;
+  preview?: string;
   description?: string;
   details?: string;
-  seo?: { meta: string; title: string; description: string };
-  prefix?: string;
-  key?: string;
-  _id?: number;
 };

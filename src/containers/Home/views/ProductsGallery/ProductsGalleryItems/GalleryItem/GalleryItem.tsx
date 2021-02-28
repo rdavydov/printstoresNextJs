@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { Product } from '../../../../../../types/type/products.type';
+import React, { useState } from "react";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {
   CartIcon,
   OldPrice,
@@ -10,13 +9,14 @@ import {
   ProductImage,
   ProductTitle,
   ProductWrapper,
-} from './styled';
+} from "./styled";
+import { Product } from "src/types/product/product.type";
 
 const GalleryItem: React.FC<Product> = ({
-  name,
+  preview,
   price,
-  oldPrice,
-  image,
+  title,
+  old_price,
   ...rest
 }) => {
   const [hovered, setHovered] = useState(false);
@@ -32,7 +32,7 @@ const GalleryItem: React.FC<Product> = ({
   return (
     <ProductWrapper onMouseMove={onHovered} onMouseLeave={noHovered}>
       <ProductBody>
-        <ProductImage src={image} />
+        <ProductImage src={preview} />
         {hovered && (
           <CartIcon>
             <ShoppingCartIcon />
@@ -40,9 +40,9 @@ const GalleryItem: React.FC<Product> = ({
         )}
       </ProductBody>
       <ProductFooter>
-        <ProductTitle>{name}</ProductTitle>
+        <ProductTitle>{title}</ProductTitle>
         <Price>{price}</Price>
-        <OldPrice>{oldPrice}</OldPrice>
+        <OldPrice>{old_price}</OldPrice>
       </ProductFooter>
     </ProductWrapper>
   );

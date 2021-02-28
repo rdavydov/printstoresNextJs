@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { useDispatch } from 'react-redux';
-import { Product } from 'src/types/type/products.type';
-import PreviewItem from './PreviewItem/PreviewItem';
+import React, { Fragment } from "react";
+import { useDispatch } from "react-redux";
+import { Product } from "src/types/product/product.type";
+import PreviewItem from "./PreviewItem/PreviewItem";
 
 interface IProps {
   product: Product[];

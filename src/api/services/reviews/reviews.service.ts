@@ -9,7 +9,7 @@ class ReviewsService {
   }
 
   getReviews(): Promise<ReviewsResponse[]> {
-    return this.request.GET("list");
+    return this.request.GET({ url: "list" });
   }
 }
 

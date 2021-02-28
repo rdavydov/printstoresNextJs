@@ -1,6 +1,7 @@
 interface IDefaultParams {
   query?: { [key: string]: any };
   params?: { [key: string]: any };
+  url?: string;
 }
 
 interface IGet extends IDefaultParams {}

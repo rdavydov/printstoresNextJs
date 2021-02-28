@@ -1,22 +1,31 @@
 import { Request } from "../../http/Request";
-import { ProductFilterResponse, ProductsResponse } from "./types/products.types";
+import {
+  ProductFilterResponse,
+  ProductsResponse,
+} from "./types/products.types";
 
 class ProductService {
   private request = new Request("product");
 
   getProductByPrefix(prefix: string): Promise<ProductsResponse> {
-    return this.request.GET("prefix", { query: { prefix } });
+    return this.request.GET({ url: "prefix", query: { prefix } });
   }
-  getProductById(prefix: string, id: string): Promise<ProductsResponse> {
-    return this.request.GET(":prefix/:id", { params: { prefix, id } });
+  getProductById(id: string): Promise<ProductsResponse> {
+    return this.request.GET({ url: ":id", params: { id } });
   }
 
   getAllProducts(page: number | string): Promise<ProductsResponse> {
-    return this.request.GET("all", { query: { page } });
+    return this.request.GET({ url: "all", query: { page } });
   }
 
-  filterProducts(pageSize: string, currentPage: string): Promise<ProductFilterResponse> {
-    return this.request.GET("filter", { query: { pageSize, currentPage } });
+  filterProducts(
+    pageSize: string,
+    currentPage: string
+  ): Promise<ProductFilterResponse> {
+    return this.request.GET({
+      url: "filter",
+      query: { pageSize, currentPage },
+    });
   }
 }
 

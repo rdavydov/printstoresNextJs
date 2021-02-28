@@ -8,8 +8,14 @@ class OrderService {
     return this.request.POST("order", order);
   }
 
-  getOrder(orderID: string | number): Promise<{ orderID: number; order_summary: number; created_at: string | number }> {
-    return this.request.GET("order", { query: { orderID } });
+  getOrder(
+    orderID: string | number
+  ): Promise<{
+    orderID: number;
+    order_summary: number;
+    created_at: string | number;
+  }> {
+    return this.request.GET({ url: "order", query: { orderID } });
   }
 }
 

@@ -1,30 +1,30 @@
-import React from 'react';
-import { List, Card, Typography } from 'antd';
-import { IProductsCard } from 'src/types/products-cards';
-import styles from './ProductsCards.module.scss';
-import { ProductCardFooter } from '../styles';
-import { PaginationConfig } from 'antd/lib/pagination';
-import Router from 'next/router';
-import { configService } from 'src/api/services/config.service';
+import React from "react";
+import { List, Card, Typography } from "antd";
+import { IProductsCard } from "src/types/products-cards";
+import styles from "./ProductsCards.module.scss";
+import { ProductCardFooter } from "../styles";
+import { PaginationConfig } from "antd/lib/pagination";
+import Router from "next/router";
+import { configService } from "src/api/services/config.service";
+import Link from "next/link";
 
 interface IProps {
   pagination: PaginationConfig;
 }
 
-const ProductsList = ({ dataSource, goLocation, pagination, }: IProductsCard & IProps) => {
+const ProductsList = ({ dataSource, pagination }: IProductsCard & IProps) => {
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    Router.events.on('routeChangeStart', () => {
+    Router.events.on("routeChangeStart", () => {
       setLoading(true);
     });
-    Router.events.on('routeChangeComplete', () => {
+    Router.events.on("routeChangeComplete", () => {
       setLoading(false);
     });
-    Router.events.on('routeChangeError', () => {
+    Router.events.on("routeChangeError", () => {
       setLoading(false);
     });
-
   }, []);
   return (
     <List
@@ -38,24 +38,40 @@ const ProductsList = ({ dataSource, goLocation, pagination, }: IProductsCard & I
       className={styles.root}
       pagination={pagination ?? false}
       renderItem={(item) => (
-        <List.Item onClick={() => goLocation(item)}>
-          <Card hoverable cover={<img src={configService.getStaticFileUrl(item.image)} height={300} alt="" />}>
-            <Typography.Title level={5} className={styles.title}>
-              {item.name}
-            </Typography.Title>
-            <ProductCardFooter>
-              <Typography.Text type="secondary" className={styles.textDiscount}>
-                {400}
-              </Typography.Text>
-              <Typography.Text type="danger" strong>
-                {item.price}
-              </Typography.Text>
-            </ProductCardFooter>
-          </Card>
+        <List.Item>
+          <Link href={`/product/${item.product_id}`}>
+            <a>
+              <Card
+                hoverable
+                cover={
+                  <img
+                    src={configService.getStaticFileUrl(item.preview)}
+                    height={300}
+                    alt=""
+                  />
+                }
+              >
+                <Typography.Title level={5} className={styles.title}>
+                  {item.title}
+                </Typography.Title>
+                <ProductCardFooter>
+                  <Typography.Text
+                    type="secondary"
+                    className={styles.textDiscount}
+                  >
+                    {400}
+                  </Typography.Text>
+                  <Typography.Text type="danger" strong>
+                    {item.price}
+                  </Typography.Text>
+                </ProductCardFooter>
+              </Card>
+            </a>
+          </Link>
         </List.Item>
       )}
     />
-  )
-}
+  );
+};
 
 export default ProductsList;

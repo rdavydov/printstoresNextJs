@@ -3,14 +3,14 @@ import {
   decrementProduct,
   deleteProduct,
   incrementProduct,
-} from '../cardReducer';
+} from "../cardReducer";
 
 interface ICartPayload {
-    name: string;
-    price: number;
-    id: number;
-    image: string;
-    quantity?: number;
+  title: string;
+  price: number;
+  id: number | string;
+  preview: string;
+  quantity?: number;
 }
 
 export const addCartProduct = (product: ICartPayload) => (dispatch) => {

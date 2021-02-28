@@ -2,13 +2,18 @@ import { generateURL } from "src/utils/generateURL";
 import { _replaceUrlWithParams } from "./_replaceUrlWithParams";
 
 interface ICreateApiParams {
-  url: string;
+  url?: string;
   apiPrefix: string;
   query?: { [key: string]: any };
   params?: { [key: string]: any };
 }
 
-export function _createApiParams({ url, params, query, apiPrefix }: ICreateApiParams) {
+export function _createApiParams({
+  url,
+  params,
+  query,
+  apiPrefix,
+}: ICreateApiParams) {
   let urlToUse = generateURL(apiPrefix, url);
 
   if (params && Object.keys(params).length > 0) {
