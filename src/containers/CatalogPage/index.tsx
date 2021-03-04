@@ -1,14 +1,11 @@
+import React, { useState } from "react";
 import { PaginationConfig } from "antd/lib/pagination";
 import debounce from "lodash/debounce";
-import { Breadcrumbs } from "src/components/common";
-import React, { useContext, useState } from "react";
-import Layout from "src/templates/Layout/Layout";
 import CatalogPageList from "./List/List";
 import SortPanel from "./SortPanel/SortPanel";
-import { Router, useRouter } from "next/router";
-import { LoaderContext } from "src/context/loaderContext/loaderContext";
+import { useRouter } from "next/router";
 
-const menu = [
+const sortMenu = [
   { label: "По названию", value: "name" },
   { label: "По цене", value: "price" },
   { label: "По популярности", value: "popular" },
@@ -18,15 +15,18 @@ const defaultParams = { page: 1, sortBy: "name", pageSize: 24, filterText: "" };
 
 const queryParams = (params) => new URLSearchParams(params).toString();
 
-const CatalogPage = ({ crumbs, total, products }) => {
-  const [searchParams, setSearchParams] = useState(defaultParams);
-  const { pathname, replace } = useRouter();
+const CatalogPage = ({ total, products }) => {
+  const { pathname, replace, query } = useRouter();
+  const [searchParams, setSearchParams] = useState({
+    ...defaultParams,
+    ...query,
+  });
 
   const loadProducts = (params) => {
     const { page } = params;
     setSearchParams(params);
     replace(
-      { pathname, query: queryParams(params) },
+      { pathname, query: { ...query, ...params } },
       `${pathname}?${queryParams({ page })}`
     );
   };
@@ -57,7 +57,7 @@ const CatalogPage = ({ crumbs, total, products }) => {
   };
 
   const sortBy = {
-    menu,
+    menu: sortMenu,
     onClick: onSortChange,
     defaultSortLabel: searchParams.sortBy,
   };
@@ -67,10 +67,15 @@ const CatalogPage = ({ crumbs, total, products }) => {
   };
 
   return (
-    <Layout>
-      <SortPanel sortBy={sortBy} total={total} searchBy={searchBy} />
+    <>
+      <SortPanel
+        sortBy={sortBy}
+        total={total}
+        searchBy={searchBy}
+        params={searchParams}
+      />
       <CatalogPageList products={products} pagination={pagination} />
-    </Layout>
+    </>
   );
 };
 

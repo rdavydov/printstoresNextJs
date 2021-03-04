@@ -1,11 +1,11 @@
 import React from "react";
-import { catalogService } from "src/api";
-import { menuService } from "src/api/services/menu/menu.service";
-import { Breadcrumbs } from "src/components/common";
-import CatalogPage from "src/containers/CatalogPage";
+import { catalogService, productService } from "src/api";
 import Layout from "src/templates/Layout/Layout";
+import CatalogPage from "src/containers/CatalogPage";
+import { Breadcrumbs } from "src/components/common";
+import { menuService } from "src/api/services/menu/menu.service";
 
-const CatalogIndexPage = ({ products, total, menu }) => {
+const CatalogViewPage = ({ products, menu, total }) => {
   return (
     <Layout menu={menu}>
       <Breadcrumbs crumbs={menu} />
@@ -19,7 +19,8 @@ export async function getServerSideProps({ query }) {
   const { products, total } = await catalogService.getAllProducts(query);
 
   return {
-    props: { products, total, menu },
+    props: { products, menu, total },
   };
 }
-export default CatalogIndexPage;
+
+export default CatalogViewPage;

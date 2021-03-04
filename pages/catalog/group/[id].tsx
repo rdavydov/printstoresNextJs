@@ -5,7 +5,7 @@ import { Breadcrumbs } from "src/components/common";
 import CatalogPage from "src/containers/CatalogPage";
 import Layout from "src/templates/Layout/Layout";
 
-const CatalogIndexPage = ({ products, total, menu }) => {
+const CatalogGroupPage = ({ products, total, menu }) => {
   return (
     <Layout menu={menu}>
       <Breadcrumbs crumbs={menu} />
@@ -22,4 +22,4 @@ export async function getServerSideProps({ query }) {
     props: { products, total, menu },
   };
 }
-export default CatalogIndexPage;
+export default CatalogGroupPage;

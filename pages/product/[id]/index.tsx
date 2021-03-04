@@ -1,21 +1,23 @@
 import { productService } from "src/api/services/products/product.service";
-import ProductItemPreview from "src/containers/ProductsPreviewSection/ProductsPreview";
-import Promo from "src/containers/ProductsPreviewSection/Promo/Promo";
 import React from "react";
 import Layout from "src/templates/Layout/Layout";
-import { crumbsService } from "src/api";
+import { menuService } from "src/api/services/menu/menu.service";
+import ProductPage from "src/containers/ProductPage";
+import { Breadcrumbs } from "src/components/common";
 
-const OneProductPage = ({ products, crumbs }) => (
-  <Layout>
-    <ProductItemPreview product={products} />
+const OneProductPage = ({ products, menu }) => (
+  <Layout menu={menu}>
+    <Breadcrumbs crumbs={menu} />
+    <ProductPage product={products} />
   </Layout>
 );
 
 export async function getServerSideProps({ params: { id } }) {
+  const { menu } = await menuService.getPageMenu("catalog");
   const { products } = await productService.getProductById(id);
 
   return {
-    props: { products },
+    props: { products, menu },
   };
 }
 

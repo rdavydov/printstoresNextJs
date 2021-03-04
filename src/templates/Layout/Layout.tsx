@@ -1,16 +1,26 @@
 import React from "react";
 import Header from "src/components/blocks/Header/Header";
-import { Container, InfoBlock, Slider, DropdownHeaderMenu } from "src/components/common";
+import {
+  Container,
+  InfoBlock,
+  Slider,
+  DropdownHeaderMenu,
+} from "src/components/common";
 
 import { slides } from "src/components/common/Slider/slides";
 import Footer from "src/components/blocks/Footer/Footer";
-import { headerMenuDropdown } from "./dropdown-menu-data";
+import { MenuType } from "src/types/menu/catalog.menu.types";
 
-const Layout: React.FC = ({ children }) => {
+interface IProps {
+  children: JSX.Element | JSX.Element[];
+  menu: MenuType;
+}
+
+const Layout: React.FC<IProps> = ({ children, menu }) => {
   return (
     <>
       <Header />
-      <DropdownHeaderMenu headerMenuDropdown={headerMenuDropdown} />
+      <DropdownHeaderMenu menu={menu} />
       <Slider slides={slides} />
       <Container>
         {children}

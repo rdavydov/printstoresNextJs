@@ -1,42 +1,23 @@
-import React from "react";
-import { Col, Menu, Row } from "antd";
-import { nanoid } from "nanoid";
-import { LayoutMenuWrapper, MenuWrapper } from "./styles";
+import React, { useMemo } from "react";
+import { Menu } from "antd";
 
-import { useMemo } from "react";
+import { LayoutMenuWrapper, MenuWrapper } from "./styles";
+import Link from "next/link";
+import SubDropdownMenu from "./DropdownMenu/SubDropdownMenu";
+
 import { useState } from "react";
 
-import { HeaderMenuDropdown, Submenu } from "src/types/menu/dropdown.menu.types";
 import styles from "./DropdownHeaderMenu.module.scss";
+import { useRouter } from "next/router";
 
 interface IProps {
-  headerMenuDropdown: HeaderMenuDropdown;
+  menu: any[];
 }
 
-const getMenu = (submenu: Submenu) => (
-  <div key={nanoid()} className={styles.menuItem}>
-    <Row className={styles.row}>
-      {submenu.map(({ label, path, items }) => (
-        <Col span={6} key={nanoid()}>
-          <Menu className={styles.menu}>
-            <Menu.ItemGroup title={label}>
-              {items.map(({ label, path }) => (
-                <Menu.Item key={nanoid()}>{label}</Menu.Item>
-              ))}
-            </Menu.ItemGroup>
-          </Menu>
-        </Col>
-      ))}
-    </Row>
-  </div>
-);
-
-const DropdownHeaderMenu = ({ headerMenuDropdown }: IProps) => {
+const DropdownHeaderMenu = ({ menu = [] }: IProps) => {
   const [activeMenu, setActiveMenu] = useState("");
-  const submenu = useMemo(
-    () => headerMenuDropdown.reduce((prev, { label, submenu }) => ({ ...prev, [label]: [getMenu(submenu)] }), {}),
-    []
-  );
+
+  const { asPath } = useRouter();
 
   const onHover = (active) => {
     setActiveMenu(active);
@@ -45,31 +26,57 @@ const DropdownHeaderMenu = ({ headerMenuDropdown }: IProps) => {
   const onSelect = (props) => {
     console.log(props);
   };
+  const parentRootItems = menu.filter(({ parentID }) => parentID === null);
+
+  function createMenu(array: any[], menuItem) {
+    const filteredArray = array.filter(
+      ({ parentID }) => parentID === menuItem._id
+    );
+
+    return {
+      ...menuItem,
+      children: filteredArray.map((item) => createMenu(array, item)),
+    };
+  }
+
+  const headerMenu = parentRootItems.map((item) => createMenu(menu, item));
+
+  const clearSelected = () => {
+    setActiveMenu("");
+  };
+
+  const selectedKey = useMemo(() => {
+    let currentPath = menu.find(({ href }) => href === asPath);
+    if (!currentPath) return null;
+
+    while (currentPath.parentID !== null) {
+      currentPath = menu.find(({ _id }) => _id === currentPath?.parentID);
+    }
+    return currentPath.href;
+  }, [asPath]);
 
   return (
     <LayoutMenuWrapper>
       <MenuWrapper onMouseLeave={() => setActiveMenu("")}>
-        <Menu className={styles.wrapper} selectedKeys={[activeMenu]} subMenuCloseDelay={0} onSelect={onSelect}>
-          <Menu.Item key="Мужчинам" onMouseMove={() => onHover("Мужчинам")} className={styles.menuLi}>
-            Мужчинам
-          </Menu.Item>
-          <Menu.Item key="Женщинам" onMouseMove={() => onHover("Женщинам")} className={styles.menuLi}>
-            Женщинам
-          </Menu.Item>
-          <Menu.Item key="Детям" onMouseMove={() => onHover("Детям")} className={styles.menuLi}>
-            Детям
-          </Menu.Item>
-          <Menu.Item key="Чехлы" onMouseMove={() => onHover("Чехлы")} className={styles.menuLi}>
-            Чехлы
-          </Menu.Item>
-          <Menu.Item key="Подарки" onMouseMove={() => onHover("Подарки")} className={styles.menuLi}>
-            Подарки
-          </Menu.Item>
-          <Menu.Item key="Спорт" onMouseMove={() => onHover("Спорт")} className={styles.menuLi}>
-            Спорт
-          </Menu.Item>
+        <Menu
+          className={styles.wrapper}
+          selectedKeys={[selectedKey]}
+          subMenuCloseDelay={0}
+          onSelect={onSelect}
+        >
+          {parentRootItems.map(({ href, title }) => (
+            <Menu.Item key={href} className={styles.menuLi}>
+              <Link href={href} scroll={false}>
+                <a onMouseMove={() => onHover(title)}>{title}</a>
+              </Link>
+            </Menu.Item>
+          ))}
         </Menu>
-        <div className={styles.menuItemWrapper}>{submenu[activeMenu]}</div>
+        <SubDropdownMenu
+          activeMenu={activeMenu}
+          menu={headerMenu}
+          clearSelected={clearSelected}
+        />
       </MenuWrapper>
     </LayoutMenuWrapper>
   );

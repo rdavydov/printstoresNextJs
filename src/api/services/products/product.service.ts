@@ -14,7 +14,7 @@ class ProductService {
     return this.request.GET({ url: ":id", params: { id } });
   }
 
-  getAllProducts(page: number | string): Promise<ProductsResponse> {
+  getAllProducts(page: number | string = 1): Promise<ProductsResponse> {
     return this.request.GET({ url: "all", query: { page } });
   }
 

@@ -1,10 +1,16 @@
-import { combineReducers, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Reducers } from 'src/constants/reducers/reducers.constants';
-import { Product } from 'src/types/type/products.type';
-import { getInitialQuery } from 'src/utils/validateQuery';
-import { fetchCatalogProducts } from './extraReducers/catalogExtraReducers';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Reducers } from "src/constants/reducers/reducers.constants";
+import { Product } from "src/types/product/product.type";
+import { getInitialQuery } from "src/utils/validateQuery";
+import { fetchCatalogProducts } from "./extraReducers/catalogExtraReducers";
 
-const defaultParams = { pageSize: 8, direction: 'ASC', currentPage: 1, filterText: '', sortBy: '' };
+const defaultParams = {
+  pageSize: 8,
+  direction: "ASC",
+  currentPage: 1,
+  filterText: "",
+  sortBy: "",
+};
 
 const initState = {
   crumbs: [],
@@ -20,10 +26,16 @@ export const catalogSlice = createSlice({
   initialState: initState,
   reducers: {
     updateSearchParams: (state, action) => {
-      const searchParams = getInitialQuery<typeof defaultParams>(action.payload, state.searchParams);
+      const searchParams = getInitialQuery<typeof defaultParams>(
+        action.payload,
+        state.searchParams
+      );
       state.searchParams = searchParams;
     },
-    updateCrumbs: (state, action: PayloadAction<[{ path: string; title: string }]>) => {
+    updateCrumbs: (
+      state,
+      action: PayloadAction<[{ path: string; title: string }]>
+    ) => {
       state.crumbs = action.payload;
     },
     updateProducts: (state, action: PayloadAction<Product[]>) => {
@@ -45,7 +57,12 @@ export const catalogSlice = createSlice({
   },
 });
 
-export const { updateCrumbs, updateSearchParams, updateProducts, updateTotal } = catalogSlice.actions;
+export const {
+  updateCrumbs,
+  updateSearchParams,
+  updateProducts,
+  updateTotal,
+} = catalogSlice.actions;
 
 const catalogReducer = catalogSlice.reducer;
 

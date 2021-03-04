@@ -18,6 +18,7 @@ import "swiper/components/scrollbar/scrollbar.scss";
 import "../styles/swiper.css";
 
 import LoaderProvider from "src/context/loaderContext/loaderContext";
+import { menuService } from "src/api/services/menu/menu.service";
 
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+
   return (
     <>
       <Head>
@@ -44,6 +46,14 @@ function MyApp({ Component, pageProps }) {
       </Provider>
     </>
   );
+}
+
+export async function getInitialProps() {
+  const { menu } = await menuService.getPageMenu("catalog");
+  console.log(menu, "menu");
+  return {
+    props: { pageProps: { menu } },
+  };
 }
 
 export default MyApp;

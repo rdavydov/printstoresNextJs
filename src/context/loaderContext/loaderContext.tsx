@@ -31,6 +31,10 @@ const LoaderProvider: React.FC = ({ children }) => {
     Router.events.on("routeChangeError", () => {
       hideLoading();
     });
+
+    return () => {
+      hideLoading();
+    };
   }, []);
 
   return (
