@@ -1,4 +1,4 @@
-import { crumbsMenu, defaultCrumbsMenu } from "./types/crumbs.types";
+import { crumbsMenu, defaultCrumbsMenu } from "src/types/crumbs/crumbs.types";
 
 export const createCrumbs = (
   currentRoute: string,

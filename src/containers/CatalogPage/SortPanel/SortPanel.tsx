@@ -1,17 +1,10 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 
 import { Input, Row, Col, Dropdown, Menu, Button } from "antd";
-
-import styles from "./SortPanel.module.scss";
 import { DownOutlined } from "@ant-design/icons";
 import { getSortParams } from "./sort.helpers";
+
+import styles from "./SortPanel.module.scss";
 
 interface IProps {
   sortBy: {
@@ -39,7 +32,6 @@ const SortPanel = ({
   params,
 }: IProps) => {
   const searchParams = useRef({ ...defaultSortParams, ...params });
-  console.log(searchParams, "params");
 
   const dropdownLabel = useMemo(() => {
     return (
@@ -61,6 +53,7 @@ const SortPanel = ({
     searchParams.current = { ...defaultSortParams };
     onClick(searchParams.current);
   };
+
   const onSearch = (e) => {
     searchParams.current = {
       ...searchParams.current,

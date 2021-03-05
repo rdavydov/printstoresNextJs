@@ -1,19 +1,23 @@
-import React, { Fragment } from 'react';
-import Layout from 'src/templates/Layout/Layout';
-import Promo from 'src/containers/BasketPage/Promo/Promo';
-import PreviewContent from 'src/containers/BasketPage/PreviewContent';
-import { Container } from 'src/components/common';
+import React, { Fragment } from "react";
+import Layout from "src/templates/Layout/Layout";
+import { Breadcrumbs } from "src/components/common";
+import { BasketPageHeader, CartForm } from "src/containers/BasketPage";
+import { menuService } from "src/api/services/menu/menu.service";
 
-const crumbs = [
-  { title: 'Главная', path: '/' },
-  { title: 'Корзина', path: '/cart', titleVisible: false },
-];
-
-const CartPage = () => (
-  <Layout>
-    <Promo crumbs={crumbs} />
-    <PreviewContent />
+const CartPage = ({ menu }) => (
+  <Layout menu={menu}>
+    <BasketPageHeader />
+    <Breadcrumbs crumbs={menu} />
+    <CartForm />
   </Layout>
 );
+
+export async function getServerSideProps() {
+  const { menu } = await menuService.getPageMenu("catalog");
+
+  return {
+    props: { menu },
+  };
+}
 
 export default CartPage;

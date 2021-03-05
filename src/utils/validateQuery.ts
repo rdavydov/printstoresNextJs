@@ -1,5 +1,7 @@
-export function getInitialQuery<QueryType>(query, defaultQuery): QueryType {
+export function validateQuery<QueryType>(query, defaultQuery): QueryType {
   const searchQuery = Object.keys(query || {});
   if (!searchQuery.length) return defaultQuery;
-  return searchQuery.every((key) => Object.keys(defaultQuery).includes(key)) ? query : defaultQuery;
+  return searchQuery.every((key) => Object.keys(defaultQuery).includes(key))
+    ? query
+    : defaultQuery;
 }

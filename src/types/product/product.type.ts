@@ -4,7 +4,7 @@ export type Product = {
   related_category: Array<{ categoryID: string }>;
   price: number;
   old_price: number;
-  product_id: string;
+  product_id: string | number;
   preview?: string;
   description?: string;
   details?: string;

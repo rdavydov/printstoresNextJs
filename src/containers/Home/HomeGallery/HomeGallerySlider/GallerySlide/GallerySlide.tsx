@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { ProductsGallery } from "src/types/product/products.gallery.interface";
+import { CartIcon, Price, OldPrice } from "src/components/common/Card/styled";
 import {
-  CartIcon,
-  OldPrice,
-  Price,
-  ProductBody,
-  ProductFooter,
-  ProductImage,
-  ProductTitle,
   ProductWrapper,
+  ProductBody,
+  ProductImage,
+  ProductFooter,
+  ProductTitle,
 } from "./styled";
-import { Product } from "src/types/product/product.type";
 
-const GalleryItem: React.FC<Product> = ({
+const GallerySlide: React.FC<ProductsGallery> = ({
   preview,
   price,
   title,
@@ -48,4 +46,4 @@ const GalleryItem: React.FC<Product> = ({
   );
 };
 
-export default GalleryItem;
+export default GallerySlide;
