@@ -4,11 +4,10 @@ import SwiperCore, { Autoplay, A11y } from "swiper";
 import random from "lodash/random";
 
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
-import { Box } from "@material-ui/core";
 import { Title } from "src/components/common";
-import { IProducts } from "../../../../../types/product/products.gallery.interface";
-import GalleryItem from "./GalleryItem/GalleryItem";
-import { GaleryHeader, GalleryWrapper } from "./styled";
+import { IProducts } from "src/types/product/products.gallery.interface";
+import GallerySlide from "./GallerySlide/GallerySlide";
+import { GalleryWrapper, GaleryHeader } from "./styled";
 
 interface IProps {
   prevSlide: () => void;
@@ -29,7 +28,7 @@ const breakpointsConfig = {
   1200: { slidesPerView: 4, spaceBetween: 30 },
 };
 
-const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
+const HomeGallerySlider: React.FC<IProducts & IProps> = ({
   title,
   productsList,
   initSwipe,
@@ -47,10 +46,10 @@ const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
       <Title level="h1" fontSize={16}>
         {title}
       </Title>
-      <Box>
+      <div>
         <ArrowRightAltIcon onClick={prevSlide} fontSize="large" />
         <ArrowRightAltIcon onClick={nextSlide} fontSize="large" />
-      </Box>
+      </div>
     </GaleryHeader>
     <Swiper
       slidesPerView={4}
@@ -65,13 +64,19 @@ const ProductsGalleryPromo: React.FC<IProducts & IProps> = ({
       onReachBeginning={changeStart}
       onReachEnd={changeEnd}
     >
-      {productsList.map((el, index) => (
-        <SwiperSlide key={index.toString()}>
-          <GalleryItem name={`${el.name} ${index}`} price={el.price} oldPrice={el.oldPrice} image={el.image} />
+      {productsList.map(({ title, old_price, price, product_id, preview }) => (
+        <SwiperSlide key={product_id}>
+          <GallerySlide
+            title={title}
+            price={price}
+            old_price={old_price}
+            preview={preview}
+            product_id={product_id}
+          />
         </SwiperSlide>
       ))}
     </Swiper>
   </GalleryWrapper>
 );
 
-export default ProductsGalleryPromo;
+export default HomeGallerySlider;

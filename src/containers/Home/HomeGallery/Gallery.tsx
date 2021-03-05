@@ -1,9 +1,8 @@
-import React, { useState, useRef, useCallback } from "react";
-import { IProductsGaleryProps } from "../../../../types/product/products.gallery.interface";
-import { productsList } from "../productsData";
-import ProductsGalleryPromo from "./ProductsGalleryItems/ProductsGalleryPromo";
+import React, { useCallback, useState } from "react";
+import { galleryData } from "../../../constants/gallery/galleryData";
+import HomeGallerySlider from "./HomeGallerySlider/HomeGallerySlider";
 
-const ProductsGalleryContainer: React.FC<IProductsGaleryProps> = ({ title }) => {
+const Gallery = ({ title }) => {
   const [swiper, setSwiper] = useState(null);
   const [start, setStart] = useState(true);
   const [end, setEnd] = useState(false);
@@ -37,11 +36,11 @@ const ProductsGalleryContainer: React.FC<IProductsGaleryProps> = ({ title }) => 
   };
 
   return (
-    <ProductsGalleryPromo
+    <HomeGallerySlider
       title={title}
       end={end}
       start={start}
-      productsList={productsList}
+      productsList={galleryData}
       initSwipe={initSwipe}
       nextSlide={nextSlide}
       prevSlide={prevSlide}
@@ -52,4 +51,4 @@ const ProductsGalleryContainer: React.FC<IProductsGaleryProps> = ({ title }) => 
   );
 };
 
-export default ProductsGalleryContainer;
+export default Gallery;

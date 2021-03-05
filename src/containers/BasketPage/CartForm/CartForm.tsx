@@ -6,11 +6,9 @@ import { Form } from "antd";
 import { PreviewCartWrapper } from "./styled";
 import { getSendValue } from "./utils/cart.send.utils";
 import { orderService } from "src/api/services/order/order.service";
-import { sendData } from "next/dist/next-server/server/api-utils";
-import { paymentService } from "src/api/services/payment.service";
 import { useRouter } from "next/router";
 
-const PreviewContentContainer = () => {
+const CartForm = () => {
   const [form] = Form.useForm();
 
   const { push } = useRouter();
@@ -43,11 +41,15 @@ const PreviewContentContainer = () => {
   return (
     <Form form={form}>
       <PreviewCartWrapper>
-        <StepsContainer updateState={updateState} createOrder={createOrder} form={form} />
+        <StepsContainer
+          updateState={updateState}
+          createOrder={createOrder}
+          form={form}
+        />
         <CartPreview deliveryMethod={state.delivery_method} form={form} />
       </PreviewCartWrapper>
     </Form>
   );
 };
 
-export default PreviewContentContainer;
+export default CartForm;

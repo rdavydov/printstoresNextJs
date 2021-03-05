@@ -7,8 +7,6 @@ import { Button } from "src/components/common";
 import CollapseItems from "./CollapseItems/CollapseItems";
 import {
   Image,
-  PreviewLeftContent,
-  PreviewRightContent,
   PreviewWrapper,
   PriceContent,
   Title,

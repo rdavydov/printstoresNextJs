@@ -1,6 +1,6 @@
 import ApiClient from "../ApiClient";
-import { _createApiParams } from "./helpers/_getRequestConfig";
-import { IGet, IPost, IPut, IDelete } from "./types/Controller.types";
+import { _createApiParams } from "./helpers/_createApiParams";
+import { IGet, IPost, IPut, IDelete } from "src/types/http/http.types";
 
 export class Request {
   constructor(private apiPrefix?: string) {}

@@ -1,5 +1,5 @@
-import { Router } from "next/router";
 import React from "react";
+import { Router } from "next/router";
 import Preloader from "src/components/common/Preloader/Preloader";
 
 interface LoaderContext {

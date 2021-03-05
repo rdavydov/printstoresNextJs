@@ -1,114 +1,130 @@
-export const productsList = [
+export const galleryData = [
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 0,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 1,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 2,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 3,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 4,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 5,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 6,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 7,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 8,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 9,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 10,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 11,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 12,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 13,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 14,
   },
   {
-    name: "",
-    image:
+    title: "",
+    preview:
       "https://diabetno.ru/wp-content/uploads/2020/07/pp_image_5531_9sxx3svu0tplaceholder.png",
     price: 350,
-    oldPrice: 450,
+    old_price: 450,
+    product_id: 15,
   },
 ];

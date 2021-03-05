@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PreviewWrapper = styled.div`
   padding-top: 25px;
@@ -21,7 +21,10 @@ export const PreviewRightContent = styled.div`
   align-self: flex-start;
 `;
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 80%;
+  height: 100%;
+`;
 
 export const Title = styled.h3``;
 export const Price = styled.h4`

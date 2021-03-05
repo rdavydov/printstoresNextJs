@@ -1,12 +1,6 @@
+import { ICreateApiParams } from "src/types/api/helpers/helpers.types";
 import { generateURL } from "src/utils/generateURL";
 import { _replaceUrlWithParams } from "./_replaceUrlWithParams";
-
-interface ICreateApiParams {
-  url?: string;
-  apiPrefix: string;
-  query?: { [key: string]: any };
-  params?: { [key: string]: any };
-}
 
 export function _createApiParams({
   url,
