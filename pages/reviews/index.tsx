@@ -1,6 +1,6 @@
 import React from "react";
 import { reviewsService } from "src/api/services/reviews/reviews.service";
-import ReviewsPage from "src/containers/ReviewsPage";
+import ReviewsPage from "src/containers/reviews";
 
 const Reviews = ({ reviews }) => {
   return <ReviewsPage reviews={reviews} />;

@@ -2,7 +2,7 @@ import React from "react";
 import { catalogService } from "src/api";
 import { menuService } from "src/api/services/menu/menu.service";
 import { Breadcrumbs } from "src/components/common";
-import CatalogPage from "src/containers/CatalogPage";
+import CatalogPage from "src/containers/Catalog";
 import Layout from "src/templates/Layout/Layout";
 
 const CatalogGroupPage = ({ products, total, menu }) => {

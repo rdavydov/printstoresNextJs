@@ -41,7 +41,8 @@ const PaymentYandexPage = ({ orderID, created_at, order_summary }) => {
             </div>
             <div>
               <Paragraph paragraphClassName={styles.redirectText}>
-                Вы будете перенаправлены на сайт ЮМоней для оплаты вашего заказа.
+                Вы будете перенаправлены на сайт ЮМоней для оплаты вашего
+                заказа.
               </Paragraph>
             </div>
           </div>

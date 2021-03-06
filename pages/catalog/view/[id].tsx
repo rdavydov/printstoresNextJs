@@ -1,7 +1,7 @@
 import React from "react";
 import { catalogService, productService } from "src/api";
 import Layout from "src/templates/Layout/Layout";
-import CatalogPage from "src/containers/CatalogPage";
+import CatalogPage from "src/containers/Catalog";
 import { Breadcrumbs } from "src/components/common";
 import { menuService } from "src/api/services/menu/menu.service";
 

@@ -27,7 +27,7 @@ const GO_TO_CARD = "Перейти в корзину";
 const PreviewItem: React.FC<Product> = ({
   preview,
   title,
-  old_price = 500,
+  old_price = 0,
   price,
   description,
   details,
@@ -55,6 +55,7 @@ const PreviewItem: React.FC<Product> = ({
         title,
         price,
         quantity: 1,
+        old_price,
       })
     );
     setState({ productAdded: true });

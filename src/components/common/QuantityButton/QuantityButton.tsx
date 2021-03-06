@@ -11,7 +11,12 @@ interface IProps {
   quantity?: number;
 }
 
-const QuantityButton: React.FC<IProps> = ({ getQuantity, quantity = 1, onIncrement, onDecrement }) => {
+const QuantityButton: React.FC<IProps> = ({
+  getQuantity,
+  quantity = 1,
+  onIncrement,
+  onDecrement,
+}) => {
   const [quantityState, setQuantity] = useState(quantity);
 
   const incrementQuantity = () => {
@@ -40,7 +45,11 @@ const QuantityButton: React.FC<IProps> = ({ getQuantity, quantity = 1, onIncreme
 
   return (
     <CountWrapper>
-      <CounterButton onClick={decrementQuantity} type="button">
+      <CounterButton
+        onClick={decrementQuantity}
+        type="button"
+        disabled={quantity === 1}
+      >
         <SpanText>{DECREMENT}</SpanText>
       </CounterButton>
       <CountText>{quantityState}</CountText>

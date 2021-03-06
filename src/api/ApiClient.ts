@@ -30,7 +30,7 @@ class ApiClient {
 
         case "DELETE": {
           const response = await this.instance.delete(url, {
-            data: data,
+            data,
             ...config,
           });
           return response;

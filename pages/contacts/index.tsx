@@ -1,18 +1,7 @@
-import ContactsPage from "src/containers/ContactsPage";
-
-
-
+import ContactsPage from "src/containers/contacts";
 
 const Contacts = () => {
-
-
-    return (
-        <ContactsPage />
-    )
-
-
-}
-
-
+  return <ContactsPage />;
+};
 
 export default Contacts;
