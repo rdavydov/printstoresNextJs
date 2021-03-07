@@ -14,10 +14,11 @@ import {
 } from "./styled";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store/rootReducer";
+import Link from "next/link";
 
 const CartProductCalculator = () => {
   const { order_summary, product_discount, product_summary } = useSelector(
-    (state: RootState) => state.cart
+    (state: RootState) => state.cart.products
   );
   return (
     <CalculatorWrapper>
@@ -50,7 +51,9 @@ const CartProductCalculator = () => {
         </CalculatorProductInfo>
         <CalculatorActions>
           <Button size="large" type="primary">
-            Оформить заказ
+            <Link href="/cart/checkout">
+              <a>Оформить заказ</a>
+            </Link>
           </Button>
         </CalculatorActions>
       </CalculatorFooter>

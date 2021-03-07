@@ -9,7 +9,7 @@ import {
   deleteCartProduct,
   incrementCartProduct,
   decrementCartProduct,
-} from "src/store/reducers/cardReducer/actionCreators/cardActionCreators";
+} from "src/store/reducers/cart/products/products.reducer";
 
 interface IProps {
   preview: string;

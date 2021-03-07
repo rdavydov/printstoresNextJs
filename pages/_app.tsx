@@ -3,8 +3,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import ruRU from "antd/lib/locale-provider/ru_RU";
+import { PersistGate } from "redux-persist/integration/react";
 import { ConfigProvider } from "antd";
-import store from "src/store/store";
+import store, { persistor } from "src/store/store";
 import "../styles/preloader.scss";
 import "../styles/variables.css";
 import "antd/dist/antd.css";
@@ -37,12 +38,14 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Provider store={store}>
-        <ConfigProvider locale={ruRU}>
-          <LoaderProvider>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </LoaderProvider>
-        </ConfigProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <ConfigProvider locale={ruRU}>
+            <LoaderProvider>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </LoaderProvider>
+          </ConfigProvider>
+        </PersistGate>
       </Provider>
     </>
   );

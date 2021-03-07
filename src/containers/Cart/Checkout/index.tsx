@@ -1,7 +1,4 @@
-import React from "react";
+import CartCheckoutHeader from "./Header/Header";
+import CartCheckoutSidebar from "./Sidebar";
 
-const CartCheckout = () => {
-  return <div></div>;
-};
-
-export default CartCheckout;
+export { CartCheckoutHeader, CartCheckoutSidebar };

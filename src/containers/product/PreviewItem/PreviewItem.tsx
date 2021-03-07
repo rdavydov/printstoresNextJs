@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { notification, Row, Col, Tabs, Comment } from "antd";
 import { useDispatch } from "react-redux";
-import { addCartProduct } from "src/store/reducers/cardReducer/actionCreators/cardActionCreators";
 import { useRouter } from "next/router";
 import { Button } from "src/components/common";
 import CollapseItems from "./CollapseItems/CollapseItems";
@@ -17,6 +16,7 @@ import {
 import styles from "./PreviewItem.module.css";
 import moment from "moment";
 import { Product } from "src/types/product/product.type";
+import { addCartProduct } from "src/store/reducers/cart/products/products.reducer";
 
 const ORDER_NOW_TEXT = "Добавить в корзину";
 const DESCRIPTION_TEXT = "Описание";

@@ -21,7 +21,9 @@ export const CalculatorProductText = styled.span``;
 
 export const CalculatorProductPrice = styled.span``;
 
-export const CalculatorProductDiscount = styled.span``;
+export const CalculatorProductDiscount = styled.span`
+  color: var(--discount);
+`;
 
 export const CalculatorWrapper = styled.div`
   min-height: 250px;

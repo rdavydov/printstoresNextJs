@@ -8,13 +8,13 @@ interface IProps {
     quantity: number;
     title: string;
     preview: string;
-    id: string;
+    id: string | number;
     price: number;
+    old_price: number | null;
   }>;
 }
 
 const CartProductList: React.FC<IProps> = ({ product }) => {
-  console.log(product, " product");
   return (
     <ProductListWrapper>
       {product.map(({ id, ...rest }) => (

@@ -8,8 +8,16 @@ interface IProps {
   paragraphClassName?: string;
 }
 
-const Paragraph: React.FC<IProps> = ({ children, paragraphClassName }) => {
-  return <p className={cn(styles.root, paragraphClassName)}>{children}</p>;
+const Paragraph: React.FC<IProps & React.HTMLProps<any>> = ({
+  children,
+  paragraphClassName,
+  ...rest
+}) => {
+  return (
+    <p className={cn(styles.root, paragraphClassName)} {...rest}>
+      {children}
+    </p>
+  );
 };
 
 export default Paragraph;

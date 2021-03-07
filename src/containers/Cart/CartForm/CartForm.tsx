@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CartPreview from "./CartInfo/CartPreview";
 import StepsContainer from "./Steps/StepsContainer";
 
 import { Form } from "antd";
@@ -46,7 +45,6 @@ const CartForm = () => {
           createOrder={createOrder}
           form={form}
         />
-        <CartPreview deliveryMethod={state.delivery_method} form={form} />
       </PreviewCartWrapper>
     </Form>
   );
