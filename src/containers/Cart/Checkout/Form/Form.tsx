@@ -1,28 +1,80 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useRouter } from "next/router";
 
+// components
 import { Form, Input, Select, Row, Col, Radio } from "antd";
-import { Title } from "src/components/common";
+import CartCheckoutFormPaymentFields from "./Payment/Payment";
+import CartCheckoutFormContactsFields from "./Contacts/Contacts";
+import CartCheckoutFormDeliveryFields from "./Delivery/Delivery";
+import CartCheckoutFormLocationFields from "./Location/Location";
+import { LoaderContext } from "src/context/loaderContext/loaderContext";
+
+// constants
+import { CartCheckoutDeliveryMethods, CartCheckoutPaymentsMethods } from "../constants/checkout.form.constans";
+import { showSuccessNoticy } from "../constants/modal.form";
+
+//api
+import { orderService } from "src/api/services/order/order.service";
+
+// types
+import { CartCheckoutFormValue } from "src/types/containers/Cart/Checkout/Form";
+
+// redux
 import { useDispatch, useSelector } from "react-redux";
-import { updateCheckoutFields } from "src/store/reducers/cart/checkout/checkout.reducer";
+import { resetCheckoutFields, updateCheckoutFields } from "src/store/reducers/cart/checkout/checkout.reducer";
 import { RootState } from "src/store/rootReducer";
-import { CartCheckoutDeliveryMethods } from "../constants/checkout.form.constans";
-import CartCheckoutFormPayment from "./Payment/Payment";
+import { resetCartProducts } from "src/store/reducers/cart/products/products.reducer";
 
 const CartCheckoutForm = () => {
+  const { push } = useRouter();
   const [form] = Form.useForm();
 
   const { checkout } = useSelector((state: RootState) => state.cart);
-  const { order_summary } = useSelector((state: RootState) => state.cart.products);
+  const { order_summary, product_summary, products } = useSelector((state: RootState) => state.cart.products);
 
-  console.log(checkout, "checkout");
+  const { showLoading, hideLoading } = useContext(LoaderContext);
+
   const dispatch = useDispatch();
 
-  const onFinish = (val) => {
-    console.log(val);
+  const resetFields = () => {
+    form.resetFields();
+    dispatch(resetCheckoutFields());
+    dispatch(resetCartProducts());
+  };
+
+  const goToHomePage = async () => {
+    const passed = await push("/");
+    passed && resetFields();
+  };
+
+  const onFinish = async (val: CartCheckoutFormValue) => {
+    showLoading();
+    const delivery_summary = CartCheckoutDeliveryMethods[val.delivery.method].value;
+
+    const orderData = {
+      delivery_summary,
+      order_summary,
+      products_summary: product_summary,
+      order_products: products,
+      ...val,
+    };
+
+    try {
+      const { orderID } = await orderService.createOrder(orderData);
+      hideLoading();
+
+      if (val.payment_method === CartCheckoutPaymentsMethods.NON_CASH.key) {
+        const passed = await push({ pathname: `/payment`, query: { orderID } });
+        passed && resetFields();
+      } else {
+        showSuccessNoticy(orderID, goToHomePage, goToHomePage);
+      }
+    } catch (e) {
+      hideLoading();
+    }
   };
 
   const onValuesChange = (_, val) => {
-    console.log(val, "val");
     dispatch(updateCheckoutFields(val));
   };
 
@@ -39,91 +91,10 @@ const CartCheckoutForm = () => {
         onValuesChange={onValuesChange}
         initialValues={checkout}
       >
-        <Row>
-          <Col span={8}>
-            <Form.Item name="country" label="Страна" required>
-              <Select defaultValue="Россия">
-                <Select.Option value="Россия">Россия</Select.Option>
-              </Select>
-            </Form.Item>
-          </Col>
-          <Col span={8} offset={1}>
-            <Form.Item name="city" label="Город" required>
-              <Select defaultValue="Ростов-На-Дону">
-                <Select.Option value="Ростов-На-Дону">Ростов-На-Дону</Select.Option>
-              </Select>
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={8}>
-            <Title level="h4">
-              <b>Способы доставки</b>
-            </Title>
-            <Form.Item name={["delivery", "method"]}>
-              <Radio.Group defaultValue="COURIER" optionType="button" size="large" buttonStyle="solid">
-                <Radio.Button value="COURIER">Курьер</Radio.Button>
-                <Radio.Button value="PICKUP">Самовывоз</Radio.Button>
-              </Radio.Group>
-            </Form.Item>
-          </Col>
-        </Row>
-        {showDeliveryAddressField && (
-          <Row>
-            <Col span={8}>
-              <Form.Item name={["delivery", "address"]} label="Ваш адрес">
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-        )}
-        <Row>
-          <Col span={24}>
-            <Title level="h4">
-              <b>Способы оплаты</b>
-            </Title>
-            <CartCheckoutFormPayment showNonCashPayment={showNonCashPayment} />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={24}>
-            <Title level="h4">
-              <b>Данные получателя</b>
-            </Title>
-          </Col>
-          <Col span={8}>
-            <Form.Item name={["client", "phone"]} label="Телефон" required>
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={8} offset={1}>
-            <Form.Item name={["client", "email"]} label="Электронная почта" required>
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={8}>
-            <Form.Item name={["client", "firstName"]} label="Имя" required>
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={8} offset={1}>
-            <Form.Item name={["client", "surname"]} label="Фамилия" required>
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={8}>
-            <Form.Item name={["client", "patronymic"]} label="Отчество">
-              <Input />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={17}>
-            <Form.Item name="order_comment" label="Комментарий к заказу">
-              <Input.TextArea autoSize={{ minRows: 4 }} />
-            </Form.Item>
-          </Col>
-        </Row>
+        <CartCheckoutFormLocationFields />
+        <CartCheckoutFormDeliveryFields showDeliveryAddressField={showDeliveryAddressField} />
+        <CartCheckoutFormPaymentFields showNonCashPayment={showNonCashPayment} />
+        <CartCheckoutFormContactsFields />
       </Form>
     </div>
   );

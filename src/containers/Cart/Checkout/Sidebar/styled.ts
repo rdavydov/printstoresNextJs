@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CartCheckoutSidebarWrapper = styled.div`
   background-color: var(--gray);
-  height: calc(100vh + 100px);
   width: 100%;
 `;
 

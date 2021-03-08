@@ -5,7 +5,8 @@
 
 .cartItemWrapper {
   display: flex;
-  width: 65%;
+  width: 100%;
+  margin-bottom: 35px;
 }
 
 .cartItemActions {
@@ -21,5 +22,9 @@
 }
 
 .cartItemPrice {
+  margin-bottom: 15px;
+}
+
+.mb {
   margin-bottom: 15px;
 }

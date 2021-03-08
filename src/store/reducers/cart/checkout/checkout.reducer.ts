@@ -42,9 +42,12 @@ const cartCheckoutSlice = createSlice({
         }
       });
     },
+    resetCheckoutFields: (state) => {
+      Object.assign(state, initialState);
+    },
   },
 });
 
-export const { updateCheckoutFields } = cartCheckoutSlice.actions;
+export const { updateCheckoutFields, resetCheckoutFields } = cartCheckoutSlice.actions;
 
 export default cartCheckoutSlice;

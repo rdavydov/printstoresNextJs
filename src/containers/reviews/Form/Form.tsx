@@ -26,8 +26,6 @@ interface IProps {
 const ReviewsForm = ({ recaptchaExecute, recaptchaLoaded, ...rest }: IProps) => {
   const [loading, setLoading] = useState(false);
 
-  console.log(recaptchaLoaded);
-
   const [form] = Form.useForm();
 
   const loadingStart = () => {

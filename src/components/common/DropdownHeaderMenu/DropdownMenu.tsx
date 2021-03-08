@@ -23,15 +23,11 @@ const DropdownHeaderMenu = ({ menu = [] }: IProps) => {
     setActiveMenu(active);
   };
 
-  const onSelect = (props) => {
-    console.log(props);
-  };
+  const onSelect = (props) => {};
   const parentRootItems = menu.filter(({ parentID }) => parentID === null);
 
   function createMenu(array: any[], menuItem) {
-    const filteredArray = array.filter(
-      ({ parentID }) => parentID === menuItem._id
-    );
+    const filteredArray = array.filter(({ parentID }) => parentID === menuItem._id);
 
     return {
       ...menuItem,
@@ -58,12 +54,7 @@ const DropdownHeaderMenu = ({ menu = [] }: IProps) => {
   return (
     <LayoutMenuWrapper>
       <MenuWrapper onMouseLeave={() => setActiveMenu("")}>
-        <Menu
-          className={styles.wrapper}
-          selectedKeys={[selectedKey]}
-          subMenuCloseDelay={0}
-          onSelect={onSelect}
-        >
+        <Menu className={styles.wrapper} selectedKeys={[selectedKey]} subMenuCloseDelay={0} onSelect={onSelect}>
           {parentRootItems.map(({ href, title }) => (
             <Menu.Item key={href} className={styles.menuLi}>
               <Link href={href} scroll={false}>
@@ -72,11 +63,7 @@ const DropdownHeaderMenu = ({ menu = [] }: IProps) => {
             </Menu.Item>
           ))}
         </Menu>
-        <SubDropdownMenu
-          activeMenu={activeMenu}
-          menu={headerMenu}
-          clearSelected={clearSelected}
-        />
+        <SubDropdownMenu activeMenu={activeMenu} menu={headerMenu} clearSelected={clearSelected} />
       </MenuWrapper>
     </LayoutMenuWrapper>
   );

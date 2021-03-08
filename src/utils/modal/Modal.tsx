@@ -11,12 +11,16 @@ export function showModal({
   content,
   okText = "Хорошо",
   centered = true,
+  onOk,
+  onCancel,
 }: IModalProps) {
   Modal[type]({
     content,
     title,
     okText,
     centered,
+    onOk,
+    onCancel,
     ...defaultProps,
   });
 }

@@ -32,10 +32,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Head>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -53,7 +50,6 @@ function MyApp({ Component, pageProps }) {
 
 export async function getInitialProps() {
   const { menu } = await menuService.getPageMenu("catalog");
-  console.log(menu, "menu");
   return {
     props: { pageProps: { menu } },
   };

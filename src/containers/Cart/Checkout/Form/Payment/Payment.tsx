@@ -10,9 +10,14 @@ interface IProps {
   showNonCashPayment: boolean;
 }
 
-const CartCheckoutFormPayment: React.FC<IProps> = ({ showNonCashPayment }) => {
+const CartCheckoutFormPaymentFields: React.FC<IProps> = ({ showNonCashPayment }) => {
   return (
-    <>
+    <Row>
+      <Col span={24}>
+        <Title level="h4">
+          <b>Способы оплаты</b>
+        </Title>
+      </Col>
       <Form.Item name="payment_method">
         <Radio.Group defaultValue={CartCheckoutPaymentsMethods.CASH.key} className={styles.antRadioGroup}>
           {showNonCashPayment && (
@@ -43,8 +48,8 @@ const CartCheckoutFormPayment: React.FC<IProps> = ({ showNonCashPayment }) => {
           </Radio.Button>
         </Radio.Group>
       </Form.Item>
-    </>
+    </Row>
   );
 };
 
-export default CartCheckoutFormPayment;
+export default CartCheckoutFormPaymentFields;

@@ -13,15 +13,15 @@ export const CartCheckoutSidebarListItemImage = styled.img`
 export const CartCheckoutSidebarListItemPriceInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
-  text-align: left;
+  width: max-content;
+  text-align: right;
 `;
 
 export const CartCheckoutSidebarListItemInfo = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
-  min-width: 30%;
+  text-align: center;
+  min-width: 35%;
   max-width: 50%;
 `;
 

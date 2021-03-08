@@ -19,13 +19,7 @@ interface IProps {
   price: number;
 }
 
-const CartProductListItem: React.FC<IProps> = ({
-  preview,
-  quantity,
-  title,
-  price,
-  id,
-}) => {
+const CartProductListItem: React.FC<IProps> = ({ preview, quantity, title, price, id }) => {
   const dispatch = useDispatch();
 
   const deleteProduct = () => {
@@ -44,7 +38,9 @@ const CartProductListItem: React.FC<IProps> = ({
     <div className={styles.cartItemWrapper}>
       <img className={styles.cartImage} src={preview} />
       <div className={styles.cartItemActions}>
-        <Title level="h4">{title}</Title>
+        <Title level="h4" className={styles.mb}>
+          {title}
+        </Title>
         <Button.Group className={styles.buttonGroup}>
           <Button type="default" icon={<HeartOutlined />}>
             В избранное
@@ -58,11 +54,7 @@ const CartProductListItem: React.FC<IProps> = ({
         <div className={styles.cartItemPrice}>
           <span>{price}р</span>
         </div>
-        <QuantityButton
-          quantity={quantity}
-          onIncrement={incrementQuantity}
-          onDecrement={decrementQuantity}
-        />
+        <QuantityButton quantity={quantity} onIncrement={incrementQuantity} onDecrement={decrementQuantity} />
       </div>
     </div>
   );

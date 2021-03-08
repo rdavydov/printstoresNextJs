@@ -42,9 +42,7 @@ const options = [
 const ContactsPageForm = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (val) => {
-    console.log(val);
-  };
+  const onFinish = (val) => {};
   return (
     <div className={styles.root}>
       <Form onFinish={onFinish} form={form}>

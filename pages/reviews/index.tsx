@@ -8,7 +8,6 @@ const Reviews = ({ reviews }) => {
 
 export async function getServerSideProps() {
   const reviews = await reviewsService.getReviews();
-  console.log(reviews);
   return {
     props: { reviews },
   };

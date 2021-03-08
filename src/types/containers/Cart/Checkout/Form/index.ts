@@ -1,4 +1,4 @@
-export class OrderDto {
+export interface CartCheckoutFormValue {
   city: string;
   country: string;
   delivery: {
@@ -14,8 +14,4 @@ export class OrderDto {
   };
   order_comment: string;
   payment_method: "CASH" | "NON_CASH";
-  order_summary: string | number;
-  delivery_summary: string | number;
-  order_products: any[];
-  products_summary: string | number;
 }
