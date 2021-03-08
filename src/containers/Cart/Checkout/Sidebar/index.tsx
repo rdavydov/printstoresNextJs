@@ -23,6 +23,7 @@ import {
   CartCheckoutSidebarTitle,
   CartCheckoutSidebarWrapper,
 } from "./styled";
+import { CartCheckoutDeliveryMethods } from "../constants/checkout.form.constans";
 
 const CartCheckoutSidebar: React.FC<CartCheckoutSidebarProps> = () => {
   const {
@@ -32,6 +33,11 @@ const CartCheckoutSidebar: React.FC<CartCheckoutSidebarProps> = () => {
     product_summary,
     promocode,
   } = useSelector((state: RootState) => state.cart.products);
+
+  const { checkout } = useSelector((state: RootState) => state.cart);
+
+  const deliveryPrice =
+    CartCheckoutDeliveryMethods[checkout.delivery.method]?.value || 0;
 
   return (
     <CartCheckoutSidebarWrapper>
@@ -69,12 +75,23 @@ const CartCheckoutSidebar: React.FC<CartCheckoutSidebarProps> = () => {
                 -{product_discount}руб.
               </CartCheckoutSidebarDiscountText>
             </CartCheckoutSidebarGroup>
+            {deliveryPrice > 0 && (
+              <CartCheckoutSidebarGroup>
+                <CartCheckoutSidebarText>
+                  Стоимость доставки
+                </CartCheckoutSidebarText>
+                <CartCheckoutSidebarPriceText>
+                  {deliveryPrice}руб.
+                </CartCheckoutSidebarPriceText>
+              </CartCheckoutSidebarGroup>
+            )}
           </CartCheckoutSidebarOrderInfo>
           <CartCheckoutSidebarSummaryInfo>
             <CartCheckoutSidebarGroup>
               <CartCheckoutSidebarText>Итого</CartCheckoutSidebarText>
               <CartCheckoutSidebarSummary>
-                {order_summary}руб.
+                {order_summary + deliveryPrice}
+                руб.
               </CartCheckoutSidebarSummary>
             </CartCheckoutSidebarGroup>
           </CartCheckoutSidebarSummaryInfo>

@@ -7,5 +7,5 @@ interface IProps {
 export const InfoWrapper = styled.div<IProps>`
   background-color: #eff1f7;
   padding: 20px;
-  margin-bottom: ${(props) => (props.noMargin ? 0 : 40)};
+  margin-bottom: ${(props) => (props.noMargin ? 0 : 40 + "px")};
 `;

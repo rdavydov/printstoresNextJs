@@ -7,7 +7,13 @@
 .antRadioGroup {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  &:first-child {
+    margin-right: 15px;
+  }
+}
+
+.mr {
+  margin-right: 15px;
 }
 
 .payment img:not(:last-child) {
