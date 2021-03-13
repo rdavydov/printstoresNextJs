@@ -6,9 +6,13 @@ interface IDefaultParams {
 
 interface IGet extends IDefaultParams {}
 
-interface IPost extends IDefaultParams {}
+interface IPost extends IDefaultParams {
+  body?: any;
+}
 
-interface IPut extends IPost {}
+interface IPut extends IPost {
+  body?: any;
+}
 
 interface IDelete extends IPost {}
 

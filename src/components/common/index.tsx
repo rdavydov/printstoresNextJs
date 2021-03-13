@@ -10,6 +10,7 @@ import ContainerWithSidebar from "./ContainerWithSidebar/ContainerWithSidebar";
 import DropdownHeaderMenu from "./DropdownHeaderMenu/DropdownMenu";
 import IconMenu from "./IconMenu/IconMenu";
 import InfoBlock from "./InfoBlock/InfoBlock";
+import MenuLink from "./MenuLink/MenuLink";
 import MenuList from "./MenuList/MenuList";
 import PaginationButton from "./PaginationButton/PaginationButton";
 import Paragraph from "./Paragraph/Paragraph";
@@ -38,6 +39,7 @@ export {
   IconMenu,
   ProductsList,
   DropdownHeaderMenu,
+  MenuLink,
   ContainerWithSidebar,
   Paragraph,
 };

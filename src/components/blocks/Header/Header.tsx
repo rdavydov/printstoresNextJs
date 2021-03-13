@@ -1,63 +1,47 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "src/store/rootReducer";
+import { EnvironmentOutlined, SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import {
-    Box, Container, Typography, List, ListItem,
-} from '@material-ui/core';
-import { RoomOutlined } from '@material-ui/icons';
-import SearchIcon from '@material-ui/icons/Search';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/store/rootReducer';
-import useStyles from './styles/layout-header';
+  HeaderActionsBlock,
+  HeaderInfo,
+  HeaderWrapper,
+  HeaderCityBlock,
+  HeaderNavBlock,
+  HeaderSearchBlock,
+} from "./styled";
+import { Container, Paragraph, Title } from "src/components/common";
+import HeaderMenu from "./HeaderMenu";
+import { headerMenu } from "src/constants/routes/header/header.routes";
+import { Avatar, Badge } from "antd";
 
 const Header = () => {
-    const clasess = useStyles();
-    const { product } = useSelector((state: RootState) => state.cart);
+  const { products } = useSelector((state: RootState) => state.cart.products);
 
-    return (
-        <Box component="header">
-            <Container>
-                <Box className={clasess.headerItems}>
-                    <Box className={clasess.city}>
-                        <RoomOutlined />
-                        <Typography>Ростов-На-Дону</Typography>
-                    </Box>
-                    <Typography variant="h4">PRINTSTORES</Typography>
-                    <Box className={clasess.actions}>
-                        <SearchIcon className={clasess.find} />
-                    </Box>
-                </Box>
-                <Box component="nav">
-                    <List className={clasess.menu}>
-                        <ListItem className={clasess.menuItem}>
-                            <Link href="/">
-                                <a>Главная</a>
-                            </Link>
-                        </ListItem>
-                        <ListItem className={clasess.menuItem}>
-                            <Link href="/catalog">
-                                <a>Каталог</a>
-                            </Link>
-                        </ListItem>
-                        <ListItem className={clasess.menuItem}>
-                            <Link href="/">
-                                <a>Новости</a>
-                            </Link>
-                        </ListItem>
-                        <ListItem className={clasess.menuItem}>
-                            <Link href="/">
-                                <a>Отзывы</a>
-                            </Link>
-                        </ListItem>
-                        <ListItem className={clasess.menuItem}>
-                            <Link href="/">
-                                <a>Контакты</a>
-                            </Link>
-                        </ListItem>
-                    </List>
-                </Box>
-            </Container>
-        </Box>
-    );
+  return (
+    <HeaderWrapper>
+      <Container>
+        <HeaderInfo>
+          <HeaderCityBlock>
+            <EnvironmentOutlined />
+            <Paragraph>Ростов-На-Дону</Paragraph>
+          </HeaderCityBlock>
+          <Title level="h1">PRINTSTORES</Title>
+          <HeaderActionsBlock>
+            <HeaderSearchBlock>
+              <Avatar shape="circle" icon={<SearchOutlined />} />
+            </HeaderSearchBlock>
+            <Badge count={products.length}>
+              <Avatar shape="circle" icon={<ShoppingCartOutlined />} />
+            </Badge>
+          </HeaderActionsBlock>
+        </HeaderInfo>
+        <HeaderNavBlock>
+          <HeaderMenu menu={headerMenu} />
+        </HeaderNavBlock>
+      </Container>
+    </HeaderWrapper>
+  );
 };
 
 export default Header;

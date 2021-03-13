@@ -5,7 +5,7 @@ class OrderService {
   request = new Request();
 
   createOrder(order: OrderDto): Promise<{ orderID: number }> {
-    return this.request.POST("order", order);
+    return this.request.POST({ url: "order", body: order });
   }
 
   getOrder(

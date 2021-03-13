@@ -6,21 +6,21 @@ import { MenuListItemWrapper } from "../styled";
 import styles from "./MenuList.module.scss";
 
 interface IProps {
-  text: string;
-  path: string;
+  label: string;
+  href: string;
   showSelected?: boolean;
 }
 
-const MenuListItem = ({ text, path, showSelected }: IProps) => {
+const MenuListItem = ({ label, href, showSelected }: IProps) => {
   const { pathname } = useRouter();
 
   return (
     <MenuListItemWrapper>
-      {path === pathname ? (
-        <b className={showSelected ? styles.active : ""}>{text}</b>
+      {href === pathname ? (
+        <b className={showSelected ? styles.active : ""}>{label}</b>
       ) : (
-        <Link href={path}>
-          <a>{text}</a>
+        <Link href={href}>
+          <a>{label}</a>
         </Link>
       )}
     </MenuListItemWrapper>

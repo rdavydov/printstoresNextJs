@@ -1,0 +1,15 @@
+export const Routes = {
+  HOME: { label: "Главная", href: "/" },
+  CATALOG: { label: "Каталог", href: "/catalog" },
+  NEWS: { label: "Новости", href: "/news" },
+  REVIEWS: { label: "Отзывы", href: "/reviews" },
+  CONTACTS: { label: "Контакты", href: "/contacts" },
+  DELIVERY: { label: "Доставка", href: "/delivery" },
+  PAYMENTS: { label: "Оплата", href: "/payments" },
+  ABOUT: { label: "О нас", href: "/about" },
+  HELP: { label: "Помощь", href: "/help" },
+  PRIVACY: { label: "Политика конфиденциальности", href: "/privacy" },
+  COOKIE: { label: "Политика использования cookie", href: "/cookie" },
+  TERMS: { label: "Условия использования сайта", href: "/terms" },
+  SITE_MAP: { label: "Карта сайта", href: "/sitemap" },
+};

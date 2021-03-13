@@ -5,7 +5,7 @@ class ReviewsService {
   private request = new Request("reviews");
 
   create(body): Promise<ReviewsCreateResponse> {
-    return this.request.POST("create", body);
+    return this.request.POST({ url: "create", body });
   }
 
   getReviews(): Promise<ReviewsResponse[]> {

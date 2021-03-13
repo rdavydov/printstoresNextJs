@@ -3,15 +3,13 @@ import ContainerWithSidebar from "src/components/common/ContainerWithSidebar/Con
 import Layout from "src/templates/Layout/Layout";
 import ReviewsPageComments from "./Comments/Comments";
 import ReviewsPageForm from "./Form/Form";
-import YandexPaymentForm from "./YandexPaymentForm/YandexPaymentForm";
 
-const ReviewsPage = ({ reviews }) => {
+const ReviewsPage = ({ reviews, menu }) => {
   return (
-    <Layout>
+    <Layout menu={menu}>
       <ContainerWithSidebar>
         <ReviewsPageComments reviews={reviews} />
         <ReviewsPageForm />
-        <YandexPaymentForm />
       </ContainerWithSidebar>
     </Layout>
   );

@@ -14,7 +14,7 @@ const PaymentForm = ({ orderID, sum }) => {
       <input type="hidden" name="label" value={orderID} />
       <input type="hidden" name="quickpay-form" value="shop" />
       <input type="hidden" name="targets" value={`PrintStores.ru: Оплата заказа №${orderID}`} />
-      <input type="hidden" name="sum" value={1580} />
+      <input type="hidden" name="sum" value={sum} />
       <input type="hidden" name="paymentType" value="AC" />
       <input className={styles.buttonStyle} type="submit" value="Оплатить заказ" />
     </form>

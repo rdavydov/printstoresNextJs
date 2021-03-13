@@ -1,0 +1,35 @@
+import React from "react";
+import { Row, Tabs } from "antd";
+
+const { TabPane } = Tabs;
+
+interface Props {
+  description: string;
+  details: string;
+  delivery: string;
+}
+
+const DESCRIPTION_TEXT = "Описание";
+const DETAILS = "Правила ухода";
+const DELIVERY_AND_PAY = "Доставка и оплата";
+
+const ProductInfo = ({ description, details, delivery }: Props) => {
+  const info = [
+    { header: DESCRIPTION_TEXT, text: description },
+    { header: DETAILS, text: details },
+    { header: DELIVERY_AND_PAY, text: "завтра" },
+  ];
+  return (
+    <Row style={{ marginBottom: 50 }}>
+      <Tabs tabPosition="left">
+        {info.map(({ header, text }, index) => (
+          <TabPane tab={header} key={index.toString()}>
+            <p>{text}</p>
+          </TabPane>
+        ))}
+      </Tabs>
+    </Row>
+  );
+};
+
+export default ProductInfo;

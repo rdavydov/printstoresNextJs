@@ -14,11 +14,11 @@ export class Request {
     return data;
   }
 
-  async POST(url, body: any, options?: IPost) {
+  async POST(options?: IPost) {
+    const { body, ...restOptions } = options;
     const { urlToUse } = _createApiParams({
       apiPrefix: this.apiPrefix,
-      url,
-      ...options,
+      ...restOptions,
     });
     const { data } = await ApiClient.post(urlToUse, body);
     return data;

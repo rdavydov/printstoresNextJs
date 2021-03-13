@@ -1,20 +1,5 @@
-import React from "react";
-import { Product } from "src/types/product/product.type";
+import ProductInfo from "./Info/Info";
+import ProductItem from "./Item/Item";
+import ProductRecommended from "./Recommended/Recommended";
 
-import PreviewItem from "./PreviewItem/PreviewItem";
-
-interface IProps {
-  product: Product[];
-}
-
-const ProductPage = ({ product = [] }: IProps) => {
-  return (
-    <>
-      {product.map(({ ...rest }, index) => (
-        <PreviewItem key={index} {...rest} />
-      ))}
-    </>
-  );
-};
-
-export default ProductPage;
+export { ProductRecommended, ProductItem, ProductInfo };

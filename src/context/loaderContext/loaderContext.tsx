@@ -11,7 +11,7 @@ interface LoaderContext {
 export const LoaderContext = React.createContext<LoaderContext>(null);
 
 const LoaderProvider: React.FC = ({ children }) => {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const showLoading = () => {
     setLoading(true);

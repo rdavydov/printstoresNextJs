@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export async function getInitialProps() {
+export async function getServerSideProps() {
   const { menu } = await menuService.getPageMenu("catalog");
   return {
     props: { pageProps: { menu } },

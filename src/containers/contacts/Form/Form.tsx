@@ -3,6 +3,10 @@ import { Form, Cascader, Input, Button } from "antd";
 import { Rule } from "antd/lib/form";
 
 import styles from "./Form.module.scss";
+import { contactsService } from "src/api/services/contacts/contacts.service";
+import { showModal } from "src/utils";
+import WithGoogleReCAPTCHA from "src/components/common/GoogleReCAPTCHA/GoogleReCAPTCHA";
+import { Config } from "src/config/config";
 
 interface IFormRules {
   name: Rule[];
@@ -42,11 +46,19 @@ const options = [
 const ContactsPageForm = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (val) => {};
+  const onFinish = async (val) => {
+    await contactsService.create(val);
+    form.resetFields();
+    showModal({
+      title: `${val.name}, ваше сообщение отправлено`,
+      content: "В течении 2х часов с вами свяжется наш оператор",
+      type: "info",
+    });
+  };
   return (
     <div className={styles.root}>
       <Form onFinish={onFinish} form={form}>
-        <Form.Item name="theme" hasFeedback rules={rules.theme}>
+        <Form.Item name="topic" hasFeedback rules={rules.theme}>
           <Cascader options={options} placeholder="Тема обращения" />
         </Form.Item>
 
@@ -69,4 +81,6 @@ const ContactsPageForm = () => {
   );
 };
 
-export default ContactsPageForm;
+const ContactsForm = WithGoogleReCAPTCHA(Config.RECAPTCHA_SITE_KEY)(ContactsPageForm);
+
+export default ContactsForm;
