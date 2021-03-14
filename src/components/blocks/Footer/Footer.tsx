@@ -2,10 +2,8 @@ import React from "react";
 import { MenuList, IconMenu, Container } from "src/components/common";
 import { FooterWrapper } from "./styles/footer";
 import { FooterMenu } from "./styles/menu";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
-import TwitterIcon from "@material-ui/icons/Twitter";
 import { footerMenu, FooterMenuLabels } from "src/constants/routes/footer/footer.routes";
+import { InstagramOutlined, TwitterOutlined, WhatsAppOutlined } from "@ant-design/icons";
 
 const Footer: React.FC = () => (
   <FooterWrapper>
@@ -15,9 +13,9 @@ const Footer: React.FC = () => (
           title="Подпишитесь на нас"
           subTitle="+7 960 450-60-21"
           iconsMenu={[
-            { icon: InstagramIcon, path: "" },
-            { icon: WhatsAppIcon, path: "" },
-            { icon: TwitterIcon, path: "" },
+            { icon: InstagramOutlined, path: "" },
+            { icon: WhatsAppOutlined, path: "" },
+            { icon: TwitterOutlined, path: "" },
           ]}
         />
         <MenuList title={FooterMenuLabels.HELP} menuItems={footerMenu.HELP} />

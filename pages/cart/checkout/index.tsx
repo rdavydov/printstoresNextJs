@@ -1,36 +1,20 @@
-import Head from "next/head";
+import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Container, InfoBlock, Title } from "src/components/common";
-import {
-  CartCheckoutHeader,
-  CartCheckoutSidebar,
-} from "src/containers/Cart/Checkout";
+import { InfoBlock } from "src/components/common";
+import { CartCheckoutHeader, CartCheckoutSidebar } from "src/containers/Cart/Checkout";
 import CartCheckoutForm from "src/containers/Cart/Checkout/Form/Form";
-import {
-  CartCheckoutContent,
-  CartCheckoutTitle,
-  CartCheckoutWrapper,
-} from "src/containers/Cart/Checkout/styled";
-import CartProductEmpty from "src/containers/Cart/Product/Empty/Empty";
+import { CartCheckoutContent, CartCheckoutTitle, CartCheckoutWrapper } from "src/containers/Cart/Checkout/styled";
 import { RootState } from "src/store/rootReducer";
 import CartCheckotLayout from "src/templates/Cart/Checkout/Checkout";
 
-import styles from "../../../styles/pages/cart/checkout/checkout.module.scss";
-
 const CartCheckout = () => {
   const { products } = useSelector((state: RootState) => state.cart.products);
-  const { checkout } = useSelector((state: RootState) => state.cart);
+  const { push } = useRouter();
 
   if (!products.length) {
-    return (
-      <CartCheckotLayout>
-        <Container>
-          <CartProductEmpty />
-          <InfoBlock />
-        </Container>
-      </CartCheckotLayout>
-    );
+    push("/");
+    return null;
   }
 
   return (

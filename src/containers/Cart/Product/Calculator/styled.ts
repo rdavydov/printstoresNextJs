@@ -26,7 +26,8 @@ export const CalculatorProductDiscount = styled.span`
 `;
 
 export const CalculatorWrapper = styled.div`
-  min-height: 250px;
+  min-height: 320px;
+  max-height: 320px;
   padding: 15px;
   border-radius: 4px;
   position: sticky;

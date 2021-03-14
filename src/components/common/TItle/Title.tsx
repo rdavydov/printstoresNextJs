@@ -1,40 +1,38 @@
-import React from 'react';
-import { CustomTitle } from './styles';
+import React from "react";
+import { CustomTitle, TitleProps } from "./styles";
 
-interface IProps {
-  level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+interface IProps extends Partial<TitleProps> {
+  level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   color?: string;
   fontSize?: number;
   className?: string;
 }
 
-const Title: React.FC<IProps> = ({
-  level = 'h1', color, fontSize, className, children,
-}) => {
+const Title: React.FC<IProps> = ({ level = "h1", color, fontSize, className, children, ...rest }) => {
   let titleSize;
 
   switch (level) {
-    case 'h1': {
+    case "h1": {
       titleSize = 24;
       break;
     }
-    case 'h2': {
+    case "h2": {
       titleSize = 20;
       break;
     }
-    case 'h3': {
+    case "h3": {
       titleSize = 18;
       break;
     }
-    case 'h4': {
+    case "h4": {
       titleSize = 16;
       break;
     }
-    case 'h5': {
+    case "h5": {
       titleSize = 15;
       break;
     }
-    case 'h6': {
+    case "h6": {
       titleSize = 14;
       break;
     }
@@ -44,7 +42,9 @@ const Title: React.FC<IProps> = ({
   }
 
   return (
-    <CustomTitle className={className} as={level || 'h1'} color={color} fontSize={fontSize ?? titleSize} >{children}</CustomTitle>
+    <CustomTitle className={className} as={level || "h1"} color={color} fontSize={fontSize ?? titleSize} {...rest}>
+      {children}
+    </CustomTitle>
   );
 };
 

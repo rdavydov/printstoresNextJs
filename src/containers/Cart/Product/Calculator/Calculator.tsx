@@ -15,11 +15,10 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "src/store/rootReducer";
 import Link from "next/link";
+import { Price } from "src/components/common";
 
 const CartProductCalculator = () => {
-  const { order_summary, product_discount, product_summary } = useSelector(
-    (state: RootState) => state.cart.products
-  );
+  const { order_summary, product_discount, product_summary } = useSelector((state: RootState) => state.cart.products);
   return (
     <CalculatorWrapper>
       <CalculatorHeader>
@@ -30,16 +29,13 @@ const CartProductCalculator = () => {
           <CalculatorProductText>
             <b>Товары</b>
           </CalculatorProductText>
-          <CalculatorProductPrice>{product_summary}руб.</CalculatorProductPrice>
+          <Price>{product_summary}руб.</Price>
         </CalculatorProductInfo>
         <CalculatorProductInfo>
           <CalculatorProductText>
             <b>Скидка на товары</b>
           </CalculatorProductText>
-          <CalculatorProductDiscount>
-            {" "}
-            {product_discount ? "-" + product_discount : 0}руб.
-          </CalculatorProductDiscount>
+          <Price discount> {product_discount ? "-" + product_discount : 0}руб.</Price>
         </CalculatorProductInfo>
       </CalculatorBody>
       <CalculatorFooter>
@@ -47,7 +43,9 @@ const CartProductCalculator = () => {
           <CalculatorProductText>
             <b>Итого</b>
           </CalculatorProductText>
-          <CalculatorProductPrice>{order_summary}руб.</CalculatorProductPrice>
+          <Price size="large" bold>
+            {order_summary}руб.
+          </Price>
         </CalculatorProductInfo>
         <CalculatorActions>
           <Button size="large" type="primary">

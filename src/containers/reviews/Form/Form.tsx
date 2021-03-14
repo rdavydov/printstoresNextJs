@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { Form, Row, Col, Input, Rate, Space, Button } from "antd";
-import { Config } from "src/config/config";
 import WithGoogleReCAPTCHA from "src/components/common/GoogleReCAPTCHA/GoogleReCAPTCHA";
 import { reviewsService } from "src/api/services/reviews/reviews.service";
 
@@ -120,6 +119,6 @@ const ReviewsForm = ({ recaptchaExecute, recaptchaLoaded, ...rest }: IProps) => 
   );
 };
 
-const ReviewsPageForm = WithGoogleReCAPTCHA(Config.RECAPTCHA_SITE_KEY)(ReviewsForm);
+const ReviewsPageForm = WithGoogleReCAPTCHA(process.env.RECAPTCHA_SITE_KEY)(ReviewsForm);
 
 export default ReviewsPageForm;

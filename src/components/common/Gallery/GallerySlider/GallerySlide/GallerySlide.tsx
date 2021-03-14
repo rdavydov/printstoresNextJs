@@ -1,22 +1,10 @@
 import React, { useState } from "react";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { ProductsGallery } from "src/types/product/products.gallery.interface";
 import { CartIcon, Price, OldPrice } from "src/components/common/Card/styled";
-import {
-  ProductWrapper,
-  ProductBody,
-  ProductImage,
-  ProductFooter,
-  ProductTitle,
-} from "./styled";
+import { ProductWrapper, ProductBody, ProductImage, ProductFooter, ProductTitle } from "./styled";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
-const GallerySlide: React.FC<ProductsGallery> = ({
-  preview,
-  price,
-  title,
-  old_price,
-  ...rest
-}) => {
+const GallerySlide: React.FC<ProductsGallery> = ({ preview, price, title, old_price, ...rest }) => {
   const [hovered, setHovered] = useState(false);
 
   const onHovered = () => {
@@ -33,7 +21,7 @@ const GallerySlide: React.FC<ProductsGallery> = ({
         <ProductImage src={preview} />
         {hovered && (
           <CartIcon>
-            <ShoppingCartIcon />
+            <ShoppingCartOutlined />
           </CartIcon>
         )}
       </ProductBody>

@@ -2,12 +2,12 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, A11y } from "swiper";
 import random from "lodash/random";
-
-import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import { Title } from "src/components/common";
 import { IProducts } from "src/types/product/products.gallery.interface";
 import GallerySlide from "./GallerySlide/GallerySlide";
 import { GalleryWrapper, GaleryHeader } from "./styled";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import { GalleryTitleProps } from "../types/gallery.types";
 
 interface IProps {
   prevSlide: () => void;
@@ -28,7 +28,12 @@ const breakpointsConfig = {
   1200: { slidesPerView: 4, spaceBetween: 30 },
 };
 
-const HomeGallerySlider: React.FC<IProducts & IProps> = ({
+const getArrowStyle = (position) => {
+  const color = position ? "gray" : "inherit";
+  return { color, fontSize: 14 };
+};
+
+const GallerySlider: React.FC<IProducts & IProps & GalleryTitleProps> = ({
   title,
   productsList,
   initSwipe,
@@ -39,16 +44,17 @@ const HomeGallerySlider: React.FC<IProducts & IProps> = ({
   allChange,
   start,
   end,
+  titleProps = {},
   ...rest
 }) => (
   <GalleryWrapper>
     <GaleryHeader end={end ? 1 : 0} start={start ? 1 : 0}>
-      <Title level="h1" fontSize={16}>
+      <Title level="h1" fontSize={16} {...titleProps}>
         {title}
       </Title>
       <div>
-        <ArrowRightAltIcon onClick={prevSlide} fontSize="large" />
-        <ArrowRightAltIcon onClick={nextSlide} fontSize="large" />
+        <ArrowLeftOutlined onClick={prevSlide} style={getArrowStyle(start)} className="mr" />
+        <ArrowRightOutlined onClick={nextSlide} style={getArrowStyle(end)} />
       </div>
     </GaleryHeader>
     <Swiper
@@ -66,17 +72,11 @@ const HomeGallerySlider: React.FC<IProducts & IProps> = ({
     >
       {productsList.map(({ title, old_price, price, product_id, preview }) => (
         <SwiperSlide key={product_id}>
-          <GallerySlide
-            title={title}
-            price={price}
-            old_price={old_price}
-            preview={preview}
-            product_id={product_id}
-          />
+          <GallerySlide title={title} price={price} old_price={old_price} preview={preview} product_id={product_id} />
         </SwiperSlide>
       ))}
     </Swiper>
   </GalleryWrapper>
 );
 
-export default HomeGallerySlider;
+export default GallerySlider;

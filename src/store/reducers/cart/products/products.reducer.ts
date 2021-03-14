@@ -66,6 +66,8 @@ const cartProductsSlice = createSlice({
       currentProduct.quantity += 1;
       const currentProductPrice = currentProduct.price;
       const currentProductOldPrice = currentProduct.old_price || 0;
+      if (state.product_summary < 0 || state.product_discount < 0 || currentProduct) {
+      }
       state.product_summary += currentProductPrice + currentProductOldPrice;
       state.product_discount += currentProductOldPrice;
       state.order_summary += currentProductPrice + currentProductOldPrice - currentProductOldPrice;

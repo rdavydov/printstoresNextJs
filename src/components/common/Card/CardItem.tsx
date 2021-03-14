@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { CardBody, CardFooter, CardImage, CardTitle, CardWrapper, CartIcon, OldPrice, Price } from "./styled";
 import { IProduct } from "../../../types/product/products.gallery.interface";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
 interface IProps {
   goLocation: () => void;
@@ -23,7 +23,7 @@ const CardItem: React.FC<IProduct & IProps> = ({ name, price, oldPrice, image, g
         <CardImage src={image} />
         {hovered && (
           <CartIcon>
-            <ShoppingCartIcon />
+            <ShoppingCartOutlined />
           </CartIcon>
         )}
       </CardBody>

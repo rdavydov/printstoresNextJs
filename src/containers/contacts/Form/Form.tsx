@@ -6,8 +6,6 @@ import styles from "./Form.module.scss";
 import { contactsService } from "src/api/services/contacts/contacts.service";
 import { showModal } from "src/utils";
 import WithGoogleReCAPTCHA from "src/components/common/GoogleReCAPTCHA/GoogleReCAPTCHA";
-import { Config } from "src/config/config";
-
 interface IFormRules {
   name: Rule[];
   theme: Rule[];
@@ -81,6 +79,6 @@ const ContactsPageForm = () => {
   );
 };
 
-const ContactsForm = WithGoogleReCAPTCHA(Config.RECAPTCHA_SITE_KEY)(ContactsPageForm);
+const ContactsForm = WithGoogleReCAPTCHA(process.env.RECAPTCHA_SITE_KEY)(ContactsPageForm);
 
 export default ContactsForm;

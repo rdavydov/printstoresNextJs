@@ -1,3 +1,0 @@
-export enum Config {
-  RECAPTCHA_SITE_KEY = "6LeirWEaAAAAAGOUF9yqR3CDeMYxF2T502fjHBiM",
-}

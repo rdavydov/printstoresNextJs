@@ -4,7 +4,7 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import ruRU from "antd/lib/locale-provider/ru_RU";
 import { PersistGate } from "redux-persist/integration/react";
-import { ConfigProvider } from "antd";
+import { BackTop, ConfigProvider } from "antd";
 import store, { persistor } from "src/store/store";
 import "../styles/preloader.scss";
 import "../styles/variables.css";
@@ -39,6 +39,7 @@ function MyApp({ Component, pageProps }) {
           <ConfigProvider locale={ruRU}>
             <LoaderProvider>
               <CssBaseline />
+              <BackTop />
               <Component {...pageProps} />
             </LoaderProvider>
           </ConfigProvider>

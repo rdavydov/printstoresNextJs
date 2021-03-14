@@ -21,13 +21,15 @@ const ProductInfo = ({ description, details, delivery }: Props) => {
   ];
   return (
     <Row style={{ marginBottom: 50 }}>
-      <Tabs tabPosition="left">
-        {info.map(({ header, text }, index) => (
-          <TabPane tab={header} key={index.toString()}>
-            <p>{text}</p>
-          </TabPane>
-        ))}
-      </Tabs>
+      <div style={{ width: "100%" }}>
+        <Tabs tabPosition="top">
+          {info.map(({ header, text }, index) => (
+            <TabPane tab={header} key={index.toString()}>
+              <p>{text}</p>
+            </TabPane>
+          ))}
+        </Tabs>
+      </div>
     </Row>
   );
 };

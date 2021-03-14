@@ -1,8 +1,13 @@
 import React, { useCallback, useState } from "react";
 import { galleryData } from "../../../constants/gallery/galleryData";
-import HomeGallerySlider from "./HomeGallerySlider/HomeGallerySlider";
+import GallerySlider from "./GallerySlider/GallerySlider";
+import { GalleryTitleProps } from "./types/gallery.types";
 
-const Gallery = ({ title }) => {
+interface Props {
+  title?: string;
+}
+
+const Gallery = ({ title, ...rest }: Props & GalleryTitleProps) => {
   const [swiper, setSwiper] = useState(null);
   const [start, setStart] = useState(true);
   const [end, setEnd] = useState(false);
@@ -36,7 +41,7 @@ const Gallery = ({ title }) => {
   };
 
   return (
-    <HomeGallerySlider
+    <GallerySlider
       title={title}
       end={end}
       start={start}
@@ -47,6 +52,7 @@ const Gallery = ({ title }) => {
       changeStart={changeStart}
       changeEnd={changeEnd}
       allChange={allChange}
+      {...rest}
     />
   );
 };

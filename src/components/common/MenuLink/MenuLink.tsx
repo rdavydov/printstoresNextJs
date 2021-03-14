@@ -3,13 +3,13 @@ import Link, { LinkProps } from "next/link";
 
 interface IProps extends LinkProps {
   href: string;
-  label: string;
+  label?: string;
 }
 
-const MenuLink = ({ href, label, ...rest }: IProps) => {
+const MenuLink: React.FC<IProps> = ({ href, label, children, ...rest }) => {
   return (
     <Link href={href} {...rest}>
-      <a>{label}</a>
+      <a>{label || children}</a>
     </Link>
   );
 };

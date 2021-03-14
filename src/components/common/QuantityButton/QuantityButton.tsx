@@ -1,3 +1,5 @@
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import React, { useEffect, useState } from "react";
 import { CountWrapper, CounterButton, SpanText, CountText } from "./styled";
 
@@ -11,12 +13,7 @@ interface IProps {
   quantity?: number;
 }
 
-const QuantityButton: React.FC<IProps> = ({
-  getQuantity,
-  quantity = 1,
-  onIncrement,
-  onDecrement,
-}) => {
+const QuantityButton: React.FC<IProps> = ({ getQuantity, quantity = 1, onIncrement, onDecrement }) => {
   const [quantityState, setQuantity] = useState(quantity);
 
   const incrementQuantity = () => {
@@ -45,17 +42,13 @@ const QuantityButton: React.FC<IProps> = ({
 
   return (
     <CountWrapper>
-      <CounterButton
-        onClick={decrementQuantity}
-        type="button"
-        disabled={quantity === 1}
-      >
-        <SpanText>{DECREMENT}</SpanText>
-      </CounterButton>
+      <Button onClick={decrementQuantity} disabled={quantity === 1}>
+        <MinusOutlined />
+      </Button>
       <CountText>{quantityState}</CountText>
-      <CounterButton onClick={incrementQuantity} type="button">
-        <SpanText>{INCREMENT}</SpanText>
-      </CounterButton>
+      <Button onClick={incrementQuantity}>
+        <PlusOutlined />
+      </Button>
     </CountWrapper>
   );
 };

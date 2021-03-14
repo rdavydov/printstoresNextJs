@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const HeaderWrapper = styled.header``;
 
@@ -19,7 +19,11 @@ export const HeaderActionsBlock = styled.div`
 `;
 
 export const HeaderSearchBlock = styled.div`
+  position: relative;
   margin-right: 15px;
+  & svg {
+    cursor: pointer;
+  }
 `;
 
 export const HeaderNavBlock = styled.nav`
@@ -36,4 +40,32 @@ export const HeaderMenuListItem = styled.li`
   font-size: 15px;
   color: var(--default-text);
   font-weight: 600;
+`;
+
+interface SearchWrapperProps {
+  active: boolean;
+}
+
+const InputVisible = keyframes`
+  0% { width: 0px};
+  100% { width: 350px};
+`;
+
+const InputHidden = keyframes`
+  0% { width: 350px};
+  100% { width: 0px};
+`;
+
+export const HeaderSearchInputWrapper = styled.input<Partial<SearchWrapperProps>>`
+  transition: 1.5s;
+  position: absolute;
+  transition: 0.5s;
+  right: 35px;
+  bottom: 0;
+  animation: ${(props) => (props.active ? InputVisible : InputHidden)} 0.3s 0s both;
+  animation-fill-mode: forwards;
+  background-color: #fafafa;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--lightBlue);
 `;
