@@ -6,107 +6,78 @@ import { RootState } from "src/store/rootReducer";
 import { Button, Input } from "antd";
 import { CartCheckoutSidebarProps } from "src/types/containers/Cart/Checkout";
 import CartCheckoutSidebarList from "./List/List";
-import {
-  CartCheckoutSidebarActions,
-  CartCheckoutSidebarBody,
-  CartCheckoutSidebarContent,
-  CartCheckoutSidebarDiscountText,
-  CartCheckoutSidebarFooter,
-  CartCheckoutSidebarGroup,
-  CartCheckoutSidebarHeader,
-  CartCheckoutSidebarOrderInfo,
-  CartCheckoutSidebarPriceText,
-  CartCheckoutSidebarPromocodeWrapper,
-  CartCheckoutSidebarSummary,
-  CartCheckoutSidebarSummaryInfo,
-  CartCheckoutSidebarText,
-  CartCheckoutSidebarTitle,
-  CartCheckoutSidebarWrapper,
-} from "./styled";
+import { CartCheckoutSidebarOrderInfo, CartCheckoutSidebarTitle, CartCheckoutSidebarWrapper } from "./styled";
 import { CartCheckoutDeliveryMethods } from "../constants/checkout.form.constans";
+import { Box, Flex, Typography } from "src/components/ui";
+import { Price } from "src/components/common";
 
 const CartCheckoutSidebar: React.FC<CartCheckoutSidebarProps> = () => {
-  const {
-    products,
-    order_summary,
-    product_discount,
-    product_summary,
-    promocode,
-  } = useSelector((state: RootState) => state.cart.products);
+  const { products, order_summary, product_discount, product_summary, promocode } = useSelector(
+    (state: RootState) => state.cart.products
+  );
 
   const { checkout } = useSelector((state: RootState) => state.cart);
 
-  const deliveryPrice =
-    CartCheckoutDeliveryMethods[checkout.delivery.method]?.value || 0;
+  const deliveryPrice = CartCheckoutDeliveryMethods[checkout.delivery.method]?.value || 0;
 
   return (
     <CartCheckoutSidebarWrapper>
-      <CartCheckoutSidebarContent>
-        <CartCheckoutSidebarHeader>
+      <Box padding={30}>
+        <Flex alignItems="baseline" mb={30}>
           <CartCheckoutSidebarTitle>
             <b>Ваш заказ</b>
           </CartCheckoutSidebarTitle>
           <Link href="/cart">
             <a>Изменить</a>
           </Link>
-        </CartCheckoutSidebarHeader>
-        <CartCheckoutSidebarBody>
+        </Flex>
+        <Box>
           <CartCheckoutSidebarList products={products} />
-        </CartCheckoutSidebarBody>
-        <CartCheckoutSidebarFooter>
-          <CartCheckoutSidebarPromocodeWrapper>
-            <Input.Search
-              placeholder="Ввести промокод"
-              enterButton="Применить"
-            />
-          </CartCheckoutSidebarPromocodeWrapper>
+        </Box>
+        <Box>
+          <Box mb={30}>
+            <Input.Search placeholder="Ввести промокод" enterButton="Применить" />
+          </Box>
           <CartCheckoutSidebarOrderInfo>
-            <CartCheckoutSidebarGroup>
-              <CartCheckoutSidebarText>Товары</CartCheckoutSidebarText>
-              <CartCheckoutSidebarPriceText>
-                {product_summary}руб.
-              </CartCheckoutSidebarPriceText>
-            </CartCheckoutSidebarGroup>
-            <CartCheckoutSidebarGroup>
-              <CartCheckoutSidebarText>
-                Скидка на товары
-              </CartCheckoutSidebarText>
-              <CartCheckoutSidebarDiscountText>
+            <Flex justifyContent="space-between">
+              <Typography fontWeight={600} component="span">
+                Товары
+              </Typography>
+              <Price>{product_summary}руб.</Price>
+            </Flex>
+            <Flex justifyContent="space-between">
+              <Typography fontWeight={600}>Скидка на товары</Typography>
+              <Price discount bold>
                 -{product_discount}руб.
-              </CartCheckoutSidebarDiscountText>
-            </CartCheckoutSidebarGroup>
+              </Price>
+            </Flex>
             {deliveryPrice > 0 && (
-              <CartCheckoutSidebarGroup>
-                <CartCheckoutSidebarText>
+              <Flex justifyContent="space-between">
+                <Typography fontWeight={600} component="span">
                   Стоимость доставки
-                </CartCheckoutSidebarText>
-                <CartCheckoutSidebarPriceText>
-                  {deliveryPrice}руб.
-                </CartCheckoutSidebarPriceText>
-              </CartCheckoutSidebarGroup>
+                </Typography>
+                <Price>{deliveryPrice}руб.</Price>
+              </Flex>
             )}
           </CartCheckoutSidebarOrderInfo>
-          <CartCheckoutSidebarSummaryInfo>
-            <CartCheckoutSidebarGroup>
-              <CartCheckoutSidebarText>Итого</CartCheckoutSidebarText>
-              <CartCheckoutSidebarSummary>
+          <Box mb={30}>
+            <Flex justifyContent="space-between">
+              <Typography fontWeight={600} component="span">
+                Итого
+              </Typography>
+              <Price size="large" bold>
                 {order_summary + deliveryPrice}
                 руб.
-              </CartCheckoutSidebarSummary>
-            </CartCheckoutSidebarGroup>
-          </CartCheckoutSidebarSummaryInfo>
-          <CartCheckoutSidebarActions>
-            <Button
-              type="primary"
-              size="large"
-              form="checkout"
-              htmlType="submit"
-            >
+              </Price>
+            </Flex>
+          </Box>
+          <Box textAlign="center">
+            <Button type="primary" size="large" form="checkout" htmlType="submit">
               Оформить заказ
             </Button>
-          </CartCheckoutSidebarActions>
-        </CartCheckoutSidebarFooter>
-      </CartCheckoutSidebarContent>
+          </Box>
+        </Box>
+      </Box>
     </CartCheckoutSidebarWrapper>
   );
 };

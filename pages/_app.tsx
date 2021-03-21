@@ -1,5 +1,4 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import ruRU from "antd/lib/locale-provider/ru_RU";
@@ -20,6 +19,7 @@ import "../styles/swiper.css";
 
 import LoaderProvider from "src/context/loaderContext/loaderContext";
 import { menuService } from "src/api/services/menu/menu.service";
+import { ThemeProvider } from "src/context/themeContext";
 
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
@@ -37,11 +37,12 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ConfigProvider locale={ruRU}>
-            <LoaderProvider>
-              <CssBaseline />
-              <BackTop />
-              <Component {...pageProps} />
-            </LoaderProvider>
+            <ThemeProvider>
+              <LoaderProvider>
+                <BackTop />
+                <Component {...pageProps} />
+              </LoaderProvider>
+            </ThemeProvider>
           </ConfigProvider>
         </PersistGate>
       </Provider>

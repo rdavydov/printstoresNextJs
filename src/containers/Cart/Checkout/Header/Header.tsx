@@ -1,22 +1,25 @@
 import Link from "next/link";
-import React from "react";
-import { Paragraph, Title } from "src/components/common";
-import { CartCheckoutHeaderWrapper } from "./styled";
+import React, { useContext } from "react";
+import { Title } from "src/components/common";
+import { Box, Flex, Typography } from "src/components/ui";
+import { ThemeContext } from "src/context/themeContext";
 
 const CartCheckoutHeader = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <CartCheckoutHeaderWrapper>
-      <div>
+    <Flex alignItems="center" padding="25px 0" mb={15} borderBottom={`1px solid ${theme.color.border}`}>
+      <Box>
         <Title level="h2">
           <b>PrintStores.ru</b>
         </Title>
-      </div>
-      <Paragraph style={{ marginLeft: 15 }}>
+      </Box>
+      <Typography ml={15}>
         <Link href="/cart">
           <a>Вернуться в корзину</a>
         </Link>
-      </Paragraph>
-    </CartCheckoutHeaderWrapper>
+      </Typography>
+    </Flex>
   );
 };
 

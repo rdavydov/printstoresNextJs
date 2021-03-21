@@ -1,10 +1,11 @@
-import { Radio, Form, Row, Col } from "antd";
+import { Radio, Form } from "antd";
 import React from "react";
 import { Title, Paragraph } from "src/components/common";
 
 import cn from "classnames";
 import styles from "./payment.module.scss";
 import { CartCheckoutPaymentsMethods } from "../../constants/checkout.form.constans";
+import { Flex } from "src/components/ui";
 
 interface IProps {
   showNonCashPayment: boolean;
@@ -12,12 +13,12 @@ interface IProps {
 
 const CartCheckoutFormPaymentFields: React.FC<IProps> = ({ showNonCashPayment }) => {
   return (
-    <Row>
-      <Col span={24}>
+    <Flex>
+      <Flex.Item span={12}>
         <Title level="h4">
           <b>Способы оплаты</b>
         </Title>
-      </Col>
+      </Flex.Item>
       <Form.Item name="payment_method">
         <Radio.Group defaultValue={CartCheckoutPaymentsMethods.CASH.key} className={styles.antRadioGroup}>
           {showNonCashPayment && (
@@ -48,7 +49,7 @@ const CartCheckoutFormPaymentFields: React.FC<IProps> = ({ showNonCashPayment })
           </Radio.Button>
         </Radio.Group>
       </Form.Item>
-    </Row>
+    </Flex>
   );
 };
 

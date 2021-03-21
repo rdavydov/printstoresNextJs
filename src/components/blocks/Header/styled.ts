@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const HeaderWrapper = styled.header``;
 
@@ -44,6 +44,8 @@ export const HeaderMenuListItem = styled.li`
 
 interface SearchWrapperProps {
   active: boolean;
+  animationActive: boolean;
+  animationInActive: boolean;
 }
 
 const InputVisible = keyframes`
@@ -60,9 +62,19 @@ export const HeaderSearchInputWrapper = styled.input<Partial<SearchWrapperProps>
   transition: 1.5s;
   position: absolute;
   transition: 0.5s;
+  width: 0px;
   right: 35px;
   bottom: 0;
-  animation: ${(props) => (props.active ? InputVisible : InputHidden)} 0.3s 0s both;
+  ${(props) =>
+    props.animationActive &&
+    css`
+      animation: ${InputVisible} 0.3s 0s both;
+    `};
+  ${(props) =>
+    props.animationInActive &&
+    css`
+      animation: ${InputHidden} 0.3s 0s both;
+    `}
   animation-fill-mode: forwards;
   background-color: #fafafa;
   outline: none;

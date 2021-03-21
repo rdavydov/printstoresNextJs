@@ -4,6 +4,15 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   color: #212121 !important;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  background-color: #fafafa;
+  font-feature-settings: "tnum", "tnum";
+}
+
+body::backdrop {
+  background-color: #fafafa;
 }
 
 a {
@@ -67,9 +76,6 @@ footer {
   margin: 16px;
 }
 
-/* .ant-layout-sider-children {
-    position: fixed;
-} */
 .site-layout .site-layout-background {
   background: #fff;
 }

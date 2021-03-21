@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetCheckoutFields, updateCheckoutFields } from "src/store/reducers/cart/checkout/checkout.reducer";
 import { RootState } from "src/store/rootReducer";
 import { resetCartProducts } from "src/store/reducers/cart/products/products.reducer";
+import { Box } from "src/components/ui";
 
 const CartCheckoutForm = () => {
   const { push } = useRouter();
@@ -82,7 +83,7 @@ const CartCheckoutForm = () => {
   const showNonCashPayment = order_summary <= 15000;
 
   return (
-    <div>
+    <Box width="100%">
       <Form
         layout="vertical"
         id="checkout"
@@ -96,7 +97,7 @@ const CartCheckoutForm = () => {
         <CartCheckoutFormPaymentFields showNonCashPayment={showNonCashPayment} />
         <CartCheckoutFormContactsFields />
       </Form>
-    </div>
+    </Box>
   );
 };
 

@@ -16,11 +16,11 @@ import HeaderMenu from "./HeaderMenu";
 import { headerMenu } from "src/constants/routes/header/header.routes";
 import { Avatar, Badge } from "antd";
 import { Routes } from "src/constants/routes/routes";
+import { useAnimation } from "src/hooks/useAnimation";
 
 const Header = () => {
   const { products } = useSelector((state: RootState) => state.cart.products);
-
-  const [searchActive, setSearchActive] = useState(false);
+  const { animateActive, animationInActive, animateOff, animateOn } = useAnimation();
 
   return (
     <HeaderWrapper>
@@ -33,8 +33,11 @@ const Header = () => {
           <Title level="h1">PRINTSTORES</Title>
           <HeaderActionsBlock>
             <HeaderSearchBlock>
-              <Avatar shape="circle" icon={<SearchOutlined onClick={() => setSearchActive(!searchActive)} />} />
-              <HeaderSearchInputWrapper active={searchActive}></HeaderSearchInputWrapper>
+              <Avatar shape="circle" icon={<SearchOutlined onClick={animateActive ? animateOff : animateOn} />} />
+              <HeaderSearchInputWrapper
+                animationActive={animateActive}
+                animationInActive={animationInActive}
+              ></HeaderSearchInputWrapper>
             </HeaderSearchBlock>
             <MenuLink href={Routes.CART.href}>
               <Badge count={products.length}>

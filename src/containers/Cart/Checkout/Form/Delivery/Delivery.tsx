@@ -1,6 +1,7 @@
 import React from "react";
-import { Row, Col, Radio, Input, Form } from "antd";
+import { Radio, Input, Form } from "antd";
 import { Title } from "src/components/common";
+import { Flex } from "src/components/ui";
 
 interface IProps {
   showDeliveryAddressField: boolean;
@@ -9,8 +10,8 @@ interface IProps {
 const CartCheckoutFormDeliveryFields: React.FC<IProps> = ({ showDeliveryAddressField }) => {
   return (
     <>
-      <Row>
-        <Col span={8}>
+      <Flex>
+        <Flex.Item span={4}>
           <Title level="h4">
             <b>Способы доставки</b>
           </Title>
@@ -20,16 +21,16 @@ const CartCheckoutFormDeliveryFields: React.FC<IProps> = ({ showDeliveryAddressF
               <Radio.Button value="PICKUP">Самовывоз</Radio.Button>
             </Radio.Group>
           </Form.Item>
-        </Col>
-      </Row>
+        </Flex.Item>
+      </Flex>
       {showDeliveryAddressField && (
-        <Row>
-          <Col span={8}>
+        <Flex>
+          <Flex.Item span={4}>
             <Form.Item name={["delivery", "address"]} label="Ваш адрес">
               <Input />
             </Form.Item>
-          </Col>
-        </Row>
+          </Flex.Item>
+        </Flex>
       )}
     </>
   );
