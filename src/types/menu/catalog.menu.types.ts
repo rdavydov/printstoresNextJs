@@ -3,4 +3,5 @@ export type MenuType = Array<{
   pageType: string;
   title: string;
   children: MenuType;
+  parentID: null | string;
 }>;

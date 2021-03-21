@@ -6,7 +6,7 @@ import { RootState } from "src/store/rootReducer";
 import { Button, Input } from "antd";
 import { CartCheckoutSidebarProps } from "src/types/containers/Cart/Checkout";
 import CartCheckoutSidebarList from "./List/List";
-import { CartCheckoutSidebarOrderInfo, CartCheckoutSidebarTitle, CartCheckoutSidebarWrapper } from "./styled";
+import { CartCheckoutSidebarOrderInfo } from "./styled";
 import { CartCheckoutDeliveryMethods } from "../constants/checkout.form.constans";
 import { Box, Flex, Typography } from "src/components/ui";
 import { Price } from "src/components/common";
@@ -21,12 +21,12 @@ const CartCheckoutSidebar: React.FC<CartCheckoutSidebarProps> = () => {
   const deliveryPrice = CartCheckoutDeliveryMethods[checkout.delivery.method]?.value || 0;
 
   return (
-    <CartCheckoutSidebarWrapper>
+    <Box backgroundColor="gray" sm={{ width: "100%" }}>
       <Box padding={30}>
         <Flex alignItems="baseline" mb={30}>
-          <CartCheckoutSidebarTitle>
-            <b>Ваш заказ</b>
-          </CartCheckoutSidebarTitle>
+          <Typography fontWeight={600} component="span" mr={15}>
+            Ваш заказ
+          </Typography>
           <Link href="/cart">
             <a>Изменить</a>
           </Link>
@@ -78,7 +78,7 @@ const CartCheckoutSidebar: React.FC<CartCheckoutSidebarProps> = () => {
           </Box>
         </Box>
       </Box>
-    </CartCheckoutSidebarWrapper>
+    </Box>
   );
 };
 

@@ -1,11 +1,23 @@
-import styled from "styled-components";
-import { BaseCssProps } from "../config/baseCssProps";
+import styled, { css } from "styled-components";
+import { BaseCssMediaProps, BaseCssProps } from "../config/baseCssProps";
+import { createBreakPoints } from "../utils/createBreakpoints";
 import createCss from "../utils/createCss";
 
-export type BoxProps = Partial<BaseCssProps>;
+interface BoxDefaultProps extends BaseCssProps {}
+
+export type BoxProps = Partial<BoxDefaultProps & BaseCssMediaProps<BoxDefaultProps>>;
+
+const configureBox = (props: BoxProps) => {
+  const defaultCss = props && createCss(props);
+  const breakPointsCss = createBreakPoints(props);
+  return css`
+    ${defaultCss}
+    ${breakPointsCss}
+  `;
+};
 
 export const BoxBase = styled.div<BoxProps>`
   display: block;
   box-sizing: border-box;
-  ${(props) => props && createCss(props)}
+  ${(props) => props && configureBox(props)}
 `;

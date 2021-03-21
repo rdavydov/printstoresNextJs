@@ -11,12 +11,13 @@ import {
   HeaderSearchBlock,
   HeaderSearchInputWrapper,
 } from "./styled";
-import { Container, MenuLink, Paragraph, Title } from "src/components/common";
+import { Container, MenuLink, Title } from "src/components/common";
 import HeaderMenu from "./HeaderMenu";
 import { headerMenu } from "src/constants/routes/header/header.routes";
 import { Avatar, Badge } from "antd";
 import { Routes } from "src/constants/routes/routes";
 import { useAnimation } from "src/hooks/useAnimation";
+import { Box, Typography } from "src/components/ui";
 
 const Header = () => {
   const { products } = useSelector((state: RootState) => state.cart.products);
@@ -28,7 +29,7 @@ const Header = () => {
         <HeaderInfo>
           <HeaderCityBlock>
             <EnvironmentOutlined />
-            <Paragraph>Ростов-На-Дону</Paragraph>
+            <Typography>Ростов-На-Дону</Typography>
           </HeaderCityBlock>
           <Title level="h1">PRINTSTORES</Title>
           <HeaderActionsBlock>

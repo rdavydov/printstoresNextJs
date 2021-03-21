@@ -1,18 +1,10 @@
 export enum BREAKPOINTS {
-  XS = "320px",
-  SM = "600px",
+  XS = "450px",
+  SM = "578px",
   MD = "960px",
   LG = "1280px",
   XL = "1920px",
 }
-
-// --text: "black";
-// --default-text: rgb(33, 33, 33);
-// --border: #f0f0f5;
-// --lightBlue: #1890ff;
-// --muted: #777;
-// --gray: #eff1f7;
-// --discount: #ec008c;
 
 export const theme = {
   color: {
@@ -31,3 +23,5 @@ export const theme = {
     xl: 1920,
   },
 };
+
+export type ColorKeys = keyof typeof theme.color;

@@ -26,19 +26,13 @@ const CartCheckout = () => {
           justifyContent="space-between"
           maxWidth="70%"
           component="section"
-          xs={{ maxWidth: "90%" }}
+          sm={{ maxWidth: "90%" }}
         >
-          <Flex flexDirection="column" flex="0 0 65%" mr={40} maxWidth="100%" xs={{ flex: "0 0 90%" }}>
+          <Flex flexDirection="column" flex="0 0 65%" mr={40} maxWidth="100%" sm={{ span: 12, mr: 0 }} span={8}>
             <CartCheckoutHeader />
             <CartCheckoutTitle>Оформление заказа</CartCheckoutTitle>
             <CartCheckoutForm />
-            <Hidden
-              hidden={{
-                xs: true,
-                md: true,
-                sm: true,
-              }}
-            >
+            <Hidden xs md sm>
               <InfoBlock noMargin />
             </Hidden>
           </Flex>

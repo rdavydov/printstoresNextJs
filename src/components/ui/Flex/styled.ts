@@ -8,9 +8,9 @@ type FlexSpan = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type FlexMobileProps<Props> = Omit<Props, "xs" | "sm" | "md" | "lg" | "xl">;
 
 export interface FlexBaseProps extends BaseCssProps {
-  flexDirection: "row" | "row-reverse" | "column" | "column-reverse";
-  alignItems: "center" | "flex-end" | "flex-start" | "baseline" | "stretch";
-  justifyContent: "center" | "flex-end" | "space-between" | "space-around" | "space-evenly";
+  flexDirection: "row" | "row-reverse" | "column" | "column-reverse" | "unset";
+  alignItems: "center" | "flex-end" | "flex-start" | "baseline" | "stretch" | "unset";
+  justifyContent: "center" | "flex-end" | "space-between" | "space-around" | "space-evenly" | "unset";
   flex: string;
   flexGrow: number;
   flexShrink: number;
@@ -47,6 +47,7 @@ export const FlexBlock = styled.div<Partial<FlexProps>>`
 FlexBlock.defaultProps = {
   flexWrap: "wrap",
   flexDirection: "row",
+  flexBasis: "100%",
 };
 
 export interface FlexItemProps extends BaseCssProps {
@@ -58,6 +59,7 @@ export interface FlexItemProps extends BaseCssProps {
   md?: Partial<FlexMobileProps<FlexItemProps>>;
   lg?: Partial<FlexMobileProps<FlexItemProps>>;
   xl?: Partial<FlexMobileProps<FlexItemProps>>;
+  order?: number;
 }
 
 export const FlexBlockItem = styled.div<Partial<FlexItemProps>>`

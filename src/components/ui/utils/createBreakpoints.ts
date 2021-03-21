@@ -18,8 +18,9 @@ export const calcFlexBasis = (span) => {
   return { "flex-basis": `${basis}` };
 };
 
-export function createBreakPoints(props: FlexProps | DefaultFlexItemProps) {
+export function createBreakPoints<Props>(props: FlexProps | DefaultFlexItemProps | Props) {
   return Object.entries(breakpoints)
+    .reverse()
     .reduce((prev, [key, value]) => {
       if (props[key]) {
         const cssProps = createCss(props[key]);

@@ -1,5 +1,6 @@
 import { css } from "styled-components";
 import cssPropertyKeys, { CssKeys } from "../config/cssPropertyKeys";
+import { theme } from "../config/theme";
 
 interface Config {
   unit: "px" | "rem" | "%" | "vh" | "vm";
@@ -11,14 +12,20 @@ export type CssCalc = {
 };
 
 const blackList = ["fontWeight"];
+const colorKey = "color";
+const unitConverList = ["margin", "mr", "mb", "ml", "pb", "pl", "pr", "padding", "mt"];
 
 const checkValue = (value: string | CssCalc | number, nextKey: string) => {
   switch (typeof value) {
     case "string": {
-      return value;
+      const isColorKey = nextKey.toLowerCase().includes(colorKey);
+      const isVariableColor = theme.color[value];
+      return isColorKey && isVariableColor ? `var(--${value})` : value;
     }
     case "number": {
-      return blackList.includes(nextKey) ? value : value + "px";
+      const isUnitValue = unitConverList.includes(nextKey);
+      const isBlackListKey = blackList.includes(nextKey);
+      return isUnitValue && !isBlackListKey ? value + "px" : value;
     }
     case "object": {
       const calcString = value.calc.map(({ unit, value, symbolExpression }, index, arr) => {

@@ -12,7 +12,7 @@ interface IProps {
 const IconMenu = ({ title, subTitle, iconsMenu, iconsProps }: IProps) => (
   <ul>
     {title && (
-      <Title className={styles.title} fontSize={18}>
+      <Title className={styles.title} fontSize={18} mb={10}>
         {title}
       </Title>
     )}

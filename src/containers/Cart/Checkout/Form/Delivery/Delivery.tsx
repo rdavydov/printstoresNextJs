@@ -11,7 +11,7 @@ const CartCheckoutFormDeliveryFields: React.FC<IProps> = ({ showDeliveryAddressF
   return (
     <>
       <Flex>
-        <Flex.Item span={4}>
+        <Flex.Item span={4} sm={{ span: 12 }}>
           <Title level="h4">
             <b>Способы доставки</b>
           </Title>
@@ -25,7 +25,7 @@ const CartCheckoutFormDeliveryFields: React.FC<IProps> = ({ showDeliveryAddressF
       </Flex>
       {showDeliveryAddressField && (
         <Flex>
-          <Flex.Item span={4}>
+          <Flex.Item span={4} sm={{ span: 12 }}>
             <Form.Item name={["delivery", "address"]} label="Ваш адрес">
               <Input />
             </Form.Item>

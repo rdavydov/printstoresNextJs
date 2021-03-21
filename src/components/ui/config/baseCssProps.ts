@@ -1,4 +1,4 @@
-import { CssCalc } from "../utils/createCss";
+import { ColorKeys } from "./theme";
 
 export interface BaseCssProps {
   margin: string | number;
@@ -11,10 +11,23 @@ export interface BaseCssProps {
   pb: string | number;
   mb: string | number;
   ml: string | number;
+  mt: string | number;
   fontSize: number | string;
   fontWeight: "bold" | number;
   fontFamily: string;
   lineHight: "normal" | number | string;
   textDecoration: "none" | "underline" | "overline" | "line-through" | "blink";
   textTransform: "none" | "capitalize" | "uppercase" | "lowercase";
+  backgroundColor: ColorKeys;
+  color: ColorKeys;
+  borderColor: ColorKeys;
+  display: "none" | "flex" | "block" | "inline-flex";
+}
+
+export interface BaseCssMediaProps<CssProps> {
+  xs?: Partial<CssProps>;
+  md?: Partial<CssProps>;
+  sm?: Partial<CssProps>;
+  xl?: Partial<CssProps>;
+  lg?: Partial<CssProps>;
 }
