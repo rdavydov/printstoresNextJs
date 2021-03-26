@@ -25,11 +25,9 @@ export function createBreakPoints<Props>(props: FlexProps | DefaultFlexItemProps
       if (props[key]) {
         const cssProps = createCss(props[key]);
         const flexBasis = props[key]?.span && calcFlexBasis(props[key].span);
+        const breakpointValue = `@media (max-width: ${value}) {${cssProps} ${flexBasis && css(flexBasis)}}`;
         const cssFinal = css`
-          @media (max-width: ${value}) {
-            ${cssProps}
-            ${flexBasis && css(flexBasis)}
-          } ;
+          ${breakpointValue}
         `;
         return [...prev, cssFinal.join("")];
       } else {

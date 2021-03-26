@@ -5,11 +5,11 @@ class CategoryService {
   private request = new Request("category");
 
   getCategoryByKey(key: string): Promise<Category> {
-    return this.request.GET(":key", { params: { key } });
+    return this.request.GET({ url: ":key", params: { key } });
   }
 
   getAllCategory(): Promise<Category> {
-    return this.request.GET("all");
+    return this.request.GET({ url: "all" });
   }
 }
 

@@ -4,17 +4,16 @@ import Layout from "src/templates/Layout/Layout";
 import { menuService } from "src/api/services/menu/menu.service";
 import { Breadcrumbs, Gallery } from "src/components/common";
 import { ProductInfo, ProductItem } from "src/containers/product";
-import { ProductWrapper } from "./styled";
 
 const OneProductPage = ({ products, menu }) => (
   <Layout menu={menu}>
     <Breadcrumbs crumbs={menu} />
-    <ProductWrapper>
+    <div style={{ paddingTop: 25, paddingBottom: 60 }}>
       <ProductItem {...products} />
       <ProductInfo {...products} />
       {/* <ProductRecommended /> */}
       <Gallery title="Рекомендуемые товары" titleProps={{ bold: true }} />
-    </ProductWrapper>
+    </div>
   </Layout>
 );
 

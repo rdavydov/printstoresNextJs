@@ -6,10 +6,9 @@ import { Comment, Rate } from "antd";
 import { Title } from "src/components/common";
 
 import styles from "./Comments.module.scss";
-import { IReviews } from "src/api/services/reviews/reviews.service";
 
 interface IProps {
-  reviews: IReviews[];
+  reviews: any[];
 }
 
 const ReviewsPageComments = ({ reviews }: IProps) => {

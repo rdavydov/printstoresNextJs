@@ -10,7 +10,7 @@ import MobileMenu from "src/components/blocks/MobileMenu/MobileMenu";
 
 interface IProps {
   children: JSX.Element | JSX.Element[];
-  menu: MenuType;
+  menu?: MenuType;
 }
 
 const Layout: React.FC<IProps> = ({ children, menu }) => {

@@ -10,6 +10,7 @@ export type BoxProps = Partial<BoxDefaultProps & BaseCssMediaProps<BoxDefaultPro
 const configureBox = (props: BoxProps) => {
   const defaultCss = props && createCss(props);
   const breakPointsCss = createBreakPoints(props);
+
   return css`
     ${defaultCss}
     ${breakPointsCss}

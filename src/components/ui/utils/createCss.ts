@@ -41,10 +41,10 @@ const checkValue = (value: string | CssCalc | number, nextKey: string) => {
 };
 
 interface CssProps {
-  props?: { [key in CssKeys]: string | CssCalc | number };
+  props?: { [key in CssKeys]?: string | CssCalc | number };
 }
 
-const createCss = <BaseProps>(props: CssProps & BaseProps, config?: Config) => {
+const createCss = <BaseProps>(props: CssProps & BaseProps) => {
   const cssStyles = Object.entries(props)
     .reduce(
       (prev, [nextKey, nextValue]) =>
@@ -54,7 +54,6 @@ const createCss = <BaseProps>(props: CssProps & BaseProps, config?: Config) => {
       []
     )
     .join("\n");
-
   return css`
     ${cssStyles}
   `;

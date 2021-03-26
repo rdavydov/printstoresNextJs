@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const MobileMenu: React.FC<IProps> = ({ menu }) => {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = () => {
     setOpen(true);
