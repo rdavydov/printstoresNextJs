@@ -3,7 +3,6 @@ const execSync = require("child_process").execSync;
 const lastCommitCommand = "git rev-parse HEAD";
 const dev = process.env.NODE_ENV.trim() !== "production";
 module.exports = {
-  distDir: "build",
   async generateBuildId() {
     return execSync(lastCommitCommand).toString().trim();
   },
