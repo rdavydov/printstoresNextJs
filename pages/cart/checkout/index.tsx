@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { InfoBlock } from "src/components/common";
 import { Flex, Hidden } from "src/components/ui";
@@ -14,9 +14,14 @@ const CartCheckout = () => {
   const { push } = useRouter();
 
   if (!products.length) {
-    push("/");
     return null;
   }
+
+  useEffect(() => {
+    if (!products.length) {
+      push("/");
+    }
+  }, []);
 
   return (
     <>
