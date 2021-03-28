@@ -1,11 +1,7 @@
 const path = require("path");
 const execSync = require("child_process").execSync;
-const lastCommitCommand = "git rev-parse HEAD";
 const dev = process.env.NODE_ENV.trim() !== "production";
 module.exports = {
-  async generateBuildId() {
-    return execSync(lastCommitCommand).toString().trim();
-  },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
