@@ -16,7 +16,6 @@ import "swiper/components/scrollbar/scrollbar.scss";
 import "../styles/swiper.css";
 
 import LoaderProvider from "src/context/loaderContext/loaderContext";
-import { menuService } from "src/api/services/menu/menu.service";
 import { ThemeProvider } from "src/context/themeContext";
 
 function MyApp({ Component, pageProps }) {
@@ -33,26 +32,17 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Head>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ConfigProvider locale={ruRU}>
-            <ThemeProvider>
-              <LoaderProvider>
-                <BackTop />
-                <Component {...pageProps} />
-              </LoaderProvider>
-            </ThemeProvider>
-          </ConfigProvider>
-        </PersistGate>
+        <ConfigProvider locale={ruRU}>
+          <ThemeProvider>
+            <LoaderProvider>
+              <BackTop />
+              <Component {...pageProps} />
+            </LoaderProvider>
+          </ThemeProvider>
+        </ConfigProvider>
       </Provider>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const { menu } = await menuService.getPageMenu("catalog");
-  return {
-    props: { pageProps: { menu } },
-  };
 }
 
 export default MyApp;
