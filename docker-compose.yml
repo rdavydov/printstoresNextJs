@@ -9,4 +9,4 @@ services:
       - 443:443
     volumes:
       - /etc/ssl/:/etc/ssl/
-      - /etc/nginx/:/etc/nginx/
+      - /etc/nginx/.htpasswd:/etc/nginx/.htpasswd
