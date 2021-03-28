@@ -1,3 +1,7 @@
+FROM ubuntu:20.04
+RUN apt update
+RUN apt install -y git
+
 # Base on offical Node.js Alpine image
 FROM node:alpine
 
