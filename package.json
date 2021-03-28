@@ -33,6 +33,7 @@
     "react-redux": "^7.2.2",
     "redux-persist": "^6.0.0",
     "sass": "^1.30.0",
+    "sitemap": "^6.4.0",
     "styled-components": "^5.2.1",
     "styled-reset": "^4.3.2",
     "swiper": "^6.4.1"
