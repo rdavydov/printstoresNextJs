@@ -1,8 +1,8 @@
 const path = require("path");
-const nextBuildId = require("next-build-id");
+// const nextBuildId = require("next-build-id");
 const dev = process.env.NODE_ENV.trim() !== "production";
 module.exports = {
-  generateBuildId: () => nextBuildId({ dir: __dirname }),
+  // generateBuildId: () => nextBuildId({ dir: __dirname }),
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
