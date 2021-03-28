@@ -1,7 +1,5 @@
 version: "3"
 services:
-  git:
-    volumes: /usr/bin/git
   nextjs:
     build: ./
   nginx:
