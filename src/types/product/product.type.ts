@@ -5,7 +5,8 @@ export type Product = {
   price: number;
   old_price: number;
   product_id: string | number;
-  preview?: string;
+  preview: string;
   description?: string;
   details?: string;
+  id: string;
 };

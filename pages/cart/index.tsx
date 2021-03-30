@@ -5,10 +5,11 @@ import { menuService } from "src/api/services/menu/menu.service";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store/rootReducer";
 
-import styles from "../../styles/pages/cart/cart.module.scss";
 import { CartProductEmpty, CartProductList, CartProductCalculator } from "src/containers/Cart/Product";
+import { catalogService } from "src/api";
+import { Box, Flex } from "src/components/ui";
 
-const CartPage = ({ menu }) => {
+const CartPage = ({ menu, recomennded }) => {
   const { products } = useSelector((state: RootState) => state.cart.products);
 
   if (!products.length) {
@@ -27,20 +28,23 @@ const CartPage = ({ menu }) => {
       <Title mb={20} bold>
         Корзина
       </Title>
-      <section className={styles.wrapper}>
+      <Flex mb={40} justifyContent="space-between">
         <CartProductList product={products} />
         <CartProductCalculator />
-      </section>
-      <Gallery title="Вас может заинтересовать" titleProps={{ bold: true }} />
+      </Flex>
+      <Box>
+        <Gallery title="Вас может заинтересовать" titleProps={{ bold: true }} products={recomennded} />
+      </Box>
     </Layout>
   );
 };
 
 export async function getServerSideProps() {
   const { menu } = await menuService.getPageMenu("catalog");
+  const recomennded = await catalogService.filterProducts({ limit: 30, filterBy: "rating" });
 
   return {
-    props: { menu },
+    props: { menu, recomennded: recomennded.products },
   };
 }
 

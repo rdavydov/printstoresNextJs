@@ -13,8 +13,9 @@ class CatalogService {
   getAllCategory(): Promise<Category> {
     return this.request.GET();
   }
-  catalogFilter(params): Promise<CalalogFilterProducts> {
-    return this.request.GET({ url: "filter", query: { ...params } });
+
+  filterProducts(body: { limit: number; filterBy: "created_at" | "rating" }): Promise<{ products: Product[] }> {
+    return this.request.POST({ url: "filter", body });
   }
 }
 

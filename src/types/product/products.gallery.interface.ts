@@ -4,13 +4,9 @@ import { Product } from "./product.type";
 export interface IProductsGaleryProps {
   title: string;
 }
-export type ProductsGallery = Pick<
-  Product,
-  "old_price" | "price" | "title" | "product_id" | "preview"
->;
+export type ProductsGallery = Pick<Product, "old_price" | "price" | "title" | "product_id" | "preview">;
 
 export interface IProducts {
-  title?: string;
   productsList: ProductsGallery[];
 }
 

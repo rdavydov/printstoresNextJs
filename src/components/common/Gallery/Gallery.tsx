@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { galleryData } from "../../../constants/gallery/galleryData";
+import { Product } from "src/types/product/product.type";
 import GallerySlider from "./GallerySlider/GallerySlider";
 import { GalleryTitleProps } from "./types/gallery.types";
 
 interface Props {
   title?: string;
+  products: Product[];
 }
 
-const Gallery = ({ title, ...rest }: Props & GalleryTitleProps) => {
+const Gallery = ({ title, products, ...rest }: Props & GalleryTitleProps) => {
   const [swiper, setSwiper] = useState(null);
   const [start, setStart] = useState(true);
   const [end, setEnd] = useState(false);
@@ -45,7 +46,7 @@ const Gallery = ({ title, ...rest }: Props & GalleryTitleProps) => {
       title={title}
       end={end}
       start={start}
-      productsList={galleryData}
+      productsList={products}
       initSwipe={initSwipe}
       nextSlide={nextSlide}
       prevSlide={prevSlide}

@@ -8,6 +8,8 @@ import GallerySlide from "./GallerySlide/GallerySlide";
 import { GalleryWrapper, GaleryHeader } from "./styled";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { GalleryTitleProps } from "../types/gallery.types";
+import { Product } from "src/types/product/product.type";
+import ProductGalleryItem from "../../ProductGalleryItem/ProductItem";
 
 interface IProps {
   prevSlide: () => void;
@@ -18,11 +20,13 @@ interface IProps {
   allChange: () => void;
   end: boolean;
   start: boolean;
+  title?: string;
+  productsList: Product[];
 }
 SwiperCore.use([Autoplay, A11y]);
 
 const breakpointsConfig = {
-  320: { slidesPerView: 1, spaceBetween: 0 },
+  0: { slidesPerView: 1, spaceBetween: 10 },
   600: { slidesPerView: 2, spaceBetween: 10 },
   960: { slidesPerView: 3, spaceBetween: 10 },
   1200: { slidesPerView: 4, spaceBetween: 30 },
@@ -33,7 +37,7 @@ const getArrowStyle = (position) => {
   return { color, fontSize: 14 };
 };
 
-const GallerySlider: React.FC<IProducts & IProps & GalleryTitleProps> = ({
+const GallerySlider: React.FC<IProps & GalleryTitleProps> = ({
   title,
   productsList,
   initSwipe,
@@ -70,9 +74,9 @@ const GallerySlider: React.FC<IProducts & IProps & GalleryTitleProps> = ({
       onReachBeginning={changeStart}
       onReachEnd={changeEnd}
     >
-      {productsList.map(({ title, old_price, price, product_id, preview }) => (
-        <SwiperSlide key={product_id}>
-          <GallerySlide title={title} price={price} old_price={old_price} preview={preview} product_id={product_id} />
+      {(productsList || []).map((item) => (
+        <SwiperSlide key={item.id}>
+          <ProductGalleryItem {...item} />
         </SwiperSlide>
       ))}
     </Swiper>

@@ -1,22 +1,20 @@
-import React from 'react';
-import cn from 'classnames'
+import React from "react";
+import { Box } from "src/components/ui";
+import { BoxBaseType } from "src/components/ui/Box";
 
-import styles from './Container.module.scss';
-
-
-interface IProps {
-    className?: string;
-    children: any
-}
-
-const Container: React.FC = ({ className, children }: IProps) => {
-
-    return (
-        <div className={cn(styles.container, className)}>
-            {children}
-        </div>
-    )
-}
-
+const Container: React.FC<BoxBaseType> = ({
+  maxWidth = 1280,
+  width = "100%",
+  padding = "0 24px",
+  margin = "0 auto",
+  children,
+  ...rest
+}) => {
+  return (
+    <Box maxWidth={maxWidth} width={width} padding={padding} margin={margin} {...rest}>
+      {children}
+    </Box>
+  );
+};
 
 export default Container;

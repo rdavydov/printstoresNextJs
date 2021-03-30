@@ -14,5 +14,5 @@ export const Routes = {
   SITE_MAP: { label: "Карта сайта", href: "/sitemap" },
   CART: { label: "Корзина", href: "/cart" },
   CART_CHECKOUT: { label: "Оформление заказа", href: "/cart/checkout" },
-  PRODUCT: { label: "Товары", href: (id) => `product/${id}` },
+  PRODUCT: { label: "Товары", href: (id) => `/product/${id}` },
 };

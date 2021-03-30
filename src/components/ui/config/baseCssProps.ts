@@ -4,6 +4,8 @@ export interface BaseCssProps {
   margin: string | number;
   mr: number;
   width: string;
+  minWidth: string | number | "unset";
+  maxWidth: string | number | "unset";
   textAlign: "center" | "right" | "left";
   padding: string | number;
   pr: string | number;

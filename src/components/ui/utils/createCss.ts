@@ -13,7 +13,7 @@ export type CssCalc = {
 
 const blackList = ["fontWeight"];
 const colorKey = "color";
-const unitConverList = ["margin", "mr", "mb", "ml", "pb", "pl", "pr", "padding", "mt"];
+const unitConverList = ["margin", "mr", "mb", "ml", "pb", "pl", "pr", "padding", "mt", "minWidth", "maxWidth"];
 
 const checkValue = (value: string | CssCalc | number, nextKey: string) => {
   switch (typeof value) {
