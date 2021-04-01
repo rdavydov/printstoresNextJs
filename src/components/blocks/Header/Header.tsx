@@ -18,9 +18,9 @@ import { Avatar, Badge } from "antd";
 import { Routes } from "src/constants/routes/routes";
 import { useAnimation } from "src/hooks/useAnimation";
 import { Box, Typography } from "src/components/ui";
+import BadgeShopping from "src/components/common/BadgeShopping/BadgeShopping";
 
 const Header = () => {
-  const { products } = useSelector((state: RootState) => state.cart.products);
   const { animateActive, animationInActive, animateOff, animateOn } = useAnimation();
 
   return (
@@ -40,11 +40,7 @@ const Header = () => {
                 animationInActive={animationInActive}
               ></HeaderSearchInputWrapper>
             </HeaderSearchBlock>
-            <MenuLink href={Routes.CART.href}>
-              <Badge count={products.length}>
-                <Avatar shape="circle" icon={<ShoppingCartOutlined />} />
-              </Badge>
-            </MenuLink>
+            <BadgeShopping />
           </HeaderActionsBlock>
         </HeaderInfo>
         <HeaderNavBlock>

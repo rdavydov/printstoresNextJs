@@ -1,8 +1,14 @@
 import React from "react";
-import { Container, Gallery } from "src/components/common";
+import { Container } from "src/components/common";
 import Layout from "src/templates/Layout/Layout";
 import { menuService } from "src/api/services/menu/menu.service";
 import { catalogService } from "src/api";
+import dynamic from "next/dynamic";
+import { Spin } from "antd";
+
+const Gallery = dynamic(() => import("src/components/common/Gallery/Gallery"), {
+  loading: () => <Spin tip="Загрузка" />,
+});
 
 const Home = ({ menu, popular, recently }) => (
   <Layout menu={menu}>

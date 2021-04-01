@@ -6,7 +6,7 @@ interface IProps extends LinkProps {
   label?: string;
 }
 
-const MenuLink: React.FC<IProps> = ({ href, label, children, ...rest }) => {
+const MenuLink: React.FC<IProps & React.HTMLProps<any>> = ({ href, label, children, ...rest }) => {
   return (
     <Link href={href} {...rest}>
       <a>{label || children}</a>

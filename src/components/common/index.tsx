@@ -1,5 +1,6 @@
 import ProductsList from "src/components/blocks/Products/List/List";
 import UploadFile from "src/components/blocks/UploadFile/UploadFile";
+import BadgeShopping from "./BadgeShopping/BadgeShopping";
 import Breadcrumbs from "./Breadcrumbs/Breadcrumbs";
 import Button from "./Button/CustomButton";
 import Card from "./Card/Card";
@@ -44,4 +45,5 @@ export {
   Paragraph,
   Price,
   Gallery,
+  BadgeShopping,
 };
