@@ -58,17 +58,17 @@ const InputHidden = keyframes`
   100% { width: 0px};
 `;
 
-export const HeaderSearchInputWrapper = styled.input<Partial<SearchWrapperProps>>`
+export const HeaderSearchInputWrapper = styled.div<Partial<SearchWrapperProps>>`
   transition: 1.5s;
   position: absolute;
   transition: 0.5s;
   width: 0px;
-  right: 35px;
+  right: 60px;
   bottom: 0;
   ${(props) =>
     props.animationActive &&
     css`
-      animation: ${InputVisible} 0.3s 0s both;
+      animation: ${InputVisible} 1s 0s both;
     `};
   ${(props) =>
     props.animationInActive &&

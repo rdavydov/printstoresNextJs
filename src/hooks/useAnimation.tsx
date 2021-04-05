@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function useAnimation() {
+export function useAnimation(node) {
   const [animateActive, setAnimateActive] = useState(false);
   const [animationInActive, setAnimationInActive] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const animateOn = () => {
-    setAnimateActive(true);
-    setAnimationInActive(false);
+    if (!focused) {
+      setAnimateActive(true);
+      setAnimationInActive(false);
+      node && node.focus();
+    }
   };
 
   const animateOff = () => {

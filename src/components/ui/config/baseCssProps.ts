@@ -24,6 +24,7 @@ export interface BaseCssProps {
   color: ColorKeys;
   borderColor: ColorKeys;
   display: "none" | "flex" | "block" | "inline-flex";
+  height: string | number;
 }
 
 export interface BaseCssMediaProps<CssProps> {

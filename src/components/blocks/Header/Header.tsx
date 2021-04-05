@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "src/store/rootReducer";
+import React, { useRef, useState } from "react";
 import { EnvironmentOutlined, SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import {
   HeaderActionsBlock,
@@ -11,18 +9,16 @@ import {
   HeaderSearchBlock,
   HeaderSearchInputWrapper,
 } from "./styled";
-import { Container, MenuLink, Title } from "src/components/common";
+import { Container, Title } from "src/components/common";
 import HeaderMenu from "./HeaderMenu";
 import { headerMenu } from "src/constants/routes/header/header.routes";
-import { Avatar, Badge } from "antd";
-import { Routes } from "src/constants/routes/routes";
-import { useAnimation } from "src/hooks/useAnimation";
-import { Box, Typography } from "src/components/ui";
+import { Avatar } from "antd";
+import { Typography } from "src/components/ui";
 import BadgeShopping from "src/components/common/BadgeShopping/BadgeShopping";
+import OverlaySearch from "../OverlaySearch";
 
 const Header = () => {
-  const { animateActive, animationInActive, animateOff, animateOn } = useAnimation();
-
+  const [visible, setVisible] = useState(false);
   return (
     <HeaderWrapper>
       <Container>
@@ -34,11 +30,7 @@ const Header = () => {
           <Title level="h1">PRINTSTORES</Title>
           <HeaderActionsBlock>
             <HeaderSearchBlock>
-              <Avatar shape="circle" icon={<SearchOutlined onClick={animateActive ? animateOff : animateOn} />} />
-              <HeaderSearchInputWrapper
-                animationActive={animateActive}
-                animationInActive={animationInActive}
-              ></HeaderSearchInputWrapper>
+              <Avatar shape="circle" icon={<SearchOutlined onClick={() => setVisible(true)} />} />
             </HeaderSearchBlock>
             <BadgeShopping />
           </HeaderActionsBlock>
@@ -47,6 +39,7 @@ const Header = () => {
           <HeaderMenu menu={headerMenu} />
         </HeaderNavBlock>
       </Container>
+      <OverlaySearch visible={visible} setVisible={setVisible} />
     </HeaderWrapper>
   );
 };
