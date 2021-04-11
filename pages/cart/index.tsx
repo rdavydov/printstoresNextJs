@@ -25,12 +25,16 @@ const CartPage = ({ menu, recomennded }) => {
 
   return (
     <Layout menu={menu}>
-      <Title mb={20} bold>
+      <Title margin="20px 0" bold>
         Корзина
       </Title>
-      <Flex mb={40} justifyContent="space-between">
-        <CartProductList product={products} />
-        <CartProductCalculator />
+      <Flex mb={40} justifyContent="space-between" flexWrap="nowrap" md={{ flexDirection: "column" }}>
+        <Flex.Item md={{ span: 12 }} span={8}>
+          <CartProductList product={products} />
+        </Flex.Item>
+        <Box width="100%" maxWidth="300px" md={{ maxWidth: "unset" }}>
+          <CartProductCalculator />
+        </Box>
       </Flex>
       <Box>
         <Gallery title="Вас может заинтересовать" titleProps={{ bold: true }} products={recomennded} />

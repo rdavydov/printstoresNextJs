@@ -1,7 +1,6 @@
 import React from "react";
-import { Product } from "src/types/product/product.type";
+import { Flex } from "src/components/ui";
 import CartProductListItem from "./Item/Item";
-import { ProductListWrapper } from "./styled";
 
 interface IProps {
   product: Array<{
@@ -16,11 +15,13 @@ interface IProps {
 
 const CartProductList: React.FC<IProps> = ({ product }) => {
   return (
-    <ProductListWrapper>
+    <Flex span={8} flexDirection="column">
       {product.map(({ id, ...rest }) => (
-        <CartProductListItem key={id} id={id} {...rest} />
+        <Flex.Item key={id}>
+          <CartProductListItem id={id} {...rest} />
+        </Flex.Item>
       ))}
-    </ProductListWrapper>
+    </Flex>
   );
 };
 

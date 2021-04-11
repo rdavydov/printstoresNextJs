@@ -9,4 +9,5 @@ export type Product = {
   description?: string;
   details?: string;
   id: string;
+  _id: string;
 };

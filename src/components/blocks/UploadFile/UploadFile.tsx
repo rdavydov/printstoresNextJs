@@ -1,12 +1,10 @@
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import {
-  message, Upload, Form, Image,
-} from 'antd';
-import { FormInstance, Rule } from 'antd/lib/form';
-import React, { memo, useEffect, useState } from 'react';
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { message, Upload, Form, Image } from "antd";
+import { FormInstance, Rule } from "antd/lib/form";
+import React, { memo, useEffect, useState } from "react";
 
-import { normalizeFile } from 'src/utils/form/utils-form';
-import { getBase64 } from 'src/utils/images/utils-images';
+import { normalizeFile } from "src/utils/form/utils-form";
+import { getBase64 } from "src/utils/images/utils-images";
 
 interface IProps {
   fieldKey: string | string[];
@@ -15,13 +13,13 @@ interface IProps {
 }
 
 function beforeUpload(file) {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
+    message.error("You can only upload JPG/PNG file!");
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
+    message.error("Image must smaller than 2MB!");
   }
   return isJpgOrPng && isLt2M;
 }
@@ -29,20 +27,22 @@ function beforeUpload(file) {
 const UploadFile: React.FC<IProps> = ({ fieldKey, form, rules }) => {
   const [state, setState] = useState({
     loading: false,
-    imageUrl: '',
+    imageUrl: "",
   });
 
   const handleChange = (info) => {
-    if (info.file.status === 'uploading') {
+    if (info.file.status === "uploading") {
       setState((prev) => ({ ...prev, loading: true }));
       return;
     }
-    if (info.file.status === 'done') {
-      getBase64(info.file.originFileObj, (imageUrl) => setState((prev) => ({
-        ...prev,
-        imageUrl,
-        loading: false,
-      })));
+    if (info.file.status === "done") {
+      getBase64(info.file.originFileObj, (imageUrl) =>
+        setState((prev) => ({
+          ...prev,
+          imageUrl,
+          loading: false,
+        }))
+      );
     }
   };
   const uploadButton = (
@@ -62,36 +62,21 @@ const UploadFile: React.FC<IProps> = ({ fieldKey, form, rules }) => {
   };
 
   useEffect(() => {
-    typeof form === 'object' && getFile();
+    typeof form === "object" && getFile();
     return () => {
-      setState((prev) => ({ ...prev, imageUrl: '' }));
+      setState((prev) => ({ ...prev, imageUrl: "" }));
     };
   }, []);
 
   return (
     <>
-      <Form.Item
-        name={fieldKey}
-        normalize={normalizeFile}
-        rules={rules}
-        valuePropName="file"
-      >
-        <Upload.Dragger
-          listType="picture"
-          showUploadList={false}
-          onChange={handleChange}
-          beforeUpload={beforeUpload}
-        >
+      <Form.Item name={fieldKey} normalize={normalizeFile} rules={rules} valuePropName="file">
+        <Upload.Dragger listType="picture" showUploadList={false} onChange={handleChange} beforeUpload={beforeUpload}>
           {state.imageUrl ? (
-            <Image
-              src={state.imageUrl}
-              alt="avatar"
-              preview={false}
-              style={{ width: '100%', maxHeight: '320px' }}
-            />
+            <Image src={state.imageUrl} alt="avatar" preview={false} style={{ width: "100%", maxHeight: "320px" }} />
           ) : (
-              uploadButton
-            )}
+            uploadButton
+          )}
         </Upload.Dragger>
       </Form.Item>
     </>

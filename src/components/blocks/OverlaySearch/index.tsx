@@ -43,7 +43,7 @@ const OverlaySearch = ({ visible, setVisible }: Props) => {
               fontSize: "26px",
               color: "white",
             }}
-            placeholder="Поиск"
+            placeholder="Поиск по сайту"
           />
         </OverlayBoxInput>
         <OverlaySearchClose onClick={() => changeWrapperAnimation({ fadeOut: true })} {...wrapperAnimation}>

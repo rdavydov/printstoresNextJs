@@ -21,7 +21,7 @@ const CartCheckoutSidebar: React.FC<CartCheckoutSidebarProps> = () => {
   const deliveryPrice = CartCheckoutDeliveryMethods[checkout.delivery.method]?.value || 0;
 
   return (
-    <Box backgroundColor="gray" sm={{ width: "100%" }}>
+    <Box backgroundColor="gray" sm={{ width: "100%", mb: 25 }}>
       <Box padding={30}>
         <Flex alignItems="baseline" mb={30}>
           <Typography fontWeight={600} component="span" mr={15}>

@@ -17,7 +17,7 @@ const ProductInfo = ({ description, details, delivery }: Props) => {
   const info = [
     { header: DESCRIPTION_TEXT, text: description },
     { header: DETAILS, text: details },
-    { header: DELIVERY_AND_PAY, text: "завтра" },
+    { header: DELIVERY_AND_PAY, text: delivery || "Завтра" },
   ];
   return (
     <Row style={{ marginBottom: 50 }}>

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { InfoBlock } from "src/components/common";
-import { Flex, Hidden } from "src/components/ui";
+import { Container, InfoBlock } from "src/components/common";
+import { Box, Flex, Hidden } from "src/components/ui";
 import { CartCheckoutHeader, CartCheckoutSidebar } from "src/containers/Cart/Checkout";
 import CartCheckoutForm from "src/containers/Cart/Checkout/Form/Form";
 import { CartCheckoutTitle } from "src/containers/Cart/Checkout/styled";
@@ -31,18 +31,30 @@ const CartCheckout = () => {
           justifyContent="space-between"
           maxWidth="70%"
           component="section"
+          flexWrap="nowrap"
+          lg={{ flexWrap: "wrap", flexDirection: "column" }}
           sm={{ maxWidth: "90%" }}
         >
-          <Flex flexDirection="column" flex="0 0 65%" mr={40} maxWidth="100%" sm={{ span: 12, mr: 0 }} span={8}>
+          <Flex
+            flexDirection="column"
+            flex="0 0 65%"
+            mr={40}
+            maxWidth="100%"
+            sm={{ span: 12, mr: 0 }}
+            lg={{ span: 6, mr: 0 }}
+            span={8}
+          >
             <CartCheckoutHeader />
             <CartCheckoutTitle>Оформление заказа</CartCheckoutTitle>
             <CartCheckoutForm />
-            <Hidden xs md sm>
-              <InfoBlock noMargin />
-            </Hidden>
           </Flex>
           <CartCheckoutSidebar />
         </Flex>
+        <Container mb={25} maxWidth="70%" margin="0 auto" padding="0px">
+          <Box md={{ display: "none" }}>
+            <InfoBlock noMargin />
+          </Box>
+        </Container>
       </CartCheckotLayout>
     </>
   );

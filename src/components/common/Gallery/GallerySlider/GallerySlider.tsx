@@ -3,8 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, A11y } from "swiper";
 import random from "lodash/random";
 import { Title } from "src/components/common";
-import { IProducts } from "src/types/product/products.gallery.interface";
-import GallerySlide from "./GallerySlide/GallerySlide";
 import { GalleryWrapper, GaleryHeader } from "./styled";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { GalleryTitleProps } from "../types/gallery.types";
@@ -75,7 +73,7 @@ const GallerySlider: React.FC<IProps & GalleryTitleProps> = ({
       onReachEnd={changeEnd}
     >
       {(productsList || []).map((item) => (
-        <SwiperSlide key={item.id}>
+        <SwiperSlide key={item._id}>
           <ProductGalleryItem {...item} />
         </SwiperSlide>
       ))}

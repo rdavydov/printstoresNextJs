@@ -20,7 +20,8 @@ const ProductsList = ({ dataSource, pagination }: IProductsCard & IProps) => {
       grid={{
         gutter: 20,
         column: 4,
-        lg: 2,
+        md: 3,
+        sm: 2,
         xs: 1,
       }}
       className={styles.root}

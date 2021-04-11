@@ -3,18 +3,6 @@
   height: 200px;
 }
 
-.cartItemWrapper {
-  display: flex;
-  width: 100%;
-  margin-bottom: 35px;
-}
-
-.cartItemActions {
-  flex-basis: 45%;
-  margin: 0 auto;
-  border-right: 1px solid var(--border);
-}
-
 .buttonGroup {
   & button:first-child {
     margin-right: 15px;

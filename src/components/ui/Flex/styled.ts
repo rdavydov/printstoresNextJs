@@ -54,11 +54,11 @@ export interface FlexItemProps extends BaseCssProps {
   alignSelf: "center" | "stretch" | "flex-end" | "flex-start" | "baseline";
   justifySelf: "center" | "flex-start" | "flex-end" | "baseline";
   span: FlexSpan;
-  xs?: Partial<FlexMobileProps<FlexItemProps>>;
-  sm?: Partial<FlexMobileProps<FlexItemProps>>;
-  md?: Partial<FlexMobileProps<FlexItemProps>>;
-  lg?: Partial<FlexMobileProps<FlexItemProps>>;
-  xl?: Partial<FlexMobileProps<FlexItemProps>>;
+  xs?: Partial<FlexMobileProps<DefaultFlexItemProps>>;
+  sm?: Partial<FlexMobileProps<DefaultFlexItemProps>>;
+  md?: Partial<FlexMobileProps<DefaultFlexItemProps>>;
+  lg?: Partial<FlexMobileProps<DefaultFlexItemProps>>;
+  xl?: Partial<FlexMobileProps<DefaultFlexItemProps>>;
   order?: number;
 }
 

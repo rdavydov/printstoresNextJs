@@ -10,6 +10,7 @@ import {
   incrementCartProduct,
   decrementCartProduct,
 } from "src/store/reducers/cart/products/products.reducer";
+import { Flex } from "src/components/ui";
 
 interface IProps {
   preview: string;
@@ -36,21 +37,35 @@ const CartProductListItem: React.FC<IProps> = ({ preview, quantity, title, price
   };
 
   return (
-    <div className={styles.cartItemWrapper}>
+    <Flex mb={35} flexWrap="nowrap" sm={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
       <img className={styles.cartImage} src={preview} />
-      <div className={styles.cartItemActions}>
-        <Title level="h4" className={styles.mb}>
-          <b>{title}</b>
-        </Title>
-        <Button.Group className={styles.buttonGroup}>
-          <Button type="default" icon={<HeartOutlined />}>
-            В избранное
-          </Button>
-          <Button danger icon={<DeleteOutlined />} onClick={deleteProduct}>
-            Удалить товар
-          </Button>
-        </Button.Group>
-      </div>
+      <Flex.Item
+        span={6}
+        md={{ span: 4 }}
+        margin="0 auto"
+        borderRight="1px solid var(--border)"
+        sm={{ borderRight: "none" }}
+      >
+        <Flex flexDirection="column" justifyContent="center" sm={{ textAlign: "center" }}>
+          <Flex.Item span={12}>
+            <Title level="h4" className={styles.mb}>
+              <b>{title}</b>
+            </Title>
+          </Flex.Item>
+          <Flex justifyContent="center" sm={{ alignItems: "center" }}>
+            <Flex.Item span={6} md={{ span: 12, mb: 20 }}>
+              <Button type="default" icon={<HeartOutlined />} style={{ width: 150 }}>
+                В избранное
+              </Button>
+            </Flex.Item>
+            <Flex.Item span={6} md={{ span: 12 }} sm={{ mb: 20 }}>
+              <Button danger icon={<DeleteOutlined />} onClick={deleteProduct} style={{ width: 150 }}>
+                Удалить товар
+              </Button>
+            </Flex.Item>
+          </Flex>
+        </Flex>
+      </Flex.Item>
       <div>
         <div className={styles.cartItemPrice}>
           <Price mr={10} discount bold>
@@ -62,7 +77,7 @@ const CartProductListItem: React.FC<IProps> = ({ preview, quantity, title, price
         </div>
         <QuantityButton quantity={quantity} onIncrement={incrementQuantity} onDecrement={decrementQuantity} />
       </div>
-    </div>
+    </Flex>
   );
 };
 
